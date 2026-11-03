@@ -40,3 +40,15 @@ safe_zones:                 # fractions of output height/width kept clear of pla
 trim:
   max_leading_silence: 0.4
   max_trailing_silence: 0.8
+
+title_overlay:                # on-screen title banner shown at the top of every clip
+  enabled: true
+  seconds: null               # null = whole clip; e.g. 4 = only the first 4 seconds
+  position: 0.10              # top of the banner, fraction of height (kept below the safe zone)
+  size: 62
+  uppercase: true
+  max_chars_per_line: 22
+  max_lines: 3
+  text_color: "#000000"
+  box_color: "#FFFFFF"
+  box_padding: 14

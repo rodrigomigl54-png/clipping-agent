@@ -43,6 +43,26 @@ def _escape(text: str) -> str:
     return text.replace("\\", "").replace("{", "(").replace("}", ")").replace("\n", " ")
 
 
+def _wrap(text: str, width: int) -> list[str]:
+    out, cur = [], ""
+    for w in text.split():
+        if cur and len(cur) + 1 + len(w) > width:
+            out.append(cur); cur = w
+        else:
+            cur = f"{cur} {w}".strip()
+    if cur:
+        out.append(cur)
+    return out
+
+
+def _title_style(tc: dict) -> str:
+    """Opaque box (BorderStyle 3): OutlineColour is the box colour."""
+    return (f"Style: Title,{tc.get('font', 'DejaVu Sans')},{int(tc.get('size', 64))},"
+            f"{_ass_color(tc.get('text_color', '#000000'))},{_ass_color(tc.get('text_color', '#000000'))},"
+            f"{_ass_color(tc.get('box_color', '#FFFFFF'))},&H00000000,-1,0,0,0,100,100,0,0,3,"
+            f"{int(tc.get('box_padding', 14))},0,8,60,60,0,1\n")
+
+
 def chunk_words(words: list[Word], max_words: int, max_chars: int, pause: float = 0.45) -> list[list[Word]]:
     chunks: list[list[Word]] = []
     cur: list[Word] = []
@@ -66,8 +86,9 @@ def is_emphasis(word: str) -> bool:
 
 def build_ass(words: list[Word], clip_start: float, clip_end: float, style: CaptionCfg, *,
               width: int, height: int, y_fraction: float, safe: dict, low_conf: float,
-              out_path: Path) -> CaptionReport:
-    """Write an ASS file with times relative to ``clip_start``."""
+              out_path: Path, title: str | None = None, title_cfg: dict | None = None) -> CaptionReport:
+    """Write an ASS file with times relative to ``clip_start``. ``title`` adds the on-screen title
+    banner that clip channels show at the top of the video."""
     top = safe.get("top", 0.08); bottom = safe.get("bottom", 0.2); right = safe.get("right", 0.12)
     y_fraction = min(max(y_fraction, top + 0.06), 1 - bottom - 0.04)
     y = int(height * y_fraction)
@@ -86,8 +107,17 @@ def build_ass(words: list[Word], clip_start: float, clip_end: float, style: Capt
         f"Style: Main,{font},{style.size},{primary},{primary},{_ass_color(style.outline_color)},"
         f"&H64000000,{-1 if style.bold else 0},0,0,0,100,100,0,0,1,{style.outline},{style.shadow},5,60,"
         f"{int(width * right)},0,1\n\n"
-        "[Events]\nFormat: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n")
+        + _title_style(title_cfg or {}) +
+        "\n[Events]\nFormat: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n")
     lines = []
+    if title and (title_cfg or {}).get("enabled", True):
+        tc = title_cfg or {}
+        dur = clip_end - clip_start
+        show = float(tc.get("seconds") or dur)
+        ty = int(height * max(float(tc.get("position", 0.10)), top))
+        text = "\\N".join(_wrap(_escape(title.upper() if tc.get("uppercase", True) else title),
+                                  int(tc.get("max_chars_per_line", 22)))[: int(tc.get("max_lines", 3))])
+        lines.append(f"Dialogue: 1,{_ts(0)},{_ts(min(dur, show))},Title,,0,0,0,,{{\\pos({width // 2},{ty})}}{text}")
     low = 0
     for i, ch in enumerate(chunks):
         st = ch[0].start - clip_start

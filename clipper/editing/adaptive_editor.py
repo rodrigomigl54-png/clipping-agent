@@ -69,7 +69,7 @@ class AdaptiveEditor:
         return sorted(times)
 
     def edit(self, *, source: dict, candidate: dict, transcript: Transcript, audio: AudioFeatures | None,
-             clip_id: str, out_dir: Path) -> EditResult:
+             clip_id: str, out_dir: Path, title: str | None = None) -> EditResult:
         prof = self.settings.profile(source["profile"])
         ecfg = self.settings.editing
         out_w, out_h = int(ecfg.output["width"]), int(ecfg.output["height"])
@@ -107,7 +107,8 @@ class AdaptiveEditor:
         ass = out_dir / f"{clip_id}.ass"
         cap = build_ass(transcript.words_in(start, end), start, end, prof.editing.caption, width=out_w,
                         height=out_h, y_fraction=plan.caption_y(caption_y), safe=ecfg.safe_zones,
-                        low_conf=self.settings.global_.transcription.low_confidence_threshold, out_path=ass)
+                        low_conf=self.settings.global_.transcription.low_confidence_threshold, out_path=ass,
+                        title=title, title_cfg=ecfg.title_overlay)
         fonts = self.settings.path("assets/fonts")
         out = render(source["local_path"], start, end, plan, out_dir / f"{clip_id}.mp4", output_cfg=ecfg.output,
                      audio_cfg=ecfg.audio, ass_path=ass, gameplay=gameplay, gameplay_offset=offset,

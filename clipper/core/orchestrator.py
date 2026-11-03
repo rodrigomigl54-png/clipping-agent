@@ -228,8 +228,14 @@ class Orchestrator:
             stage(Stage.EDITING)
             cand_full = dict(cand)
             cand_full["ai_analysis"] = loads(cand["ai_analysis"])
+            participants = loads(src["participants"], [])
+            pre = self.gate.evaluate(src, "export")
+            title = build_metadata(self.settings, source=src, candidate=cand_full, participants=participants,
+                                   segments_text=[x.text for x in tr.window(cand["start"], cand["end"])],
+                                   start=cand["start"], end=cand["end"], attribution=pre.attribution,
+                                   trend_terms=self.research.trends.trend_terms(prof.id), gemini=self.gemini)["title"]
             result = self.editor.edit(source=src, candidate=cand_full, transcript=tr, audio=audio, clip_id=clip_id,
-                                      out_dir=self.work("renders", prof.id))
+                                      out_dir=self.work("renders", prof.id), title=title)
             stage(Stage.QUALITY_CHECKING, render_path=str(result.path), duration=result.duration,
                   layout=result.layout, format=result.format)
             phash = video_phash(result.path)
@@ -242,7 +248,8 @@ class Orchestrator:
             meta = build_metadata(self.settings, source=src, candidate=cand_full, participants=participants,
                                   segments_text=segs, start=result.start, end=result.end,
                                   attribution=pre_rights.attribution,
-                                  trend_terms=self.research.trends.trend_terms(prof.id), gemini=self.gemini)
+                                  trend_terms=self.research.trends.trend_terms(prof.id), gemini=self.gemini,
+                                  title=title)
             thumb = make_thumbnail(result.path, meta["title"], self.work("renders", prof.id) / f"{clip_id}.jpg",
                                    self.settings.root)
             tech, info = technical_checks(result.path, cfg=self.settings.quality["technical"],

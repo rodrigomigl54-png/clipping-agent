@@ -193,6 +193,7 @@ class EditingCfg(BaseModel):
     zoom: dict[str, Any]
     safe_zones: dict[str, float]
     trim: dict[str, float]
+    title_overlay: dict[str, Any] = {"enabled": True}
 
 
 class Settings(BaseModel):

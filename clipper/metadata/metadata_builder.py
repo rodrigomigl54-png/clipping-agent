@@ -15,21 +15,24 @@ log = get_logger("metadata")
 
 def build_metadata(settings: Settings, *, source: dict, candidate: dict, participants: list[str],
                    segments_text: list[str], start: float, end: float, attribution: list[str],
-                   trend_terms: set[str], gemini=None) -> dict[str, Any]:
+                   trend_terms: set[str], gemini=None, title: str | None = None) -> dict[str, Any]:
     prof = settings.profile(source["profile"])
     max_chars = int(prof.metadata.get("title_max_chars", 90))
     transcript = " ".join(segments_text)
-    title = heuristic_title(segments_text, participants, candidate.get("hook_type") or "statement",
-                            prof.group_name, max_chars)
-    title_source = "heuristic"
+    fixed_title = title
+    title = fixed_title or heuristic_title(segments_text, participants, candidate.get("hook_type") or "statement",
+                                           prof.group_name, max_chars)
+    title_source = "fixed" if fixed_title else "heuristic"
     ai = candidate.get("ai_analysis") or {}
     summary = (ai.get("summary") if isinstance(ai, dict) else None) or candidate.get("summary") or ""
-    if gemini is not None and gemini.available():
+    if gemini is not None and gemini.available() and not fixed_title:
         try:
             res = gemini.generate_json(
-                "Write ONE engaging but strictly truthful English title (max "
-                f"{max_chars} chars) for a vertical short clip. Use ONLY facts in this transcript; no "
-                "clickbait that implies something that did not happen. Quotes must be verbatim. "
+                "Write ONE short, punchy on-screen title for a vertical short clip, in the style clip channels "
+                "use (e.g. 'Kai Cenat Gets Roasted By His Own Chat'): 3-9 words, max 50 characters, starts with "
+                "who it is about, says what happens, makes people want to watch. Strictly truthful: use ONLY "
+                "facts in this transcript, no clickbait implying something that did not happen; any quote must "
+                "be verbatim. "
                 f"People in the clip: {', '.join(participants) or 'unknown'}.\nTranscript:\n{transcript[:4000]}",
                 {"type": "object", "properties": {"title": {"type": "string"}}, "required": ["title"]})
             cand = str((res or {}).get("title", "")).strip()
