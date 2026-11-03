@@ -80,7 +80,7 @@ class ViralDetector:
         return np.convolve(curve, k, mode="same")
 
     @staticmethod
-    def pick_peaks(curve: np.ndarray, k: int, min_sep: int = 20) -> list[int]:
+    def pick_peaks(curve: np.ndarray, k: int, min_sep: int = 12) -> list[int]:
         order = np.argsort(-curve)
         chosen: list[int] = []
         thr = float(np.percentile(curve, 75)) if curve.size > 4 else 0.0
@@ -230,27 +230,31 @@ class ViralDetector:
                                max_payoff=min(25.0, prof.duration.max_seconds / 3))
         curve = self.interest_curve(inp, prof)
         peaks = self.pick_peaks(curve, k=max_candidates * 2)
-        out: list[CandidateMoment] = []
-        seen: list[tuple[float, float]] = []
+        scored: list[CandidateMoment] = []
         participants = [p for p in (inp.source.get("participants_list") or [])]
+        windows = set()
         for pk in peaks:
             win = find_window(inp.transcript, float(pk) + 0.5, inp.audio, params, inp.media_duration)
-            if win is None:
+            if win is None or (win.start, win.end) in windows:
                 continue
-            # skip windows that mostly overlap a window already claimed by a stronger peak
-            if any(min(win.end, e) - max(win.start, s) > 0.6 * min(win.duration, e - s) for s, e in seen):
-                continue
-            seen.append((win.start, win.end))
+            windows.add((win.start, win.end))
             scores, signals, hook, cat = self.score_window(inp, prof, win.start, win.end, win.peak, win, params)
             signals.update({"interest_peak": round(float(curve[pk]), 3), "context_notes": win.notes,
                             "setup_seconds": win.setup_seconds, "payoff_seconds": win.payoff_seconds})
             text = " ".join(s.text for s in inp.transcript.window(win.start, win.end))
             total = self.total(scores, prof.scoring_weights)
-            out.append(CandidateMoment(
+            scored.append(CandidateMoment(
                 source_id=inp.source["id"], profile=prof.id, start=win.start, end=win.end, peak=win.peak,
                 scores=scores, total_score=total, hook_type=hook, category=cat, transcript_text=text,
                 summary=self.heuristic_summary(inp.transcript, win.start, win.end, win.peak),
                 signals=signals, participants=participants))
+        # non-maximum suppression by total score: overlapping windows compete, the best complete
+        # moment (setup + payoff) wins rather than whichever peak happened to be loudest
+        out: list[CandidateMoment] = []
+        for cand in sorted(scored, key=lambda c: -c.total_score):
+            if any(min(cand.end, o.end) - max(cand.start, o.start) > 0.4 * min(cand.duration, o.duration) for o in out):
+                continue
+            out.append(cand)
         out.sort(key=lambda c: -c.total_score)
         out = out[:max_candidates]
         if self.gemini is not None and self.settings.global_.google_ai.semantic_scoring and self.gemini.available():
@@ -322,6 +326,9 @@ class ViralDetector:
                         cand.start = round(max(0.0, segs[0].start - params.lead_in), 3)
                         cand.end = round(min(inp.media_duration, segs[-1].end + params.tail), 3)
                         cand.transcript_text = " ".join(s.text for s in segs)
+                        if res.get("self_contained") is False:
+                            res["self_contained"] = None   # its concern applied to the old boundaries
+                            res.setdefault("concerns", []).append("boundaries adjusted to AI suggestion")
             if res.get("self_contained") is False:
                 cand.scores["context_completeness"] = round(cand.scores["context_completeness"] * 0.7, 2)
             cand.ai_analysis = {"model": cfg.model, "summary": str(res.get("summary", ""))[:500],

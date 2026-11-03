@@ -27,7 +27,8 @@ google_ai:
   max_candidates_for_semantic: 12
 
 transcription:
-  engine: faster_whisper         # faster_whisper | sidecar_only
+  engine: faster_whisper         # faster_whisper | gemini | sidecar_only
+  fallback_to_gemini: true       # if the Whisper model can't be loaded, transcribe with Gemini
   model_size: small.en
   model_path_env: WHISPER_MODEL_PATH
   device: auto

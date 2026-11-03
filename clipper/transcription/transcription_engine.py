@@ -152,6 +152,86 @@ class FasterWhisperTranscriber:
         return Transcript(source_id, f"faster_whisper:{self.cfg.model_size}", self.cfg.language, segs, "native")
 
 
+# --------------------------------------------------------------------------- gemini
+class GeminiTranscriber:
+    """Transcription with Gemini audio understanding (works on the free tier, needs network).
+
+    Gemini returns sentence-level segments with timestamps; word timings inside a segment are
+    estimated, and segment boundaries are snapped to detected speech so captions stay in sync."""
+    name = "gemini"
+    SCHEMA = {"type": "object", "properties": {"segments": {"type": "array", "items": {
+        "type": "object", "properties": {"start": {"type": "number"}, "end": {"type": "number"},
+                                         "speaker": {"type": "string"}, "text": {"type": "string"}},
+        "required": ["start", "end", "text"]}}}, "required": ["segments"]}
+    PROMPT = ("Transcribe this English audio verbatim. Split it into short segments of one sentence or "
+              "phrase (at most ~8 seconds each). For each segment give start and end in seconds from the "
+              "beginning of the audio, the speaker label (S1, S2, ...) and the exact words spoken. Do not "
+              "summarise, fix, or invent words; mark unclear words as [inaudible]. Return JSON.")
+
+    def __init__(self, settings: Settings, gemini=None):
+        from ..research.google_ai import GeminiClient
+        self.gemini = gemini or GeminiClient(settings.global_.google_ai)
+        self.chunk = 600.0
+
+    def transcribe(self, audio_path: Path, source_id: str) -> Transcript:
+        from google.genai import types
+        from ..core.media import extract_audio_wav, media_info, read_wav_mono, run
+        from ..detection.audio_analyzer import analyze_samples
+        if not self.gemini.available():
+            raise TranscriptionError("Gemini transcription needs GEMINI_API_KEY")
+        dur = media_info(audio_path)["duration"]
+        data, sr = read_wav_mono(audio_path)
+        feat = analyze_samples(data, sr)
+        segs: list[Segment] = []
+        t = 0.0
+        while t < dur - 0.5:
+            length = min(self.chunk, dur - t)
+            mp3 = audio_path.with_suffix(f".{int(t)}.mp3")
+            run(["ffmpeg", "-y", "-v", "error", "-ss", f"{t:.2f}", "-t", f"{length:.2f}", "-i", str(audio_path),
+                 "-ac", "1", "-b:a", "64k", str(mp3)], timeout=600)
+            part = types.Part.from_bytes(data=mp3.read_bytes(), mime_type="audio/mp3")
+            mp3.unlink(missing_ok=True)
+            res = self.gemini.generate_json([part, self.PROMPT], self.SCHEMA, temperature=0.0)
+            for r in (res or {}).get("segments", []):
+                try:
+                    st, en, text = float(r["start"]) + t, float(r["end"]) + t, str(r["text"]).strip()
+                except (KeyError, TypeError, ValueError):
+                    continue
+                if not text or en <= st or st >= t + length + 1:
+                    continue
+                st, en = self._snap(feat, st, min(en, t + length))
+                spk = r.get("speaker") or None
+                words = _estimate_words(text, st, en, spk)
+                for w in words:
+                    if "[inaudible]" in w.text:
+                        w.probability = 0.0
+                    else:
+                        w.probability = 0.8   # model-estimated timing, not acoustic confidence
+                segs.append(Segment(st, en, text, words, spk))
+            t += length
+        segs.sort(key=lambda s: s.start)
+        for a, b in zip(segs, segs[1:]):   # remove overlaps
+            if b.start < a.end:
+                a.end = max(a.start + 0.2, b.start - 0.02)
+                a.words = _estimate_words(a.text, a.start, a.end, a.speaker)
+        return Transcript(source_id, f"gemini:{self.gemini.last_model or self.gemini.cfg.model}", "en", segs, "estimated")
+
+    @staticmethod
+    def _snap(feat, st: float, en: float) -> tuple[float, float]:
+        """Move boundaries inward/outward (max 0.6 s) to the nearest voiced audio."""
+        def voiced(x):
+            return not feat.silence[feat.idx(x)]
+        for d in [i * 0.1 for i in range(7)]:
+            if voiced(st + d):
+                st = st + d; break
+            if st - d >= 0 and voiced(st - d):
+                st = st - d; break
+        for d in [i * 0.1 for i in range(7)]:
+            if voiced(en - d):
+                en = en - d + 0.1; break
+        return round(st, 2), round(max(en, st + 0.3), 2)
+
+
 # --------------------------------------------------------------------------- engine
 class TranscriptionEngine:
     def __init__(self, db: Database, settings: Settings, transcriber: Transcriber | None = None):
@@ -162,8 +242,26 @@ class TranscriptionEngine:
     @property
     def transcriber(self) -> Transcriber:
         if self._transcriber is None:
-            self._transcriber = FasterWhisperTranscriber(self.settings)
+            if self.cfg.engine == "gemini":
+                self._transcriber = GeminiTranscriber(self.settings)
+            else:
+                self._transcriber = FasterWhisperTranscriber(self.settings)
         return self._transcriber
+
+    def _transcribe(self, audio_path: Path, source_id: str) -> Transcript:
+        """faster-whisper first; if its model cannot be loaded (e.g. offline), fall back to Gemini."""
+        try:
+            return self.transcriber.transcribe(audio_path, source_id)
+        except TranscriptionError as e:
+            if self.cfg.engine != "faster_whisper" or not getattr(self.cfg, "fallback_to_gemini", True):
+                raise
+            g = GeminiTranscriber(self.settings)
+            if not g.gemini.available():
+                raise
+            from ..core.logger import get_logger as _gl
+            _gl("transcription").warning("whisper unavailable (%s); using Gemini transcription", str(e)[:200])
+            self._transcriber = g
+            return g.transcribe(audio_path, source_id)
 
     def get(self, source_id: str) -> Transcript | None:
         r = self.db.one("SELECT data FROM transcripts WHERE source_id=?", (source_id,))
@@ -180,7 +278,7 @@ class TranscriptionEngine:
         elif self.cfg.engine == "sidecar_only":
             raise TranscriptionError("engine is sidecar_only but no .json/.srt/.vtt transcript found")
         else:
-            tr = self.transcriber.transcribe(audio_path, source["id"])
+            tr = self._transcribe(audio_path, source["id"])
         if not tr.segments:
             raise TranscriptionError("no speech detected")
         self.save(source, tr)

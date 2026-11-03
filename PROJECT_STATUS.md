@@ -60,7 +60,8 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 40 automated tests passi
    3.8 often returns 503 "high demand". **Google Search grounding returns 429 quota exceeded** on
    this key (free tier without billing) — grounded research/trends are recorded as `failed` until
    billing is enabled in Google AI Studio. Never replaced with ungrounded "research".
-2. **Whisper model not exercised here**: Hugging Face was unreachable in the sandbox, so the
+2. **Gemini transcription engine added and verified live** (fallback when the Whisper model can't
+   be downloaded): accurate sentence segments, word timings estimated. **Whisper model not exercised here**: Hugging Face was unreachable in the sandbox, so the
    faster-whisper path is untested end-to-end; the sidecar transcript path is fully tested. On your
    machine the model downloads on first use (or set `WHISPER_MODEL_PATH`).
 3. **Face tracking uses OpenCV's Haar frontal-face cascade**: misses profiles, tiny facecams and
@@ -81,6 +82,9 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 40 automated tests passi
 10. Scores are heuristic estimates of potential, not predictions of views or retention.
 
 ## Bugs
+- Fixed (2026-11-03, found on a 113 s synthetic stream): overlapping windows now compete by total
+  score (a setup-only window no longer blocks the full story); clips end at the story wrap-up before
+  the next topic change; lead-in no longer catches the previous sentence's last word.
 - Fixed: peaks were processed in time order, letting a weak early peak claim the context window
   of a stronger moment (regression asserted in `test_lospollos_split_format_with_licensed_gameplay`).
 - No known open bugs.

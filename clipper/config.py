@@ -64,6 +64,7 @@ class TranscriptionCfg(BaseModel):
     vad_filter: bool = True
     low_confidence_threshold: float = 0.55
     prefer_sidecar: bool = True
+    fallback_to_gemini: bool = True
 
 
 class PipelineCfg(BaseModel):
