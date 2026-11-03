@@ -10,7 +10,18 @@ from dataclasses import dataclass, field
 
 from ..models import Segment, Transcript
 from .audio_analyzer import AudioFeatures
-from .text_signals import ends_sentence, jaccard, shingles, starts_dangling
+from .text_signals import LEXICON, count_terms, ends_sentence, jaccard, shingles, starts_dangling
+
+OPENERS = ["let me tell you", "story time", "so basically", "you won't believe", "guess what",
+           "listen to this", "one time", "remember when", "so yesterday", "so last night"]
+
+
+def is_opener(text: str) -> bool:
+    return count_terms(text, OPENERS) > 0
+
+
+def is_reaction(text: str) -> bool:
+    return count_terms(text, LEXICON["argument"] + LEXICON["laughter"] + LEXICON["surprise"] + LEXICON["roast"]) > 0
 
 
 @dataclass
@@ -69,13 +80,15 @@ def find_window(tr: Transcript, peak: float, audio: AudioFeatures | None, p: Con
             break
         gap = cur.start - prev.end
         if setup >= p.min_setup:
+            # a story/topic opener in the current segment is the natural start
+            if is_opener(cur.text) and not starts_dangling(cur.text):
+                break
             # stop at a long pause when the current segment starts cleanly
             if gap >= p.topic_pause and not starts_dangling(cur.text):
                 break
-            # stop at a topic change (low lexical cohesion) once enough setup exists
+            # stop at a topic change: a pause plus low lexical cohesion with the moment
             cohesion = jaccard(shingles(prev.text, 1), peak_ctx)
-            if setup >= 2 * p.min_setup and cohesion < 0.05 and ends_sentence(prev.text) \
-                    and not starts_dangling(cur.text):
+            if gap >= 1.0 and cohesion < 0.05 and ends_sentence(prev.text) and not starts_dangling(cur.text):
                 break
         si -= 1
     # never start on a dangling reference if one more segment fixes it
@@ -98,7 +111,8 @@ def find_window(tr: Transcript, peak: float, audio: AudioFeatures | None, p: Con
             a, b = cur.end, cur.end + p.calm_seconds
             calm = audio.mean_z(a, b) < p.reaction_calm_z
         gap = nxt.start - cur.end
-        if after >= p.min_payoff and ends_sentence(cur.text) and (calm or gap >= p.topic_pause):
+        continues = gap < 1.0 and is_reaction(nxt.text)   # the exchange is still going
+        if after >= p.min_payoff and ends_sentence(cur.text) and (calm or gap >= p.topic_pause) and not continues:
             break
         ei += 1
 

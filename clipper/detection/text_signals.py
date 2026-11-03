@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 LEXICON: dict[str, list[str]] = {
     "hook": ["no way", "wait", "hold on", "hold up", "listen", "you won't believe", "watch this",
              "look at this", "look at", "i'm not gonna lie", "ngl", "deadass", "on god", "i swear",
-             "why would", "how did", "chat", "yo", "bro", "nah", "guess what", "real talk", "be honest"],
+             "why would", "how did", "let me tell you", "what happened", "story time", "chat", "yo", "bro", "nah", "guess what", "real talk", "be honest"],
     "surprise": ["no way", "oh my god", "omg", "what the", "are you serious", "wait what", "huh",
                  "excuse me", "insane", "crazy", "unbelievable", "what just happened", "bro what",
                  "you're lying", "no shot", "how", "what"],

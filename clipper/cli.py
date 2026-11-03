@@ -233,7 +233,7 @@ def cmd_clips(app: App, a) -> int:
         r["file"] = r["export_path"] if r["export_path"] and Path(r["export_path"]).exists() else (
             r["render_path"] if r["decision"] == "NEEDS_REVIEW" and r["render_path"] and Path(r["render_path"]).exists() else None)
     print(table(rows, ["id", "profile", "decision", "title", "duration", "quality_score", "viral_score", "rights_status", "format", "file"],
-                {"title": 45, "file": 110}))
+                {"title": 45, "file": 400}))
     return 0
 
 

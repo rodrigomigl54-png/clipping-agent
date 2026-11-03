@@ -118,9 +118,10 @@ def compose(frame: np.ndarray, plan: LayoutPlan, t: float, gameplay: np.ndarray 
     if plan.layout == "focus":
         return _panel(frame, plan, t, W, H)
     if plan.layout == "fit_blur":
-        small = cv2.resize(_cover(frame, W, H), (W // 10, H // 10), interpolation=cv2.INTER_AREA)
-        bg = cv2.resize(cv2.GaussianBlur(small, (0, 0), 6), (W, H), interpolation=cv2.INTER_LINEAR)
-        bg = (bg * 0.55).astype(np.uint8)
+        # background built at 1/10 resolution (blur + darken are cheap there), then upscaled
+        small = _cover(frame, W // 10, H // 10)
+        small = cv2.convertScaleAbs(cv2.GaussianBlur(small, (0, 0), 6), alpha=0.55)
+        bg = cv2.resize(small, (W, H), interpolation=cv2.INTER_LINEAR)
         fh, fw = frame.shape[:2]
         z = zoom_at(plan, t)
         nw = int(W * min(1.25, z)); nh = int(fh * nw / fw)

@@ -91,7 +91,7 @@ class ViralDetector:
                 chosen.append(int(idx))
             if len(chosen) >= k:
                 break
-        return sorted(chosen)
+        return chosen   # strongest first: the best moment claims its context window first
 
     # ---------------------------------------------------------------- scoring
     def score_window(self, inp: DetectionInputs, prof: ProfileCfg, start: float, end: float, peak: float,
@@ -237,7 +237,7 @@ class ViralDetector:
             win = find_window(inp.transcript, float(pk) + 0.5, inp.audio, params, inp.media_duration)
             if win is None:
                 continue
-            # skip windows that mostly overlap an earlier (higher-ranked by time order) window
+            # skip windows that mostly overlap a window already claimed by a stronger peak
             if any(min(win.end, e) - max(win.start, s) > 0.6 * min(win.duration, e - s) for s, e in seen):
                 continue
             seen.append((win.start, win.end))
