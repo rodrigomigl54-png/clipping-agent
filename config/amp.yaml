@@ -1,0 +1,75 @@
+id: amp
+display_name: AMP Clipper
+output_folder: AMP
+min_quality_threshold: 62        # total candidate score (0-100) needed to render
+duration:
+  min_seconds: 15
+  max_seconds: 180
+  ideal_ranges:                  # guidance only, not mandatory buckets
+    direct: [15, 30]
+    context: [30, 60]
+    story: [60, 120]
+    exceptional: [120, 180]
+
+# Initial research priorities. These are attention weights, NOT clip quotas.
+# Channel IDs are intentionally empty: add the creators' real channel IDs yourself.
+creators:
+  - {name: Kai Cenat,    priority: very_high,   aliases: [kai, kai cenat],        hashtags: [kaicenat],    youtube_channel_ids: []}
+  - {name: Fanum,        priority: high,        aliases: [fanum],                 hashtags: [fanum],       youtube_channel_ids: []}
+  - {name: Agent 00,     priority: high,        aliases: [agent, agent 00, agent00], hashtags: [agent00],  youtube_channel_ids: []}
+  - {name: Duke Dennis,  priority: medium_high, aliases: [duke, duke dennis],     hashtags: [dukedennis],  youtube_channel_ids: []}
+  - {name: Chrisnxtdoor, priority: medium_high, aliases: [chris, chrisnxtdoor],   hashtags: [chrisnxtdoor],youtube_channel_ids: []}
+  - {name: ImDavisss,    priority: medium_high, aliases: [davis, imdavisss],      hashtags: [imdavisss],   youtube_channel_ids: []}
+group_name: AMP
+content_categories: [individual_stream, official_group_video, challenge, group_reaction, conversation, collaboration]
+affiliates_are_members: false     # guests are tagged as guests, never as AMP members
+
+attention:
+  dynamic: true
+  min_multiplier: 0.5
+  max_multiplier: 2.0
+  learning_rate: 0.2
+
+scoring_weights:                  # relative weights; normalised automatically
+  hook_strength: 1.3
+  entertainment: 1.3
+  emotional_impact: 1.1
+  context_completeness: 1.2
+  story_progression: 0.8
+  payoff_strength: 1.2
+  originality: 0.7
+  shareability: 1.0
+  visual_quality: 0.6
+  audio_quality: 0.7
+  platform_suitability: 0.8
+  group_chemistry: 0.8
+
+features:
+  cross_stream_detection: true
+  allow_multiple_perspectives: false
+  group_chemistry: true
+  cross_profile_duplicate_check: true
+
+editing:
+  style: energetic
+  layout_policy: auto            # auto | focus | fit_blur
+  caption:
+    font: DejaVu Sans
+    font_file: null
+    size: 78
+    primary_color: "#FFFFFF"
+    highlight_color: "#FFD400"
+    outline_color: "#000000"
+    outline: 5
+    shadow: 2
+    bold: true
+    uppercase: true
+    max_words: 3
+    max_chars: 22
+    position: 0.66               # vertical centre of captions, fraction of height
+  zoom_emphasis: true
+
+metadata:
+  base_hashtags: [amp, shorts, streamer, funny]
+  max_hashtags: 8
+  title_max_chars: 90

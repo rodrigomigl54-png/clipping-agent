@@ -1,0 +1,88 @@
+id: lospollostv
+display_name: LosPollosTV Clipper
+output_folder: LOSPOLLOSTV
+min_quality_threshold: 60
+duration:
+  min_seconds: 15
+  max_seconds: 180
+  ideal_ranges:
+    direct: [15, 30]
+    context: [30, 60]
+    story: [60, 120]
+    exceptional: [120, 180]
+
+creators:
+  - {name: LosPollosTV, priority: very_high, aliases: [lospollos, lospollostv, pollos], hashtags: [lospollostv], youtube_channel_ids: []}
+group_name: null
+# Moment detection is NOT restricted to GTA topics; gameplay is only the visual background layer.
+content_categories: [just_chatting, reaction, gaming, conversation, funny_moment, unexpected_situation]
+affiliates_are_members: false
+
+attention:
+  dynamic: false
+  min_multiplier: 1.0
+  max_multiplier: 1.0
+  learning_rate: 0.0
+
+scoring_weights:
+  hook_strength: 1.3
+  entertainment: 1.3
+  emotional_impact: 1.1
+  context_completeness: 1.2
+  story_progression: 0.9
+  payoff_strength: 1.2
+  originality: 0.7
+  shareability: 1.0
+  visual_quality: 0.6
+  audio_quality: 0.7
+  platform_suitability: 0.8
+  group_chemistry: 0.4
+
+features:
+  cross_stream_detection: false
+  allow_multiple_perspectives: false
+  group_chemistry: false
+  cross_profile_duplicate_check: true
+
+editing:
+  style: format_experiment
+  layout_policy: experiment      # assigns Format A/B/C to distinct moments (never the same moment twice)
+  caption:
+    font: DejaVu Sans
+    font_file: null
+    size: 70
+    primary_color: "#FFFFFF"
+    highlight_color: "#7CFF4F"
+    outline_color: "#000000"
+    outline: 5
+    shadow: 2
+    bold: true
+    uppercase: true
+    max_words: 3
+    max_chars: 22
+    position: 0.66
+  zoom_emphasis: true
+
+format_experiment:
+  formats:
+    A: {layout: split_gta, streamer_fraction: 0.5}     # classic GTA split screen
+    B: {layout: focus}                                 # streamer focus
+    C: {layout: hybrid, streamer_fraction: 0.66}       # hybrid
+  caption_position:            # per-format caption centre (fraction of height)
+    A: 0.50                    # on the seam between streamer and gameplay
+    B: 0.66
+    C: 0.64
+  min_samples_per_format: 20
+  target_samples_per_format: 30
+  primary_metric: avg_pct_viewed
+  # Gameplay must be owned by you or licensed for commercial use, AND registered as an
+  # APPROVED asset permission (see README). Unregistered files are never used.
+  gameplay_dir: assets/approved_gameplay
+
+monetization:
+  block_gambling_primary: true
+
+metadata:
+  base_hashtags: [lospollostv, shorts, streamer, funny]
+  max_hashtags: 8
+  title_max_chars: 90

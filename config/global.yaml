@@ -1,0 +1,46 @@
+# Global settings for the AI Clipping Machine. Local-first: nothing is uploaded or published.
+timezone: UTC
+database_path: database/clipping_machine.db
+work_dir: work
+outputs_dir: outputs
+logs_dir: logs
+sources_dir: sources
+
+research:
+  window_days: 7                 # rolling research window
+  interval_minutes: 60           # how often the scheduler runs a research + processing cycle
+  gemini_research_interval_minutes: 360   # grounded web research is rate-limited separately
+  max_sources_per_cycle: 10
+  enable_gemini_research: true   # only active when GEMINI_API_KEY is set
+  enable_youtube_rss: true       # metadata-only discovery from official channel RSS feeds
+
+google_ai:
+  model: gemini-2.5-flash        # change here if Google retires/renames the model
+  api_key_env: GEMINI_API_KEY
+  timeout_seconds: 90
+  max_retries: 3
+  retry_backoff_seconds: 5
+  use_search_grounding: true
+  semantic_scoring: true         # let Gemini score transcript windows (text only)
+  semantic_weight: 0.35          # blend weight of AI semantic score vs. local signal score
+  max_candidates_for_semantic: 12
+
+transcription:
+  engine: faster_whisper         # faster_whisper | sidecar_only
+  model_size: small.en
+  model_path_env: WHISPER_MODEL_PATH
+  device: auto
+  compute_type: int8
+  language: en
+  vad_filter: true
+  low_confidence_threshold: 0.55 # word probability below this is "low confidence"
+  prefer_sidecar: true           # use .srt/.vtt/.json transcript next to the media when present
+
+pipeline:
+  max_candidates_per_source: 25
+  max_render_attempts: 2
+  stage_timeout_seconds: 3600
+  keep_rejected_renders: false
+
+export:
+  date_format: "%Y-%m-%d"

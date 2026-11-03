@@ -1,0 +1,19 @@
+technical:
+  expected_width: 1080
+  expected_height: 1920
+  aspect_tolerance: 0.01
+  max_av_duration_diff: 0.25    # seconds between audio and video stream durations
+  black_min_duration: 1.0       # blackdetect segment length that counts as a black-screen error
+  max_black_fraction: 0.15
+  silence_noise_db: -45
+  max_silence_fraction: 0.5
+  min_bitrate_kbps: 400
+
+content:
+  min_context_score: 5.0
+  min_speech_coverage: 0.35     # fraction of the clip containing transcribed speech
+  max_low_confidence_fraction: 0.15
+  require_sentence_boundaries: true
+
+decision:
+  rights_unknown_third_party: needs_review   # needs_review | reject
