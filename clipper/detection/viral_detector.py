@@ -248,6 +248,32 @@ class ViralDetector:
                 scores=scores, total_score=total, hook_type=hook, category=cat, transcript_text=text,
                 summary=self.heuristic_summary(inp.transcript, win.start, win.end, win.peak),
                 signals=signals, participants=participants))
+        if self.gemini is not None and self.settings.global_.google_ai.semantic_scoring and self.gemini.available():
+            from .context_analyzer import _end_at, _start_at
+            segs_all = inp.transcript.segments
+            for a, b, m in self.semantic_discover(inp, prof):
+                inside = [i for i, x in enumerate(segs_all) if x.end > a and x.start < b]
+                if not inside:
+                    continue
+                st = _start_at(segs_all, inside[0], params.lead_in)
+                en = min(inp.media_duration, _end_at(segs_all, inside[-1], params.tail))
+                if not (params.min_duration <= en - st <= params.max_duration) or (st, en) in windows:
+                    continue
+                windows.add((st, en))
+                peak = (st + en) / 2
+                scores, signals, hook, cat = self.score_window(inp, prof, st, en, peak, None, params)
+                strength = m.get("strength")
+                if isinstance(strength, (int, float)):
+                    w = self.settings.global_.google_ai.semantic_weight
+                    for k in ("entertainment", "shareability", "payoff_strength"):
+                        scores[k] = round((1 - w) * scores[k] + w * _clamp(float(strength)), 2)
+                signals.update({"source": "gemini_discovery", "ai_reason": str(m.get("why", ""))[:300]})
+                text = " ".join(x.text for x in inp.transcript.window(st, en))
+                scored.append(CandidateMoment(
+                    source_id=inp.source["id"], profile=prof.id, start=st, end=en, peak=peak, scores=scores,
+                    total_score=self.total(scores, prof.scoring_weights), hook_type=m.get("hook_type") or hook,
+                    category=cat, transcript_text=text, summary=str(m.get("why", ""))[:300] or
+                    self.heuristic_summary(inp.transcript, st, en, peak), signals=signals, participants=participants))
         # non-maximum suppression by total score: overlapping windows compete, the best complete
         # moment (setup + payoff) wins rather than whichever peak happened to be loudest
         out: list[CandidateMoment] = []
@@ -271,6 +297,48 @@ class ViralDetector:
         if len(quote) > 140:
             quote = quote[:137].rsplit(" ", 1)[0] + "..."
         return f'Moment at {int(peak // 60)}:{int(peak % 60):02d} — "{quote}"'
+
+    # ---------------------------------------------------------------- Gemini discovery
+    DISCOVERY_SCHEMA = {"type": "object", "properties": {"moments": {"type": "array", "items": {
+        "type": "object", "properties": {"start": {"type": "number"}, "end": {"type": "number"},
+                                         "why": {"type": "string"}, "hook_type": {"type": "string"},
+                                         "strength": {"type": "number"}},
+        "required": ["start", "end", "why"]}}}, "required": ["moments"]}
+
+    def semantic_discover(self, inp: DetectionInputs, prof: ProfileCfg, chunk_seconds: float = 900,
+                          per_chunk: int = 8) -> list[tuple[float, float, dict]]:
+        """Ask Gemini to read the transcript and propose self-contained moments (text only).
+        Proposals are only *candidates*: they are snapped to real speech and scored locally."""
+        out: list[tuple[float, float, dict]] = []
+        segs = inp.transcript.segments
+        t = 0.0
+        while t < inp.media_duration:
+            chunk = [x for x in segs if t <= x.start < t + chunk_seconds]
+            t += chunk_seconds
+            if not chunk:
+                continue
+            lines = "\n".join(f"[{x.start:.0f}]{' ' + x.speaker + ':' if x.speaker else ''} {x.text}" for x in chunk)
+            prompt = (
+                f"You are a professional short-form editor for {prof.display_name}. Creators: "
+                f"{', '.join(c.name for c in prof.creators)}. Below is a timestamped stream transcript (seconds).\n"
+                f"Find up to {per_chunk} of the strongest moments for YouTube Shorts/TikTok: funny exchanges, roasts, "
+                "surprising reveals, arguments, stories with a payoff, memorable reactions. Each moment must make sense "
+                f"on its own: include the setup and the payoff. Duration {prof.duration.min_seconds:.0f}-"
+                f"{prof.duration.max_seconds:.0f} seconds. Use ONLY what is in the transcript; never invent. "
+                "Give start/end in seconds, a one-line reason, hook_type and strength 0-10.\n\n" + lines)
+            try:
+                res = self.gemini.generate_json(prompt, self.DISCOVERY_SCHEMA, temperature=0.2)
+            except Exception as e:
+                log.warning("semantic discovery failed for chunk at %.0fs: %s", t - chunk_seconds, e)
+                continue
+            for m in (res or {}).get("moments", []):
+                try:
+                    a, b = float(m["start"]), float(m["end"])
+                except (KeyError, TypeError, ValueError):
+                    continue
+                if b - a >= 5 and 0 <= a < b <= inp.media_duration + 1:
+                    out.append((a, min(b, inp.media_duration), m))
+        return out
 
     # ---------------------------------------------------------------- Gemini layer
     SEMANTIC_SCHEMA = {
