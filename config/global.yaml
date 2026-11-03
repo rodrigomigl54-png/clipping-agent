@@ -15,7 +15,8 @@ research:
   enable_youtube_rss: true       # metadata-only discovery from official channel RSS feeds
 
 google_ai:
-  model: gemini-2.5-flash        # change here if Google retires/renames the model
+  model: gemini-3.8-flash        # change here if Google retires/renames the model
+  fallback_models: [gemini-3.5-flash, gemini-flash-latest, gemini-3.5-flash-lite]   # tried when the main model is overloaded/unavailable
   api_key_env: GEMINI_API_KEY
   timeout_seconds: 90
   max_retries: 3

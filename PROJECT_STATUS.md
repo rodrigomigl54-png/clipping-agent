@@ -1,6 +1,6 @@
 # Project Status
 
-_Last updated: 2026-11-03 — all 7 phases implemented. 39 automated tests passing (`python -m pytest -q`)._
+_Last updated: 2026-11-03 — all 7 phases implemented. 40 automated tests passing (`python -m pytest -q`)._
 
 ## Completed (implemented and tested)
 
@@ -55,10 +55,11 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 39 automated tests passi
 - Twitch discovery (needs Twitch API credentials — add only if you want it).
 
 ## Known limitations (honest)
-1. **Gemini not tested against the live API** in the build sandbox (no API key; Google docs host
-   blocked there). The client was written against the installed `google-genai` SDK and tested
-   with a fake client. First real run: `python main.py research amp --gemini` and check
-   `research-notes`. If Google renames the model, change `google_ai.model` in `config/global.yaml`.
+1. **Gemini verified live (2026-11-03)**: plain/JSON calls work; `gemini-2.5-flash` is retired, so
+   the default is `gemini-3.8-flash` with automatic fallbacks (`gemini-3.5-flash`, ...) because
+   3.8 often returns 503 "high demand". **Google Search grounding returns 429 quota exceeded** on
+   this key (free tier without billing) — grounded research/trends are recorded as `failed` until
+   billing is enabled in Google AI Studio. Never replaced with ungrounded "research".
 2. **Whisper model not exercised here**: Hugging Face was unreachable in the sandbox, so the
    faster-whisper path is untested end-to-end; the sidecar transcript path is fully tested. On your
    machine the model downloads on first use (or set `WHISPER_MODEL_PATH`).
@@ -70,8 +71,9 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 39 automated tests passi
 5. **Laughter / reaction detection** is lexical + loudness-relative; there is no audio event model.
 6. **Audio fingerprint** is a coarse loudness contour (good for near-identical re-uploads, not for
    re-encoded audio with different mixing).
-7. **YouTube RSS** discovery needs real channel IDs you add to the profile YAML (left empty on
-   purpose) and was only tested offline. Leads are metadata only; you must supply the media.
+7. **YouTube RSS discovery verified live**: all 19 configured handles resolved to channel IDs; first
+   run indexed 90 videos from the 7-day window as metadata-only leads (PENDING_VERIFICATION).
+   Leads list only the channel owner as participant; guests must be added before rights can pass.
 8. **Speed**: rendering ≈ real-time for 1080×1920 at preset `medium` on 4 cores; visual analysis
    of a multi-hour VOD at 1 fps takes minutes. `start` runs in the foreground (use tmux/nohup).
 9. Learning recommendations need ≥8 clips with retention data per profile; format verdicts need
