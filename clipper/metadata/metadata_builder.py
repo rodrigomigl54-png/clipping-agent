@@ -37,7 +37,9 @@ def build_metadata(settings: Settings, *, source: dict, candidate: dict, partici
                 "named person did or said something if the transcript makes it unambiguous; otherwise "
                 "describe the situation (e.g. 'Kai Cenat's TikTok Guest Claims...'). Guests and other "
                 "speakers are not the creator. "
-                f"People in the clip: {', '.join(participants) or 'unknown'}.\nTranscript:\n{transcript[:4000]}",
+                f"People in the clip: {', '.join(participants) or 'unknown'}.\n"
+                + (f"What happens (from the moment analysis, trust it for who did what): {summary}\n" if summary else "")
+                + f"Transcript:\n{transcript[:4000]}",
                 {"type": "object", "properties": {"title": {"type": "string"},
                                                  "people_mentioned": {"type": "array", "items": {"type": "string"}}},
                  "required": ["title", "people_mentioned"]})
