@@ -19,7 +19,7 @@ creators:
   - {name: Agent 00,     priority: high,        aliases: [agent, agent 00, agent00], hashtags: [agent00],  youtube_channel_ids: [], youtube_handles: ["@Agent00"]}
   - {name: Duke Dennis,  priority: medium_high, aliases: [duke, duke dennis],     hashtags: [dukedennis],  youtube_channel_ids: [], youtube_handles: ["@DukeDennisAMP"]}
   - {name: Chrisnxtdoor, priority: medium_high, aliases: [chris, chrisnxtdoor],   hashtags: [chrisnxtdoor],youtube_channel_ids: [], youtube_handles: ["@chrisnxtdoorlive"]}
-  - {name: ImDavisss,    priority: medium_high, aliases: [davis, imdavisss],      hashtags: [imdavisss],   youtube_channel_ids: [], youtube_handles: []}
+  - {name: ImDavisss,    priority: medium_high, aliases: [davis, imdavisss],      hashtags: [imdavisss],   youtube_channel_ids: [], youtube_handles: ["@ImDavisssTV"]}
 group_name: AMP
 group_youtube_handles: ["@AMPEXCLUSIVE"]
 content_categories: [individual_stream, official_group_video, challenge, group_reaction, conversation, collaboration]
