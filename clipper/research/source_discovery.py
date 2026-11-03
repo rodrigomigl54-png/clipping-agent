@@ -234,12 +234,52 @@ class YouTubeRSSDiscovery:
             })
         return out
 
+    @staticmethod
+    def parse_channel_id(html: str) -> str | None:
+        for pat in (r'"externalId":"(UC[0-9A-Za-z_-]{22})"', r'<meta itemprop="(?:channelId|identifier)" content="(UC[0-9A-Za-z_-]{22})"',
+                    r'"channelId":"(UC[0-9A-Za-z_-]{22})"'):
+            m = re.search(pat, html)
+            if m:
+                return m.group(1)
+        return None
+
+    def resolve_handle(self, handle: str) -> str | None:
+        """Resolve "@Handle" or "c/Name" to a channel ID from the public channel page (metadata only), cached."""
+        key = f"yt_handle:{handle.lower()}"
+        cached = self.store.db.get_state(key)
+        if cached:
+            return cached
+        path = handle if handle.startswith(("@", "c/", "channel/")) else "@" + handle
+        try:
+            cid = self.parse_channel_id(self.fetch(f"https://www.youtube.com/{path}").decode("utf-8", "replace"))
+        except Exception as e:
+            self.store.db.log_error("discovery.rss", handle, f"could not resolve handle: {e}")
+            return None
+        if cid:
+            self.store.db.set_state(key, cid)
+        return cid
+
+    def channels(self, profile: str) -> list[tuple[str, str]]:
+        """(creator name or group, channel id) pairs from configured IDs and handles."""
+        prof = self.settings.profile(profile)
+        out = []
+        for c in prof.creators:
+            ids = list(c.youtube_channel_ids) + [x for x in map(self.resolve_handle, c.youtube_handles) if x]
+            out += [(c.name, i) for i in ids]
+        for h in prof.group_youtube_handles:
+            i = self.resolve_handle(h)
+            if i:
+                out.append((prof.group_name or prof.display_name, i))
+        return out
+
     def scan(self, profile: str) -> list[str]:
         prof = self.settings.profile(profile)
         cutoff = datetime.now(timezone.utc) - timedelta(days=self.settings.global_.research.window_days)
         created = []
-        for c in prof.creators:
-            for cid in c.youtube_channel_ids:
+        members = {c.name for c in prof.creators}
+        for name, cid in self.channels(profile):
+            c = type("C", (), {"name": name})()
+            for cid in [cid]:
                 if not re.fullmatch(r"UC[0-9A-Za-z_-]{22}", cid):
                     log.warning("rss: skipping invalid channel id %r for %s", cid, c.name)
                     continue
@@ -254,7 +294,8 @@ class YouTubeRSSDiscovery:
                         continue
                     sid, new = self.store.register(
                         profile=profile, kind="research_lead", key=f"yt:{en['video_id']}",
-                        title=en["title"], url=en["url"], channel=cid, creators=[c.name],
+                        title=en["title"], url=en["url"], channel=cid,
+                        creators=[c.name] if c.name in members else [],
                         published_at=pub, discovery_method="youtube_rss",
                         extra={"channel_name": en["channel"], "note": "metadata only; media not acquired"})
                     if new:

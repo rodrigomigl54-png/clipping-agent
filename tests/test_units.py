@@ -251,3 +251,14 @@ def test_face_tracker_smooths_and_holds_through_misses(monkeypatch):
     assert abs(cam.cx[5] - cam.cx[3]) < 1e-6          # held during misses
     assert abs(cam.cx[7] - cam.cx[6]) < 1e-6          # jitter inside dead zone ignored
     assert cam.cx[-1] > cam.cx[7] and cam.cx[-1] < 0.75  # moves toward new position smoothly, no jump
+
+
+def test_youtube_handle_resolution_and_config(settings, db):
+    assert "@KaiCenatLive" in settings.profile("amp").creator("Kai Cenat").youtube_handles
+    assert settings.profile("core").group_youtube_handles == ["@createownruneverything"]
+    store = SourceStore(db, settings)
+    html = b'<html>..."externalId":"UCabcdefghijklmnopqrstuv"...</html>'
+    calls = []
+    d = YouTubeRSSDiscovery(store, settings, fetch=lambda u: calls.append(u) or html)
+    assert d.resolve_handle("@KaiCenatLive") == "UCabcdefghijklmnopqrstuv"
+    assert d.resolve_handle("@KaiCenatLive") == "UCabcdefghijklmnopqrstuv" and len(calls) == 1   # cached

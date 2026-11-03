@@ -12,7 +12,7 @@ duration:
     exceptional: [120, 180]
 
 creators:
-  - {name: LosPollosTV, priority: very_high, aliases: [lospollos, lospollostv, pollos], hashtags: [lospollostv], youtube_channel_ids: []}
+  - {name: LosPollosTV, priority: very_high, aliases: [lospollos, lospollostv, pollos], hashtags: [lospollostv], youtube_channel_ids: [], youtube_handles: ["c/LosPollosTVLIVE1"], twitch: [lospollostv], kick: [lospollostv]}
 group_name: null
 # Moment detection is NOT restricted to GTA topics; gameplay is only the visual background layer.
 content_categories: [just_chatting, reaction, gaming, conversation, funny_moment, unexpected_situation]

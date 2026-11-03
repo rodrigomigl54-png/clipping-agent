@@ -106,6 +106,9 @@ class CreatorCfg(BaseModel):
     aliases: list[str] = []
     hashtags: list[str] = []
     youtube_channel_ids: list[str] = []
+    youtube_handles: list[str] = []        # e.g. "@KaiCenatLive"; resolved to channel IDs at discovery time
+    twitch: list[str] = []
+    kick: list[str] = []
 
     @property
     def initial_weight(self) -> float:
@@ -159,6 +162,7 @@ class ProfileCfg(BaseModel):
     duration: DurationCfg = DurationCfg()
     creators: list[CreatorCfg] = []
     group_name: str | None = None
+    group_youtube_handles: list[str] = []  # official group channels (e.g. AMP, CORE)
     content_categories: list[str] = []
     affiliates_are_members: bool = False
     attention: AttentionCfg = AttentionCfg()
