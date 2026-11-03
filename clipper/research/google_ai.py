@@ -24,6 +24,9 @@ from ..core.retry import TransientError, retry_call
 log = get_logger("google_ai")
 
 
+_EXHAUSTED: set[str] = set()   # models whose quota ran out in this process
+
+
 class ModelNotFound(RuntimeError):
     """The requested model is retired or not available to this key."""
 
@@ -100,7 +103,7 @@ class GeminiClient:
         """Call the configured model; on overload/unavailability fall back to the next model."""
         models = [self.cfg.model] + [m for m in self.cfg.fallback_models if m != self.cfg.model]
         last: Exception | None = None
-        for model in models:
+        for model in [m for m in models if m not in _EXHAUSTED] or models[-1:]:
             def call(model=model):
                 try:
                     resp = self.client().models.generate_content(model=model, contents=contents, config=config)
@@ -112,6 +115,9 @@ class GeminiClient:
                     name = type(e).__name__
                     code = getattr(e, "code", None) or getattr(e, "status_code", None)
                     msg = redact(str(e))
+                    if code == 429 and ("quota" in msg.lower() or "RESOURCE_EXHAUSTED" in msg):
+                        _EXHAUSTED.add(model)          # daily free-tier quota: don't retry this model today
+                        raise ModelNotFound(f"{model}: quota exhausted") from e
                     if name in ("ServerError", "TimeoutException", "ConnectError", "ReadTimeout") or code in (429, 500, 502, 503, 504):
                         raise TransientError(f"{name}: {msg}") from e
                     if code == 404:

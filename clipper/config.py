@@ -43,7 +43,7 @@ class ResearchCfg(BaseModel):
 
 class GoogleAICfg(BaseModel):
     model: str = "gemini-3.8-flash"
-    fallback_models: list[str] = ["gemini-3.5-flash", "gemini-flash-latest", "gemini-3.5-flash-lite"]
+    fallback_models: list[str] = ["gemini-3.5-flash", "gemini-3.7-flash", "gemini-3.6-flash", "gemini-flash-latest", "gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemini-flash-lite-latest"]
     api_key_env: str = "GEMINI_API_KEY"
     timeout_seconds: int = 90
     max_retries: int = 3
