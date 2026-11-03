@@ -1,0 +1,42 @@
+# Shared rendering settings. Profile files may override caption style and layout policy.
+output:
+  width: 1080
+  height: 1920
+  fps: 30
+  video_codec: libx264
+  preset: medium
+  crf: 20
+  pix_fmt: yuv420p
+  audio_codec: aac
+  audio_bitrate: 160k
+  audio_sample_rate: 48000
+
+audio:
+  loudnorm: true
+  target_lufs: -14
+  true_peak: -1.5
+  lra: 11
+  highpass_hz: 70
+
+face_tracking:
+  sample_fps: 4
+  smoothing: 0.85          # EMA factor for camera motion (higher = smoother)
+  dead_zone: 0.06          # fraction of frame width the face may drift before the camera moves
+  min_face_size: 0.06      # fraction of frame height
+
+zoom:
+  enabled: true
+  base: 1.0
+  emphasis: 1.12           # punch-in zoom on strong reactions
+  ramp_seconds: 0.35
+  hold_seconds: 1.2
+  max_emphasis_per_clip: 3
+
+safe_zones:                 # fractions of output height/width kept clear of platform UI
+  top: 0.08
+  bottom: 0.20
+  right: 0.12
+
+trim:
+  max_leading_silence: 0.4
+  max_trailing_silence: 0.8

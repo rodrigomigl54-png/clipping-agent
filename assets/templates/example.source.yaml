@@ -1,0 +1,12 @@
+# Sidecar for a recording placed in sources/inbox/<profile>/. Name it <video-name>.source.yaml
+title: "Kai Cenat stream 2026-11-01"
+url: null                         # original URL, for attribution/traceability only (never downloaded)
+channel: null                     # channel id, if you have channel-scope permissions
+creators: [Kai Cenat, Fanum]      # featured creators
+participants: [Kai Cenat, Fanum, Guest Name]   # EVERY person whose rights matter (guests included)
+category: group_reaction          # optional; must match the profile's content_categories
+published_at: 2026-11-01T20:00:00Z
+recorded_start: 2026-11-01T20:00:00Z   # wall-clock start, enables cross-stream event matching
+third_party_content: none         # none | unknown | present_cleared | present_uncleared  (music, TV, videos on screen)
+facecam_region: null              # optional [x, y, w, h] normalised, e.g. [0.70, 0.62, 0.28, 0.36]
+ignore_window: false              # true to process even if older than the 7-day research window

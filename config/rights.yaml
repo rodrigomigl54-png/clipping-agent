@@ -1,0 +1,18 @@
+# Rights policy. PUBLICLY ACCESSIBLE DOES NOT MEAN FREE TO USE.
+required_operations_for_processing: [download_or_import, edit]
+required_operations_for_export: [edit, distribute, commercial_use]
+approved_statuses: [APPROVED, APPROVED_WITH_CONDITIONS]
+# When a source lists participants, EVERY participant must be covered by a valid permission
+# (or a source-level permission that explicitly covers all participants).
+require_all_participants: true
+treat_missing_participants_as: PENDING_VERIFICATION
+authorized_download:
+  enabled: true
+  max_bytes: 21474836480      # 20 GiB
+  timeout_seconds: 120
+  allowed_content_types: [video/mp4, video/webm, video/quicktime, video/x-matroska, application/octet-stream]
+
+monetization:
+  block_gambling_promotion: true
+  gambling_score_block: 0.5        # fraction-of-clip signal above which clip is blocked
+  lexicon_file: config/content_lexicons.yaml

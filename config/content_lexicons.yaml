@@ -1,0 +1,8 @@
+# Lexicons for monetization / advertiser-suitability screening. Matching is word-based and
+# case-insensitive. Extend these lists for your audiences. They are screening heuristics only.
+gambling: [casino, slots, slot machine, roulette, blackjack, stake.com, gamble, gambling, betting, sportsbook, jackpot, wager, poker chips, spin the wheel, crash game, plinko]
+violence: [shoot him, stab, kill him, blood everywhere, beat him up, murder]
+sexual: [nsfw, onlyfans, nude, nudes, porn]
+harassment: [kill yourself, kys]
+hate: []        # add terms for your moderation policy
+drugs: [cocaine, meth, heroin]
