@@ -32,11 +32,14 @@ def build_metadata(settings: Settings, *, source: dict, candidate: dict, partici
                 "use (e.g. 'Kai Cenat Gets Roasted By His Own Chat'): 3-9 words, max 50 characters, starts with "
                 "who it is about, says what happens, makes people want to watch. Strictly truthful: use ONLY "
                 "facts in this transcript, no clickbait implying something that did not happen; any quote must "
-                "be verbatim. "
+                "be verbatim. List every person the title names in people_mentioned. "
                 f"People in the clip: {', '.join(participants) or 'unknown'}.\nTranscript:\n{transcript[:4000]}",
-                {"type": "object", "properties": {"title": {"type": "string"}}, "required": ["title"]})
+                {"type": "object", "properties": {"title": {"type": "string"},
+                                                 "people_mentioned": {"type": "array", "items": {"type": "string"}}},
+                 "required": ["title", "people_mentioned"]})
             cand = str((res or {}).get("title", "")).strip()
-            if validate_ai_title(cand, transcript, participants + [c.name for c in prof.creators], max_chars):
+            people = [str(x) for x in (res or {}).get("people_mentioned", [])]
+            if validate_ai_title(cand, transcript, participants + [c.name for c in prof.creators], max_chars, people):
                 title, title_source = cand, f"gemini:{settings.global_.google_ai.model}"
             else:
                 log.info("AI title rejected by truthfulness validator: %r", cand)

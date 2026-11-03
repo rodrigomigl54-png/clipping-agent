@@ -101,7 +101,10 @@ def test_titles_are_truthful():
     assert quote.lower() in " ".join(segs).lower()
     assert not validate_ai_title('Kai Cenat: "he stole my car"', " ".join(segs), ["Kai Cenat"], 90)
     assert validate_ai_title('Kai Cenat: "No way bro"', " ".join(segs), ["Kai Cenat"], 90)
-    assert not validate_ai_title("Kai Cenat and Drake race in the store", " ".join(segs), ["Kai Cenat"], 90)
+    assert not validate_ai_title("Kai Cenat and Drake race in the store", " ".join(segs), ["Kai Cenat"], 90,
+                                 people=["Kai Cenat", "Drake"])
+    assert validate_ai_title("Kai Cenat Gets Destroyed In A Store Race", " ".join(segs), ["Kai Cenat"], 90,
+                             people=["Kai Cenat"])
 
 
 def test_extract_json_and_redaction(monkeypatch):
