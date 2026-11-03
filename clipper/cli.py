@@ -508,6 +508,20 @@ def cmd_research_notes(app: App, a) -> int:
     return 0
 
 
+def cmd_private_test(app: App, a) -> int:
+    print("PRIVATE TEST: clips go to outputs/_PRIVATE_TEST/ and must NOT be published (no rights approval).")
+    res = app.orch.private_test(a.file, a.profile, _csv(a.creators), a.title, a.max_clips)
+    print(f"source: {res['source'].get('stage')} {res['source'].get('error') or ''}")
+    for c in res["clips"]:
+        t = c.get("private_test")
+        if t:
+            print(f"  ▶ [{t['profile']}] {t['title']}\n     {t['duration']}s | quality {t['quality_score']} | "
+                  f"viral potential {t['viral_potential_score']} | format {t['format'] or '-'}\n     file: {t['file']}")
+        else:
+            print(f"  ! {c.get('clip_id') or c.get('candidate_id')}: {c.get('error') or c.get('reason') or '; '.join(c.get('reasons', []))[:200]}")
+    return 0
+
+
 # ----------------------------------------------------------------------------- parser
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="main.py", description="Local AI Clipping Machine (AMP / CORE / LosPollosTV)")
@@ -570,6 +584,10 @@ def build_parser() -> argparse.ArgumentParser:
     s = sub.add_parser("analytics", help="performance analytics")
     s.add_argument("action", choices=["show", "import", "template"], nargs="?", default="show")
     s.add_argument("file", nargs="?"); s.add_argument("--profile", choices=PROFILE_IDS); s.set_defaults(fn=cmd_analytics)
+    s = sub.add_parser("private-test", help="full pipeline on a local recording, PRIVATE (never for publication)")
+    s.add_argument("file"); s.add_argument("--profile", choices=PROFILE_IDS, required=True)
+    s.add_argument("--creators", required=True); s.add_argument("--title"); s.add_argument("--max-clips", type=int, default=5)
+    s.set_defaults(fn=cmd_private_test)
     sub.add_parser("compare-formats", help="compare LosPollosTV formats A/B/C").set_defaults(fn=cmd_compare_formats)
     s = sub.add_parser("learning", help="learning recommendations and config history")
     s.add_argument("action", choices=["analyze", "list", "apply", "dismiss", "history"])

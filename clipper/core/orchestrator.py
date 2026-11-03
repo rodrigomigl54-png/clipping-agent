@@ -129,14 +129,15 @@ class Orchestrator:
         self.store.update(sid, rights_status=decision.status, rights_reason=decision.summary())
         place_source_file(self.store, self.settings, self.store.get(sid), decision.status)
         src = self.store.get(sid)
-        if not decision.passed:
+        private = bool(loads(src.get("extra"), {}).get("private_test"))
+        if not decision.passed and not private:
             self.store.set_stage(sid, Stage.BLOCKED_RIGHTS, decision.summary())
             return {"source_id": sid, "stage": Stage.BLOCKED_RIGHTS.value, "rights": decision.to_dict()}
         if not self.store.in_window(src):
             return {"source_id": sid, "stage": src["stage"], "skipped": "outside research window"}
         try:
             self.store.set_stage(sid, Stage.IMPORTING)
-            media = ingest(self.store, self.settings, src, decision.passed)
+            media = ingest(self.store, self.settings, src, decision.passed or private)
             src = self.store.get(sid)
             self.store.set_stage(sid, Stage.TRANSCRIBING)
             audio, _, wav = self._features(src, media)
@@ -276,6 +277,14 @@ class Orchestrator:
             # keep trimmed boundaries on the candidate so the registry reflects what was exported
             self.db.update("candidates", "id", cand["id"], {"start": result.start, "end": result.end})
             out: dict[str, Any] = {"clip_id": clip_id, "decision": qc.decision, "reasons": qc.reasons}
+            if loads(src.get("extra"), {}).get("private_test"):
+                # private evaluation: never enters outputs/<BRAND>, never the export registry
+                stage(Stage.NEEDS_REVIEW)
+                self.db.update("candidates", "id", cand["id"], {"status": CandidateStatus.NEEDS_REVIEW.value,
+                               "status_reason": "private test clip — not for publication"})
+                technical_ok = not tech.failed("fail")
+                out["private_test"] = self.exporter.export_private_test(clip_id) if technical_ok else None
+                return out
             if qc.decision == Decision.APPROVED.value:
                 stage(Stage.EXPORTING)
                 self.db.update("candidates", "id", cand["id"], {"status": CandidateStatus.APPROVED.value})
@@ -299,6 +308,23 @@ class Orchestrator:
             self.db.log_error("produce_clip", clip_id, str(e), traceback.format_exc(), prof.id)
             log.error("clip %s failed: %s", clip_id, e)
             return {"clip_id": clip_id, "decision": "FAILED", "error": str(e)}
+
+    def private_test(self, file: str, profile: str, creators: list[str], title: str | None = None,
+                     max_clips: int = 5) -> dict[str, Any]:
+        """Run the full pipeline on a local recording for private evaluation only. Rights are NOT
+        approved: clips go to outputs/_PRIVATE_TEST/ labelled NOT FOR PUBLICATION."""
+        from pathlib import Path as _P
+        path = str(_P(file).resolve())
+        sid, _ = self.store.register(profile=profile, kind="local_file", key=f"private:{path}", title=title or _P(path).stem,
+                                     local_path=path, creators=creators, discovery_method="private_test",
+                                     extra={"private_test": True, "ignore_window": True})
+        res = self.process_source(sid)
+        clips = []
+        if res.get("stage") == Stage.CLIPPING.value:
+            for cand in self.db.query("SELECT * FROM candidates WHERE source_id=? AND status='new' "
+                                      "ORDER BY total_score DESC LIMIT ?", (sid, max_clips)):
+                clips.append(self.produce_clip(cand))
+        return {"source": res, "clips": clips}
 
     # ================================================================ review workflow
     def approve_review(self, clip_id: str, note: str = "") -> dict:
