@@ -33,6 +33,10 @@ def build_metadata(settings: Settings, *, source: dict, candidate: dict, partici
                 "who it is about, says what happens, makes people want to watch. Strictly truthful: use ONLY "
                 "facts in this transcript, no clickbait implying something that did not happen; any quote must "
                 "be verbatim. List every person the title names in people_mentioned. "
+                "IMPORTANT: the transcript has several speakers and is NOT labelled by speaker. Only say a "
+                "named person did or said something if the transcript makes it unambiguous; otherwise "
+                "describe the situation (e.g. 'Kai Cenat's TikTok Guest Claims...'). Guests and other "
+                "speakers are not the creator. "
                 f"People in the clip: {', '.join(participants) or 'unknown'}.\nTranscript:\n{transcript[:4000]}",
                 {"type": "object", "properties": {"title": {"type": "string"},
                                                  "people_mentioned": {"type": "array", "items": {"type": "string"}}},
