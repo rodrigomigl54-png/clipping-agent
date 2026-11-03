@@ -15,7 +15,7 @@ import numpy as np
 
 from .face_tracker import CameraPath
 
-LAYOUTS = ("focus", "fit_blur", "split_gta", "hybrid")
+LAYOUTS = ("focus", "fit_blur", "split_gta", "hybrid", "stack_regions")
 
 
 @dataclass
@@ -29,6 +29,8 @@ class LayoutPlan:
     zoom_times: list[float] = field(default_factory=list)
     zoom_cfg: dict = field(default_factory=dict)
     needs_gameplay: bool = False
+    # stack_regions: [(x, y, w, h) normalised source region, output height fraction], top to bottom
+    stack: list = field(default_factory=list)
     reason: str = ""
 
     @property
@@ -44,6 +46,8 @@ class LayoutPlan:
         streamer's face nor the gameplay action is covered."""
         if self.layout in ("split_gta", "hybrid"):
             return self.streamer_fraction
+        if self.layout == "stack_regions" and self.stack:
+            return float(self.stack[0][1])
         return configured
 
 
@@ -142,5 +146,18 @@ def compose(frame: np.ndarray, plan: LayoutPlan, t: float, gameplay: np.ndarray 
         else:  # should never happen: rendering requires licensed gameplay for these layouts
             raise RuntimeError("split/hybrid layout requires a licensed gameplay asset")
         out[sh - 2:sh + 2] = 0    # subtle seam
+        return out
+    if plan.layout == "stack_regions":
+        out = np.zeros((H, W, 3), np.uint8)
+        fh, fw = frame.shape[:2]
+        y = 0
+        for i, (region, frac) in enumerate(plan.stack):
+            ph = H - y if i == len(plan.stack) - 1 else int(round(H * frac / 2) * 2)
+            x0, y0, rw, rh = region
+            crop = frame[int(y0 * fh):int((y0 + rh) * fh), int(x0 * fw):int((x0 + rw) * fw)]
+            out[y:y + ph] = _cover(crop, W, ph)
+            y += ph
+            if y < H:
+                out[y - 2:y + 2] = 0
         return out
     raise ValueError(f"unknown layout {plan.layout}")

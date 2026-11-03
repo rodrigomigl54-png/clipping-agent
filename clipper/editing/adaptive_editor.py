@@ -92,13 +92,15 @@ class AdaptiveEditor:
             caption_y = prof.format_experiment.caption_position.get(fmt, caption_y)
             if gameplay:
                 offset = exp.gameplay_offset(gameplay)
+        elif loads(source.get("extra"), {}).get("stack_regions"):
+            layout, reason = "stack_regions", "source defines stacked regions (e.g. guest window over streamer cam)"
         elif prof.editing.layout_policy in ("focus", "fit_blur"):
             layout, reason = prof.editing.layout_policy, "profile layout policy"
         else:
             layout, reason = choose_auto_layout(cam, region)
         plan = LayoutPlan(layout=layout, out_w=out_w, out_h=out_h, streamer_fraction=fraction, region=region,
                           camera=cam, zoom_cfg=dict(ecfg.zoom), needs_gameplay=layout in ("split_gta", "hybrid"),
-                          reason=reason)
+                          reason=reason, stack=[(tuple(r), f) for r, f in loads(source.get("extra"), {}).get("stack_regions", [])])
         if prof.editing.zoom_emphasis and ecfg.zoom.get("enabled", True) and layout in ("focus", "fit_blur"):
             plan.zoom_times = self.zoom_times(audio, start, end, int(ecfg.zoom.get("max_emphasis_per_clip", 3)))
         out_dir.mkdir(parents=True, exist_ok=True)
@@ -115,7 +117,7 @@ class AdaptiveEditor:
             elements.append("face-tracked crop")
         if plan.zoom_times:
             elements.append("emphasis zoom")
-        if layout in ("split_gta", "hybrid"):
+        if layout in ("split_gta", "hybrid", "stack_regions"):
             elements.append("multi-panel composition")
         return EditResult(out, start, end, layout, fmt, cap,
                           str(gameplay) if gameplay else None, reason, elements)
