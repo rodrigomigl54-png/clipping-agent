@@ -46,6 +46,17 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 40 automated tests passi
 | 7 | Orchestrator with checkpoints, crash recovery, per-item failure isolation | `core/orchestrator.py` | recovery test |
 | 7 | Scheduler: interval cycles, pause/resume, SIGINT/SIGTERM shutdown, single-runner lock, heartbeat | `core/scheduler.py` | manual `start --once` |
 
+## Added 2026-11-11 (GTA 6 pivot)
+- `gta6` topic profile; profiles are now auto-discovered from `config/*.yaml`.
+- Style library (`clipper/styles/`): learn editing formats from example clips (local analysis + Gemini
+  vision), choose per category, applied by the editor (`layout_policy: style_examples`): split camera +
+  gameplay, blurred bands, full screen; caption position/colours/case/words; title banner style.
+- On-screen title banner, Gemini semantic moment discovery, Gemini transcription fallback,
+  private-test command, stacked-region layout. 45 tests passing.
+- Limits: local split detection is heuristic (static graphic patterns can look like a split; Gemini
+  vision overrides it); camera detection uses the largest/steady face — set `facecam_region` per
+  channel for exact placement; Gemini free tier ≈20 requests/model/day.
+
 ## In progress
 - Nothing partially implemented.
 

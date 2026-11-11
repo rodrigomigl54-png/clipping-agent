@@ -19,7 +19,26 @@ from pydantic import BaseModel, Field, field_validator
 PROJECT_ROOT = Path(os.environ.get("CLIPPER_ROOT", Path(__file__).resolve().parent.parent))
 CONFIG_DIR = Path(os.environ.get("CLIPPER_CONFIG_DIR", PROJECT_ROOT / "config"))
 OVERRIDES_FILE = "local_overrides.yaml"
-PROFILE_IDS = ("amp", "core", "lospollostv")
+NON_PROFILE_FILES = {"global", "editing", "quality", "rights", "content_lexicons", "local_overrides"}
+
+
+def discover_profile_ids(config_dir: Path | None = None) -> tuple[str, ...]:
+    """Every config/<id>.yaml that declares `id:` is a clipping profile (brand)."""
+    cdir = Path(config_dir or CONFIG_DIR)
+    ids = []
+    for f in sorted(cdir.glob("*.yaml")):
+        if f.stem in NON_PROFILE_FILES:
+            continue
+        try:
+            data = yaml.safe_load(f.read_text(encoding="utf-8")) or {}
+        except yaml.YAMLError:
+            continue
+        if isinstance(data, dict) and data.get("id") == f.stem and data.get("display_name"):
+            ids.append(f.stem)
+    return tuple(ids)
+
+
+PROFILE_IDS = discover_profile_ids()
 
 PRIORITY_WEIGHTS = {
     "very_high": 1.6,
@@ -165,6 +184,8 @@ class ProfileCfg(BaseModel):
     creators: list[CreatorCfg] = []
     group_name: str | None = None
     group_youtube_handles: list[str] = []  # official group channels (e.g. AMP, CORE)
+    topic: str | None = None                # niche profiles (e.g. GTA 6): what every clip is about
+    topic_keywords: list[str] = []          # words that make a moment on-topic (also boost scoring)
     content_categories: list[str] = []
     affiliates_are_members: bool = False
     attention: AttentionCfg = AttentionCfg()
@@ -268,7 +289,7 @@ def load_settings(root: Path | None = None, config_dir: Path | None = None) -> S
 
     g = deep_merge(_read_yaml(cdir / "global.yaml"), overrides.get("global", {}))
     profiles = {}
-    for pid in PROFILE_IDS:
+    for pid in discover_profile_ids(cdir):
         raw = deep_merge(_read_yaml(cdir / f"{pid}.yaml"), overrides.get("profiles", {}).get(pid, {}))
         if raw:
             profiles[pid] = ProfileCfg(**raw)

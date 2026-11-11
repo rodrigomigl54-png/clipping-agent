@@ -349,6 +349,7 @@ class ViralDetector:
                 "story_progression", "payoff_strength", "shareability", "group_chemistry")}},
             "self_contained": {"type": "boolean"},
             "hook_type": {"type": "string"},
+            "category": {"type": "string"},
             "summary": {"type": "string"},
             "suggested_start": {"type": "number"},
             "suggested_end": {"type": "number"},
@@ -372,7 +373,8 @@ class ViralDetector:
                 "Score each dimension 0-10 based ONLY on the transcript. Do not invent events, quotes or "
                 "visuals that are not in the text. The summary must describe only what the transcript shows. "
                 "If the clip would need more setup or a later ending to make sense, give suggested_start / "
-                "suggested_end (seconds, within the context shown); otherwise repeat the proposed times.\n\n"
+                "suggested_end (seconds, within the context shown); otherwise repeat the proposed times. "
+                f"category must be one of: {', '.join(prof.content_categories)}.\n\n"
                 + "\n".join(lines))
             try:
                 res = self.gemini.generate_json(prompt, self.SEMANTIC_SCHEMA)
@@ -397,6 +399,8 @@ class ViralDetector:
                         if res.get("self_contained") is False:
                             res["self_contained"] = None   # its concern applied to the old boundaries
                             res.setdefault("concerns", []).append("boundaries adjusted to AI suggestion")
+            if res.get("category") in prof.content_categories:
+                cand.category = res["category"]
             if res.get("self_contained") is False:
                 cand.scores["context_completeness"] = round(cand.scores["context_completeness"] * 0.7, 2)
             cand.ai_analysis = {"model": cfg.model, "summary": str(res.get("summary", ""))[:500],

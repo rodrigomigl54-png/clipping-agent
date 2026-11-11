@@ -1,0 +1,89 @@
+id: gta6
+display_name: GTA 6 Clipper
+output_folder: GTA6
+topic: GTA 6 (Grand Theft Auto VI) — streamers playing it, gameplay, reactions, news
+# On-topic words: boost moments that are actually about GTA 6 / its world and characters.
+topic_keywords: [gta 6, gta vi, gta six, grand theft auto, vice city, leonida, lucia, jason, rockstar,
+                 cops, police, wanted, five star, heist, robbery, chase, glitch, bug, easter egg, ragdoll,
+                 car, crash, explosion, mission, npc]
+min_quality_threshold: 60
+duration:
+  min_seconds: 15
+  max_seconds: 120
+  ideal_ranges:
+    direct: [15, 30]
+    context: [30, 60]
+    story: [60, 120]
+
+# Open niche: any streamer/channel playing GTA 6. Add creators here (with channels) as you pick them.
+# priority is research attention only, never a clip quota.
+creators: []
+group_name: null
+group_youtube_handles: []
+content_categories:
+  - funny_gameplay        # ragdolls, fails, NPC chaos
+  - chaos_moment          # explosions, crashes, rampages
+  - police_chase          # wanted levels, escapes
+  - heist_mission         # heists, robberies, story missions
+  - glitch_bug            # glitches, bugs, physics
+  - easter_egg            # secrets, discoveries, details
+  - streamer_reaction     # streamer's big reaction to something in-game
+  - story_moment          # cutscenes / story beats (spoiler-aware)
+  - tips_tricks           # money, cars, hidden spots
+  - news_trailer          # trailers, announcements, reactions
+affiliates_are_members: false
+
+attention:
+  dynamic: true
+  min_multiplier: 0.5
+  max_multiplier: 2.0
+  learning_rate: 0.2
+
+scoring_weights:
+  hook_strength: 1.4
+  entertainment: 1.4
+  emotional_impact: 1.0
+  context_completeness: 1.0
+  story_progression: 0.8
+  payoff_strength: 1.3
+  originality: 0.9
+  shareability: 1.1
+  visual_quality: 0.9      # gameplay must look good
+  audio_quality: 0.6
+  platform_suitability: 0.9
+  group_chemistry: 0.3
+
+features:
+  cross_stream_detection: true     # many streamers hit the same GTA 6 moment on launch
+  allow_multiple_perspectives: false
+  group_chemistry: false
+  cross_profile_duplicate_check: true
+
+editing:
+  style: learned_from_examples
+  # style_examples: each clip uses the format learned from your example clips for its category
+  # (python main.py examples add ...). Falls back to `auto` until examples exist.
+  layout_policy: style_examples
+  caption:
+    font: DejaVu Sans
+    font_file: null
+    size: 76
+    primary_color: "#FFFFFF"
+    highlight_color: "#FF4FD8"    # Vice City pink
+    outline_color: "#000000"
+    outline: 5
+    shadow: 2
+    bold: true
+    uppercase: true
+    max_words: 3
+    max_chars: 22
+    position: 0.62
+  zoom_emphasis: true
+
+monetization:
+  block_gambling_primary: true
+
+metadata:
+  base_hashtags: [gta6, gta, gtavi, gaming, shorts]
+  max_hashtags: 8
+  title_max_chars: 90

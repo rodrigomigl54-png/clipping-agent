@@ -26,6 +26,7 @@ class EditResult:
     gameplay_asset: str | None
     layout_reason: str
     transformative_elements: list[str] = field(default_factory=list)
+    style: dict | None = None
 
     @property
     def duration(self) -> float:
@@ -53,6 +54,40 @@ class AdaptiveEditor:
             if audio is None or audio.silence_fraction(words[-1].end, end) > 0.6:
                 end = words[-1].end + 0.4
         return round(start, 3), round(end, 3)
+
+    # ---------------------------------------------------------------- learned styles
+    def _style_layout(self, preset: dict, cam, region, source: dict, out_w: int, out_h: int) -> tuple[str, str]:
+        lay = preset.get("layout", "focus")
+        if lay == "split_cam":
+            if region is not None or cam.face_found >= 0.3:
+                return "stack_regions", "streamer camera + gameplay split"
+            return "fit_blur", "example uses a camera split but no streamer camera was found in this source"
+        if lay == "full_gameplay":
+            return "focus", "full-screen gameplay crop"
+        return (lay if lay in ("focus", "fit_blur") else "fit_blur"), "example layout"
+
+    def _cam_stack(self, preset: dict, cam, region, source: dict, out_w: int, out_h: int) -> list:
+        from ..core.media import media_info
+        info = media_info(source["local_path"])
+        sw, sh = info["width"], info["height"]
+        split = float(preset.get("split_ratio", 0.5))
+        top_is_cam = preset.get("cam_position", "top") != "bottom"
+        cam_frac = split if top_is_cam else 1 - split
+        panel_aspect = out_w / (out_h * cam_frac)
+        if region is not None:
+            cam_region = tuple(region)
+        else:
+            import numpy as _np
+            fx = float(_np.median(cam.cx)); fy = float(_np.median(cam.cy))
+            fh = float(_np.median([h for h in cam.face_h if h > 0]) or 0.2)
+            h = min(1.0, fh * 3.2)
+            w = min(1.0, h * sh * panel_aspect / sw)
+            x = min(max(0.0, fx - w / 2), 1 - w)
+            y = min(max(0.0, fy - h * 0.45), 1 - h)
+            cam_region = (round(x, 4), round(y, 4), round(w, 4), round(h, 4))
+        gameplay = (0.0, 0.0, 1.0, 1.0)
+        return [(cam_region, cam_frac), (gameplay, 1 - cam_frac)] if top_is_cam else \
+               [(gameplay, 1 - cam_frac), (cam_region, cam_frac)]
 
     def zoom_times(self, audio: AudioFeatures | None, start: float, end: float, max_n: int) -> list[float]:
         if audio is None or max_n <= 0:
@@ -98,17 +133,38 @@ class AdaptiveEditor:
             layout, reason = prof.editing.layout_policy, "profile layout policy"
         else:
             layout, reason = choose_auto_layout(cam, region)
+        stack = [(tuple(r), f) for r, f in loads(source.get("extra"), {}).get("stack_regions", [])]
+        caption_cfg = prof.editing.caption
+        title_cfg = dict(ecfg.title_overlay)
+        captions_on = True
+        style_used = None
+        if prof.editing.layout_policy == "style_examples" and self.db is not None and not stack:
+            from ..styles.style_library import StyleLibrary
+            choice = StyleLibrary(self.db, self.settings).choose(prof.id, candidate.get("category"))
+            if choice:
+                p = choice.preset
+                style_used = {"examples": choice.example_ids, "reason": choice.reason, "preset": p}
+                c = p.get("caption", {})
+                captions_on = c.get("enabled", True)
+                caption_cfg = caption_cfg.model_copy(update={k: v for k, v in c.items()
+                                                             if k in type(caption_cfg).model_fields})
+                caption_y = c.get("position", caption_y)
+                title_cfg.update(p.get("title_overlay", {}))
+                layout, reason = self._style_layout(p, cam, region, source, out_w, out_h)
+                if layout == "stack_regions":
+                    stack = self._cam_stack(p, cam, region, source, out_w, out_h)
+                reason = f"style from examples ({choice.reason}); {reason}"
         plan = LayoutPlan(layout=layout, out_w=out_w, out_h=out_h, streamer_fraction=fraction, region=region,
                           camera=cam, zoom_cfg=dict(ecfg.zoom), needs_gameplay=layout in ("split_gta", "hybrid"),
-                          reason=reason, stack=[(tuple(r), f) for r, f in loads(source.get("extra"), {}).get("stack_regions", [])])
+                          reason=reason, stack=stack)
         if prof.editing.zoom_emphasis and ecfg.zoom.get("enabled", True) and layout in ("focus", "fit_blur"):
             plan.zoom_times = self.zoom_times(audio, start, end, int(ecfg.zoom.get("max_emphasis_per_clip", 3)))
         out_dir.mkdir(parents=True, exist_ok=True)
         ass = out_dir / f"{clip_id}.ass"
-        cap = build_ass(transcript.words_in(start, end), start, end, prof.editing.caption, width=out_w,
-                        height=out_h, y_fraction=plan.caption_y(caption_y), safe=ecfg.safe_zones,
+        cap = build_ass(transcript.words_in(start, end) if captions_on else [], start, end, caption_cfg, width=out_w,
+                        height=out_h, y_fraction=(caption_y if style_used and 'position' in style_used['preset'].get('caption', {}) else plan.caption_y(caption_y)), safe=ecfg.safe_zones,
                         low_conf=self.settings.global_.transcription.low_confidence_threshold, out_path=ass,
-                        title=title, title_cfg=ecfg.title_overlay)
+                        title=title, title_cfg=title_cfg)
         fonts = self.settings.path("assets/fonts")
         out = render(source["local_path"], start, end, plan, out_dir / f"{clip_id}.mp4", output_cfg=ecfg.output,
                      audio_cfg=ecfg.audio, ass_path=ass, gameplay=gameplay, gameplay_offset=offset,
@@ -121,4 +177,4 @@ class AdaptiveEditor:
         if layout in ("split_gta", "hybrid", "stack_regions"):
             elements.append("multi-panel composition")
         return EditResult(out, start, end, layout, fmt, cap,
-                          str(gameplay) if gameplay else None, reason, elements)
+                          str(gameplay) if gameplay else None, reason, elements, style_used)

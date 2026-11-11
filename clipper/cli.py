@@ -522,6 +522,57 @@ def cmd_private_test(app: App, a) -> int:
     return 0
 
 
+def cmd_examples(app: App, a) -> int:
+    from .styles.style_library import StyleLibrary, json_dump
+    lib = StyleLibrary(app.db, app.settings)
+    if a.action == "add":
+        if not a.target:
+            print("usage: examples add <video file> --profile gta6 [--category X] [--label ...]"); return 1
+        src = a.target
+        if src.startswith(("http://", "https://")):
+            import urllib.request
+            dest_dir = app.settings.path("assets/examples") / a.profile
+            dest_dir.mkdir(parents=True, exist_ok=True)
+            dest = dest_dir / f"example_{len(list(dest_dir.glob('*.mp4'))) + 1:03d}.mp4"
+            with urllib.request.urlopen(src, timeout=300) as r, dest.open("wb") as fh:
+                fh.write(r.read())
+            src = str(dest)
+        if a.category and a.category not in app.settings.profile(a.profile).content_categories:
+            print(f"unknown category; choose from: {', '.join(app.settings.profile(a.profile).content_categories)}"); return 1
+        res = lib.add(src, a.profile, label=a.label, category=a.category, source=a.target,
+                      gemini=None if a.no_ai else app.orch.gemini, notes=a.notes)
+        m, p = res["metrics"], res["preset"]
+        print(f"Example {res['id']} saved for {a.profile} (category: {res['category'] or 'none yet'})")
+        print(f"  measured: {m['duration']}s, {m['width']}x{m['height']}, layout guess {m['layout_guess']}, "
+              f"split at {m['seam_y']}, {m['cuts_per_min']} cuts/min, faces/frame {m['faces_per_frame']}")
+        if res["vision"] and "error" not in res["vision"]:
+            v = res["vision"]
+            print(f"  seen by AI: layout {v.get('layout')}, camera {v.get('facecam_position')}, captions "
+                  f"{'yes' if v.get('captions_present') else 'no'}, title banner {'yes' if v.get('title_banner_present') else 'no'}"
+                  f"{' (' + v['title_text'] + ')' if v.get('title_text') else ''}, effects {v.get('effects')}")
+        elif res["vision"]:
+            print(f"  AI vision unavailable: {res['vision']['error'][:120]} (local analysis still saved)")
+        print("  style preset:", json_dump(p).replace("\n", "\n  "))
+    elif a.action == "list":
+        rows = lib.list(a.profile)
+        for r in rows:
+            r["layout"] = r["preset"].get("layout"); r["dur"] = r["metrics"].get("duration")
+            r["title_banner"] = (r["preset"].get("title_overlay") or {}).get("enabled")
+        print(table(rows, ["id", "profile", "label", "category", "layout", "dur", "title_banner", "created_at"]))
+        if a.profile:
+            print("\nsummary:", json_dump(lib.summary(a.profile)))
+    elif a.action == "show":
+        print(json_dump(next((r for r in lib.list() if r["id"] == a.target), None)))
+    elif a.action == "set-category":
+        lib.set_category(a.target, a.category); print(f"{a.target} -> {a.category}")
+    elif a.action == "remove":
+        lib.remove(a.target); print(f"removed {a.target}")
+    elif a.action == "choose":
+        c = lib.choose(a.profile, a.category)
+        print(json_dump(c.__dict__ if c else None))
+    return 0
+
+
 # ----------------------------------------------------------------------------- parser
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="main.py", description="Local AI Clipping Machine (AMP / CORE / LosPollosTV)")
@@ -588,6 +639,12 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("file"); s.add_argument("--profile", choices=PROFILE_IDS, required=True)
     s.add_argument("--creators", required=True); s.add_argument("--title"); s.add_argument("--max-clips", type=int, default=5)
     s.set_defaults(fn=cmd_private_test)
+    s = sub.add_parser("examples", help="example clips the machine learns editing formats from")
+    s.add_argument("action", choices=["add", "list", "show", "set-category", "remove", "choose"])
+    s.add_argument("target", nargs="?", help="video file / URL (add) or example id")
+    s.add_argument("--profile", choices=PROFILE_IDS); s.add_argument("--category"); s.add_argument("--label")
+    s.add_argument("--notes"); s.add_argument("--no-ai", action="store_true", help="skip Gemini vision (saves quota)")
+    s.set_defaults(fn=cmd_examples)
     sub.add_parser("compare-formats", help="compare LosPollosTV formats A/B/C").set_defaults(fn=cmd_compare_formats)
     s = sub.add_parser("learning", help="learning recommendations and config history")
     s.add_argument("action", choices=["analyze", "list", "apply", "dismiss", "history"])
