@@ -567,6 +567,11 @@ def cmd_examples(app: App, a) -> int:
         lib.set_category(a.target, a.category); print(f"{a.target} -> {a.category}")
     elif a.action == "remove":
         lib.remove(a.target); print(f"removed {a.target}")
+    elif a.action == "export":
+        path = app.settings.path(f"config/style_examples/{a.profile}.json")
+        print(f"exported {lib.export(a.profile, path)} examples to {path}")
+    elif a.action == "import":
+        print(f"imported {lib.import_file(Path(a.target))} examples")
     elif a.action == "choose":
         c = lib.choose(a.profile, a.category)
         print(json_dump(c.__dict__ if c else None))
@@ -640,7 +645,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--creators", required=True); s.add_argument("--title"); s.add_argument("--max-clips", type=int, default=5)
     s.set_defaults(fn=cmd_private_test)
     s = sub.add_parser("examples", help="example clips the machine learns editing formats from")
-    s.add_argument("action", choices=["add", "list", "show", "set-category", "remove", "choose"])
+    s.add_argument("action", choices=["add", "list", "show", "set-category", "remove", "choose", "export", "import"])
     s.add_argument("target", nargs="?", help="video file / URL (add) or example id")
     s.add_argument("--profile", choices=PROFILE_IDS); s.add_argument("--category"); s.add_argument("--label")
     s.add_argument("--notes"); s.add_argument("--no-ai", action="store_true", help="skip Gemini vision (saves quota)")

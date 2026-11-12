@@ -77,7 +77,7 @@ def offline(monkeypatch):
 @pytest.fixture()
 def project(tmp_path: Path) -> Path:
     """A throw-away project root with a copy of the real config."""
-    shutil.copytree(ROOT / "config", tmp_path / "config")
+    shutil.copytree(ROOT / "config", tmp_path / "config", ignore=shutil.ignore_patterns("style_examples"))
     for d in ("sources/inbox/amp", "sources/inbox/core", "sources/inbox/lospollostv", "outputs", "work", "logs",
               "assets/approved_gameplay", "assets/fonts", "database"):
         (tmp_path / d).mkdir(parents=True, exist_ok=True)

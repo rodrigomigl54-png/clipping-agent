@@ -162,6 +162,13 @@ class Orchestrator:
             log.error("source %s failed: %s", sid, e)
             return {"source_id": sid, "stage": Stage.FAILED.value, "error": str(e)}
 
+    def _headlines(self, profile: str, category: str | None) -> list[str] | None:
+        try:
+            from ..styles.style_library import StyleLibrary
+            return StyleLibrary(self.db, self.settings).headline_examples(profile, category) or None
+        except Exception:
+            return None
+
     def _duration_targets(self, profile: str) -> dict | None:
         try:
             from ..styles.style_library import StyleLibrary
@@ -241,7 +248,8 @@ class Orchestrator:
             title = build_metadata(self.settings, source=src, candidate=cand_full, participants=participants,
                                    segments_text=[x.text for x in tr.window(cand["start"], cand["end"])],
                                    start=cand["start"], end=cand["end"], attribution=pre.attribution,
-                                   trend_terms=self.research.trends.trend_terms(prof.id), gemini=self.gemini)["title"]
+                                   trend_terms=self.research.trends.trend_terms(prof.id), gemini=self.gemini,
+                                   headline_examples=self._headlines(prof.id, cand_full.get("category")))["title"]
             result = self.editor.edit(source=src, candidate=cand_full, transcript=tr, audio=audio, clip_id=clip_id,
                                       out_dir=self.work("renders", prof.id), title=title, gemini=self.gemini)
             stage(Stage.QUALITY_CHECKING, render_path=str(result.path), duration=result.duration,

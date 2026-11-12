@@ -15,7 +15,8 @@ log = get_logger("metadata")
 
 def build_metadata(settings: Settings, *, source: dict, candidate: dict, participants: list[str],
                    segments_text: list[str], start: float, end: float, attribution: list[str],
-                   trend_terms: set[str], gemini=None, title: str | None = None) -> dict[str, Any]:
+                   trend_terms: set[str], gemini=None, title: str | None = None,
+                   headline_examples: list[str] | None = None) -> dict[str, Any]:
     prof = settings.profile(source["profile"])
     max_chars = int(prof.metadata.get("title_max_chars", 90))
     transcript = " ".join(segments_text)
@@ -37,7 +38,10 @@ def build_metadata(settings: Settings, *, source: dict, candidate: dict, partici
                 "named person did or said something if the transcript makes it unambiguous; otherwise "
                 "describe the situation (e.g. 'Kai Cenat's TikTok Guest Claims...'). Guests and other "
                 "speakers are not the creator. "
-                f"People in the clip: {', '.join(participants) or 'unknown'}.\n"
+                + (("Match the style of these real headlines that performed well for this type of video "
+                    "(structure, CAPS on key words, emoji use) but write about THIS clip: "
+                    + " | ".join(headline_examples) + "\n") if headline_examples else "")
+                + f"People in the clip: {', '.join(participants) or 'unknown'}.\n"
                 + (f"What happens (from the moment analysis, trust it for who did what): {summary}\n" if summary else "")
                 + f"Transcript:\n{transcript[:4000]}",
                 {"type": "object", "properties": {"title": {"type": "string"},

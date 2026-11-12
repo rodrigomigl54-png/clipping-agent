@@ -277,6 +277,10 @@ class StyleLibrary:
     def __init__(self, db: Database, settings: Settings):
         self.db, self.settings = db, settings
         self.db.conn.executescript(SCHEMA)
+        try:
+            self.ensure_loaded()
+        except Exception as e:  # never block editing on a bad export file
+            log.warning("could not load saved style examples: %s", e)
 
     def add(self, path: str | Path, profile: str, *, label: str | None = None, category: str | None = None,
             source: str | None = None, gemini=None, notes: str | None = None) -> dict[str, Any]:
@@ -385,6 +389,47 @@ class StyleLibrary:
         layout = Counter(r["preset"]["layout"] for r in pool).most_common(1)[0][0]
         pick = [r for r in pool if r["preset"]["layout"] == layout][-1]
         return StyleChoice(pick["preset"], [r["id"] for r in pool], f"{why}: layout '{layout}' from example {pick['id']}")
+
+    # ---------------------------------------------------------------- persistence in the repo
+    def export(self, profile: str, path: Path) -> int:
+        rows = self.list(profile)
+        for r in rows:
+            if r.get("notes") and str(r["notes"]).startswith("/tmp/"):
+                r["notes"] = None                    # local video paths are not portable
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(rows, indent=1, ensure_ascii=False, default=str), encoding="utf-8")
+        return len(rows)
+
+    def import_file(self, path: Path) -> int:
+        n = 0
+        for r in json.loads(Path(path).read_text(encoding="utf-8")):
+            row = {k: (dumps(r[k]) if k in ("metrics", "vision", "preset") else r.get(k))
+                   for k in ("id", "profile", "label", "category", "source", "metrics", "vision", "preset", "notes", "created_at")}
+            if self.db.one("SELECT id FROM style_examples WHERE id=?", (row["id"],)):
+                self.db.update("style_examples", "id", row["id"], {k: v for k, v in row.items() if k != "id"})
+            else:
+                self.db.insert("style_examples", row)
+            n += 1
+        return n
+
+    def ensure_loaded(self) -> None:
+        """Load config/style_examples/*.json into an empty library (fresh machine / new session)."""
+        if self.db.one("SELECT count(*) n FROM style_examples")["n"]:
+            return
+        for f in sorted(self.settings.path("config/style_examples").glob("*.json")):
+            self.import_file(f)
+
+    def headline_examples(self, profile: str, category: str | None, n: int = 6) -> list[str]:
+        """Real on-screen headlines from analysed examples of this type (best engagement first)."""
+        rows = [r for r in self.list(profile) if isinstance(r["vision"], dict) and r["vision"].get("on_screen_text")]
+        same = [r for r in rows if category and r["category"] == category] or rows
+        same.sort(key=lambda r: -float((r["metrics"] or {}).get("engagement_rate") or 0))
+        out = []
+        for r in same:
+            t = r["vision"]["on_screen_text"][0].get("text")
+            if t and len(t) > 8 and t not in out:
+                out.append(t.replace("\n", " "))
+        return out[:n]
 
     def duration_targets(self, profile: str) -> dict[str, dict[str, float]]:
         """Per category (and '*' overall): engagement-weighted median length of the analysed examples."""

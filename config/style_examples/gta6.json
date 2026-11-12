@@ -1,0 +1,4710 @@
+[
+ {
+  "id": "ex_f4a2f6ae0105",
+  "profile": "gta6",
+  "label": "pending ZSp97Ht78",
+  "category": null,
+  "source": "https://vt.tiktok.com/ZSp97Ht78/ (video 7704389286442880288)",
+  "metrics": {},
+  "vision": null,
+  "preset": {
+   "pending": true
+  },
+  "notes": "waiting for analysis: send the file or wait for vidIQ credits",
+  "created_at": "2026-11-12T22:10:02+00:00"
+ },
+ {
+  "id": "ex_c5d78258c19a",
+  "profile": "gta6",
+  "label": "pending ZSp97uR7j",
+  "category": null,
+  "source": "https://vt.tiktok.com/ZSp97uR7j/ (video 7679137981084552478)",
+  "metrics": {},
+  "vision": null,
+  "preset": {
+   "pending": true
+  },
+  "notes": "waiting for analysis: send the file or wait for vidIQ credits",
+  "created_at": "2026-11-12T22:10:02+00:00"
+ },
+ {
+  "id": "ex_2530e212ad40",
+  "profile": "gta6",
+  "label": "@tanartfact: Montage of GTA VI trailer footage paired with ambient music ",
+  "category": "hype_edit",
+  "source": "https://www.tiktok.com/@tanartfact/video/7707048956760460557",
+  "metrics": {
+   "duration": 18.7,
+   "width": 1126,
+   "height": 720,
+   "vertical": false,
+   "seam_y": 0.517,
+   "seam_strength": 41.29,
+   "blur_band_ratio": 0.228,
+   "faces_per_frame": 0.0,
+   "face_y": null,
+   "cuts_per_min": 16.1,
+   "loudness_p90_db": -25.5,
+   "layout_guess": "fit_blur",
+   "cam_position": null,
+   "cuts_at": [
+    6.9,
+    9.2,
+    11.9,
+    13.4,
+    15.0
+   ],
+   "n_cuts": 5,
+   "avg_shot_s": 3.11,
+   "min_shot_s": 1.5,
+   "bpm_est": 120.0,
+   "cuts_on_beat_frac": 0.8,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "black_band_frac": 0.0,
+   "stats": {
+    "diggCount": 111300,
+    "shareCount": 12000,
+    "commentCount": 742,
+    "playCount": 428700,
+    "collectCount": "9480"
+   },
+   "engagement_rate": 0.3115,
+   "share_rate": 0.028
+  },
+  "vision": {
+   "content_type": "hype_edit",
+   "category": "hype_edit",
+   "summary": "Montage of GTA VI trailer footage paired with ambient music and persistent overlay text claiming release is next week.",
+   "hook": {
+    "first_2s": "Aerial cinematic shot of Vice City highway with bold text overlay.",
+    "hook_text": "Literally next week btw...",
+    "hook_type": "text_overlay_hype",
+    "why_it_hooks": "Creates instant hype and curiosity about the GTA 6 release date."
+   },
+   "structure": [
+    {
+     "start": 0,
+     "end": 6.9,
+     "beat": "hook",
+     "what_happens": "Aerial view of Vice City entrance toll booth."
+    },
+    {
+     "start": 6.9,
+     "end": 9.2,
+     "beat": "setup",
+     "what_happens": "Rooftop bar scene with patrons socializing."
+    },
+    {
+     "start": 9.2,
+     "end": 11.9,
+     "beat": "escalation",
+     "what_happens": "Pannning shot inside a lively luxury lobby."
+    },
+    {
+     "start": 11.9,
+     "end": 13.4,
+     "beat": "escalation",
+     "what_happens": "Characters fishing on a motorboat."
+    },
+    {
+     "start": 13.4,
+     "end": 18.7,
+     "beat": "payoff",
+     "what_happens": "First-person highway driving as a large airplane lands overhead."
+    }
+   ],
+   "layout": {
+    "type": "full_frame",
+    "picture_top": 0,
+    "picture_bottom": 1,
+    "facecam_position": "none",
+    "split_ratio": 1,
+    "background": "gameplay footage"
+   },
+   "on_screen_text": [
+    {
+     "text": "Literally next week btw...",
+     "start": 0,
+     "end": 18.7,
+     "position_y": 0.45,
+     "purpose": "hype engagement",
+     "case": "sentence",
+     "color": "#FFFFFF",
+     "box_color": "",
+     "box_shape": "",
+     "outline": true,
+     "emoji": false,
+     "animation": "static"
+    }
+   ],
+   "captions": {
+    "present": false,
+    "position_y": 0,
+    "uppercase": false,
+    "words_per_line": 0,
+    "color": "",
+    "highlight_color": "",
+    "animation": ""
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "melancholic indie pop",
+    "music_energy": "medium",
+    "beat_synced_cuts": true,
+    "voice": "none",
+    "sfx": [],
+    "audio_notes": "Atmospheric vocal track syncing with scene transitions."
+   },
+   "pacing": {
+    "cuts_per_minute": 16,
+    "typical_shot_seconds": 3.7,
+    "energy_curve": "Steady cinematic atmosphere building up to the airplane flyover."
+   },
+   "ending": {
+    "type": "cut_to_black",
+    "description": "Video ends abruptly as the plane flies over the highway sign."
+   },
+   "duration_reason": "Short 18-second duration keeps audience watching through scenic beats.",
+   "retention_tactics": [
+    "High visual quality cinematic clips",
+    "Persistent text hook",
+    "Nostalgic song audio"
+   ],
+   "why_it_works": "Taps into massive hype for GTA 6 using cinematic trailer moments and relatable audio.",
+   "reproduction_recipe": [
+    "Collect high-res GTA 6 trailer scenes.",
+    "Layer persistent white centered text.",
+    "Sync scene cuts with music beat."
+   ],
+   "risks": [
+    "Misleading claim on release date may cause comment section disputes."
+   ]
+  },
+  "preset": {
+   "layout": "full_gameplay",
+   "split_ratio": 0.75,
+   "cam_position": "top",
+   "target_duration": 18.7,
+   "cuts_per_min": 16.1,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.4,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "hype_edit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "cut_to_black",
+   "format_type": "beat_sync_montage"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:47:42+00:00"
+ },
+ {
+  "id": "ex_257c8f128193",
+  "profile": "gta6",
+  "label": "@therealmnent: Agent00 hosts a car stream featuring Ashley, a lookalike for",
+  "category": "streamer_reaction",
+  "source": "https://www.tiktok.com/@therealmnent/video/7707059088848358687",
+  "metrics": {
+   "duration": 37.2,
+   "width": 720,
+   "height": 1280,
+   "vertical": true,
+   "seam_y": 0.5,
+   "seam_strength": 164.51,
+   "blur_band_ratio": 0.545,
+   "faces_per_frame": 2.25,
+   "face_y": 0.303,
+   "cuts_per_min": 0.0,
+   "loudness_p90_db": -19.8,
+   "layout_guess": "split_cam",
+   "cam_position": "top",
+   "cuts_at": [],
+   "n_cuts": 0,
+   "avg_shot_s": 37.2,
+   "min_shot_s": 37.2,
+   "bpm_est": null,
+   "cuts_on_beat_frac": null,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "black_band_frac": 0.0,
+   "stats": {
+    "diggCount": 65500,
+    "shareCount": 4610,
+    "commentCount": 372,
+    "playCount": 810400,
+    "collectCount": "4407"
+   },
+   "engagement_rate": 0.0924,
+   "share_rate": 0.0057
+  },
+  "vision": {
+   "content_type": "streamer_clip",
+   "category": "streamer_reaction",
+   "summary": "Agent00 hosts a car stream featuring Ashley, a lookalike for GTA 6's Lucia, discussing Miami GTA promotions.",
+   "hook": {
+    "first_2s": "Agent00 introduces guest Ashley while driving, framed with a custom GTA HUD overlay.",
+    "hook_text": "Agent00 streams with the real Lucia from GTA 6",
+    "hook_type": "visual_curiosity",
+    "why_it_hooks": "Capitalizes on GTA 6 hype by featuring a real-life Lucia lookalike alongside a popular streamer."
+   },
+   "structure": [
+    {
+     "start": 0,
+     "end": 7.5,
+     "beat": "setup",
+     "what_happens": "Agent00 asks Ashley to introduce herself to the stream chat."
+    },
+    {
+     "start": 7.5,
+     "end": 31,
+     "beat": "escalation",
+     "what_happens": "Agent00 discusses driving around Miami and spotting real-life Vice City promotion setups."
+    },
+    {
+     "start": 31,
+     "end": 37.2,
+     "beat": "payoff",
+     "what_happens": "Agent00 checks his phone, holds up an iced cup, and mentions hitting his head."
+    }
+   ],
+   "layout": {
+    "type": "split_top_bottom",
+    "picture_top": 0,
+    "picture_bottom": 1,
+    "facecam_position": "none",
+    "split_ratio": 0.5,
+    "background": "Dual camera split feed inside a vehicle"
+   },
+   "on_screen_text": [
+    {
+     "text": "Agent00 streams with the real Lucia from GTA 6",
+     "start": 0,
+     "end": 37.2,
+     "position_y": 0.5,
+     "purpose": "context_banner",
+     "case": "sentence",
+     "color": "#000000",
+     "box_color": "#FFFFFF",
+     "box_shape": "rectangle",
+     "outline": false,
+     "emoji": false,
+     "animation": "static"
+    }
+   ],
+   "captions": {
+    "present": false,
+    "position_y": 0,
+    "uppercase": false,
+    "words_per_line": 0,
+    "color": "",
+    "highlight_color": "",
+    "animation": ""
+   },
+   "visual_effects": [
+    {
+     "effect": "GTA HUD graphics overlay (money, stars, health bar)",
+     "at": 0,
+     "purpose": "Enhance GTA theme immersion"
+    }
+   ],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": false,
+    "music_genre": "",
+    "music_energy": "",
+    "beat_synced_cuts": false,
+    "voice": "Live conversation between streamer and guest",
+    "sfx": [],
+    "audio_notes": "Natural ambient vehicle interior audio with clear spoken dialogue."
+   },
+   "pacing": {
+    "cuts_per_minute": 0,
+    "typical_shot_seconds": 37.2,
+    "energy_curve": "Conversational and steady throughout"
+   },
+   "ending": {
+    "type": "punchline",
+    "description": "Agent00 makes a self-deprecating comment while holding a cold drink to his head."
+   },
+   "duration_reason": "Sufficient time to establish the guest's identity and discuss the Miami GTA theme.",
+   "retention_tactics": [
+    "Constant GTA UI graphic on top right",
+    "High-profile gaming culture reference in text overlay",
+    "Uncut live reaction chemistry"
+   ],
+   "why_it_works": "Combines a trending pop culture topic (GTA 6) with a recognizable guest lookalike and authentic streamer banter.",
+   "reproduction_recipe": [
+    "Record dual-view car stream footage",
+    "Add centered descriptive banner overlay",
+    "Place GTA HUD graphic overlay in top corner"
+   ],
+   "risks": [
+    "Relevance depends heavily on GTA 6 news cycle momentum"
+   ]
+  },
+  "preset": {
+   "layout": "split_cam",
+   "split_ratio": 0.5,
+   "cam_position": "top",
+   "target_duration": 37.2,
+   "cuts_per_min": 0.0,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.4,
+    "box_color": "#FFFFFF",
+    "text_color": "#000000"
+   },
+   "effects": [
+    "GTA HUD graphics overlay (money, stars, health bar)"
+   ],
+   "content_type": "streamer_clip",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "punchline"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:47:54+00:00"
+ },
+ {
+  "id": "ex_82d5e7909e71",
+  "profile": "gta6",
+  "label": "@gta_memes_sol: A satirical skit depicting GTA 6 characters encountering bur",
+  "category": "meme_skit",
+  "source": "https://www.tiktok.com/@gta_memes_sol/video/7706178573010275617",
+  "metrics": {
+   "duration": 28.8,
+   "width": 576,
+   "height": 1024,
+   "vertical": true,
+   "seam_y": 0.25,
+   "seam_strength": 398485287.79,
+   "blur_band_ratio": 0.396,
+   "faces_per_frame": 0.67,
+   "face_y": 0.438,
+   "cuts_per_min": 0.0,
+   "loudness_p90_db": -18.7,
+   "layout_guess": "letterbox",
+   "cam_position": null,
+   "cuts_at": [],
+   "n_cuts": 0,
+   "avg_shot_s": 28.77,
+   "min_shot_s": 28.77,
+   "bpm_est": 120.0,
+   "cuts_on_beat_frac": null,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "black_band_frac": 0.394,
+   "stats": {
+    "diggCount": 86800,
+    "shareCount": 5787,
+    "commentCount": 301,
+    "playCount": 1700000,
+    "collectCount": "4456"
+   },
+   "engagement_rate": 0.0573,
+   "share_rate": 0.0034
+  },
+  "vision": {
+   "content_type": "meme_skit",
+   "category": "meme_skit",
+   "summary": "A satirical skit depicting GTA 6 characters encountering bureaucratic gun control and consent requirements while attempting crimes.",
+   "hook": {
+    "first_2s": "Text banner displays 'GTA 6 will not be woke' over gameplay footage.",
+    "hook_text": "\"GTA 6 will not be woke\" Rockstar:",
+    "hook_type": "text_header",
+    "why_it_hooks": "Taps into trending community discourse around GTA 6."
+   },
+   "structure": [
+    {
+     "start": 0,
+     "end": 14,
+     "beat": "setup",
+     "what_happens": "Lucia and Jason try buying weapons, but the clerk demands absurd background checks."
+    },
+    {
+     "start": 14,
+     "end": 22,
+     "beat": "escalation",
+     "what_happens": "They leave empty-handed and attempt to carjack a luxury vehicle."
+    },
+    {
+     "start": 22,
+     "end": 28.8,
+     "beat": "payoff",
+     "what_happens": "The driver refuses consent to be carjacked, leaving Jason confused."
+    }
+   ],
+   "layout": {
+    "type": "black_bars",
+    "picture_top": 0.25,
+    "picture_bottom": 0.75,
+    "facecam_position": "none",
+    "split_ratio": 0.5,
+    "background": "#000000"
+   },
+   "on_screen_text": [
+    {
+     "text": "\"GTA 6 will not be woke\"\nRockstar:",
+     "start": 0,
+     "end": 28.8,
+     "position_y": 0.12,
+     "purpose": "headline",
+     "case": "mixed",
+     "color": "#FFFFFF",
+     "box_color": "#000000",
+     "box_shape": "none",
+     "outline": false,
+     "emoji": false,
+     "animation": "static"
+    }
+   ],
+   "captions": {
+    "present": true,
+    "position_y": 0.88,
+    "uppercase": true,
+    "words_per_line": 3,
+    "color": "#FFFFFF",
+    "highlight_color": "#FF204E",
+    "animation": "word_by_word"
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": false,
+    "music_genre": "none",
+    "music_energy": "low",
+    "beat_synced_cuts": false,
+    "voice": "ai_dubbed_dialogue",
+    "sfx": [],
+    "audio_notes": "Custom voice dubbing over gameplay footage."
+   },
+   "pacing": {
+    "cuts_per_minute": 18,
+    "typical_shot_seconds": 3.3,
+    "energy_curve": "steady comedic timing ending on punchline"
+   },
+   "ending": {
+    "type": "punchline",
+    "description": "Cuts on Jason's bewildered face after hearing the word consent."
+   },
+   "duration_reason": "Compact skit structure fits standard 30-second meme format.",
+   "retention_tactics": [
+    "relatable_gaming_satire",
+    "fast_dialogue_pacing",
+    "surprising_punchline"
+   ],
+   "why_it_works": "Parodies hyper-topical community fears using absurd, subverted grand theft auto mechanics.",
+   "reproduction_recipe": [
+    "Record custom game cutscene footage",
+    "Generate AI parody voice tracks",
+    "Add top text banner meme template",
+    "Overlay word-by-word highlighted captions"
+   ],
+   "risks": [
+    "political_sensitivity",
+    "copyright_claim_on_game_assets"
+   ]
+  },
+  "preset": {
+   "layout": "letterbox",
+   "split_ratio": 0.5,
+   "cam_position": "top",
+   "target_duration": 28.8,
+   "cuts_per_min": 0.0,
+   "caption": {
+    "position": 0.8,
+    "uppercase": true,
+    "max_words": 3,
+    "primary_color": "#FFFFFF",
+    "highlight_color": "#FF204E"
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.12,
+    "box_color": "#000000",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "meme_skit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "punchline"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:48:03+00:00"
+ },
+ {
+  "id": "ex_a78d29ef75ed",
+  "profile": "gta6",
+  "label": "@gta_memes_sol: A satirical GTA 6 gameplay clip mocking modern tipping cultu",
+  "category": "meme_skit",
+  "source": "https://www.tiktok.com/@gta_memes_sol/video/7706636426594487584",
+  "metrics": {
+   "duration": 31.6,
+   "width": 576,
+   "height": 1024,
+   "vertical": true,
+   "seam_y": 0.342,
+   "seam_strength": 410391208.6,
+   "blur_band_ratio": 2.008,
+   "faces_per_frame": 0.17,
+   "face_y": 0.446,
+   "cuts_per_min": 0.0,
+   "loudness_p90_db": -21.7,
+   "layout_guess": "letterbox",
+   "cam_position": null,
+   "cuts_at": [],
+   "n_cuts": 0,
+   "avg_shot_s": 31.6,
+   "min_shot_s": 31.6,
+   "bpm_est": 120.0,
+   "cuts_on_beat_frac": null,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "black_band_frac": 0.483,
+   "stats": {
+    "diggCount": 17900,
+    "shareCount": 3348,
+    "commentCount": 313,
+    "playCount": 386600,
+    "collectCount": "1087"
+   },
+   "engagement_rate": 0.0586,
+   "share_rate": 0.0087
+  },
+  "vision": {
+   "content_type": "meme_skit",
+   "category": "meme_skit",
+   "summary": "A satirical GTA 6 gameplay clip mocking modern tipping culture where a waitress demands an 8 dollar tip for two coffees, leading to a violent brawl in the streets.",
+   "hook": {
+    "first_2s": "A waitress hands a bill with an absurd tipping amount to characters sitting at a cafe table.",
+    "hook_text": "GTA 6 reportedly features a realistic tipping system and it's getting OUT OF HAND",
+    "hook_type": "text_on_screen",
+    "why_it_hooks": "Combines massive anticipation for GTA 6 with a highly relatable and controversial real-world annoyance (tipping culture)."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 2.0,
+     "beat": "hook",
+     "what_happens": "Waitress presents the bill at the outdoor cafe."
+    },
+    {
+     "start": 2.0,
+     "end": 10.0,
+     "beat": "setup",
+     "what_happens": "Characters look at the payment terminal with tip options."
+    },
+    {
+     "start": 10.0,
+     "end": 17.0,
+     "beat": "escalation",
+     "what_happens": "Dialogue exchange expressing disbelief over the tipping demand."
+    },
+    {
+     "start": 17.0,
+     "end": 31.6,
+     "beat": "payoff",
+     "what_happens": "Lucia jumps up and gets into a violent street brawl with the waitress."
+    }
+   ],
+   "layout": {
+    "type": "split_top_bottom",
+    "picture_top": 0.25,
+    "picture_bottom": 0.75,
+    "facecam_position": "none",
+    "split_ratio": 0.5,
+    "background": "#000000"
+   },
+   "on_screen_text": [
+    {
+     "text": "GTA 6 reportedly features\na realistic tipping system\nand it's getting OUT OF\nHAND",
+     "start": 0.0,
+     "end": 31.6,
+     "position_y": 0.12,
+     "purpose": "context hook",
+     "case": "upper_and_lower",
+     "color": "#ffffff",
+     "box_color": "",
+     "box_shape": "",
+     "outline": true,
+     "emoji": false,
+     "animation": "none"
+    },
+    {
+     "text": "LETS GO LUCIA!",
+     "start": 22.5,
+     "end": 25.5,
+     "position_y": 0.85,
+     "purpose": "hype reaction text",
+     "case": "upper",
+     "color": "#ffffff",
+     "box_color": "#000000",
+     "box_shape": "rectangle",
+     "outline": false,
+     "emoji": false,
+     "animation": "pop"
+    }
+   ],
+   "captions": {
+    "present": false,
+    "position_y": 0,
+    "uppercase": false,
+    "words_per_line": 0,
+    "color": "",
+    "highlight_color": "",
+    "animation": ""
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": false,
+    "music_genre": "",
+    "music_energy": "",
+    "beat_synced_cuts": false,
+    "voice": "in_game_dialogue",
+    "sfx": [
+     "punch sounds",
+     "cafe ambient noise"
+    ],
+    "audio_notes": "Clean in-game audio with natural dialogue and sound effects during the fight."
+   },
+   "pacing": {
+    "cuts_per_minute": 1.9,
+    "typical_shot_seconds": 31.6,
+    "energy_curve": "Starts calm, spikes dramatically into high energy during the physical fight."
+   },
+   "ending": {
+    "type": "loop",
+    "description": "Cuts off as the brawl continues on the ground, inviting a rewatch."
+   },
+   "duration_reason": "Long enough to establish the setup, joke, and full payoff fight sequence without losing viewer retention.",
+   "retention_tactics": [
+    "Relatable real-world grievance hook",
+    "Unexpected escalation to extreme violence",
+    "Smooth loop potential"
+   ],
+   "why_it_works": "It bridges highly anticipated gaming news (GTA 6) with a universally relatable real-world frustration (exorbitant tipping prompts), delivering an over-the-top comedic payoff.",
+   "reproduction_recipe": [
+    "Capture a custom GTA gameplay scenario involving NPC interaction",
+    "Add bold explanatory text at the top of a vertical frame to hook the viewer",
+    "Let the in-game scene play out to a chaotic or funny payoff",
+    "Ensure seamless looping back to the start"
+   ],
+   "risks": [
+    "May be perceived as misleading clickbait regarding actual GTA 6 features",
+    "Mild cartoon violence warning"
+   ]
+  },
+  "preset": {
+   "layout": "letterbox",
+   "split_ratio": 0.5,
+   "cam_position": "top",
+   "target_duration": 31.6,
+   "cuts_per_min": 0.0,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.12,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "meme_skit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "loop"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:48:13+00:00"
+ },
+ {
+  "id": "ex_a9ca97b6f293",
+  "profile": "gta6",
+  "label": "@onlyclipinn: A short viral clip showing popular streamer Kai Cenat hyping",
+  "category": "streamer_reaction",
+  "source": "https://www.tiktok.com/@onlyclipinn/video/7706803854272187662",
+  "metrics": {
+   "duration": 8.8,
+   "width": 720,
+   "height": 1280,
+   "vertical": true,
+   "seam_y": 0.264,
+   "seam_strength": 565.52,
+   "blur_band_ratio": 0.148,
+   "faces_per_frame": 0.33,
+   "face_y": 0.597,
+   "cuts_per_min": 13.7,
+   "loudness_p90_db": -9.2,
+   "layout_guess": "fit_blur",
+   "cam_position": null,
+   "cuts_at": [
+    6.4,
+    6.7
+   ],
+   "n_cuts": 2,
+   "avg_shot_s": 2.92,
+   "min_shot_s": 0.3,
+   "bpm_est": 120.0,
+   "cuts_on_beat_frac": 0.5,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "black_band_frac": 0.0,
+   "stats": {
+    "diggCount": 88100,
+    "shareCount": 1196,
+    "commentCount": 540,
+    "playCount": 1300000,
+    "collectCount": "5518"
+   },
+   "engagement_rate": 0.0733,
+   "share_rate": 0.0009
+  },
+  "vision": {
+   "content_type": "streamer_clip",
+   "category": "streamer_reaction",
+   "summary": "A short viral clip showing popular streamer Kai Cenat hyping up his chat with background music, claiming he is playing GTA 6, followed by a humorous transition to a fake GTA 'Mission Passed' screen.",
+   "hook": {
+    "first_2s": "Kai Cenat pointing aggressively at the camera with intense energetic music building up.",
+    "hook_text": "Kai Cenat is OFFICIALLY the first streamer to PLAY GTA6 😨👀",
+    "hook_type": "claim_and_curiosity",
+    "why_it_hooks": "Makes a bold, highly provocative claim about GTA 6 featuring a top streamer, immediately sparking curiosity and disbelief."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 6.4,
+     "beat": "hook",
+     "what_happens": "Kai Cenat points at the camera and hypes up chat to intense rap beat music."
+    },
+    {
+     "start": 6.4,
+     "end": 8.8,
+     "beat": "payoff",
+     "what_happens": "Cut to a meme GTA 'Mission Passed' screen parodying the claim."
+    }
+   ],
+   "layout": {
+    "type": "blurred_bands",
+    "picture_top": 0.3,
+    "picture_bottom": 0.7,
+    "facecam_position": "none",
+    "background": "Blurred gameplay and room ambient background with dark bands top and bottom"
+   },
+   "on_screen_text": [
+    {
+     "text": "Kai Cenat is OFFICIALLY the first streamer to PLAY GTA6 😨👀",
+     "start": 0.0,
+     "end": 6.4,
+     "position_y": 0.15,
+     "purpose": "Primary headline hook",
+     "case": "mixed",
+     "color": "#FFFFFF",
+     "box_color": "#000000",
+     "box_shape": "rounded_rectangle",
+     "outline": true,
+     "emoji": true,
+     "animation": "pop_in"
+    },
+    {
+     "text": "Mission Passed",
+     "start": 6.4,
+     "end": 8.8,
+     "position_y": 0.45,
+     "purpose": "Joke payoff punchline",
+     "case": "title_case",
+     "color": "#FFD700",
+     "box_color": "#000000",
+     "box_shape": "rectangle",
+     "outline": true,
+     "emoji": false,
+     "animation": "slide_in"
+    }
+   ],
+   "captions": {
+    "present": false,
+    "position_y": 0.0,
+    "uppercase": false,
+    "words_per_line": 0,
+    "color": "",
+    "highlight_color": "",
+    "animation": ""
+   },
+   "visual_effects": [
+    {
+     "effect": "Hard cut",
+     "at": 6.4,
+     "purpose": "Transition from hype setup to punchline payoff"
+    }
+   ],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "Trap / Hype beat",
+    "music_energy": "high",
+    "beat_synced_cuts": true,
+    "voice": "Kai Cenat speaking excitedly",
+    "sfx": [
+     "GTA Mission Passed sound"
+    ],
+    "audio_notes": "High energy trap music underlying streamer's vocals, cutting cleanly into the iconic GTA sound effect."
+   },
+   "pacing": {
+    "cuts_per_minute": 15.0,
+    "typical_shot_seconds": 6.4,
+    "energy_curve": "Starts high with energetic pointing, spikes sharply at the punchline."
+   },
+   "ending": {
+    "type": "punchline",
+    "description": "Cuts to the iconic GTA V 'Mission Passed' screen to deliver the meme joke."
+   },
+   "duration_reason": "Under 9 seconds keeps viewer retention maximum and delivers a quick punchline before drop-off.",
+   "retention_tactics": [
+    "Bold sensationalist text hook at the very top",
+    "High energy streamer motion in first 2 seconds",
+    "Fast comedic cut / plot twist ending"
+   ],
+   "why_it_works": "Leverages the massive hype around GTA 6 combined with a viral creator (Kai Cenat) and delivers a funny, unexpected satirical punchline.",
+   "reproduction_recipe": [
+    "Find a clip of a popular streamer hyping up chat",
+    "Add a bold curiosity-inducing hook text at the top of the frame",
+    "Keep background blurred or centered with clean layout formatting",
+    "Cut abruptly on the beat to a classic GTA 'Mission Passed' graphic screen"
+   ],
+   "risks": [
+    "Misleading hook might annoy some strict fact-checkers, though common in meme content",
+    "Over-saturation of GTA 6 clickbait tropes"
+   ]
+  },
+  "preset": {
+   "layout": "fit_blur",
+   "split_ratio": 0.264,
+   "cam_position": "top",
+   "target_duration": 8.8,
+   "cuts_per_min": 13.7,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.15,
+    "box_color": "#000000",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [
+    "Hard cut"
+   ],
+   "content_type": "streamer_clip",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "punchline",
+   "format_type": "beat_sync_montage"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:48:23+00:00"
+ },
+ {
+  "id": "ex_8cb2eac6cfb3",
+  "profile": "gta6",
+  "label": "@gta_memes_sol: A humorous meme skit parodying a GTA 6 gameplay moment where",
+  "category": "meme_skit",
+  "source": "https://www.tiktok.com/@gta_memes_sol/video/7703536745849130272",
+  "metrics": {
+   "duration": 26.3,
+   "width": 576,
+   "height": 1024,
+   "vertical": true,
+   "seam_y": 0.267,
+   "seam_strength": 414.3,
+   "blur_band_ratio": 1.989,
+   "faces_per_frame": 0.67,
+   "face_y": 0.433,
+   "cuts_per_min": 0.0,
+   "loudness_p90_db": -23.6,
+   "layout_guess": "letterbox",
+   "cam_position": null,
+   "cuts_at": [],
+   "n_cuts": 0,
+   "avg_shot_s": 26.28,
+   "min_shot_s": 26.28,
+   "bpm_est": 75.0,
+   "cuts_on_beat_frac": null,
+   "silence_frac": 0.004,
+   "fps": 30.0,
+   "black_band_frac": 0.304,
+   "stats": {
+    "diggCount": 56600,
+    "shareCount": 20700,
+    "commentCount": 307,
+    "playCount": 2600000,
+    "collectCount": "4989"
+   },
+   "engagement_rate": 0.0318,
+   "share_rate": 0.008
+  },
+  "vision": {
+   "content_type": "meme_skit",
+   "category": "meme_skit",
+   "summary": "A humorous meme skit parodying a GTA 6 gameplay moment where a player interrupts an intimate in-game scene to go bowling with a friend, referencing the iconic GTA IV meme.",
+   "hook": {
+    "first_2s": "A top overlay text reads '34 hours into GTA 6, you finally unlock the Lucia shower scene and THIS happens' while characters converse inside an in-game apartment.",
+    "hook_text": "34 hours into GTA 6, you finally unlock the Lucia shower scene and THIS happens",
+    "hook_type": "curiosity_gap",
+    "why_it_hooks": "It promises an exclusive, highly anticipated in-game scene and subverts expectations with a funny twist."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 2.0,
+     "beat": "hook",
+     "what_happens": "Lucia and Jason talk about taking a shower, accompanied by the hook text on screen."
+    },
+    {
+     "start": 2.0,
+     "end": 10.0,
+     "beat": "setup",
+     "what_happens": "Jason agrees and they walk towards the bathroom together."
+    },
+    {
+     "start": 10.0,
+     "end": 17.0,
+     "beat": "twist",
+     "what_happens": "Jason's phone rings. It's Cal asking to go bowling, and Jason immediately accepts."
+    },
+    {
+     "start": 17.0,
+     "end": 26.3,
+     "beat": "payoff",
+     "what_happens": "Jason tells Lucia he is going bowling instead, and she angrily storms off."
+    }
+   ],
+   "layout": {
+    "type": "black_bars",
+    "picture_top": 0.25,
+    "picture_bottom": 0.75,
+    "facecam_position": "none",
+    "split_ratio": 0.5,
+    "background": "#000000"
+   },
+   "on_screen_text": [
+    {
+     "text": "34 hours into GTA 6, you finally unlock the Lucia shower scene and THIS happens",
+     "start": 0.0,
+     "end": 26.3,
+     "position_y": 0.15,
+     "purpose": "hook",
+     "case": "sentence",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false
+    }
+   ],
+   "captions": {
+    "present": true,
+    "position_y": 0.85,
+    "uppercase": false,
+    "words_per_line": 3,
+    "color": "#FFFFFF",
+    "highlight_color": "#FF0000",
+    "animation": "pop_in"
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "hip_hop",
+    "music_energy": "medium",
+    "beat_synced_cuts": false,
+    "voice": "gameplay_dialogue",
+    "sfx": [],
+    "audio_notes": "In-game character dialogue with background music."
+   },
+   "pacing": {
+    "cuts_per_minute": 5.0,
+    "typical_shot_seconds": 4.0,
+    "energy_curve": "rising_to_twist"
+   },
+   "ending": {
+    "type": "punchline",
+    "description": "Lucia storms away angrily as Jason bails on the shower scene for bowling."
+   },
+   "duration_reason": "Perfect length to set up the joke and deliver the punchline without losing viewer attention.",
+   "retention_tactics": [
+    "top hook text",
+    "nostalgic GTA meme reference",
+    "unexpected twist"
+   ],
+   "why_it_works": "It combines two universally recognized tropes (GTA 6 anticipation and the GTA IV 'want to go bowling?' meme) into a relatable comedic skit.",
+   "reproduction_recipe": [
+    "Record a cinematic roleplay or in-game scene matching a high-anticipation GTA 6 moment.",
+    "Add a bold hook text at the top of the video explaining the premise.",
+    "Include word-by-word highlighted captions at the bottom.",
+    "Deliver an unexpected comedic interruption that references classic franchise memes."
+   ],
+   "risks": [
+    "Requires high familiarity with GTA franchise memes to fully appreciate the joke."
+   ]
+  },
+  "preset": {
+   "layout": "letterbox",
+   "split_ratio": 0.5,
+   "cam_position": "top",
+   "target_duration": 26.3,
+   "cuts_per_min": 0.0,
+   "caption": {
+    "position": 0.8,
+    "uppercase": false,
+    "max_words": 3,
+    "primary_color": "#FFFFFF",
+    "highlight_color": "#FF0000"
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.15,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "meme_skit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "punchline"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:48:32+00:00"
+ },
+ {
+  "id": "ex_000ae7f9c24a",
+  "profile": "gta6",
+  "label": "@lacy: Streamer Lacy announces a massive upcoming GTA 6 marathon in",
+  "category": "streamer_reaction",
+  "source": "https://www.tiktok.com/@lacy/video/7705998748844838158",
+  "metrics": {
+   "duration": 17.0,
+   "width": 720,
+   "height": 720,
+   "vertical": false,
+   "seam_y": null,
+   "seam_strength": 11.26,
+   "blur_band_ratio": 16.971,
+   "faces_per_frame": 1.42,
+   "face_y": 0.544,
+   "cuts_per_min": 0.0,
+   "loudness_p90_db": -19.3,
+   "layout_guess": "fit_blur",
+   "cam_position": null,
+   "cuts_at": [],
+   "n_cuts": 0,
+   "avg_shot_s": 17.0,
+   "min_shot_s": 17.0,
+   "bpm_est": 85.7,
+   "cuts_on_beat_frac": null,
+   "silence_frac": 0.012,
+   "fps": 30.0,
+   "black_band_frac": 0.0,
+   "stats": {
+    "diggCount": 30200,
+    "shareCount": 1144,
+    "commentCount": 509,
+    "playCount": 296500,
+    "collectCount": "2094"
+   },
+   "engagement_rate": 0.1145,
+   "share_rate": 0.0039
+  },
+  "vision": {
+   "content_type": "streamer_clip",
+   "category": "streamer_reaction",
+   "summary": "Streamer Lacy announces a massive upcoming GTA 6 marathon in Miami featuring prominent creators like Ron, Jason, Marlon, and Clix in a mansion setup.",
+   "hook": {
+    "first_2s": "0.0s to 2.0s",
+    "hook_text": "Lacy announces his GTA 6 Marathon 😳🔥",
+    "hook_type": "text_on_screen_teaser",
+    "why_it_hooks": "Combines a trending, highly anticipated topic (GTA 6) with popular creators and strong emoji indicators."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 2.0,
+     "beat": "hook",
+     "what_happens": "Static framing of Lacy talking while the hook text appears at the top."
+    },
+    {
+     "start": 2.0,
+     "end": 17.0,
+     "beat": "payoff",
+     "what_happens": "Lacy explains the details of the Miami mansion GTA 6 marathon involving multiple creators."
+    }
+   ],
+   "layout": {
+    "type": "full_frame",
+    "picture_top": 0.0,
+    "picture_bottom": 1.0,
+    "facecam_position": "none",
+    "background": "Streamer room with merchandise figures"
+   },
+   "on_screen_text": [
+    {
+     "text": "Lacy announces his GTA 6 Marathon 😳🔥",
+     "start": 0.0,
+     "end": 17.0,
+     "position_y": 0.1,
+     "purpose": "Hook and context",
+     "case": "mixed",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": true,
+     "animation": "none"
+    }
+   ],
+   "captions": {
+    "present": false,
+    "position_y": 0.0,
+    "uppercase": false,
+    "words_per_line": 0,
+    "color": "",
+    "highlight_color": "",
+    "animation": ""
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": false,
+    "music_genre": "",
+    "music_energy": "",
+    "beat_synced_cuts": false,
+    "voice": "Lacy speaking directly to camera",
+    "sfx": [],
+    "audio_notes": "Clean microphone speech with room reverb."
+   },
+   "pacing": {
+    "cuts_per_minute": 0.0,
+    "typical_shot_seconds": 17.0,
+    "energy_curve": "steady"
+   },
+   "ending": {
+    "type": "cut_to_black",
+    "description": "Video ends abruptly after finishing the announcement."
+   },
+   "duration_reason": "Sufficient length to deliver the full announcement without dragging.",
+   "retention_tactics": [
+    "Top text hook",
+    "Familiar creator names dropping"
+   ],
+   "why_it_works": "Leverages influencer hype and community anticipation around GTA 6.",
+   "reproduction_recipe": [
+    "Record a streamer talking about big news",
+    "Add a clear summary text on top with emojis",
+    "Keep shot unedited and direct"
+   ],
+   "risks": [
+    "Subject to streamer news relevance",
+    "Dependent on fan interest in mentioned creators"
+   ]
+  },
+  "preset": {
+   "layout": "focus",
+   "split_ratio": 0.5,
+   "cam_position": "top",
+   "target_duration": 17.0,
+   "cuts_per_min": 0.0,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.1,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "streamer_clip",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "cut_to_black"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:48:38+00:00"
+ },
+ {
+  "id": "ex_529026fc7634",
+  "profile": "gta6",
+  "label": "@gta_memes_sol: A satirical GTA 6 skit where Jason and Lucia have a baby in ",
+  "category": "meme_skit",
+  "source": "https://www.tiktok.com/@gta_memes_sol/video/7706274877027683616",
+  "metrics": {
+   "duration": 17.4,
+   "width": 576,
+   "height": 1024,
+   "vertical": true,
+   "seam_y": 0.284,
+   "seam_strength": 345.62,
+   "blur_band_ratio": 1.868,
+   "faces_per_frame": 0.67,
+   "face_y": 0.478,
+   "cuts_per_min": 0.0,
+   "loudness_p90_db": -22.4,
+   "layout_guess": "letterbox",
+   "cam_position": null,
+   "cuts_at": [],
+   "n_cuts": 0,
+   "avg_shot_s": 17.41,
+   "min_shot_s": 17.41,
+   "bpm_est": 120.0,
+   "cuts_on_beat_frac": null,
+   "silence_frac": 0.006,
+   "fps": 30.0,
+   "black_band_frac": 0.455,
+   "stats": {
+    "diggCount": 31300,
+    "shareCount": 22400,
+    "commentCount": 334,
+    "playCount": 508100,
+    "collectCount": "3487"
+   },
+   "engagement_rate": 0.1132,
+   "share_rate": 0.0441
+  },
+  "vision": {
+   "content_type": "meme_skit",
+   "category": "meme_skit",
+   "summary": "A satirical GTA 6 skit where Jason and Lucia have a baby in a hospital, but the baby turns out to be an adult man who says the iconic meme line 'Ah shit, here we go again', implying Lucia cheated.",
+   "hook": {
+    "first_2s": "Text on screen claims GTA 6 has a realistic pregnancy system with Jason and Lucia.",
+    "hook_text": "GTA 6 reportedly features a realistic pregnancy system where Jason and Lucia can actually have children",
+    "hook_type": "claim_rumor",
+    "why_it_hooks": "Promises absurd, exclusive new gameplay features about a highly anticipated game."
+   },
+   "structure": [
+    {
+     "start": 0,
+     "end": 2,
+     "beat": "hook",
+     "what_happens": "Text overlay introducing the fake GTA 6 pregnancy rumor."
+    },
+    {
+     "start": 2,
+     "end": 10,
+     "beat": "setup",
+     "what_happens": "Hospital scene where Lucia is in bed giving birth and doctor hands the baby to Jason."
+    },
+    {
+     "start": 10,
+     "end": 14,
+     "beat": "twist",
+     "what_happens": "Jason looks down at the baby in shock and profanity ensues."
+    },
+    {
+     "start": 14,
+     "end": 17.4,
+     "beat": "punchline",
+     "what_happens": "Close up reveals the baby is a grown man delivering the 'Ah shit here we go again' line."
+    }
+   ],
+   "layout": {
+    "type": "full_frame",
+    "picture_top": 0.2,
+    "picture_bottom": 0.8,
+    "facecam_position": "none",
+    "background": "#000000"
+   },
+   "on_screen_text": [
+    {
+     "text": "GTA 6 reportedly features a realistic pregnancy system where Jason and Lucia can actually have children",
+     "start": 0,
+     "end": 2,
+     "position_y": 0.25,
+     "purpose": "hook",
+     "case": "sentence",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "none"
+    }
+   ],
+   "captions": {
+    "present": true,
+    "position_y": 0.9,
+    "uppercase": true,
+    "words_per_line": 3,
+    "color": "#FFFFFF",
+    "highlight_color": "#FF0000",
+    "animation": "pop"
+   },
+   "visual_effects": [
+    {
+     "effect": "zoom_in",
+     "at": 10,
+     "purpose": "focus on Jason's reaction"
+    }
+   ],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": false,
+    "music_genre": "",
+    "music_energy": "",
+    "beat_synced_cuts": false,
+    "voice": "game_audio_and_voiceover",
+    "sfx": [
+     "baby_crying",
+     "gasp"
+    ],
+    "audio_notes": "Cinematic hospital audio turning into dramatic meme audio."
+   },
+   "pacing": {
+    "cuts_per_minute": 0,
+    "typical_shot_seconds": 17.4,
+    "energy_curve": "low_start_high_punchline"
+   },
+   "ending": {
+    "type": "punchline",
+    "description": "Cut on the meme punchline delivery."
+   },
+   "duration_reason": "Ideal length to deliver a quick narrative joke without losing viewer attention.",
+   "retention_tactics": [
+    "bold rumor hook",
+    "narrative twist",
+    "nostalgic meme reference"
+   ],
+   "why_it_works": "Combines massive hype for GTA 6 with a classic relatable cheating joke and iconic meme crossover.",
+   "reproduction_recipe": [
+    "Create or source a fake cinematic animation trailer using GTA models in a hospital setting.",
+    "Add a bold hook text at the top claiming absurd game features.",
+    "Sync custom voice lines or audio effects with auto-generated bold captions.",
+    "End with an unexpected punchline or meme face reveal."
+   ],
+   "risks": [
+    "Misinformation if viewers take the rumor text seriously.",
+    "Copyright claims on fan-made 3D models."
+   ]
+  },
+  "preset": {
+   "layout": "letterbox",
+   "split_ratio": 0.284,
+   "cam_position": "top",
+   "target_duration": 17.4,
+   "cuts_per_min": 0.0,
+   "caption": {
+    "position": 0.8,
+    "uppercase": true,
+    "max_words": 3,
+    "primary_color": "#FFFFFF",
+    "highlight_color": "#FF0000"
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.25,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [
+    "zoom_in"
+   ],
+   "content_type": "meme_skit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "punchline"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:48:47+00:00"
+ },
+ {
+  "id": "ex_9fdb0ab7a0a3",
+  "profile": "gta6",
+  "label": "@gta_memes_sol: A satirical GTA 6 skit showing an elevator mechanic where Ja",
+  "category": "meme_skit",
+  "source": "https://www.tiktok.com/@gta_memes_sol/video/7706948957909421344",
+  "metrics": {
+   "duration": 34.0,
+   "width": 576,
+   "height": 1024,
+   "vertical": true,
+   "seam_y": 0.277,
+   "seam_strength": 733.98,
+   "blur_band_ratio": 2.479,
+   "faces_per_frame": 0.5,
+   "face_y": 0.477,
+   "cuts_per_min": 0.0,
+   "loudness_p90_db": -24.6,
+   "layout_guess": "letterbox",
+   "cam_position": null,
+   "cuts_at": [],
+   "n_cuts": 0,
+   "avg_shot_s": 33.97,
+   "min_shot_s": 33.97,
+   "bpm_est": 120.0,
+   "cuts_on_beat_frac": null,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "black_band_frac": 0.448,
+   "stats": {
+    "diggCount": 46400,
+    "shareCount": 13500,
+    "commentCount": 267,
+    "playCount": 800200,
+    "collectCount": "2961"
+   },
+   "engagement_rate": 0.0789,
+   "share_rate": 0.0169
+  },
+  "vision": {
+   "content_type": "meme_skit",
+   "category": "meme_skit",
+   "summary": "A satirical GTA 6 skit showing an elevator mechanic where Jason chooses to look at another woman, prompting a hilarious and violent jealousy reaction from Lucia.",
+   "hook": {
+    "first_2s": "Shows protagonist Jason in an elevator with multiple NPC women as on-screen text claims GTA 6 features a jealousy system.",
+    "hook_text": "GTA 6 reportedly features a realistic jealousy system where Lucia reacts when Jason checks out other girls",
+    "hook_type": "text headline claim",
+    "why_it_hooks": "Taps into huge hype and curiosity surrounding GTA 6 features combined with a relatable and funny relationship meme."
+   },
+   "structure": [
+    {
+     "start": 0,
+     "end": 4,
+     "beat": "hook",
+     "what_happens": "Elevator scene introduction with headline text explaining the premise."
+    },
+    {
+     "start": 4,
+     "end": 16,
+     "beat": "setup",
+     "what_happens": "Different women walk past Jason, offering him prompt choices to look or not look."
+    },
+    {
+     "start": 16,
+     "end": 25,
+     "beat": "escalation",
+     "what_happens": "Jason chooses to look at Lucia, who immediately confronts him aggressively."
+    },
+    {
+     "start": 25,
+     "end": 34,
+     "beat": "payoff",
+     "what_happens": "Lucia punches Jason in the stomach, leaving him doubled over as she walks away."
+    }
+   ],
+   "layout": {
+    "type": "full_frame",
+    "picture_top": 0.25,
+    "picture_bottom": 0.75,
+    "facecam_position": "none",
+    "background": "#000000"
+   },
+   "on_screen_text": [
+    {
+     "text": "GTA 6 reportedly features a realistic jealousy system where Lucia reacts when Jason checks out other girls",
+     "start": 0,
+     "end": 4,
+     "position_y": 0.15,
+     "purpose": "hook headline",
+     "case": "sentence",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "fade"
+    },
+    {
+     "text": "LOOK",
+     "start": 8,
+     "end": 9,
+     "position_y": 0.58,
+     "purpose": "game prompt",
+     "case": "upper",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false
+    },
+    {
+     "text": "LOOK",
+     "start": 13,
+     "end": 15,
+     "position_y": 0.58,
+     "purpose": "game prompt",
+     "case": "upper",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false
+    },
+    {
+     "text": "DON'T LOOK",
+     "start": 13,
+     "end": 15,
+     "position_y": 0.63,
+     "purpose": "game prompt",
+     "case": "upper",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false
+    },
+    {
+     "text": "YOU GOT 5 SECONDS TO EXPLAIN WHY YOUR EYES JUST FOLLOWED THAT BITCH ACROSS THE STREET",
+     "start": 19,
+     "end": 24,
+     "position_y": 0.85,
+     "purpose": "dialogue captions",
+     "case": "upper",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "karaoke"
+    }
+   ],
+   "captions": {
+    "present": true,
+    "position_y": 0.85,
+    "uppercase": true,
+    "words_per_line": 3,
+    "color": "#FFFFFF",
+    "highlight_color": "#FF0000",
+    "animation": "pop"
+   },
+   "visual_effects": [
+    {
+     "effect": "game UI prompts",
+     "at": 8,
+     "purpose": "simulate actual GTA gameplay UI elements"
+    }
+   ],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "pop",
+    "music_energy": "medium",
+    "beat_synced_cuts": false,
+    "voice": "game character voiceover",
+    "sfx": [
+     "punch sound"
+    ],
+    "audio_notes": "Background music playing softly underneath funny dialogue and sound effects."
+   },
+   "pacing": {
+    "cuts_per_minute": 5.0,
+    "typical_shot_seconds": 6.0,
+    "energy_curve": "starts humorous, peaks at the punch climax, ends with comedic timing"
+   },
+   "ending": {
+    "type": "punchline",
+    "description": "Lucia walks away victorious after knocking the wind out of Jason."
+   },
+   "duration_reason": "Ideal length for a skit setup, escalation, and punchline without losing viewer attention.",
+   "retention_tactics": [
+    "Gaming meme context",
+    "Relatable relationship humor",
+    "Interactive UI elements simulation",
+    "Dynamic voice acting"
+   ],
+   "why_it_works": "Combines massive GTA 6 anticipation with universally understood relationship tropes, delivering high shareability and comment engagement.",
+   "reproduction_recipe": [
+    "Use 3D animation software or GTA V mods to replicate elevator scenario with Jason and Lucia.",
+    "Add authentic-looking game choice prompts (LOOK / DON'T LOOK).",
+    "Write a comedic voiceover script featuring dramatic jealousy dialogue.",
+    "Overlay clear, kinetic captions with highlight colors on key words.",
+    "End with a satisfying comedic punchline."
+   ],
+   "risks": [
+    "Viewers might initially mistake the skit for actual leaked gameplay footage."
+   ]
+  },
+  "preset": {
+   "layout": "letterbox",
+   "split_ratio": 0.277,
+   "cam_position": "top",
+   "target_duration": 34.0,
+   "cuts_per_min": 0.0,
+   "caption": {
+    "position": 0.8,
+    "uppercase": true,
+    "max_words": 3,
+    "primary_color": "#FFFFFF",
+    "highlight_color": "#FF0000"
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.15,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [
+    "game UI prompts"
+   ],
+   "content_type": "meme_skit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "punchline"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:48:57+00:00"
+ },
+ {
+  "id": "ex_7e15a9107217",
+  "profile": "gta6",
+  "label": "@gtbgringo.clips: A twitch streamer gives satirical advice on making money whe",
+  "category": "tips_tricks",
+  "source": "https://www.tiktok.com/@gtbgringo.clips/video/7705224856236838174",
+  "metrics": {
+   "duration": 24.3,
+   "width": 720,
+   "height": 720,
+   "vertical": false,
+   "seam_y": 0.211,
+   "seam_strength": 71.39,
+   "blur_band_ratio": 2.624,
+   "faces_per_frame": 0.42,
+   "face_y": 0.535,
+   "cuts_per_min": 0.0,
+   "loudness_p90_db": -9.6,
+   "layout_guess": "fit_blur",
+   "cam_position": null,
+   "cuts_at": [],
+   "n_cuts": 0,
+   "avg_shot_s": 24.31,
+   "min_shot_s": 24.31,
+   "bpm_est": 85.7,
+   "cuts_on_beat_frac": null,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "black_band_frac": 0.0,
+   "stats": {
+    "diggCount": 93200,
+    "shareCount": 6318,
+    "commentCount": 327,
+    "playCount": 880700,
+    "collectCount": "5075"
+   },
+   "engagement_rate": 0.1191,
+   "share_rate": 0.0072
+  },
+  "vision": {
+   "content_type": "streamer_clip",
+   "category": "tips_tricks",
+   "summary": "A twitch streamer gives satirical advice on making money when GTA 6 releases by working for DoorDash to deliver food to hungry gamers.",
+   "hook": {
+    "first_2s": "Streamer points his finger and says 'Just thought of it...'",
+    "hook_text": "Braeden LEAKS the method on how to get RICH during GTA 6 💀👀🔥",
+    "hook_type": "text_overlay_and_pointer",
+    "why_it_hooks": "Combines high anticipation for GTA 6 with an unexpected, humorous real-life hustle advice."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 2.0,
+     "beat": "hook",
+     "what_happens": "Streamer introduces the thought with a pointing gesture."
+    },
+    {
+     "start": 2.0,
+     "end": 13.0,
+     "beat": "setup",
+     "what_happens": "Explains the premise: instead of playing GTA 6 all day, work DoorDash because everyone else will be hungry."
+    },
+    {
+     "start": 13.0,
+     "end": 24.3,
+     "beat": "payoff",
+     "what_happens": "Gives the ultimate call to action to deliver his food specifically, promising a big tip."
+    }
+   ],
+   "layout": {
+    "type": "full_frame",
+    "picture_top": 0.0,
+    "picture_bottom": 1.0,
+    "facecam_position": "none",
+    "split_ratio": 0.0,
+    "background": "streamer room"
+   },
+   "on_screen_text": [
+    {
+     "text": "Braeden LEAKS the method on how to get RICH during GTA 6 💀👀🔥",
+     "start": 0.0,
+     "end": 24.3,
+     "position_y": 0.2,
+     "purpose": "hook_title",
+     "case": "mixed",
+     "color": "#FFFFFF",
+     "box_color": "",
+     "box_shape": "",
+     "outline": false,
+     "emoji": true,
+     "animation": "none"
+    }
+   ],
+   "captions": {
+    "present": false,
+    "position_y": 0.0,
+    "uppercase": false,
+    "words_per_line": 0,
+    "color": "",
+    "highlight_color": "",
+    "animation": ""
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": false,
+    "music_genre": "",
+    "music_energy": "",
+    "beat_synced_cuts": false,
+    "voice": "streamer speaking directly to camera",
+    "sfx": [],
+    "audio_notes": "chat notification sounds faintly audible in background"
+   },
+   "pacing": {
+    "cuts_per_minute": 0.0,
+    "typical_shot_seconds": 24.3,
+    "energy_curve": "steady conversational build"
+   },
+   "ending": {
+    "type": "punchline",
+    "description": "Streamer asks viewer to deliver his food game."
+   },
+   "duration_reason": "Long enough for a complete comedic monologue without dragging.",
+   "retention_tactics": [
+    "top text hook",
+    "engaging conversational tone",
+    "anticipated topic (GTA 6)"
+   ],
+   "why_it_works": "Leverages massive hype around GTA 6 and subverts expectations with a mundane hustle joke.",
+   "reproduction_recipe": [
+    "Record webcam of yourself talking about a trending gaming topic",
+    "Add a bold title card at the top with relevant emojis",
+    "Deliver a satirical advice monologue"
+   ],
+   "risks": [
+    "joke might not land if pacing is too slow"
+   ]
+  },
+  "preset": {
+   "layout": "full_gameplay",
+   "split_ratio": 0.25,
+   "cam_position": "top",
+   "target_duration": 24.3,
+   "cuts_per_min": 0.0,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.2,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "streamer_clip",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "punchline"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:49:02+00:00"
+ },
+ {
+  "id": "ex_fcf84ef9b094",
+  "profile": "gta6",
+  "label": "@gta.6.clips51: A concept map overview video for GTA 6 showing regions like ",
+  "category": "news_trailer",
+  "source": "https://www.tiktok.com/@gta.6.clips51/video/7690337655883566368",
+  "metrics": {
+   "duration": 21.7,
+   "width": 576,
+   "height": 1024,
+   "vertical": true,
+   "seam_y": 0.284,
+   "seam_strength": 2644252752.97,
+   "blur_band_ratio": 0.188,
+   "faces_per_frame": 0.08,
+   "face_y": 0.396,
+   "cuts_per_min": 5.5,
+   "loudness_p90_db": -15.7,
+   "layout_guess": "letterbox",
+   "cam_position": null,
+   "cuts_at": [
+    17.7,
+    21.6
+   ],
+   "n_cuts": 2,
+   "avg_shot_s": 7.22,
+   "min_shot_s": 0.07,
+   "bpm_est": 120.0,
+   "cuts_on_beat_frac": 0.5,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "black_band_frac": 0.576,
+   "stats": {
+    "diggCount": 152700,
+    "shareCount": 13400,
+    "commentCount": 944,
+    "playCount": 1300000,
+    "collectCount": "18960"
+   },
+   "engagement_rate": 0.1431,
+   "share_rate": 0.0103
+  },
+  "vision": {
+   "content_type": "hype_edit",
+   "category": "news_trailer",
+   "summary": "A concept map overview video for GTA 6 showing regions like Mount Kalaga, Port Gellhorn, Ambrosia, Grassrivers, Leonida Keys, and Vice City, set to a high-energy beat.",
+   "hook": {
+    "first_2s": "Shows the glowing outline of the state of Leonida against a dark background with an intriguing title card.",
+    "hook_text": "Starting to feel real",
+    "hook_type": "text_statement",
+    "why_it_hooks": "Taps directly into the high anticipation and excitement of GTA 6 fans waiting for map leaks or concepts."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 2.0,
+     "beat": "hook",
+     "what_happens": "Introduction of the Leonida state map outline glowing in neon pink and blue."
+    },
+    {
+     "start": 2.0,
+     "end": 16.0,
+     "beat": "escalation",
+     "what_happens": "Rapid sequential zooming into different regions of the map (Mount Kalaga, Port Gellhorn, Ambrosia, Grassrivers, Leonida Keys, Vice City) with corresponding video snippets."
+    },
+    {
+     "start": 16.0,
+     "end": 17.7,
+     "beat": "reveal",
+     "what_happens": "Zooming back out to show all roads leading to Vice City."
+    },
+    {
+     "start": 17.7,
+     "end": 21.6,
+     "beat": "payoff",
+     "what_happens": "Transition to the official GTA VI logo and Welcome to Vice City title."
+    }
+   ],
+   "layout": {
+    "type": "blurred_bands",
+    "picture_top": 0.25,
+    "picture_bottom": 0.75,
+    "facecam_position": "none",
+    "split_ratio": 0.5,
+    "background": "#000000"
+   },
+   "on_screen_text": [
+    {
+     "text": "Starting to feel real",
+     "start": 0.0,
+     "end": 21.6,
+     "position_y": 0.15,
+     "purpose": "Engagement and emotional anchor",
+     "case": "Sentence case",
+     "color": "#FFFFFF",
+     "box_color": "#000000",
+     "box_shape": "rectangle",
+     "outline": false,
+     "emoji": false,
+     "animation": "fade_in"
+    }
+   ],
+   "captions": {
+    "present": false,
+    "position_y": 0,
+    "uppercase": false,
+    "words_per_line": 0,
+    "color": "",
+    "highlight_color": "",
+    "animation": ""
+   },
+   "visual_effects": [
+    {
+     "effect": "Neon glow map pulse",
+     "at": 0.0,
+     "purpose": "Cyberpunk aesthetic and focus"
+    },
+    {
+     "effect": "Fast zoom transitions",
+     "at": 2.5,
+     "purpose": "Maintain high visual pacing and showcase detail"
+    }
+   ],
+   "detail_tools": {
+    "zoom_to_detail": true,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": true,
+    "text_label": true,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "Phonk / Latin Club",
+    "music_energy": "High",
+    "beat_synced_cuts": true,
+    "voice": "none",
+    "sfx": [
+     "whoosh"
+    ],
+    "audio_notes": "Heavy bass beat driving fast region transitions."
+   },
+   "pacing": {
+    "cuts_per_minute": 24.0,
+    "typical_shot_seconds": 2.2,
+    "energy_curve": "Starts energetic and accelerates steadily to the final logo reveal"
+   },
+   "ending": {
+    "type": "punchline",
+    "description": "Cuts directly to the GTA VI Welcome to Vice City title screen."
+   },
+   "duration_reason": "21 seconds is the optimal length to deliver a complete concept map tour without losing viewer attention.",
+   "retention_tactics": [
+    "Fast rhythmic cuts synced to music",
+    "Progressive reveal of locations from mountains to city",
+    "Top hook text addressing viewer anticipation"
+   ],
+   "why_it_works": "Leverages massive community hype for GTA 6, structuring a fan-made concept map like an official Rockstar feature trailer with high-energy editing.",
+   "reproduction_recipe": [
+    "Create or source a stylish 3D map graphic of a leaked or concept game world.",
+    "Add top text frame providing relatable commentary ('Starting to feel real').",
+    "Sequence fast zoom-ins to individual map sectors synced to a heavy bass beat.",
+    "End with the official game logo and welcome screen."
+   ],
+   "risks": [
+    "Viewers might mistake concept art for official leaks if not labeled clearly."
+   ]
+  },
+  "preset": {
+   "layout": "letterbox",
+   "split_ratio": 0.5,
+   "cam_position": "top",
+   "target_duration": 21.7,
+   "cuts_per_min": 5.5,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.15,
+    "box_color": "#000000",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [
+    "Neon glow map pulse",
+    "Fast zoom transitions"
+   ],
+   "content_type": "hype_edit",
+   "detail_tools": {
+    "zoom_to_detail": true,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": true,
+    "text_label": true,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "punchline",
+   "format_type": "beat_sync_montage"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:49:11+00:00"
+ },
+ {
+  "id": "ex_54eb06c5b201",
+  "profile": "gta6",
+  "label": "@gta_memes_sol: A humorous GTA 6 skit where Jason has to rush through traffi",
+  "category": "meme_skit",
+  "source": "https://www.tiktok.com/@gta_memes_sol/video/7702127127822372128",
+  "metrics": {
+   "duration": 47.5,
+   "width": 576,
+   "height": 1024,
+   "vertical": true,
+   "seam_y": 0.342,
+   "seam_strength": 714710690.1,
+   "blur_band_ratio": 1.034,
+   "faces_per_frame": 0.08,
+   "face_y": 0.437,
+   "cuts_per_min": 0.0,
+   "loudness_p90_db": -20.0,
+   "layout_guess": "letterbox",
+   "cam_position": null,
+   "cuts_at": [],
+   "n_cuts": 0,
+   "avg_shot_s": 47.5,
+   "min_shot_s": 47.5,
+   "bpm_est": 85.7,
+   "cuts_on_beat_frac": null,
+   "silence_frac": 0.008,
+   "fps": 30.0,
+   "black_band_frac": 0.497,
+   "stats": {
+    "diggCount": 521900,
+    "shareCount": 167100,
+    "commentCount": 2157,
+    "playCount": 4100000,
+    "collectCount": "31690"
+   },
+   "engagement_rate": 0.1763,
+   "share_rate": 0.0408
+  },
+  "vision": {
+   "content_type": "meme_skit",
+   "category": "meme_skit",
+   "summary": "A humorous GTA 6 skit where Jason has to rush through traffic and hold up a store just to buy feminine hygiene products for a sick Lucia in bed.",
+   "hook": {
+    "first_2s": "Shows Jason talking to Lucia in bed with a headline text about GTA 6 period system.",
+    "hook_text": "GTA 6 reportedly features a period system where Jason needs to take care of Lucia ☠",
+    "hook_type": "text headline rumor",
+    "why_it_hooks": "Uses a humorous and absurd rumor about an upcoming major game release to grab attention."
+   },
+   "structure": [
+    {
+     "start": 0,
+     "end": 4.5,
+     "beat": "hook",
+     "what_happens": "Lucia is in bed with a hot water bottle asking Jason for help, refusing anything he offers."
+    },
+    {
+     "start": 4.5,
+     "end": 10.5,
+     "beat": "setup",
+     "what_happens": "Jason sits on the edge of the bed and complains about having to do this."
+    },
+    {
+     "start": 10.5,
+     "end": 20,
+     "beat": "escalation",
+     "what_happens": "Jason rides a motorcycle wildly through city traffic shouting at cars to get out of the way."
+    },
+    {
+     "start": 20,
+     "end": 30,
+     "beat": "escalation",
+     "what_happens": "Jason enters a convenience store, wanders confused down the aisle, and grabs items in a rush."
+    },
+    {
+     "start": 30,
+     "end": 47.5,
+     "beat": "payoff",
+     "what_happens": "Jason gets stuck in a long checkout line, gets impatient, pulls out a gun and shoots up the store to escape quickly."
+    }
+   ],
+   "layout": {
+    "type": "blurred_bands",
+    "picture_top": 0.25,
+    "picture_bottom": 0.75,
+    "facecam_position": "none",
+    "background": "#000000"
+   },
+   "on_screen_text": [
+    {
+     "text": "GTA 6 reportedly features a period system where Jason needs to take care of Lucia ☠",
+     "start": 0,
+     "end": 47.5,
+     "position_y": 0.15,
+     "purpose": "headline title hook",
+     "case": "sentence",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": true,
+     "animation": "none"
+    }
+   ],
+   "captions": {
+    "present": false
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": false,
+    "voice": "AI-generated or modded character voice acting for in-game dialogue",
+    "sfx": [
+     "gunshots",
+     "motorcycle engine revving",
+     "shouting dialogue"
+    ],
+    "audio_notes": "Driven entirely by in-game cutscene and gameplay voice lines/SFX."
+   },
+   "pacing": {
+    "cuts_per_minute": 6.3,
+    "typical_shot_seconds": 9.5,
+    "energy_curve": "Starts calm in bedroom, ramps up during motorcycle ride and convenience store shooting climax."
+   },
+   "ending": {
+    "type": "punchline",
+    "description": "Jason shoots up the checkout line because he is in a hurry, shouting an apology as he flees."
+   },
+   "duration_reason": "Long enough to set up the joke, show the absurd commute, and deliver the punchline without dragging.",
+   "retention_tactics": [
+    "Outlandish gaming rumor headline",
+    "Relatable comedic situation in GTA engine",
+    "Sudden escalation to extreme violence for comedic effect"
+   ],
+   "why_it_works": "Parodies hyper-realistic feature leaks in modern gaming with extreme, chaotic GTA-style reactions.",
+   "reproduction_recipe": [
+    "Use custom GTA 5/6 machinima animations to stage a domestic scene.",
+    "Add a bold headline at the top of the frame stating a funny fake game mechanic.",
+    "Cut to reckless gameplay driving and a sudden violent rampage in a store.",
+    "Maintain original game audio and dialogue to sell the skit."
+   ],
+   "risks": [
+    "Content may violate community guidelines due to simulated mass shooting in a convenience store."
+   ]
+  },
+  "preset": {
+   "layout": "letterbox",
+   "split_ratio": 0.342,
+   "cam_position": "top",
+   "target_duration": 47.5,
+   "cuts_per_min": 0.0,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.15,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "meme_skit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "punchline"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:49:21+00:00"
+ },
+ {
+  "id": "ex_6d02fd2f9925",
+  "profile": "gta6",
+  "label": "@overtime: Streamer Agent 00 does a car stream in Miami with a cosplaye",
+  "category": "streamer_reaction",
+  "source": "https://www.tiktok.com/@overtime/video/7707005487178403085",
+  "metrics": {
+   "duration": 29.4,
+   "width": 720,
+   "height": 1280,
+   "vertical": true,
+   "seam_y": 0.252,
+   "seam_strength": 2890.73,
+   "blur_band_ratio": 1.063,
+   "faces_per_frame": 1.67,
+   "face_y": 0.472,
+   "cuts_per_min": 0.0,
+   "loudness_p90_db": -19.9,
+   "layout_guess": "letterbox",
+   "cam_position": null,
+   "cuts_at": [],
+   "n_cuts": 0,
+   "avg_shot_s": 29.43,
+   "min_shot_s": 29.43,
+   "bpm_est": null,
+   "cuts_on_beat_frac": null,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "black_band_frac": 0.425,
+   "stats": {
+    "diggCount": 173000,
+    "shareCount": 15400,
+    "commentCount": 906,
+    "playCount": 1400000,
+    "collectCount": "11808"
+   },
+   "engagement_rate": 0.1437,
+   "share_rate": 0.011
+  },
+  "vision": {
+   "content_type": "streamer_clip",
+   "category": "streamer_reaction",
+   "summary": "Streamer Agent 00 does a car stream in Miami with a cosplayer resembling Lucia from GTA 6, discussing real-life Vice City marketing activations.",
+   "hook": {
+    "first_2s": "Agent 00 introduces the stream in a car sitting next to a woman dressed as Lucia from GTA 6 while bold text appears at the top.",
+    "hook_text": "Agent does a stream with Lucia from GTA 6 🔥",
+    "hook_type": "Curiosity and recognizable celebrity/gaming figure hook",
+    "why_it_hooks": "Combines a well-known streamer with a viral lookalike of one of the most anticipated video game characters in history, immediately triggering curiosity."
+   },
+   "structure": [
+    {
+     "start": 0,
+     "end": 2,
+     "beat": "hook",
+     "what_happens": "Agent welcomes chat and introduces the guest sitting next to him."
+    },
+    {
+     "start": 2,
+     "end": 8,
+     "beat": "setup",
+     "what_happens": "The guest introduces herself as Ashley, also known as Lucia."
+    },
+    {
+     "start": 8,
+     "end": 29.4,
+     "beat": "escalation",
+     "what_happens": "Agent talks about seeing Vice City marketing and activations all over Miami for GTA 6."
+    }
+   ],
+   "layout": {
+    "type": "blurred_bands",
+    "picture_top": 0.25,
+    "picture_bottom": 0.75,
+    "facecam_position": "none",
+    "background": "Blurred duplicate video frame extending to top and bottom black bars"
+   },
+   "on_screen_text": [
+    {
+     "text": "Agent does a stream with Lucia from GTA 6 🔥",
+     "start": 0,
+     "end": 29.4,
+     "position_y": 0.18,
+     "purpose": "Title and context",
+     "case": "mixed",
+     "color": "#FFFFFF",
+     "box_color": "#000000",
+     "box_shape": "rounded_rectangle",
+     "outline": false,
+     "emoji": true,
+     "animation": "none"
+    }
+   ],
+   "captions": {
+    "present": false,
+    "position_y": 0,
+    "uppercase": false,
+    "words_per_line": 0,
+    "color": "",
+    "highlight_color": "",
+    "animation": ""
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": false,
+    "music_genre": "",
+    "music_energy": "",
+    "beat_synced_cuts": false,
+    "voice": "Original speech from streamer and guest in car",
+    "sfx": [],
+    "audio_notes": "Car interior sound with clear microphone audio for dialogue."
+   },
+   "pacing": {
+    "cuts_per_minute": 2,
+    "typical_shot_seconds": 29.4,
+    "energy_curve": "Steady conversational energy"
+   },
+   "ending": {
+    "type": "cliffhanger",
+    "description": "Video cuts off mid-conversation about GTA 6 marketing in Miami."
+   },
+   "duration_reason": "Optimal length to capture the premise of the stream and an interesting anecdote without losing viewer attention.",
+   "retention_tactics": [
+    "Prominent top header establishing the premise immediately",
+    "Recognizable public figures",
+    "High curiosity regarding GTA 6"
+   ],
+   "why_it_works": "Capitalizes on massive GTA 6 hype by featuring a convincing lookalike alongside a popular creator, driving high engagement and shares.",
+   "reproduction_recipe": [
+    "Find a high-profile streamer collaborating with a viral game lookalike",
+    "Place a clear title banner at the top of the frame providing immediate context",
+    "Use a vertical blurred-bands layout to fit widescreen footage nicely into mobile feeds",
+    "Keep natural dialogue rolling with an intriguing topic related to a trending game"
+   ],
+   "risks": [
+    "Viewers might realize it is not official or click away if the conversation drags",
+    "Platform guidelines regarding impersonation if not clearly framed as parody/cosplay"
+   ]
+  },
+  "preset": {
+   "layout": "letterbox",
+   "split_ratio": 0.252,
+   "cam_position": "top",
+   "target_duration": 29.4,
+   "cuts_per_min": 0.0,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.18,
+    "box_color": "#000000",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "streamer_clip",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "cliffhanger"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:49:31+00:00"
+ },
+ {
+  "id": "ex_e454706c35b9",
+  "profile": "gta6",
+  "label": "@nolimitclipz5: An interview skit comparing a streamer's calorie counting ha",
+  "category": "meme_skit",
+  "source": "https://www.tiktok.com/@nolimitclipz5/video/7707064603447954718",
+  "metrics": {
+   "duration": 14.0,
+   "width": 720,
+   "height": 1280,
+   "vertical": true,
+   "seam_y": 0.55,
+   "seam_strength": 334.01,
+   "blur_band_ratio": 0.06,
+   "faces_per_frame": 2.33,
+   "face_y": 0.274,
+   "cuts_per_min": 0.0,
+   "loudness_p90_db": -20.5,
+   "layout_guess": "fit_blur",
+   "cam_position": null,
+   "cuts_at": [],
+   "n_cuts": 0,
+   "avg_shot_s": 13.97,
+   "min_shot_s": 13.97,
+   "bpm_est": 75.0,
+   "cuts_on_beat_frac": null,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "black_band_frac": 0.002,
+   "stats": {
+    "diggCount": 623,
+    "shareCount": 21,
+    "commentCount": 5,
+    "playCount": 34700,
+    "collectCount": "61"
+   },
+   "engagement_rate": 0.0205,
+   "share_rate": 0.0006
+  },
+  "vision": {
+   "content_type": "meme_skit",
+   "category": "meme_skit",
+   "summary": "An interview skit comparing a streamer's calorie counting habits to GTA 6's character Lucia, overlaid with a reaction facecam at the bottom.",
+   "hook": {
+    "first_2s": "0.0s - 2.0s",
+    "hook_text": "Agent left SHOCKED as GTA 6's Lucia DOESN'T COUNT CALORIES despite EARNING $30M+ to STAY FIT ... 🤯💰",
+    "hook_type": "clickbait text overlay making a wild comparison between a real streamer and a GTA character",
+    "why_it_hooks": "Combines high-earning flex, GTA 6 hype, and a shocking fitness claim right at the start."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 3.0,
+     "beat": "hook",
+     "what_happens": "Agent00 asks about calorie counting while driving, overlaid with clickbait text."
+    },
+    {
+     "start": 3.0,
+     "end": 9.0,
+     "beat": "setup",
+     "what_happens": "The female guest reveals she never counts calories and just eats intuitively."
+    },
+    {
+     "start": 9.0,
+     "end": 14.0,
+     "beat": "payoff",
+     "what_happens": "Agent00 expresses disbelief about gaining weight without counting."
+    }
+   ],
+   "layout": {
+    "type": "split_top_bottom",
+    "picture_top": 0.0,
+    "picture_bottom": 0.65,
+    "facecam_position": "bottom",
+    "split_ratio": 0.65,
+    "background": "black bars and blurry car interior"
+   },
+   "on_screen_text": [
+    {
+     "text": "Agent left SHOCKED as GTA 6's Lucia DOESN'T COUNT CALORIES despite EARNING $30M+ to STAY FIT ... 🤯💰",
+     "start": 0.0,
+     "end": 14.0,
+     "position_y": 0.25,
+     "purpose": "clickbait title and engagement driver",
+     "case": "mixed",
+     "color": "#FFFFFF",
+     "box_color": "#000000",
+     "box_shape": "rounded",
+     "outline": true,
+     "emoji": true,
+     "animation": "none"
+    },
+    {
+     "text": "\"No way that's Lucia Caminos 🤨\"",
+     "start": 0.0,
+     "end": 14.0,
+     "position_y": 0.55,
+     "purpose": "subtitle quote",
+     "case": "mixed",
+     "color": "#FFFFFF",
+     "box_color": "#000000",
+     "box_shape": "rounded",
+     "outline": true,
+     "emoji": true,
+     "animation": "none"
+    }
+   ],
+   "captions": {
+    "present": false,
+    "position_y": 0,
+    "uppercase": false,
+    "words_per_line": 0,
+    "color": "",
+    "highlight_color": "",
+    "animation": ""
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": false,
+    "music_genre": "",
+    "music_energy": "",
+    "beat_synced_cuts": false,
+    "voice": "original dialogue between streamer and guest",
+    "sfx": [],
+    "audio_notes": "Car road noise and clear speech dialogue."
+   },
+   "pacing": {
+    "cuts_per_minute": 0.0,
+    "typical_shot_seconds": 14.0,
+    "energy_curve": "flat conversational energy with high-energy clickbait overlay"
+   },
+   "ending": {
+    "type": "loop",
+    "description": "Video cuts off mid-conversation to encourage seamless re-watching."
+   },
+   "duration_reason": "Long enough to deliver a full dialogue exchange without losing attention.",
+   "retention_tactics": [
+    "top and bottom split screen with facial reaction",
+    "bold clickbait overlay mentioning GTA 6 and money"
+   ],
+   "why_it_works": "Leverages trending GTA 6 character memes paired with a recognizable streamer interview format.",
+   "reproduction_recipe": [
+    "Record a car interview or skit",
+    "Crop the main video to the top 65 percent of the frame",
+    "Add a reaction facecam or cinematic crop to the bottom frame",
+    "Overlay a shocking clickbait text box referencing GTA 6 and high earnings"
+   ],
+   "risks": [
+    "Misleading title/text may annoy viewers looking for actual GTA 6 news"
+   ]
+  },
+  "preset": {
+   "layout": "fit_blur",
+   "split_ratio": 0.65,
+   "cam_position": "bottom",
+   "target_duration": 14.0,
+   "cuts_per_min": 0.0,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.25,
+    "box_color": "#000000",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "meme_skit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "loop"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:49:40+00:00"
+ },
+ {
+  "id": "ex_7932554f2c7e",
+  "profile": "gta6",
+  "label": "@mfx.3dits: A fast-paced GTA 6 hype edit counting down days with beat-sy",
+  "category": "hype_edit",
+  "source": "https://www.tiktok.com/@mfx.3dits/video/7706988282600508705",
+  "metrics": {
+   "duration": 17.2,
+   "width": 962,
+   "height": 576,
+   "vertical": false,
+   "seam_y": null,
+   "seam_strength": 3.16,
+   "blur_band_ratio": 0.785,
+   "faces_per_frame": 0.08,
+   "face_y": 0.241,
+   "cuts_per_min": 90.7,
+   "loudness_p90_db": -10.5,
+   "layout_guess": "fit_blur",
+   "cam_position": null,
+   "cuts_at": [
+    0.7,
+    1.5,
+    2.2,
+    2.9,
+    3.6,
+    4.2,
+    4.7,
+    6.3,
+    7.0,
+    7.6,
+    8.3,
+    9.0,
+    9.7,
+    10.3,
+    11.0,
+    11.7,
+    12.4,
+    13.1,
+    13.8,
+    16.3,
+    16.6
+   ],
+   "n_cuts": 21,
+   "avg_shot_s": 0.78,
+   "min_shot_s": 0.3,
+   "bpm_est": 85.7,
+   "cuts_on_beat_frac": 0.57,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "black_band_frac": 0.0,
+   "stats": {
+    "diggCount": 85300,
+    "shareCount": 10700,
+    "commentCount": 389,
+    "playCount": 495100,
+    "collectCount": "11224"
+   },
+   "engagement_rate": 0.2174,
+   "share_rate": 0.0216
+  },
+  "vision": {
+   "content_type": "hype_edit",
+   "category": "hype_edit",
+   "summary": "A fast-paced GTA 6 hype edit counting down days with beat-synced trailer cuts and heavy bass drops.",
+   "hook": {
+    "first_2s": "Aerial city nighttime view with a countdown number ticking down rapidly.",
+    "hook_text": "844 DAYS",
+    "hook_type": "countdown",
+    "why_it_hooks": "Creates immediate urgency and anticipation for GTA 6 release date countdown."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 2.2,
+     "beat": "hook",
+     "what_happens": "Rapid countdown overlayed on aerial and nighttime cityscape cinematic shots."
+    },
+    {
+     "start": 2.2,
+     "end": 8.3,
+     "beat": "escalation",
+     "what_happens": "Rapid beat-synced cuts showing various GTA 6 trailer characters, car drives, beach dives, and party scenes."
+    },
+    {
+     "start": 8.3,
+     "end": 16.3,
+     "beat": "payoff",
+     "what_happens": "High energy montage of boat chases, roof parties, club scenes, and diving into pools."
+    },
+    {
+     "start": 16.3,
+     "end": 17.2,
+     "beat": "loop",
+     "what_happens": "Cut to black ending matching song fade."
+    }
+   ],
+   "layout": {
+    "type": "full_frame",
+    "picture_top": 0.0,
+    "picture_bottom": 1.0,
+    "facecam_position": "none",
+    "background": "black"
+   },
+   "on_screen_text": [
+    {
+     "text": "844 DAYS",
+     "start": 0.0,
+     "end": 0.7,
+     "position_y": 0.5,
+     "purpose": "Countdown timer",
+     "case": "uppercase",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "pop"
+    },
+    {
+     "text": "485 DAYS",
+     "start": 0.7,
+     "end": 1.5,
+     "position_y": 0.5,
+     "purpose": "Countdown timer",
+     "case": "uppercase",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "pop"
+    },
+    {
+     "text": "127 DAYS",
+     "start": 1.5,
+     "end": 2.2,
+     "position_y": 0.5,
+     "purpose": "Countdown timer",
+     "case": "uppercase",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "pop"
+    },
+    {
+     "text": "ARE YOU READYYYYY",
+     "start": 2.2,
+     "end": 6.3,
+     "position_y": 0.6,
+     "purpose": "Hyping audience",
+     "case": "uppercase",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "pulse"
+    }
+   ],
+   "captions": {
+    "present": false,
+    "position_y": 0.0,
+    "uppercase": false,
+    "words_per_line": 0,
+    "color": "",
+    "highlight_color": "",
+    "animation": ""
+   },
+   "visual_effects": [
+    {
+     "effect": "flash",
+     "at": 2.2,
+     "purpose": "Transition to heavy beat drop"
+    },
+    {
+     "effect": "motion blur",
+     "at": 0.7,
+     "purpose": "Fast transition between clips"
+    }
+   ],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "Phonk/Hip Hop remix",
+    "music_energy": "high",
+    "beat_synced_cuts": true,
+    "voice": "none",
+    "sfx": [
+     "bass drop",
+     "whoosh"
+    ],
+    "audio_notes": "Heavy bass remix matching rapid action cuts."
+   },
+   "pacing": {
+    "cuts_per_minute": 85.0,
+    "typical_shot_seconds": 0.7,
+    "energy_curve": "Starts fast with countdown and ramps up aggressively on beat drop."
+   },
+   "ending": {
+    "type": "cut_to_black",
+    "description": "Hard cut to black matching the end of the song."
+   },
+   "duration_reason": "Short enough to maintain high viewer retention, long enough to deliver an impactful hype montage.",
+   "retention_tactics": [
+    "Rapid countdown numbers in the beginning",
+    "Beat-synced hard cuts every 0.7 seconds",
+    "High-contrast color grading and flashes"
+   ],
+   "why_it_works": "Leverages massive GTA 6 anticipation, combining rapid countdown hooks with perfectly beat-synced trailer footage.",
+   "reproduction_recipe": [
+    "Gather official GTA 6 trailer footage and high quality b-roll.",
+    "Select an energetic phonk or remix track with clear bass drops.",
+    "Add dynamic text counters counting down days in the first 2 seconds.",
+    "Cut every single shot precisely on the beat at around 0.7s intervals.",
+    "Include a watermark signature like MFX and export in 9:16 vertical ratio."
+   ],
+   "risks": [
+    "Potential copyright flags from using official Rockstar game trailers without transformative editing.",
+    "Fast flashing lights might trigger sensitivity warnings."
+   ]
+  },
+  "preset": {
+   "layout": "full_gameplay",
+   "split_ratio": 0.5,
+   "cam_position": "top",
+   "target_duration": 17.2,
+   "cuts_per_min": 90.7,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.4,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [
+    "flash",
+    "motion blur"
+   ],
+   "content_type": "hype_edit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "cut_to_black",
+   "format_type": "beat_sync_montage"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:49:44+00:00"
+ },
+ {
+  "id": "ex_5a081f660c93",
+  "profile": "gta6",
+  "label": "@gtavlviralclips: Video discusses the return of San Andreas-style body mechani",
+  "category": "news_trailer",
+  "source": "https://www.tiktok.com/@gtavlviralclips/video/7706294966238072086",
+  "metrics": {
+   "duration": 57.4,
+   "width": 576,
+   "height": 1024,
+   "vertical": true,
+   "seam_y": 0.709,
+   "seam_strength": 75.84,
+   "blur_band_ratio": 0.805,
+   "faces_per_frame": 0.08,
+   "face_y": 0.443,
+   "cuts_per_min": 8.4,
+   "loudness_p90_db": -14.2,
+   "layout_guess": "split_cam",
+   "cam_position": "top",
+   "cuts_at": [
+    11.8,
+    17.1,
+    28.2,
+    43.2,
+    44.9,
+    47.5,
+    56.4
+   ],
+   "n_cuts": 7,
+   "avg_shot_s": 7.18,
+   "min_shot_s": 1.03,
+   "bpm_est": 85.7,
+   "cuts_on_beat_frac": 0.43,
+   "silence_frac": 0.009,
+   "fps": 30.0,
+   "black_band_frac": 0.0,
+   "stats": {
+    "diggCount": 11500,
+    "shareCount": 11400,
+    "commentCount": 145,
+    "playCount": 537300,
+    "collectCount": "2561"
+   },
+   "engagement_rate": 0.0477,
+   "share_rate": 0.0212
+  },
+  "vision": {
+   "content_type": "news",
+   "category": "news_trailer",
+   "summary": "Video discusses the return of San Andreas-style body mechanics in GTA 6, where characters Jason and Lucia can gain weight or muscle based on eating and training habits.",
+   "hook": {
+    "first_2s": "GTA 6 is bringing back the gym grind.",
+    "hook_text": "GTA 6 is bringing back the gym grind",
+    "hook_type": "breaking news / hype hook",
+    "why_it_hooks": "Taps into nostalgia from GTA San Andreas and addresses highly anticipated gameplay features for GTA 6."
+   },
+   "structure": [
+    {
+     "start": 0,
+     "end": 11.8,
+     "beat": "hook",
+     "what_happens": "Introduces the rumor that GTA 6 will feature dynamic body types, unlike GTA V where characters never changed."
+    },
+    {
+     "start": 11.8,
+     "end": 17.1,
+     "beat": "setup",
+     "what_happens": "Shows stat menus showing weight and stamina changes."
+    },
+    {
+     "start": 17.1,
+     "end": 28.2,
+     "beat": "escalation",
+     "what_happens": "Flashback to CJ working out and eating at burger joints in San Andreas."
+    },
+    {
+     "start": 28.2,
+     "end": 43.2,
+     "beat": "reveal",
+     "what_happens": "Confirms the mechanic is back based on developer interviews, affecting both Jason and Lucia."
+    },
+    {
+     "start": 43.2,
+     "end": 47.5,
+     "beat": "payoff",
+     "what_happens": "Explains how eating fast food or working out changes physical appearance."
+    },
+    {
+     "start": 47.5,
+     "end": 56.4,
+     "beat": "cta",
+     "what_happens": "Calls to action, encouraging viewers to check out other videos."
+    },
+    {
+     "start": 56.4,
+     "end": 57.4,
+     "beat": "loop",
+     "what_happens": "Subscribe screen ending."
+    }
+   ],
+   "layout": {
+    "type": "blurred_bands",
+    "picture_top": 0.25,
+    "picture_bottom": 0.75,
+    "facecam_position": "none",
+    "split_ratio": 0.5,
+    "background": "blurred copy of main video"
+   },
+   "on_screen_text": [
+    {
+     "text": "GTA 6 is bringing back the gym grind",
+     "start": 0,
+     "end": 4.5,
+     "position_y": 0.1,
+     "purpose": "hook title",
+     "case": "sentence",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "pop"
+    }
+   ],
+   "captions": {
+    "present": true,
+    "position_y": 0.85,
+    "uppercase": true,
+    "words_per_line": 3,
+    "color": "#FFFFFF",
+    "highlight_color": "#00FF00",
+    "animation": "bounce"
+   },
+   "visual_effects": [
+    {
+     "effect": "blur background",
+     "at": 0,
+     "purpose": "vertical framing"
+    }
+   ],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "hip hop beat",
+    "music_energy": "medium",
+    "beat_synced_cuts": true,
+    "voice": "AI voiceover, energetic and clear",
+    "sfx": [
+     "whoosh"
+    ],
+    "audio_notes": "Clean vocal track with crisp background beat."
+   },
+   "pacing": {
+    "cuts_per_minute": 7.3,
+    "typical_shot_seconds": 8.0,
+    "energy_curve": "steady high energy with nostalgic middle section"
+   },
+   "ending": {
+    "type": "cta",
+    "description": "Subscribe screen with red bell icon."
+   },
+   "duration_reason": "Ideal length for delivering a single gaming news scoop without losing viewer attention.",
+   "retention_tactics": [
+    "Nostalgia hook with San Andreas footage",
+    "Dynamic captions with color highlights",
+    "Seamless scene transitions synced to audio"
+   ],
+   "why_it_works": "Combines high-demand GTA 6 speculation with classic franchise nostalgia and fast-paced editing.",
+   "reproduction_recipe": [
+    "Find a trending GTA 6 rumor or leak.",
+    "Format in vertical video using blurred background bands.",
+    "Add strong hook text in the first 2 seconds.",
+    "Use auto-captions with green highlight words.",
+    "End with a clear subscription prompt."
+   ],
+   "risks": [
+    "Speculative news might be debunked later.",
+    "Over-reliance on unconfirmed leaks."
+   ]
+  },
+  "preset": {
+   "layout": "fit_blur",
+   "split_ratio": 0.5,
+   "cam_position": "top",
+   "target_duration": 57.4,
+   "cuts_per_min": 8.4,
+   "caption": {
+    "position": 0.8,
+    "uppercase": true,
+    "max_words": 3,
+    "primary_color": "#FFFFFF",
+    "highlight_color": "#00FF00"
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.1,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [
+    "blur background"
+   ],
+   "content_type": "news",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "cta",
+   "format_type": "beat_sync_montage"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:49:56+00:00"
+ },
+ {
+  "id": "ex_699fb319591e",
+  "profile": "gta6",
+  "label": "@moribontaru: Fast-paced GTA 6 hype edit showcasing various in-game activi",
+  "category": "hype_edit",
+  "source": "https://www.tiktok.com/@moribontaru/video/7678870618401459488",
+  "metrics": {
+   "duration": 22.2,
+   "width": 768,
+   "height": 576,
+   "vertical": false,
+   "seam_y": null,
+   "seam_strength": 3.44,
+   "blur_band_ratio": 0.735,
+   "faces_per_frame": 0.08,
+   "face_y": 0.58,
+   "cuts_per_min": 27.1,
+   "loudness_p90_db": -13.4,
+   "layout_guess": "fit_blur",
+   "cam_position": null,
+   "cuts_at": [
+    2.3,
+    5.1,
+    6.7,
+    7.6,
+    8.4,
+    10.0,
+    10.8,
+    12.5,
+    14.1
+   ],
+   "n_cuts": 9,
+   "avg_shot_s": 2.22,
+   "min_shot_s": 0.8,
+   "bpm_est": 75.0,
+   "cuts_on_beat_frac": 0.11,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "black_band_frac": 0.0,
+   "stats": {
+    "diggCount": 156200,
+    "shareCount": 20500,
+    "commentCount": 1690,
+    "playCount": 1200000,
+    "collectCount": "16697"
+   },
+   "engagement_rate": 0.1626,
+   "share_rate": 0.0171
+  },
+  "vision": {
+   "content_type": "hype_edit",
+   "category": "hype_edit",
+   "summary": "Fast-paced GTA 6 hype edit showcasing various in-game activities, scenery, and character moments synced to high-energy music.",
+   "hook": {
+    "first_2s": "An airboat speeding through a scenic swamp with sunlight shimmering on the water.",
+    "hook_text": "I need this Game Right Fucking now",
+    "hook_type": "text_overlay",
+    "why_it_hooks": "Directly expresses the viewer's strong anticipation for the game release with bold emotional text."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 2.3,
+     "beat": "hook",
+     "what_happens": "Airboat speeding through a swamp."
+    },
+    {
+     "start": 2.3,
+     "end": 5.1,
+     "beat": "setup",
+     "what_happens": "Character shooting hoops outside a house."
+    },
+    {
+     "start": 5.1,
+     "end": 6.7,
+     "beat": "escalation",
+     "what_happens": "Scuba diver swimming underwater in a cavern."
+    },
+    {
+     "start": 6.7,
+     "end": 7.6,
+     "beat": "escalation",
+     "what_happens": "Character bench pressing weights at the gym."
+    },
+    {
+     "start": 7.6,
+     "end": 8.4,
+     "beat": "escalation",
+     "what_happens": "Jet skis racing past city buildings at sunset."
+    },
+    {
+     "start": 8.4,
+     "end": 10.0,
+     "beat": "escalation",
+     "what_happens": "Kayaking through an urban river canal."
+    },
+    {
+     "start": 10.0,
+     "end": 10.8,
+     "beat": "escalation",
+     "what_happens": "Nightclub dancing scene with strobe lights."
+    },
+    {
+     "start": 10.8,
+     "end": 12.5,
+     "beat": "escalation",
+     "what_happens": "Sports cars racing on a track."
+    },
+    {
+     "start": 12.5,
+     "end": 14.1,
+     "beat": "escalation",
+     "what_happens": "Character walking past local storefronts."
+    },
+    {
+     "start": 14.1,
+     "end": 22.2,
+     "beat": "payoff",
+     "what_happens": "Character running to hop on a motorcycle and driving off into city traffic."
+    }
+   ],
+   "layout": {
+    "type": "full_frame",
+    "facecam_position": "none"
+   },
+   "on_screen_text": [
+    {
+     "text": "I need this Game Right Fucking now",
+     "start": 0.0,
+     "end": 5.1,
+     "position_y": 0.45,
+     "purpose": "Express viewer sentiment and anticipation",
+     "case": "mixed",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "none"
+    }
+   ],
+   "captions": {
+    "present": false
+   },
+   "visual_effects": [
+    {
+     "effect": "hard cut",
+     "at": 2.3,
+     "purpose": "sync with music beat change"
+    },
+    {
+     "effect": "hard cut",
+     "at": 5.1,
+     "purpose": "rapid sequence progression"
+    },
+    {
+     "effect": "hard cut",
+     "at": 6.7,
+     "purpose": "rapid sequence progression"
+    },
+    {
+     "effect": "hard cut",
+     "at": 7.6,
+     "purpose": "rapid sequence progression"
+    },
+    {
+     "effect": "hard cut",
+     "at": 8.4,
+     "purpose": "rapid sequence progression"
+    },
+    {
+     "effect": "hard cut",
+     "at": 10.0,
+     "purpose": "rapid sequence progression"
+    },
+    {
+     "effect": "hard cut",
+     "at": 10.8,
+     "purpose": "rapid sequence progression"
+    },
+    {
+     "effect": "hard cut",
+     "at": 12.5,
+     "purpose": "rapid sequence progression"
+    },
+    {
+     "effect": "hard cut",
+     "at": 14.1,
+     "purpose": "transition to final sequence"
+    }
+   ],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "phonk / electronic remix",
+    "music_energy": "high",
+    "beat_synced_cuts": true,
+    "voice": "none",
+    "sfx": [],
+    "audio_notes": "Heavy bassline with rhythmic vocal chops matched tightly to each video cut."
+   },
+   "pacing": {
+    "cuts_per_minute": 30.0,
+    "typical_shot_seconds": 1.2,
+    "energy_curve": "Starts high with atmospheric shots, builds rapidly with beat drops, peaks at the motorcycle escape."
+   },
+   "ending": {
+    "type": "cut_to_black",
+    "description": "Video cuts abruptly as the motorcycle speeds down the street."
+   },
+   "duration_reason": "Optimal length to maintain high engagement without fatiguing the viewer with fast cuts.",
+   "retention_tactics": [
+    "Rapid fire scene variety showcasing open world activities",
+    "Tight beat-matching on every cut",
+    "Relatable emotional hook text in the opening seconds"
+   ],
+   "why_it_works": "Leverages high anticipation for GTA 6 by compiling diverse, visually stunning gameplay snippets into a tightly edited, high-energy rhythm that keeps eyes glued to the screen.",
+   "reproduction_recipe": [
+    "Collect 10 distinct, visually impressive gameplay clips or trailer shots of varying environments and actions.",
+    "Select an aggressive phonk or electronic track with strong, distinct beats.",
+    "Place cuts precisely on the beat drops, keeping each shot under two seconds.",
+    "Add a bold hook text overlay in the first 5 seconds to summarize audience feelings.",
+    "Export in full frame vertical format."
+   ],
+   "risks": [
+    "Platform algorithms might flag repetitive game trailer compilations if not edited creatively.",
+    "Rapid flashing cuts may cause motion discomfort for some viewers."
+   ]
+  },
+  "preset": {
+   "layout": "full_gameplay",
+   "split_ratio": 0.5,
+   "cam_position": "top",
+   "target_duration": 22.2,
+   "cuts_per_min": 27.1,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.4,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [
+    "hard cut",
+    "hard cut",
+    "hard cut",
+    "hard cut",
+    "hard cut",
+    "hard cut",
+    "hard cut",
+    "hard cut"
+   ],
+   "content_type": "hype_edit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "cut_to_black",
+   "format_type": "beat_sync_montage"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:50:01+00:00"
+ },
+ {
+  "id": "ex_e6c858b72faf",
+  "profile": "gta6",
+  "label": "@havoceeditz: A fast-paced hype edit contrasting anticipation for playing ",
+  "category": "hype_edit",
+  "source": "https://www.tiktok.com/@havoceeditz/video/7697359584356355348",
+  "metrics": {
+   "duration": 13.8,
+   "width": 576,
+   "height": 768,
+   "vertical": true,
+   "seam_y": 0.517,
+   "seam_strength": 35.73,
+   "blur_band_ratio": 0.151,
+   "faces_per_frame": 0.25,
+   "face_y": 0.229,
+   "cuts_per_min": 91.1,
+   "loudness_p90_db": -5.5,
+   "layout_guess": "fit_blur",
+   "cam_position": null,
+   "cuts_at": [
+    0.7,
+    1.4,
+    2.0,
+    3.0,
+    3.8,
+    4.5,
+    5.1,
+    6.0,
+    6.3,
+    6.6,
+    7.5,
+    9.1,
+    9.7,
+    10.7,
+    11.5,
+    12.3,
+    13.0
+   ],
+   "n_cuts": 17,
+   "avg_shot_s": 0.77,
+   "min_shot_s": 0.3,
+   "bpm_est": 150.0,
+   "cuts_on_beat_frac": 0.71,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "black_band_frac": 0.0,
+   "stats": {
+    "diggCount": 64400,
+    "shareCount": 5316,
+    "commentCount": 664,
+    "playCount": 1100000,
+    "collectCount": "12258"
+   },
+   "engagement_rate": 0.0751,
+   "share_rate": 0.0048
+  },
+  "vision": {
+   "content_type": "hype_edit",
+   "category": "hype_edit",
+   "summary": "A fast-paced hype edit contrasting anticipation for playing as Lucia in GTA 6 with intense, action-packed clips of Jason from the GTA 6 trailer, set to a heavy bass phonk song.",
+   "hook": {
+    "first_2s": "Opening with rapid cuts of Lucia from the GTA 6 trailer with centered on-screen text establishing the perspective.",
+    "hook_text": "I can't wait to play as Lucia",
+    "hook_type": "statement",
+    "why_it_hooks": "Taps directly into the community excitement and debate around the main characters of GTA 6."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 5.1,
+     "beat": "setup",
+     "what_happens": "Rapid montage showcasing Lucia in various scenes from the GTA 6 trailer."
+    },
+    {
+     "start": 5.1,
+     "end": 13.8,
+     "beat": "payoff",
+     "what_happens": "Hard cut on the beat to intense, fast-paced action shots of Jason from the trailer with heavy bass drops."
+    }
+   ],
+   "layout": {
+    "type": "full_frame",
+    "facecam_position": "none"
+   },
+   "on_screen_text": [
+    {
+     "text": "I can't wait to play as Lucia",
+     "start": 0.0,
+     "end": 5.1,
+     "position_y": 0.5,
+     "purpose": "Establish viewer perspective / bait comment engagement",
+     "case": "sentence",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "none"
+    },
+    {
+     "text": "brutal.",
+     "start": 5.1,
+     "end": 13.8,
+     "position_y": 0.6,
+     "purpose": "Hyping up Jason's action sequences",
+     "case": "lower",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "none"
+    }
+   ],
+   "captions": {
+    "present": false
+   },
+   "visual_effects": [
+    {
+     "effect": "beat_sync_flash",
+     "at": 5.1,
+     "purpose": "Transition from Lucia to Jason on the heavy drop"
+    }
+   ],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": true,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "Phonk",
+    "music_energy": "high",
+    "beat_synced_cuts": true,
+    "voice": "none",
+    "sfx": [
+     "bass_drop",
+     "whoosh"
+    ],
+    "audio_notes": "Candy Shop Tekk - Slowed with heavy bass boosts on every cut."
+   },
+   "pacing": {
+    "cuts_per_minute": 74.0,
+    "typical_shot_seconds": 0.8,
+    "energy_curve": "Starts moderately high and escalates into maximum energy after the drop at 5.1s."
+   },
+   "ending": {
+    "type": "loop",
+    "description": "Ends abruptly on a striking close-up shot of Jason to seamlessly loop back to the beginning."
+   },
+   "duration_reason": "Under 15 seconds keeps viewer retention high for fast-paced edits.",
+   "retention_tactics": [
+    "Rapid beat-synced cuts",
+    "Controversial or relatable opinion text hook",
+    "Seamless loop ending"
+   ],
+   "why_it_works": "Combines high-demand GTA 6 trailer footage with trending phonk music and perfectly timed beat drops, driving high replay and share rates.",
+   "reproduction_recipe": [
+    "Source high-resolution GTA 6 trailer clips",
+    "Select a slowed phonk track with heavy bass drops",
+    "Place text on screen in the first half posing a character preference",
+    "Cut strictly on the beat for all action sequences in the second half",
+    "Export as a seamless looping vertical short"
+   ],
+   "risks": [
+    "Copyright claims on official Rockstar trailer footage or music track"
+   ]
+  },
+  "preset": {
+   "layout": "full_gameplay",
+   "split_ratio": 0.517,
+   "cam_position": "top",
+   "target_duration": 13.8,
+   "cuts_per_min": 91.1,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.4,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [
+    "beat_sync_flash"
+   ],
+   "content_type": "hype_edit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": true,
+    "replay": false
+   },
+   "ending": "loop",
+   "format_type": "beat_sync_montage"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:50:07+00:00"
+ },
+ {
+  "id": "ex_064682a8367f",
+  "profile": "gta6",
+  "label": "@norage_ae: A fast-paced, beat-synced hype edit of GTA 6 trailer footage",
+  "category": "hype_edit",
+  "source": "https://www.tiktok.com/@norage_ae/video/7678858598683888914",
+  "metrics": {
+   "duration": 14.1,
+   "width": 1080,
+   "height": 1920,
+   "vertical": true,
+   "seam_y": null,
+   "seam_strength": 2.18,
+   "blur_band_ratio": 0.8,
+   "faces_per_frame": 0.0,
+   "face_y": null,
+   "cuts_per_min": 63.8,
+   "loudness_p90_db": -6.0,
+   "layout_guess": "full_gameplay",
+   "cam_position": null,
+   "cuts_at": [
+    3.0,
+    3.7,
+    4.4,
+    5.1,
+    5.8,
+    6.6,
+    7.3,
+    8.0,
+    8.7,
+    9.4,
+    10.1,
+    10.9,
+    11.6,
+    12.3,
+    13.0,
+    13.9
+   ],
+   "n_cuts": 16,
+   "avg_shot_s": 0.83,
+   "min_shot_s": 0.2,
+   "bpm_est": 85.7,
+   "cuts_on_beat_frac": 0.06,
+   "silence_frac": 0.0,
+   "fps": 60.0,
+   "black_band_frac": 0.0,
+   "stats": {
+    "diggCount": 1900000,
+    "shareCount": 246200,
+    "commentCount": 13300,
+    "playCount": 14900000,
+    "collectCount": "221661"
+   },
+   "engagement_rate": 0.1598,
+   "share_rate": 0.0165
+  },
+  "vision": {
+   "content_type": "hype_edit",
+   "category": "hype_edit",
+   "summary": "A fast-paced, beat-synced hype edit of GTA 6 trailer footage showcasing high-energy moments, beautiful graphics, and iconic scenes set to upbeat music.",
+   "hook": {
+    "first_2s": "Red convertible driving down a sunny coastal road with characters looking at the camera.",
+    "hook_text": "grand theft auto",
+    "hook_type": "title_card",
+    "why_it_hooks": "High production value cinematic trailer footage paired with iconic franchise title logo instantly grabs attention of gamers."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 3.0,
+     "beat": "hook",
+     "what_happens": "Red convertible car cruising on highway under golden hour sunlight."
+    },
+    {
+     "start": 3.0,
+     "end": 3.7,
+     "beat": "setup",
+     "what_happens": "Aerial shot of character skydiving over city and water."
+    },
+    {
+     "start": 3.7,
+     "end": 4.4,
+     "beat": "escalation",
+     "what_happens": "Close-up of heavily tattooed character with gold teeth looking at phone."
+    },
+    {
+     "start": 4.4,
+     "end": 5.1,
+     "beat": "escalation",
+     "what_happens": "Two characters facing off with pistols in a dusty street."
+    },
+    {
+     "start": 5.1,
+     "end": 5.8,
+     "beat": "escalation",
+     "what_happens": "Car driving fast along coastal highway with mini-map visible."
+    },
+    {
+     "start": 5.8,
+     "end": 6.6,
+     "beat": "escalation",
+     "what_happens": "Airboat navigating through swampy waters."
+    },
+    {
+     "start": 6.6,
+     "end": 7.3,
+     "beat": "escalation",
+     "what_happens": "Character shooting a basketball at an outdoor hoop."
+    },
+    {
+     "start": 7.3,
+     "end": 8.0,
+     "beat": "escalation",
+     "what_happens": "Character throwing cash inside a crowded nightclub."
+    },
+    {
+     "start": 8.0,
+     "end": 8.7,
+     "beat": "escalation",
+     "what_happens": "Racing cars drifting around a tight track corner."
+    },
+    {
+     "start": 8.7,
+     "end": 9.4,
+     "beat": "escalation",
+     "what_happens": "Character opening car door in front of neon-lit establishment."
+    },
+    {
+     "start": 9.4,
+     "end": 10.1,
+     "beat": "escalation",
+     "what_happens": "Couple sitting on the hood of a red car at night under neon signs."
+    },
+    {
+     "start": 10.1,
+     "end": 10.9,
+     "beat": "payoff",
+     "what_happens": "Muscular character walking past apartment complex buildings."
+    },
+    {
+     "start": 10.9,
+     "end": 14.1,
+     "beat": "loop",
+     "what_happens": "Montage continuation and transition back to opening vibe."
+    }
+   ],
+   "layout": {
+    "type": "full_frame",
+    "facecam_position": "none",
+    "background": "game trailer footage"
+   },
+   "on_screen_text": [
+    {
+     "text": "grand theft auto",
+     "start": 2.0,
+     "end": 3.0,
+     "position_y": 0.5,
+     "purpose": "title branding",
+     "case": "lowercase",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "fade_in"
+    }
+   ],
+   "captions": {
+    "present": false,
+    "uppercase": true,
+    "words_per_line": 3
+   },
+   "visual_effects": [
+    {
+     "effect": "hard cut",
+     "at": 3.0,
+     "purpose": "beat sync"
+    },
+    {
+     "effect": "hard cut",
+     "at": 3.7,
+     "purpose": "beat sync"
+    },
+    {
+     "effect": "hard cut",
+     "at": 4.4,
+     "purpose": "beat sync"
+    },
+    {
+     "effect": "hard cut",
+     "at": 5.1,
+     "purpose": "beat sync"
+    },
+    {
+     "effect": "hard cut",
+     "at": 5.8,
+     "purpose": "beat sync"
+    },
+    {
+     "effect": "hard cut",
+     "at": 6.6,
+     "purpose": "beat sync"
+    },
+    {
+     "effect": "hard cut",
+     "at": 7.3,
+     "purpose": "beat sync"
+    },
+    {
+     "effect": "hard cut",
+     "at": 8.0,
+     "purpose": "beat sync"
+    },
+    {
+     "effect": "hard cut",
+     "at": 8.7,
+     "purpose": "beat sync"
+    },
+    {
+     "effect": "hard cut",
+     "at": 9.4,
+     "purpose": "beat sync"
+    },
+    {
+     "effect": "hard cut",
+     "at": 10.1,
+     "purpose": "beat sync"
+    }
+   ],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "electronic pop / synthwave remix",
+    "music_energy": "high",
+    "beat_synced_cuts": true,
+    "voice": "none",
+    "sfx": [],
+    "audio_notes": "Punchy kick and snare on every cut matching trailer highlights."
+   },
+   "pacing": {
+    "cuts_per_minute": 68.0,
+    "typical_shot_seconds": 0.7,
+    "energy_curve": "consistently high energy from start to finish"
+   },
+   "ending": {
+    "type": "loop",
+    "description": "Seamlessly loops back to the driving scene at the beginning."
+   },
+   "duration_reason": "Short, punchy length optimized for maximum replayability and retention on short-form platforms.",
+   "retention_tactics": [
+    "Rapid-fire beat-synced cuts every 0.7 seconds",
+    "High-demand intellectual property (GTA 6)",
+    "Seamless loop ending",
+    "Vibrant, high-contrast cinematic colors"
+   ],
+   "why_it_works": "Leverages the massive hype surrounding GTA 6 by pairing official trailer footage with high-energy, perfectly synchronized music cuts, triggering nostalgia and excitement.",
+   "reproduction_recipe": [
+    "Gather high-res cinematic clips from the official GTA 6 trailer",
+    "Select an upbeat, trending hype track with strong percussion beats",
+    "Cut every single video clip precisely on the downbeat (approx. every 0.7s)",
+    "Add clean game branding title overlay early in the video",
+    "Ensure the final frame flows naturally back into the first frame for a seamless loop"
+   ],
+   "risks": [
+    "Copyright claims or demonetization from using official Rockstar trailer footage without transformative elements"
+   ]
+  },
+  "preset": {
+   "layout": "full_gameplay",
+   "split_ratio": 0.5,
+   "cam_position": "top",
+   "target_duration": 14.1,
+   "cuts_per_min": 63.8,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.4,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [
+    "hard cut",
+    "hard cut",
+    "hard cut",
+    "hard cut",
+    "hard cut",
+    "hard cut",
+    "hard cut",
+    "hard cut"
+   ],
+   "content_type": "hype_edit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "loop",
+   "format_type": "beat_sync_montage"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:50:20+00:00"
+ },
+ {
+  "id": "ex_62573df64eb7",
+  "profile": "gta6",
+  "label": "@mt.editz.mt: A meme video predicting that public places will be empty on ",
+  "category": "hype_edit",
+  "source": "https://www.tiktok.com/@mt.editz.mt/video/7706334683532905761",
+  "metrics": {
+   "duration": 10.6,
+   "width": 576,
+   "height": 576,
+   "vertical": false,
+   "seam_y": 0.492,
+   "seam_strength": 16.19,
+   "blur_band_ratio": 0.207,
+   "faces_per_frame": 0.08,
+   "face_y": 0.104,
+   "cuts_per_min": 79.0,
+   "loudness_p90_db": -12.5,
+   "layout_guess": "fit_blur",
+   "cam_position": null,
+   "cuts_at": [
+    1.1,
+    2.3,
+    3.4,
+    5.0,
+    5.6,
+    6.2,
+    6.7,
+    7.2,
+    7.8,
+    8.4,
+    8.9,
+    9.3,
+    9.6,
+    10.1
+   ],
+   "n_cuts": 14,
+   "avg_shot_s": 0.71,
+   "min_shot_s": 0.3,
+   "bpm_est": 120.0,
+   "cuts_on_beat_frac": 0.57,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "black_band_frac": 0.0,
+   "stats": {
+    "diggCount": 87800,
+    "shareCount": 9895,
+    "commentCount": 1270,
+    "playCount": 683200,
+    "collectCount": "11701"
+   },
+   "engagement_rate": 0.162,
+   "share_rate": 0.0145
+  },
+  "vision": {
+   "content_type": "meme_skit",
+   "category": "hype_edit",
+   "summary": "A meme video predicting that public places will be empty on November 19th due to the release of GTA 6, followed by a montage of chaotic action scenes.",
+   "hook": {
+    "first_2s": "A classroom scene with text overlay.",
+    "hook_text": "Everything on November 19th:",
+    "hook_type": "relatable_prediction",
+    "why_it_hooks": "It taps into the massive anticipation for GTA 6 by creating a relatable, humorous scenario about everyone staying home to play."
+   },
+   "structure": [
+    {
+     "start": 0,
+     "end": 4.5,
+     "beat": "setup",
+     "what_happens": "A series of shots showing crowded places (classroom, school, street, Times Square) with the text 'Everything on November 19th:'"
+    },
+    {
+     "start": 4.5,
+     "end": 10.6,
+     "beat": "payoff",
+     "what_happens": "A rapid-fire montage of chaotic, high-action clips from GTA 6 trailers with the text 'The reason:'"
+    }
+   ],
+   "layout": {
+    "type": "full_frame",
+    "facecam_position": "none"
+   },
+   "on_screen_text": [
+    {
+     "text": "Everything on November 19th:",
+     "start": 0,
+     "end": 4.5,
+     "position_y": 0.5,
+     "purpose": "context",
+     "case": "sentence",
+     "color": "#FFFFFF"
+    },
+    {
+     "text": "The reason:",
+     "start": 4.5,
+     "end": 10.6,
+     "position_y": 0.5,
+     "purpose": "punchline",
+     "case": "sentence",
+     "color": "#FFFFFF"
+    }
+   ],
+   "captions": {
+    "present": false
+   },
+   "visual_effects": [
+    {
+     "effect": "hard_cuts",
+     "at": 0,
+     "purpose": "rhythmic_pacing"
+    }
+   ],
+   "audio": {
+    "music_present": true,
+    "music_genre": "phonk",
+    "music_energy": "high",
+    "beat_synced_cuts": true,
+    "sfx": [
+     "bass_boosted_beat"
+    ],
+    "audio_notes": "The music is a slowed, bass-heavy phonk track that drives the rhythm of the cuts."
+   },
+   "pacing": {
+    "cuts_per_minute": 120,
+    "typical_shot_seconds": 0.5,
+    "energy_curve": "increasing"
+   },
+   "ending": {
+    "type": "cut_to_black",
+    "description": "The video ends abruptly on a final action shot."
+   },
+   "why_it_works": "It uses a popular meme format to capitalize on the hype surrounding a major gaming event, keeping the viewer engaged with fast-paced, high-energy visuals.",
+   "reproduction_recipe": [
+    "Select 4-5 clips of crowded public spaces.",
+    "Select 6-8 clips of high-intensity action or chaos.",
+    "Sync the cuts to the beat of a trending phonk song.",
+    "Add simple white text overlays for the setup and punchline.",
+    "Ensure the transition from 'normal' to 'chaotic' is sharp and immediate."
+   ]
+  },
+  "preset": {
+   "layout": "full_gameplay",
+   "split_ratio": 0.492,
+   "cam_position": "top",
+   "target_duration": 10.6,
+   "cuts_per_min": 79.0,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.4,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [
+    "hard_cuts"
+   ],
+   "content_type": "meme_skit",
+   "detail_tools": {},
+   "ending": "cut_to_black",
+   "format_type": "beat_sync_montage"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:50:24+00:00"
+ },
+ {
+  "id": "ex_3efdc1b6db82",
+  "profile": "gta6",
+  "label": "@motivation_gogging: A fast-paced, beat-synced hype edit of GTA 6 trailer footage",
+  "category": "news_trailer",
+  "source": "https://www.tiktok.com/@motivation_gogging/video/7705131169645333782",
+  "metrics": {
+   "duration": 30.1,
+   "width": 576,
+   "height": 1024,
+   "vertical": true,
+   "seam_y": null,
+   "seam_strength": 4.38,
+   "blur_band_ratio": 0.394,
+   "faces_per_frame": 0.0,
+   "face_y": null,
+   "cuts_per_min": 43.9,
+   "loudness_p90_db": -9.1,
+   "layout_guess": "full_gameplay",
+   "cam_position": null,
+   "cuts_at": [
+    1.8,
+    4.2,
+    5.1,
+    6.8,
+    7.8,
+    9.3,
+    10.9,
+    12.9,
+    14.3,
+    15.3,
+    16.9,
+    18.4,
+    20.0,
+    21.1,
+    21.9,
+    22.5,
+    23.2,
+    23.8,
+    24.4,
+    25.7,
+    26.4
+   ],
+   "n_cuts": 21,
+   "avg_shot_s": 1.37,
+   "min_shot_s": 0.6,
+   "bpm_est": 75.0,
+   "cuts_on_beat_frac": 0.48,
+   "silence_frac": 0.01,
+   "fps": 30.0,
+   "black_band_frac": 0.0,
+   "stats": {
+    "diggCount": 60700,
+    "shareCount": 15500,
+    "commentCount": 215,
+    "playCount": 827400,
+    "collectCount": "7020"
+   },
+   "engagement_rate": 0.1008,
+   "share_rate": 0.0187
+  },
+  "vision": {
+   "content_type": "hype_edit",
+   "category": "news_trailer",
+   "summary": "A fast-paced, beat-synced hype edit of GTA 6 trailer footage featuring scenic aerial shots, cars, beaches, and nightlife set to a catchy rap song, ending with a release date teaser.",
+   "hook": {
+    "first_2s": "Opens with the iconic GTA VI logo glowing over a sunset aerial view of Vice City highways.",
+    "hook_text": "Grand Theft Auto VI",
+    "hook_type": "branding_logo",
+    "why_it_hooks": "Instantly captures the attention of gamers and pop culture fans by showing the most anticipated logo and vibrant aesthetic."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 1.8,
+     "beat": "hook",
+     "what_happens": "GTA VI logo over sunset highway."
+    },
+    {
+     "start": 1.8,
+     "end": 4.2,
+     "beat": "setup",
+     "what_happens": "Aerial shot of boats and dolphins in crystal clear water."
+    },
+    {
+     "start": 4.2,
+     "end": 5.1,
+     "beat": "setup",
+     "what_happens": "Low angle look up at towering palm trees and skyscrapers."
+    },
+    {
+     "start": 5.1,
+     "end": 6.8,
+     "beat": "escalation",
+     "what_happens": "Swampy landscape with flying birds at sunset."
+    },
+    {
+     "start": 6.8,
+     "end": 7.8,
+     "beat": "escalation",
+     "what_happens": "Flock of pink flamingos flying over wetlands."
+    },
+    {
+     "start": 7.8,
+     "end": 9.3,
+     "beat": "escalation",
+     "what_happens": "Diverse crowds of people walking on a packed beach."
+    },
+    {
+     "start": 9.3,
+     "end": 10.9,
+     "beat": "escalation",
+     "what_happens": "Speedboat jumping through waves near container ships."
+    },
+    {
+     "start": 10.9,
+     "end": 12.9,
+     "beat": "escalation",
+     "what_happens": "Woman dancing on top of a sports car at night."
+    },
+    {
+     "start": 12.9,
+     "end": 14.3,
+     "beat": "escalation",
+     "what_happens": "Lowrider cars bouncing on a sunny city street."
+    },
+    {
+     "start": 14.3,
+     "end": 15.3,
+     "beat": "escalation",
+     "what_happens": "Close-up of a tattooed character smiling with gold grillz."
+    },
+    {
+     "start": 15.3,
+     "end": 16.9,
+     "beat": "escalation",
+     "what_happens": "Night drone shot over bustling lit-up city bridge and highway."
+    },
+    {
+     "start": 16.9,
+     "end": 18.4,
+     "beat": "escalation",
+     "what_happens": "Neon-lit strip with modified cars parked along the curb."
+    },
+    {
+     "start": 18.4,
+     "end": 20.0,
+     "beat": "escalation",
+     "what_happens": "Crowded nightclub scene with flashing red lights."
+    },
+    {
+     "start": 20.0,
+     "end": 21.1,
+     "beat": "escalation",
+     "what_happens": "Small plane flying over bridges and tropical islands."
+    },
+    {
+     "start": 21.1,
+     "end": 21.9,
+     "beat": "escalation",
+     "what_happens": "Huge 'VICE' sign at sunset."
+    },
+    {
+     "start": 21.9,
+     "end": 22.5,
+     "beat": "payoff",
+     "what_happens": "Aerial shot of street takeover with spinning cars and smoke."
+    },
+    {
+     "start": 22.5,
+     "end": 23.2,
+     "beat": "payoff",
+     "what_happens": "Indoor party scene with red lighting and neon glow."
+    },
+    {
+     "start": 23.2,
+     "end": 23.8,
+     "beat": "payoff",
+     "what_happens": "Dirtbikes and ATVs doing wheelies down a residential street."
+    },
+    {
+     "start": 23.8,
+     "end": 24.4,
+     "beat": "payoff",
+     "what_happens": "Store robbery scene with a woman in a bandana holding a gun."
+    },
+    {
+     "start": 24.4,
+     "end": 30.1,
+     "beat": "loop",
+     "what_happens": "GTA VI logo transitions with release date 'NOVEMBER 19, 2026' before looping back."
+    }
+   ],
+   "layout": {
+    "type": "full_frame",
+    "facecam_position": "none"
+   },
+   "on_screen_text": [
+    {
+     "text": "NOVEMBER 19, 2026",
+     "start": 26.4,
+     "end": 30.1,
+     "position_y": 0.8,
+     "purpose": "release date announcement",
+     "case": "uppercase",
+     "color": "#FFFFFF",
+     "outline": false,
+     "emoji": false,
+     "animation": "fade_in"
+    }
+   ],
+   "captions": {
+    "present": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "hip_hop",
+    "music_energy": "high",
+    "beat_synced_cuts": true,
+    "voice": "none",
+    "sfx": [],
+    "audio_notes": "Punchy rap beat with strong bass drops timed precisely with each scene transition."
+   },
+   "pacing": {
+    "cuts_per_minute": 44.0,
+    "typical_shot_seconds": 1.3,
+    "energy_curve": "Starts high with vibrant visuals, builds up intensity rapidly through middle montage, and resolves with a clean title card."
+   },
+   "ending": {
+    "type": "loop",
+    "description": "Ends on the Grand Theft Auto VI logo and release date, seamlessly looping back to the opening sunset highway shot."
+   },
+   "duration_reason": "30 seconds is the ideal length for maximum retention on short-form platforms while fitting a complete song verse and trailer highlights.",
+   "retention_tactics": [
+    "Rapid beat-synced cuts every 1-2 seconds",
+    "High-demand gaming intellectual property (GTA 6)",
+    "Vibrant color grading and cinematic composition",
+    "Seamless loop ending"
+   ],
+   "why_it_works": "Leverages the massive hype surrounding GTA 6 by curating the most visually stunning trailer clips into an extremely fast, rhythmically precise edit that hooks the viewer instantly.",
+   "reproduction_recipe": [
+    "Source official GTA 6 trailer footage in highest available quality.",
+    "Select an upbeat, trending hip-hop track with clear downbeats.",
+    "Cut every single video clip precisely on the drum beats or bass drops.",
+    "Maintain consistent vibrant color grading throughout all clips.",
+    "End with clean brand title card and release date for loopability."
+   ],
+   "risks": [
+    "Footage may be flagged for copyright if not sufficiently transformative.",
+    "Fictional release date text might confuse viewers who mistake it for official news."
+   ]
+  },
+  "preset": {
+   "layout": "full_gameplay",
+   "split_ratio": 0.5,
+   "cam_position": "top",
+   "target_duration": 30.1,
+   "cuts_per_min": 43.9,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.4,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "hype_edit",
+   "detail_tools": {},
+   "ending": "loop",
+   "format_type": "beat_sync_montage"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:50:34+00:00"
+ },
+ {
+  "id": "ex_71f2bccf2890",
+  "profile": "gta6",
+  "label": "@stackz_jm8: An action-packed hype edit blending GTA 6 trailer footage wi",
+  "category": "hype_edit",
+  "source": "https://www.tiktok.com/@stackz_jm8/video/7682170548138347798",
+  "metrics": {
+   "duration": 33.7,
+   "width": 1024,
+   "height": 576,
+   "vertical": false,
+   "seam_y": null,
+   "seam_strength": 2.52,
+   "blur_band_ratio": 0.767,
+   "faces_per_frame": 0.17,
+   "face_y": 0.405,
+   "cuts_per_min": 49.8,
+   "loudness_p90_db": -10.3,
+   "layout_guess": "fit_blur",
+   "cam_position": null,
+   "cuts_at": [
+    2.7,
+    3.3,
+    4.7,
+    5.3,
+    5.9,
+    6.5,
+    7.2,
+    7.8,
+    10.6,
+    11.2,
+    11.8,
+    13.8,
+    15.1,
+    15.4,
+    15.7,
+    16.3,
+    17.7,
+    18.9,
+    19.3,
+    19.9,
+    21.8,
+    22.8,
+    23.4,
+    23.7,
+    24.3,
+    25.2,
+    26.0,
+    29.4,
+    32.1
+   ],
+   "n_cuts": 29,
+   "avg_shot_s": 1.12,
+   "min_shot_s": 0.3,
+   "bpm_est": 100.0,
+   "cuts_on_beat_frac": 0.55,
+   "silence_frac": 0.015,
+   "fps": 30.0,
+   "black_band_frac": 0.0,
+   "stats": {
+    "diggCount": 314400,
+    "shareCount": 39700,
+    "commentCount": 1545,
+    "playCount": 2300000,
+    "collectCount": "49673"
+   },
+   "engagement_rate": 0.1762,
+   "share_rate": 0.0173
+  },
+  "vision": {
+   "content_type": "hype_edit",
+   "category": "hype_edit",
+   "summary": "An action-packed hype edit blending GTA 6 trailer footage with intense rap music and fast beat-synced cuts, featuring gritty criminal moments and dialogue about being a professional.",
+   "hook": {
+    "first_2s": "Rockstar logo fading out and a loud voice shouting 'Yo, crackhead!' accompanied by intense gunfight action.",
+    "hook_text": "YO CRACKHEAD",
+    "hook_type": "audio shockwave and rapid action cut",
+    "why_it_hooks": "Combines a recognizable iconic gaming intro with immediate high-energy violence and audio shock value."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 2.7,
+     "beat": "hook",
+     "what_happens": "Rockstar games logo intro with a voice screaming 'Yo crackhead'."
+    },
+    {
+     "start": 2.7,
+     "end": 10.6,
+     "beat": "setup",
+     "what_happens": "Rapid montage of characters entering stores, walking in streets, and starting cars."
+    },
+    {
+     "start": 10.6,
+     "end": 25.2,
+     "beat": "escalation",
+     "what_happens": "Furious sequence of gunfire, robberies, fistfights, and explosive action scenes cut to the beat."
+    },
+    {
+     "start": 25.2,
+     "end": 33.7,
+     "beat": "payoff",
+     "what_happens": "Cinematic dialogue scene inside a car discussing professionalism amidst chaos."
+    }
+   ],
+   "layout": {
+    "type": "full_frame",
+    "facecam_position": "none"
+   },
+   "on_screen_text": [
+    {
+     "text": "ST4CKZ",
+     "start": 2.7,
+     "end": 33.7,
+     "position_y": 0.9,
+     "purpose": "watermark",
+     "case": "uppercase",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "static"
+    },
+    {
+     "text": "HERE WE GO FINALLY.",
+     "start": 8.0,
+     "end": 10.5,
+     "position_y": 0.8,
+     "purpose": "dialogue accent",
+     "case": "uppercase",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "fade"
+    },
+    {
+     "text": "THERE WILL ALWAYS BE SOME KIND OF BULLSHIT. A PROFESSIONAL ADAPTS. ARE YOU A PROFESSIONAL, LUCIA?",
+     "start": 26.0,
+     "end": 31.0,
+     "position_y": 0.8,
+     "purpose": "story dialogue",
+     "case": "uppercase",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "pop"
+    },
+    {
+     "text": "OF COURSE.",
+     "start": 31.5,
+     "end": 32.5,
+     "position_y": 0.85,
+     "purpose": "story dialogue",
+     "case": "uppercase",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "pop"
+    },
+    {
+     "text": "GOOD.",
+     "start": 32.7,
+     "end": 33.7,
+     "position_y": 0.85,
+     "purpose": "story dialogue",
+     "case": "uppercase",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false,
+     "animation": "pop"
+    }
+   ],
+   "captions": {
+    "present": false,
+    "position_y": 0,
+    "uppercase": true,
+    "words_per_line": 1,
+    "color": "#FFFFFF",
+    "highlight_color": "#FFFF00",
+    "animation": "none"
+   },
+   "visual_effects": [
+    {
+     "effect": "flash",
+     "at": 2.7,
+     "purpose": "beat drop transition"
+    }
+   ],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "hip_hop",
+    "music_energy": "high",
+    "beat_synced_cuts": true,
+    "voice": "mixed trailer dialogue and aggressive rap vocals",
+    "sfx": [
+     "gunshots",
+     "explosions",
+     "shouting"
+    ],
+    "audio_notes": "Heavy bass rap beat perfectly synced to visual action cuts."
+   },
+   "pacing": {
+    "cuts_per_minute": 53.0,
+    "typical_shot_seconds": 0.8,
+    "energy_curve": "Starts explosive, dips slightly for narrative conversation at the end"
+   },
+   "ending": {
+    "type": "punchline",
+    "description": "Ends on a cool dialogue response 'Of course. Good.' finishing the narrative segment."
+   },
+   "duration_reason": "Ideal length for an intensive hype trailer edit without losing viewer attention.",
+   "retention_tactics": [
+    "Rapid fire cuts every second",
+    "High energy sync with heavy bass music",
+    "Watermark placement",
+    "Recognizable GTA 6 cinematic footage"
+   ],
+   "why_it_works": "The razor-sharp synchronization between the heavy rap beat and the aggressive action scenes makes the GTA 6 footage feel extremely cinematic and immersive.",
+   "reproduction_recipe": [
+    "Start with the Rockstar intro logo and a dramatic sound effect.",
+    "Cut rapidly between high-action GTA 6 clips aligned to a fast rap beat at 100 BPM.",
+    "Add bold uppercase dialogue text on screen for crucial lines.",
+    "Conclude with a steady, atmospheric dialogue exchange to ground the hype."
+   ],
+   "risks": [
+    "Copyright strikes from Rockstar Games or music owners",
+    "Over-editing leading to visual fatigue"
+   ]
+  },
+  "preset": {
+   "layout": "full_gameplay",
+   "split_ratio": 0.5,
+   "cam_position": "top",
+   "target_duration": 33.7,
+   "cuts_per_min": 49.8,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.4,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [
+    "flash"
+   ],
+   "content_type": "hype_edit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "punchline",
+   "format_type": "beat_sync_montage"
+  },
+  "notes": null,
+  "created_at": "2026-11-12T22:50:39+00:00"
+ }
+]

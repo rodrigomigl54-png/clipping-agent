@@ -66,6 +66,18 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 40 automated tests passi
 - Style library: 3 analysed GTA 6 examples (meme skit, streamer clip, hype montage — montage marked
   not yet supported); 21 more saved as pending (TikTok cannot be downloaded here; vidIQ credits used up).
 
+## Added 2026-11-12 (later)
+- All reachable reference clips analysed: 22 TikToks downloaded from their public pages (author, caption,
+  engagement), Gemini video blueprints (hook, beat structure, every on-screen text, captions, effects, audio,
+  pacing, ending, recipe) + local measurements. Library persisted in `config/style_examples/gta6.json`
+  (auto-loaded); human summary in `docs/GTA6_PLAYBOOK.md`. 2 clips unavailable on TikTok.
+- Detail tools: zoom-to-point, animated circle/arrow, label (placed off faces), freeze frame with audio pause;
+  used automatically only when Gemini finds a key visual detail (category or "look at…" cues).
+- Retention timeline: dead-air jump cuts; adaptive length scored against engagement-weighted example lengths
+  per content type (gta6 hard limits widened to 6–180 s).
+- AI headlines follow the real headline style of the same content type.
+- Not yet: beat-synced hype-edit montage engine (most engaging type in the references).
+
 ## In progress
 - Nothing partially implemented.
 
