@@ -48,3 +48,32 @@ Examples: @overtime (Agent 00 + "Lucia") 1.4 M · @onlyclipinn (Kai Cenat) 1.3 M
 5. **Detail tools** (zoom + circle/arrow + label, optional freeze) only when a visual detail is key —
    easter eggs, fun facts, comparisons, or when the speaker says "look at / did you see…". Seen in the
    reference set in the Leonida map edit (zoom-to-detail + arrow + label).
+
+## Hype edit — frame-accurate recipe (second pass, 9 edits measured at 30 fps)
+Raw numbers: `config/style_examples/gta6_hype_measurements.json`.
+
+| Edit | Views | Len | BPM | Cuts | Median shot | Shot = beats | Cuts on beat | Opener |
+|---|---|---|---|---|---|---|---|---|
+| @norage_ae | 14.9 M | 14 s | 83 | 16 | 0.73 s | 1.0 | 94 % | 2.97 s |
+| @stackz_jm8 | 2.3 M | 34 s | 94 | 31 | 0.67 s | 1.0 | 61 % (half-beat) | 2.73 s |
+| @moribontaru | 1.2 M | 22 s | 143 | 10 | 1.6 s | 4 | 70 % (half-beat) | 2.3 s |
+| @havoceeditz | 1.1 M | 14 s | ~136 | 16 | 0.77 s | ~2 | - | 0.7 s |
+| @mfx.3dits | 0.5 M | 17 s | 176 | 21 | 0.70 s | 2.0 | 100 % (half-beat) | 0.7 s |
+| @mt.editz.mt | 0.7 M | 11 s | 107 | 14 | 0.56 s | 1.0 | 93 % | 1.13 s |
+
+1. **Structure: opener → drop → metronome → button.** One longer opening shot (2.3–3 s: car on a road, logo,
+   aerial) while the music builds; the first cut lands on the drop; then every shot is exactly 1 beat
+   (≈0.55–0.75 s) or 2 beats; the last shot is held ~1 beat longer or cut to black / looped to shot 1.
+2. **Cut rate doubles or more after the drop** (norage 0.33 → 1.35 cuts/s; mt.editz 0.8 → 1.8).
+3. **Shot order alternates**: wide/aerial → character close-up → action (drift, explosion, gunfire) → wide…,
+   and day ↔ night / warm ↔ neon so every cut is a visible change. Never two similar shots in a row.
+4. **Each shot starts on its motion peak** (car already sliding, gun already raised) — no dead frames.
+5. **Text**: one line, centre, white, small; either a viewer thought ("I can't wait to play as Lucia") or a
+   countdown that changes on the beat (879 → 617 → 342 → 91 DAYS → "ARE YOU READYYYYY"). Small creator
+   watermark in the lower third on every shot.
+6. **Look**: boosted contrast/saturation, flashes on kicks (8–11 flash frames in the fastest edits), motion-blur
+   whip between some shots. The longer edit (@stackz_jm8) is a *narrative* montage: Rockstar-logo opener, a
+   robbery told in order, trailer dialogue kept as the "vocals" over the beat, lines of dialogue as captions.
+7. **Framing variants**: full-screen 9:16 crop; 16:9 with black bars; and footage rotated 90° to fill the
+   screen (@norage_ae, the 14.9 M one).
+8. **Length**: 11–17 s for pure beat edits (loop-friendly), 22–34 s only when there is a story or dialogue.

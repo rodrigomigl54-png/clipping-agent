@@ -417,6 +417,8 @@ class StyleLibrary:
         if self.db.one("SELECT count(*) n FROM style_examples")["n"]:
             return
         for f in sorted(self.settings.path("config/style_examples").glob("*.json")):
+            if f.stem.endswith("_measurements"):
+                continue
             self.import_file(f)
 
     def headline_examples(self, profile: str, category: str | None, n: int = 6) -> list[str]:
