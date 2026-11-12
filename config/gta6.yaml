@@ -7,9 +7,11 @@ topic_keywords: [gta 6, gta vi, gta six, grand theft auto, vice city, leonida, l
                  cops, police, wanted, five star, heist, robbery, chase, glitch, bug, easter egg, ragdoll,
                  car, crash, explosion, mission, npc]
 min_quality_threshold: 60
+# Length is chosen per moment (retention-driven, learned from the example clips per type); these are
+# only wide technical limits, not targets.
 duration:
-  min_seconds: 15
-  max_seconds: 120
+  min_seconds: 6
+  max_seconds: 180
   ideal_ranges:
     direct: [15, 30]
     context: [30, 60]
@@ -31,6 +33,10 @@ content_categories:
   - story_moment          # cutscenes / story beats (spoiler-aware)
   - tips_tricks           # money, cars, hidden spots
   - news_trailer          # trailers, announcements, reactions
+  - hype_edit             # beat-synced montage / countdown edits
+  - meme_skit             # memes, parody skits, "POV / what if" videos
+  - fun_fact              # facts and details, easter-egg breakdowns
+  - comparison            # GTA 6 vs real life / vs older GTA
 affiliates_are_members: false
 
 attention:
@@ -79,6 +85,8 @@ editing:
     max_chars: 22
     position: 0.62
   zoom_emphasis: true
+  dead_air_removal: true     # cut dead pauses inside clips: tighter pacing, better retention
+  detail_tools: true         # zoom / circle / arrow / freeze-frame on key visual details, only when needed
 
 monetization:
   block_gambling_primary: true

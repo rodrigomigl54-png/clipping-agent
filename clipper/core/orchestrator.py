@@ -162,6 +162,13 @@ class Orchestrator:
             log.error("source %s failed: %s", sid, e)
             return {"source_id": sid, "stage": Stage.FAILED.value, "error": str(e)}
 
+    def _duration_targets(self, profile: str) -> dict | None:
+        try:
+            from ..styles.style_library import StyleLibrary
+            return StyleLibrary(self.db, self.settings).duration_targets(profile) or None
+        except Exception:
+            return None
+
     def detect_and_store(self, src: dict, tr, audio, vis) -> int:
         prof = self.settings.profile(src["profile"])
         src = dict(src)
@@ -170,7 +177,8 @@ class Orchestrator:
             "SELECT transcript_text FROM export_registry WHERE profile=?", (prof.id,))]
         inp = DetectionInputs(source=src, transcript=tr, audio=audio, visual=vis,
                               media_duration=float(src["duration"] or audio.duration),
-                              trend_terms=self.research.trends.trend_terms(prof.id), exported_texts=exported)
+                              trend_terms=self.research.trends.trend_terms(prof.id), exported_texts=exported,
+                              duration_targets=self._duration_targets(prof.id))
         cands = self.detector.detect(inp, prof, self.settings.global_.pipeline.max_candidates_per_source)
         with self.db.transaction() as c:
             for cand in cands:
@@ -235,7 +243,7 @@ class Orchestrator:
                                    start=cand["start"], end=cand["end"], attribution=pre.attribution,
                                    trend_terms=self.research.trends.trend_terms(prof.id), gemini=self.gemini)["title"]
             result = self.editor.edit(source=src, candidate=cand_full, transcript=tr, audio=audio, clip_id=clip_id,
-                                      out_dir=self.work("renders", prof.id), title=title)
+                                      out_dir=self.work("renders", prof.id), title=title, gemini=self.gemini)
             stage(Stage.QUALITY_CHECKING, render_path=str(result.path), duration=result.duration,
                   layout=result.layout, format=result.format)
             phash = video_phash(result.path)

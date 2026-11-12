@@ -31,10 +31,15 @@ def _ass_filter(ass_path: Path, fonts_dir: Path | None) -> str:
 def render(src: str | Path, start: float, end: float, plan: LayoutPlan, out_path: Path, *,
            output_cfg: dict, audio_cfg: dict, ass_path: Path | None = None, gameplay: str | Path | None = None,
            gameplay_offset: float = 0.0, fonts_dir: Path | None = None, timeout: float = 3600,
-           overlays: list | None = None) -> Path:
-    """``overlays``: [(rgba_array, y, until_seconds_or_None)] blended onto every composed frame."""
+           overlays: list | None = None, timeline=None, details: list | None = None,
+           label_font: str | None = None) -> Path:
+    """``overlays``: [(rgba_array, y, until_seconds_or_None)] blended onto every composed frame.
+    ``timeline``: detail_tools.Timeline (cuts dead air, holds freeze frames); output times everywhere.
+    ``details``: detail_tools.DetailEvent list (zoom/circle/arrow/label on the source picture)."""
+    from .detail_tools import Timeline, apply_detail
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    duration = end - start
+    timeline = timeline or Timeline.whole(end - start)
+    duration = timeline.duration
     fps = float(output_cfg.get("fps", 30))
     W, H = plan.out_w, plan.out_h
     info = media_info(src)
@@ -47,10 +52,10 @@ def render(src: str | Path, start: float, end: float, plan: LayoutPlan, out_path
     tmp = out_path.with_suffix(".rendering.mp4")
     enc = ["ffmpeg", "-y", "-v", "error",
            "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", f"{fps}", "-i", "pipe:0",
-           "-ss", f"{start:.3f}", "-t", f"{duration:.3f}", "-i", str(src),
-           "-map", "0:v:0", "-map", "1:a:0",
-           "-vf", ",".join(vf),
-           "-af", audio_filter(audio_cfg, duration), "-ar", str(output_cfg.get("audio_sample_rate", 48000)),
+           "-ss", f"{start:.3f}", "-t", f"{end - start:.3f}", "-i", str(src),
+           "-filter_complex", _audio_graph(timeline, audio_filter(audio_cfg, duration)),
+           "-map", "0:v:0", "-map", "[aout]",
+           "-vf", ",".join(vf), "-ar", str(output_cfg.get("audio_sample_rate", 48000)),
            "-c:v", output_cfg.get("video_codec", "libx264"), "-preset", output_cfg.get("preset", "medium"),
            "-crf", str(output_cfg.get("crf", 20)), "-profile:v", "high",
            "-c:a", output_cfg.get("audio_codec", "aac"), "-b:a", output_cfg.get("audio_bitrate", "160k"),
@@ -63,17 +68,42 @@ def render(src: str | Path, start: float, end: float, plan: LayoutPlan, out_path
             raise MediaError("layout needs a licensed gameplay asset but none was provided")
         gp_iter = _gameplay_frames(gameplay, gameplay_offset, duration, fps)
     n = 0
+    det = [(ev, *ev.window()) for ev in details or []]
     try:
         assert proc.stdin is not None
-        for fr in read_frames(src, start, duration, fps, work_w, work_h, timeout=timeout):
+
+        def emit(fr_src, src_t):
+            nonlocal n
             t = n / fps
+            for ev, a, b in det:
+                if ev.freeze > 0:          # zoom-in lands exactly when the frame freezes
+                    m = timeline.map_time(ev.t - 1e-3)
+                    es = None if m is None else m + 1e-3 - 0.35
+                else:
+                    m = timeline.map_time(ev.t)
+                    es = None if m is None else m - 0.15
+                if es is not None and es <= t <= es + (b - a):
+                    fr_src = apply_detail(fr_src, ev, t - es, label_font)
             gp = next(gp_iter) if gp_iter is not None else None
-            out_frame = compose(fr, plan, t, gp)
+            out_frame = compose(fr_src, plan, t, gp)
             for card, oy, until in overlays or []:
                 if until is None or t < until:
                     out_frame = blend(np.ascontiguousarray(out_frame), card, oy)
             proc.stdin.write(out_frame.tobytes())
             n += 1
+
+        last = None
+        for piece in timeline.pieces:
+            if piece[0] == "seg":
+                _, a, b = piece
+                k = 0
+                for fr in read_frames(src, start + a, b - a, fps, work_w, work_h, timeout=timeout):
+                    last = (fr, a + k / fps)
+                    emit(fr, a + k / fps)
+                    k += 1
+            elif last is not None:          # freeze frame: repeat the last source frame
+                for _ in range(int(round(piece[1] * fps))):
+                    emit(last[0], last[1])
         proc.stdin.close()
         _, err = proc.communicate(timeout=timeout)
     except BrokenPipeError:
@@ -88,6 +118,20 @@ def render(src: str | Path, start: float, end: float, plan: LayoutPlan, out_path
                          f"{(err or b'').decode('utf-8', 'replace')[-1500:]}")
     tmp.replace(out_path)
     return out_path
+
+
+def _audio_graph(timeline, post: str) -> str:
+    """Audio follows the timeline: kept segments concatenated, silence during freeze frames."""
+    parts, labels = [], []
+    for i, p in enumerate(timeline.pieces):
+        if p[0] == "seg":
+            parts.append(f"[1:a]atrim={p[1]:.3f}:{p[2]:.3f},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo[p{i}]")
+        else:
+            parts.append(f"anullsrc=r=48000:cl=stereo,atrim=0:{p[1]:.3f},asetpts=PTS-STARTPTS[p{i}]")
+        labels.append(f"[p{i}]")
+    parts.append(f"{''.join(labels)}concat=n={len(labels)}:v=0:a=1[acat]")
+    parts.append(f"[acat]{post}[aout]")
+    return ";".join(parts)
 
 
 def _gameplay_frames(path, offset: float, duration: float, fps: float):

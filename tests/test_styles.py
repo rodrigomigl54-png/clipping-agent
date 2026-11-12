@@ -93,3 +93,27 @@ def test_letterbox_layout_and_title_card(settings):
     assert len({tuple(c) for c in colours[::50]}) > 3          # white box + black text + coloured emoji
     f = blend(np.zeros((1920, 1080, 3), np.uint8), card, 100)
     assert f[100:100 + card.shape[0]].max() > 0
+
+
+def test_timeline_dead_air_and_hold():
+    from clipper.editing.detail_tools import Timeline, remove_dead_air
+    from clipper.models import Word
+    words = [Word(0.0, 0.5, "a"), Word(0.6, 1.0, "b"), Word(4.0, 4.5, "c"), Word(4.6, 5.0, "d")]
+    tl = remove_dead_air(words, 0.0, 5.2)
+    assert tl.duration < 3.0 and tl.map_time(4.2) is not None and tl.map_time(2.5) is None
+    tl.insert_hold(4.2, 1.0)
+    assert any(p[0] == "hold" for p in tl.pieces) and abs(tl.duration - (tl.duration)) < 1e-9
+
+
+def test_detail_render_keeps_av_in_sync(sample_video, tmp_path, settings):
+    from clipper.core.media import media_info
+    from clipper.editing.detail_tools import DetailEvent, Timeline, font_for_labels
+    from clipper.editing.layout_engine import LayoutPlan
+    from clipper.editing.renderer import render
+    tl = Timeline.whole(6.0); tl.insert_hold(2.0, 1.0)
+    out = render(sample_video, 10, 16, LayoutPlan("fit_blur"), tmp_path / "d.mp4",
+                 output_cfg={**settings.editing.output, "preset": "ultrafast"}, audio_cfg=settings.editing.audio,
+                 timeline=tl, details=[DetailEvent(t=2.0, x=0.5, y=0.5, label="Look", freeze=1.0)],
+                 label_font=font_for_labels(settings.root))
+    i = media_info(out)
+    assert abs(i["duration"] - 7.0) < 0.15 and abs(i["audio_duration"] - i["video_duration"]) < 0.15

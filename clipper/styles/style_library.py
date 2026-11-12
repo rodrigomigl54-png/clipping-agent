@@ -306,6 +306,37 @@ class StyleLibrary:
                                           "created_at": now_iso()})
         return {"id": eid, "category": cat, "metrics": metrics, "vision": vision, "preset": preset}
 
+    def add_blueprint(self, profile: str, *, source: str, label: str, blueprint: dict, local: dict,
+                      stats: dict | None = None, video_path: str | None = None) -> dict[str, Any]:
+        """Store a deep Gemini blueprint + local measurements + public engagement as a style example."""
+        from .blueprint import map_to_vision
+        prof = self.settings.profile(profile)
+        vision = map_to_vision(blueprint)
+        cat = vision.get("category") if vision.get("category") in prof.content_categories else None
+        metrics = dict(local)
+        if stats:
+            views = float(stats.get("playCount") or 0) or None
+            metrics["stats"] = stats
+            if views:
+                eng = sum(float(stats.get(k) or 0) for k in ("diggCount", "commentCount", "shareCount", "collectCount"))
+                metrics["engagement_rate"] = round(eng / views, 4)
+                metrics["share_rate"] = round(float(stats.get("shareCount") or 0) / views, 4)
+        preset = derive_preset(metrics, vision)
+        preset["content_type"] = blueprint.get("content_type")
+        preset["detail_tools"] = blueprint.get("detail_tools") or {}
+        preset["ending"] = (blueprint.get("ending") or {}).get("type")
+        if (blueprint.get("audio") or {}).get("beat_synced_cuts") or (metrics.get("avg_shot_s") or 9) < 1.2:
+            preset["format_type"] = "beat_sync_montage"
+        existing = self.db.one("SELECT id FROM style_examples WHERE source LIKE ?", (f"%{source.split('/')[-1]}%",))
+        eid = existing["id"] if existing else new_id("ex")
+        row = {"profile": profile, "label": label, "category": cat, "source": source, "metrics": dumps(metrics),
+               "vision": dumps(blueprint), "preset": dumps(preset), "notes": video_path, "created_at": now_iso()}
+        if existing:
+            self.db.update("style_examples", "id", eid, row)
+        else:
+            self.db.insert("style_examples", {"id": eid, **row})
+        return {"id": eid, "category": cat, "preset": preset, "metrics": metrics}
+
     def list(self, profile: str | None = None) -> list[dict]:
         sql = "SELECT * FROM style_examples" + (" WHERE profile=?" if profile else "") + " ORDER BY created_at"
         rows = self.db.query(sql, (profile,) if profile else ())
@@ -334,6 +365,30 @@ class StyleLibrary:
         layout = Counter(r["preset"]["layout"] for r in pool).most_common(1)[0][0]
         pick = [r for r in pool if r["preset"]["layout"] == layout][-1]
         return StyleChoice(pick["preset"], [r["id"] for r in pool], f"{why}: layout '{layout}' from example {pick['id']}")
+
+    def duration_targets(self, profile: str) -> dict[str, dict[str, float]]:
+        """Per category (and '*' overall): engagement-weighted median length of the analysed examples."""
+        import math
+        groups: dict[str, list[tuple[float, float]]] = {}
+        for r in self.list(profile):
+            d = (r["metrics"] or {}).get("duration")
+            if not d or r["preset"].get("pending"):
+                continue
+            w = 1.0 + 10.0 * float((r["metrics"] or {}).get("engagement_rate") or 0)
+            for key in (r["category"] or "*", "*"):
+                groups.setdefault(key, []).append((float(d), w))
+        out = {}
+        for k, vals in groups.items():
+            vals.sort()
+            tot = sum(w for _, w in vals); acc = 0.0; med = vals[-1][0]
+            for d, w in vals:
+                acc += w
+                if acc >= tot / 2:
+                    med = d; break
+            logs = [math.log(d) for d, _ in vals]
+            spread = (max(logs) - min(logs)) / 2 if len(vals) > 1 else 0.5
+            out[k] = {"median": round(med, 1), "spread": round(max(0.35, min(1.2, spread)), 2), "n": len(vals)}
+        return out
 
     def summary(self, profile: str) -> dict[str, Any]:
         rows = self.list(profile)

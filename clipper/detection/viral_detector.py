@@ -44,6 +44,7 @@ class DetectionInputs:
     media_duration: float
     trend_terms: set[str]
     exported_texts: list[str]          # for originality estimate (full check in duplicate detector)
+    duration_targets: dict | None = None   # learned from example clips: {category|'*': {median, spread}}
 
 
 class ViralDetector:
@@ -166,8 +167,15 @@ class ViralDetector:
             s["audio_quality"] = 5.0
         lo, hi = prof.duration.min_seconds, prof.duration.max_seconds
         in_range = lo <= dur <= hi
-        s["platform_suitability"] = _clamp((4 if in_range else 0) + 4 * min(1.0, coverage / 0.6)
-                                           + (2 if dur <= 60 else 1 if dur <= 120 else 0.5))
+        targets = inp.duration_targets or {}
+        tgt = targets.get(self.category(prof, inp.source, len(speakers), multi_face, sig)) or targets.get("*")
+        if tgt:
+            # retention-driven length: best when the clip is as long as what works for this type of video
+            fit = math.exp(-(math.log(max(dur, 1e-3) / tgt["median"]) ** 2) / (2 * tgt["spread"] ** 2))
+            s["platform_suitability"] = _clamp((2 if in_range else 0) + 2.5 * min(1.0, coverage / 0.6) + 5.5 * fit)
+        else:
+            s["platform_suitability"] = _clamp((4 if in_range else 0) + 4 * min(1.0, coverage / 0.6)
+                                               + (2 if dur <= 60 else 1 if dur <= 120 else 0.5))
         chem_raw = (min(3, len(speakers)) * 0.8 + min(6, turns) * 0.4 + 2 * multi_face
                     + sig.density("argument") * 0.5 + sig.density("roast") * 0.6 + sig.density("challenge") * 0.4
                     + sig.density("laughter") * 0.3 + sig.density("confusion") * 0.3 + 0.5 * len(sig.mentions))

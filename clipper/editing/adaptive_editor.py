@@ -29,10 +29,12 @@ class EditResult:
     style: dict | None = None
     text_placement: dict | None = None
     captions_enabled: bool = True
+    output_duration: float | None = None
+    details: list | None = None
 
     @property
     def duration(self) -> float:
-        return self.end - self.start
+        return self.output_duration if self.output_duration else self.end - self.start
 
 
 class AdaptiveEditor:
@@ -106,7 +108,7 @@ class AdaptiveEditor:
         return sorted(times)
 
     def edit(self, *, source: dict, candidate: dict, transcript: Transcript, audio: AudioFeatures | None,
-             clip_id: str, out_dir: Path, title: str | None = None) -> EditResult:
+             clip_id: str, out_dir: Path, title: str | None = None, gemini=None) -> EditResult:
         prof = self.settings.profile(source["profile"])
         ecfg = self.settings.editing
         out_w, out_h = int(ecfg.output["width"]), int(ecfg.output["height"])
@@ -161,6 +163,21 @@ class AdaptiveEditor:
                           reason=reason, stack=stack)
         if prof.editing.zoom_emphasis and ecfg.zoom.get("enabled", True) and layout in ("focus", "fit_blur", "letterbox"):
             plan.zoom_times = self.zoom_times(audio, start, end, int(ecfg.zoom.get("max_emphasis_per_clip", 3)))
+        # ---- retention timeline (dead-air jump cuts) and detail tools (zoom / circle / arrow / freeze)
+        from .detail_tools import (Timeline, font_for_labels, needs_detail_tools, plan_details, remove_dead_air)
+        timeline = Timeline.whole(end - start)
+        if prof.editing.dead_air_removal:
+            timeline = remove_dead_air(transcript.words_in(start, end), start, end, audio)
+        details = []
+        clip_text = " ".join(x.text for x in transcript.window(start, end))
+        if prof.editing.detail_tools and gemini is not None and gemini.available() and \
+                needs_detail_tools(candidate.get("category"), clip_text):
+            details = [d for d in plan_details(source["local_path"], start, end, clip_text, gemini)
+                       if timeline.map_time(d.t) is not None]
+            for d in details:
+                if d.freeze > 0:
+                    timeline.insert_hold(d.t, d.freeze)
+        plan.zoom_times = [m for m in (timeline.map_time(z) for z in plan.zoom_times) if m is not None]
         out_dir.mkdir(parents=True, exist_ok=True)
         ass = out_dir / f"{clip_id}.ass"
         overlays = []
@@ -197,7 +214,13 @@ class AdaptiveEditor:
             secs = title_cfg.get("seconds")
             overlays.append((card, placement.title_y, float(secs) if secs else None))
         captions_on = captions_on and placement.caption_center is not None
-        cap = build_ass(transcript.words_in(start, end) if captions_on else [], start, end, caption_cfg, width=out_w,
+        from ..models import Word as _W
+        cap_words = []
+        for w in (transcript.words_in(start, end) if captions_on else []):
+            a, b = timeline.map_time(w.start - start), timeline.map_time(max(w.start, w.end - 0.01) - start)
+            if a is not None:
+                cap_words.append(_W(start + a, start + (b if b is not None else a + (w.end - w.start)), w.text, w.probability))
+        cap = build_ass(cap_words, start, start + timeline.duration, caption_cfg, width=out_w,
                         height=out_h, y_fraction=placement.caption_center or 0.66, safe=ecfg.safe_zones,
                         low_conf=self.settings.global_.transcription.low_confidence_threshold, out_path=ass,
                         title=None if image_title else title, title_cfg=title_cfg)
@@ -205,8 +228,13 @@ class AdaptiveEditor:
         out = render(source["local_path"], start, end, plan, out_dir / f"{clip_id}.mp4", output_cfg=ecfg.output,
                      audio_cfg=ecfg.audio, ass_path=ass, gameplay=gameplay, gameplay_offset=offset,
                      fonts_dir=fonts, timeout=self.settings.global_.pipeline.stage_timeout_seconds,
-                     overlays=overlays)
+                     overlays=overlays, timeline=timeline, details=details,
+                     label_font=font_for_labels(self.settings.root))
         elements = ["vertical reframing", "synchronized captions", "loudness normalization"]
+        if not timeline.is_trivial:
+            elements.append("pacing edit (dead air removed)")
+        if details:
+            elements.append("detail callouts (zoom/circle/arrow)")
         if layout == "focus" and cam.face_found > 0.2:
             elements.append("face-tracked crop")
         if plan.zoom_times:
@@ -217,4 +245,5 @@ class AdaptiveEditor:
                           str(gameplay) if gameplay else None, reason, elements, style_used,
                           {"title_y": placement.title_y, "title_scale": placement.title_scale,
                            "caption_center": placement.caption_center, "protected": placement.protected,
-                           "notes": placement.notes, "ok": placement.ok}, captions_on)
+                           "notes": placement.notes, "ok": placement.ok}, captions_on, timeline.duration,
+                          [d.__dict__ for d in details])

@@ -164,6 +164,8 @@ class ProfileEditingCfg(BaseModel):
     layout_policy: str = "auto"
     caption: CaptionCfg = CaptionCfg()
     zoom_emphasis: bool = True
+    dead_air_removal: bool = False     # jump-cut silent pauses inside a clip (retention)
+    detail_tools: bool = False         # let the editor add zoom/circle/arrow/freeze on key details
 
 
 class FormatExperimentCfg(BaseModel):
