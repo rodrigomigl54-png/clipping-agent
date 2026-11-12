@@ -321,7 +321,9 @@ class StyleLibrary:
         self.db.update("style_examples", "id", eid, {"category": category})
 
     def choose(self, profile: str, category: str | None) -> StyleChoice | None:
-        rows = self.list(profile)
+        # only analysed examples that the editor can reproduce
+        rows = [r for r in self.list(profile) if r["preset"].get("layout") and not r["preset"].get("pending")
+                and not r["preset"].get("not_yet_supported")]
         if not rows:
             return None
         pool = [r for r in rows if category and r["category"] == category]
@@ -336,9 +338,14 @@ class StyleLibrary:
     def summary(self, profile: str) -> dict[str, Any]:
         rows = self.list(profile)
         by_cat: dict[str, Counter] = {}
+        pending = 0
         for r in rows:
+            if r["preset"].get("pending"):
+                pending += 1
+                continue
             by_cat.setdefault(r["category"] or "(none)", Counter())[r["preset"]["layout"]] += 1
-        return {"examples": len(rows), "by_category": {k: dict(v) for k, v in by_cat.items()}}
+        return {"examples": len(rows) - pending, "pending_analysis": pending,
+                "by_category": {k: dict(v) for k, v in by_cat.items()}}
 
 
 def json_dump(obj: Any) -> str:

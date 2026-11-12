@@ -254,11 +254,14 @@ class Orchestrator:
                                    self.settings.root)
             tech, info = technical_checks(result.path, cfg=self.settings.quality["technical"],
                                           min_dur=prof.duration.min_seconds, max_dur=prof.duration.max_seconds,
-                                          caption_report=result.captions, caption_size=prof.editing.caption.size)
+                                          caption_report=result.captions if result.captions_enabled else None, caption_size=prof.editing.caption.size)
             scores = loads(cand["scores"], {})
             content = content_checks(transcript=tr, start=result.start, end=result.end, scores=scores,
-                                     cfg=self.settings.quality["content"], caption_report=result.captions,
+                                     cfg=self.settings.quality["content"], caption_report=result.captions if result.captions_enabled else None,
                                      ai_analysis=cand_full["ai_analysis"])
+            tp = result.text_placement or {}
+            content.add("text_clear_of_content", tp.get("ok", True),
+                        "; ".join(tp.get("notes", [])) or "title and captions placed outside protected areas", "review")
             rights = self.gate.evaluate(src, "export", clip_duration=result.duration, assets=assets,
                                         metadata_text=meta["description"])
             mon = monetization_check.assess(

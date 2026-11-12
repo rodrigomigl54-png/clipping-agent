@@ -57,6 +57,15 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 40 automated tests passi
   vision overrides it); camera detection uses the largest/steady face — set `facecam_region` per
   channel for exact placement; Gemini free tier ≈20 requests/model/day.
 
+## Added 2026-11-12
+- Text safety (`clipper/editing/text_safety.py`): title card and captions are placed only outside
+  protected areas — every face found in sample output frames, the real picture in blurred/black-band
+  layouts, the centre of gameplay panels. Title shrinks before captions move; captions are turned off
+  rather than covering content; QC reports `text_clear_of_content`.
+- Letterbox (black bars) layout, image title card with colour emojis, examples from written analyses.
+- Style library: 3 analysed GTA 6 examples (meme skit, streamer clip, hype montage — montage marked
+  not yet supported); 21 more saved as pending (TikTok cannot be downloaded here; vidIQ credits used up).
+
 ## In progress
 - Nothing partially implemented.
 

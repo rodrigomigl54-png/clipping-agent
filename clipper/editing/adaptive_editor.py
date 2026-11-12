@@ -27,6 +27,8 @@ class EditResult:
     layout_reason: str
     transformative_elements: list[str] = field(default_factory=list)
     style: dict | None = None
+    text_placement: dict | None = None
+    captions_enabled: bool = True
 
     @property
     def duration(self) -> float:
@@ -163,14 +165,40 @@ class AdaptiveEditor:
         ass = out_dir / f"{clip_id}.ass"
         overlays = []
         image_title = bool(title) and title_cfg.get("enabled", True) and title_cfg.get("renderer", "image") == "image"
+        from ..core.media import media_info as _mi
+        from .text_safety import place_text
+        _info = _mi(source["local_path"])
+        card = None
         if image_title:
             from .title_card import make_title_card
             card = make_title_card(title, title_cfg, out_w, self.settings.root)
-            ty = int(out_h * float(title_cfg.get("position", 0.10)))
+        cap_pref = (caption_y if style_used and 'position' in style_used['preset'].get('caption', {})
+                    else plan.caption_y(caption_y))
+        from .text_safety import faces_in_output
+        from .layout_engine import compose as _compose
+        from ..core.media import read_frames as _rf
+        sample_frames = []
+        if layout not in ("split_gta", "hybrid"):          # those need the gameplay feed to compose
+            dur = max(0.5, end - start)
+            for k in range(4):
+                tt = dur * (0.1 + 0.8 * k / 3)
+                fr = next(iter(_rf(source["local_path"], start + tt, 0.05, 25, min(_info["width"], 1280))), None)
+                if fr is not None:
+                    sample_frames.append(_compose(fr, plan, tt))
+        placement = place_text(plan, _info["width"], _info["height"], extra_protected=faces_in_output(sample_frames),
+                               title_h=card.shape[0] if card is not None else None,
+                               title_pref=float(title_cfg.get("position", 0.10)),
+                               caption_h=int(caption_cfg.size * 1.7), caption_pref=cap_pref, safe=ecfg.safe_zones)
+        if card is not None and placement.title_y is not None:
+            if placement.title_scale < 1.0:
+                card = make_title_card(title, {**title_cfg, "size": int(title_cfg.get("size", 62) * placement.title_scale),
+                                               "box_padding": int(title_cfg.get("box_padding", 22) * placement.title_scale)},
+                                       out_w, self.settings.root)
             secs = title_cfg.get("seconds")
-            overlays.append((card, ty, float(secs) if secs else None))
+            overlays.append((card, placement.title_y, float(secs) if secs else None))
+        captions_on = captions_on and placement.caption_center is not None
         cap = build_ass(transcript.words_in(start, end) if captions_on else [], start, end, caption_cfg, width=out_w,
-                        height=out_h, y_fraction=(caption_y if style_used and 'position' in style_used['preset'].get('caption', {}) else plan.caption_y(caption_y)), safe=ecfg.safe_zones,
+                        height=out_h, y_fraction=placement.caption_center or 0.66, safe=ecfg.safe_zones,
                         low_conf=self.settings.global_.transcription.low_confidence_threshold, out_path=ass,
                         title=None if image_title else title, title_cfg=title_cfg)
         fonts = self.settings.path("assets/fonts")
@@ -186,4 +214,7 @@ class AdaptiveEditor:
         if layout in ("split_gta", "hybrid", "stack_regions"):
             elements.append("multi-panel composition")
         return EditResult(out, start, end, layout, fmt, cap,
-                          str(gameplay) if gameplay else None, reason, elements, style_used)
+                          str(gameplay) if gameplay else None, reason, elements, style_used,
+                          {"title_y": placement.title_y, "title_scale": placement.title_scale,
+                           "caption_center": placement.caption_center, "protected": placement.protected,
+                           "notes": placement.notes, "ok": placement.ok}, captions_on)
