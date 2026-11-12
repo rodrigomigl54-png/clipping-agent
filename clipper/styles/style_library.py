@@ -94,6 +94,19 @@ def blur_bands(frames: list[np.ndarray]) -> float:
     return float(np.median(rs)) if rs else 1.0
 
 
+def black_bands(frames: list[np.ndarray]) -> float:
+    """Fraction of the frame height that is solid black at the top+bottom (letterbox bars)."""
+    fracs = []
+    for fr in frames:
+        g = cv2.cvtColor(fr, cv2.COLOR_RGB2GRAY).astype(np.float32)
+        rows = (g.mean(axis=1) < 18) & (g.std(axis=1) < 10)
+        h = len(rows)
+        top = int(np.argmax(~rows)) if (~rows).any() else h
+        bot = int(np.argmax(~rows[::-1])) if (~rows).any() else h
+        fracs.append((top + bot) / h)
+    return float(np.median(fracs)) if fracs else 0.0
+
+
 def face_positions(frames: list[np.ndarray]) -> list[tuple[float, float, float]]:
     out = []
     for fr in frames:
@@ -108,6 +121,7 @@ def analyze_local(path: Path, work: Path) -> dict[str, Any]:
     frames = _frames(path)
     seam, seam_strength = detect_seam(frames)
     blur = blur_bands(frames)
+    black = black_bands(frames)
     faces = face_positions(frames)
     vis = analyze_video(path, info["duration"], fps=2.0, width=240)
     cuts = int((vis.scene > 0.45).sum()) if vis.scene.size else 0
@@ -121,6 +135,8 @@ def analyze_local(path: Path, work: Path) -> dict[str, Any]:
     face_y = float(np.median([f[1] for f in faces])) if faces else None
     if not vertical:
         layout = "fit_blur"
+    elif black >= 0.25:
+        layout = "letterbox"         # solid black bars above/below the picture
     elif blur < 0.25:
         layout = "fit_blur"          # 16:9 picture on a blurred fill (its edges look like seams)
     elif seam is not None:
@@ -135,7 +151,7 @@ def analyze_local(path: Path, work: Path) -> dict[str, Any]:
     return {
         "duration": round(info["duration"], 1), "width": info.get("width"), "height": info.get("height"),
         "vertical": vertical, "seam_y": seam, "seam_strength": round(seam_strength, 2),
-        "blur_band_ratio": round(blur, 3), "faces_per_frame": round(len(faces) / max(1, len(frames)), 2),
+        "blur_band_ratio": round(blur, 3), "black_band_frac": round(black, 3), "faces_per_frame": round(len(faces) / max(1, len(frames)), 2),
         "face_y": round(face_y, 3) if face_y is not None else None, "cuts_per_min": round(cuts * 60 / max(1, info["duration"]), 1),
         "loudness_p90_db": loud, "layout_guess": layout, "cam_position": cam,
     }
@@ -221,6 +237,10 @@ def derive_preset(metrics: dict, vision: dict | None) -> dict[str, Any]:
         layout = "letterbox"
     elif vl == "full_frame" and layout in ("split_cam", "fit_blur"):
         layout = "focus" if metrics.get("faces_per_frame", 0) >= 0.6 else "full_gameplay"
+    if (metrics.get("black_band_frac") or 0) >= 0.25:
+        layout = "letterbox"          # measured black bars: trust the measurement over the model
+    elif metrics.get("layout_guess") == "fit_blur" and (metrics.get("blur_band_ratio") or 1) < 0.2 and layout == "split_cam":
+        layout = "fit_blur"
     split = _frac(v.get("split_ratio"), metrics.get("seam_y") or 0.5, 0.25, 0.75)
     cam = v.get("facecam_position") if v.get("facecam_position") in ("top", "bottom") else (metrics.get("cam_position") or "top")
     preset: dict[str, Any] = {"layout": layout, "split_ratio": split, "cam_position": cam,
