@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS style_examples (
 );
 """
 
-LAYOUTS = ("focus", "fit_blur", "split_cam", "full_gameplay")
+LAYOUTS = ("focus", "fit_blur", "letterbox", "split_cam", "full_gameplay")
 
 
 # ----------------------------------------------------------------------------- local analysis
@@ -145,7 +145,7 @@ def analyze_local(path: Path, work: Path) -> dict[str, Any]:
 VISION_SCHEMA = {
     "type": "object",
     "properties": {
-        "layout": {"type": "string", "enum": ["full_frame", "split_top_bottom", "blurred_bands", "picture_in_picture", "other"]},
+        "layout": {"type": "string", "enum": ["full_frame", "split_top_bottom", "blurred_bands", "black_bars", "picture_in_picture", "other"]},
         "facecam_position": {"type": "string", "enum": ["top", "bottom", "overlay", "none"]},
         "split_ratio": {"type": "number"},
         "captions_present": {"type": "boolean"},
@@ -180,7 +180,7 @@ def analyze_vision(path: Path, gemini, categories: list[str]) -> dict[str, Any] 
     prompt = (
         "These are 4 frames (in order) from ONE vertical short-form clip that the user likes. Describe its "
         "EDITING FORMAT precisely so it can be reproduced: layout (full_frame, split_top_bottom with a streamer "
-        "camera and gameplay, blurred_bands = original 16:9 on a blurred background, picture_in_picture), where "
+        "camera and gameplay, blurred_bands = original 16:9 on a blurred background, black_bars = original 16:9 on solid black bars, picture_in_picture), where "
         "the streamer camera is, split_ratio (fraction of height of the TOP panel), captions (vertical position as "
         "fraction of height of their centre, uppercase or not, words per line, colours as #RRGGBB incl. highlight "
         "colour of emphasised words), an on-screen title banner (present, vertical position fraction of its top, "
@@ -217,6 +217,8 @@ def derive_preset(metrics: dict, vision: dict | None) -> dict[str, Any]:
         layout = "split_cam"
     elif vl == "blurred_bands":
         layout = "fit_blur"
+    elif vl == "black_bars":
+        layout = "letterbox"
     elif vl == "full_frame" and layout in ("split_cam", "fit_blur"):
         layout = "focus" if metrics.get("faces_per_frame", 0) >= 0.6 else "full_gameplay"
     split = _frac(v.get("split_ratio"), metrics.get("seam_y") or 0.5, 0.25, 0.75)
@@ -272,6 +274,35 @@ class StyleLibrary:
         self.db.insert("style_examples", {"id": eid, "profile": profile, "label": label or p.stem, "category": cat,
                                           "source": source or str(p.resolve()), "metrics": dumps(metrics),
                                           "vision": dumps(vision), "preset": dumps(preset), "notes": notes,
+                                          "created_at": now_iso()})
+        return {"id": eid, "category": cat, "metrics": metrics, "vision": vision, "preset": preset}
+
+    def add_from_description(self, description: str, profile: str, *, source: str, gemini,
+                             label: str | None = None, category: str | None = None) -> dict[str, Any]:
+        """Save an example from a written scene-by-scene analysis (e.g. when only a link is available).
+        Gemini turns the text into the same structured description the frame analysis produces."""
+        prof = self.settings.profile(profile)
+        schema = {**VISION_SCHEMA, "properties": {**VISION_SCHEMA["properties"],
+                                                  "duration_seconds": {"type": "number"},
+                                                  "cuts_per_minute": {"type": "number"},
+                                                  "content_summary": {"type": "string"}}}
+        prompt = ("Convert this analysis of a vertical short-form video into the structured editing format. "
+                  "A 16:9 picture centred on solid black bars is layout black_bars (NOT split_top_bottom, which "
+                  "means two different pictures stacked). "
+                  "Use only what the analysis states; leave unknown fields out. Colours as #RRGGBB, positions as "
+                  f"fractions of the frame height. category must be one of: {', '.join(prof.content_categories)}.\n\n"
+                  + description[:12000])
+        vision = gemini.generate_json(prompt, schema, temperature=0.1)
+        metrics = {"duration": vision.get("duration_seconds"), "cuts_per_min": vision.get("cuts_per_minute"),
+                   "layout_guess": {"split_top_bottom": "split_cam", "blurred_bands": "fit_blur", "black_bars": "letterbox"}.get(
+                       vision.get("layout"), "focus"), "faces_per_frame": 0, "seam_y": None,
+                   "from": "written analysis"}
+        cat = category or (vision.get("category") if vision.get("category") in prof.content_categories else None)
+        preset = derive_preset(metrics, vision)
+        eid = new_id("ex")
+        self.db.insert("style_examples", {"id": eid, "profile": profile, "label": label or source, "category": cat,
+                                          "source": source, "metrics": dumps(metrics), "vision": dumps(vision),
+                                          "preset": dumps(preset), "notes": description[:20000],
                                           "created_at": now_iso()})
         return {"id": eid, "category": cat, "metrics": metrics, "vision": vision, "preset": preset}
 

@@ -15,7 +15,7 @@ import numpy as np
 
 from .face_tracker import CameraPath
 
-LAYOUTS = ("focus", "fit_blur", "split_gta", "hybrid", "stack_regions")
+LAYOUTS = ("focus", "fit_blur", "letterbox", "split_gta", "hybrid", "stack_regions")
 
 
 @dataclass
@@ -121,6 +121,19 @@ def compose(frame: np.ndarray, plan: LayoutPlan, t: float, gameplay: np.ndarray 
     W, H = plan.out_w, plan.out_h
     if plan.layout == "focus":
         return _panel(frame, plan, t, W, H)
+    if plan.layout == "letterbox":
+        # whole 16:9 picture centred on solid black bars (headline sits in the top bar)
+        out = np.zeros((H, W, 3), np.uint8)
+        fh, fw = frame.shape[:2]
+        z = zoom_at(plan, t)
+        nw = int(W * min(1.25, z)); nh = int(fh * nw / fw)
+        fg = cv2.resize(frame, (nw, nh), interpolation=cv2.INTER_AREA)
+        if nw > W:
+            x0 = (nw - W) // 2
+            fg = fg[:, x0:x0 + W]; nw = W
+        y = max(0, (H - nh) // 2)
+        out[y:y + nh] = fg[: H - y]
+        return out
     if plan.layout == "fit_blur":
         # background built at 1/10 resolution (blur + darken are cheap there), then upscaled
         small = _cover(frame, W // 10, H // 10)

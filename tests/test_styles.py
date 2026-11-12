@@ -79,3 +79,17 @@ def test_gta6_render_uses_learned_style(project, sample_video, examples):
     out = [c["private_test"] for c in res["clips"] if c.get("private_test")]
     assert out and "/_PRIVATE_TEST/GTA6/" in out[0]["file"]
     assert media_info(out[0]["file"])["height"] == 1920
+
+
+def test_letterbox_layout_and_title_card(settings):
+    import numpy as np
+    from clipper.editing.layout_engine import LayoutPlan, compose
+    from clipper.editing.title_card import blend, make_title_card
+    out = compose(np.full((720, 1280, 3), 200, np.uint8), LayoutPlan("letterbox"), 0)
+    assert out.shape == (1920, 1080, 3) and out[:300].max() == 0 and out[960].min() == 200   # black bars, picture centred
+    card = make_title_card("GTA 6 reportedly features a period system 💀", {"size": 58}, 1080, settings.root)
+    assert card.shape[1] == 1080 and card[..., 3].max() == 255
+    colours = card[card[..., 3] > 200][:, :3]
+    assert len({tuple(c) for c in colours[::50]}) > 3          # white box + black text + coloured emoji
+    f = blend(np.zeros((1920, 1080, 3), np.uint8), card, 100)
+    assert f[100:100 + card.shape[0]].max() > 0

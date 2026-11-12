@@ -43,10 +43,13 @@ trim:
 
 title_overlay:                # on-screen title banner shown at the top of every clip
   enabled: true
+  renderer: image             # image = rounded box + colour emojis (Pillow); ass = plain subtitle box
+  radius: 28                  # corner radius of the box (image renderer)
+  max_width: 0.86             # max box width, fraction of video width
   seconds: null               # null = whole clip; e.g. 4 = only the first 4 seconds
   position: 0.10              # top of the banner, fraction of height (kept below the safe zone)
   size: 62
-  uppercase: true
+  uppercase: false            # clip-channel style: normal case, key words in CAPS from the title itself
   max_chars_per_line: 22
   max_lines: 3
   text_color: "#000000"

@@ -64,7 +64,7 @@ class AdaptiveEditor:
             return "fit_blur", "example uses a camera split but no streamer camera was found in this source"
         if lay == "full_gameplay":
             return "focus", "full-screen gameplay crop"
-        return (lay if lay in ("focus", "fit_blur") else "fit_blur"), "example layout"
+        return (lay if lay in ("focus", "fit_blur", "letterbox") else "fit_blur"), "example layout"
 
     def _cam_stack(self, preset: dict, cam, region, source: dict, out_w: int, out_h: int) -> list:
         from ..core.media import media_info
@@ -157,18 +157,27 @@ class AdaptiveEditor:
         plan = LayoutPlan(layout=layout, out_w=out_w, out_h=out_h, streamer_fraction=fraction, region=region,
                           camera=cam, zoom_cfg=dict(ecfg.zoom), needs_gameplay=layout in ("split_gta", "hybrid"),
                           reason=reason, stack=stack)
-        if prof.editing.zoom_emphasis and ecfg.zoom.get("enabled", True) and layout in ("focus", "fit_blur"):
+        if prof.editing.zoom_emphasis and ecfg.zoom.get("enabled", True) and layout in ("focus", "fit_blur", "letterbox"):
             plan.zoom_times = self.zoom_times(audio, start, end, int(ecfg.zoom.get("max_emphasis_per_clip", 3)))
         out_dir.mkdir(parents=True, exist_ok=True)
         ass = out_dir / f"{clip_id}.ass"
+        overlays = []
+        image_title = bool(title) and title_cfg.get("enabled", True) and title_cfg.get("renderer", "image") == "image"
+        if image_title:
+            from .title_card import make_title_card
+            card = make_title_card(title, title_cfg, out_w, self.settings.root)
+            ty = int(out_h * float(title_cfg.get("position", 0.10)))
+            secs = title_cfg.get("seconds")
+            overlays.append((card, ty, float(secs) if secs else None))
         cap = build_ass(transcript.words_in(start, end) if captions_on else [], start, end, caption_cfg, width=out_w,
                         height=out_h, y_fraction=(caption_y if style_used and 'position' in style_used['preset'].get('caption', {}) else plan.caption_y(caption_y)), safe=ecfg.safe_zones,
                         low_conf=self.settings.global_.transcription.low_confidence_threshold, out_path=ass,
-                        title=title, title_cfg=title_cfg)
+                        title=None if image_title else title, title_cfg=title_cfg)
         fonts = self.settings.path("assets/fonts")
         out = render(source["local_path"], start, end, plan, out_dir / f"{clip_id}.mp4", output_cfg=ecfg.output,
                      audio_cfg=ecfg.audio, ass_path=ass, gameplay=gameplay, gameplay_offset=offset,
-                     fonts_dir=fonts, timeout=self.settings.global_.pipeline.stage_timeout_seconds)
+                     fonts_dir=fonts, timeout=self.settings.global_.pipeline.stage_timeout_seconds,
+                     overlays=overlays)
         elements = ["vertical reframing", "synchronized captions", "loudness normalization"]
         if layout == "focus" and cam.face_found > 0.2:
             elements.append("face-tracked crop")

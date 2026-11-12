@@ -13,6 +13,8 @@ from ..core.media import MediaError, media_info, read_frames
 from ..core.logger import get_logger
 from .audio_processor import audio_filter
 from .layout_engine import LayoutPlan, compose
+from .title_card import blend
+import numpy as np
 
 log = get_logger("renderer")
 
@@ -28,7 +30,9 @@ def _ass_filter(ass_path: Path, fonts_dir: Path | None) -> str:
 
 def render(src: str | Path, start: float, end: float, plan: LayoutPlan, out_path: Path, *,
            output_cfg: dict, audio_cfg: dict, ass_path: Path | None = None, gameplay: str | Path | None = None,
-           gameplay_offset: float = 0.0, fonts_dir: Path | None = None, timeout: float = 3600) -> Path:
+           gameplay_offset: float = 0.0, fonts_dir: Path | None = None, timeout: float = 3600,
+           overlays: list | None = None) -> Path:
+    """``overlays``: [(rgba_array, y, until_seconds_or_None)] blended onto every composed frame."""
     out_path.parent.mkdir(parents=True, exist_ok=True)
     duration = end - start
     fps = float(output_cfg.get("fps", 30))
@@ -64,7 +68,11 @@ def render(src: str | Path, start: float, end: float, plan: LayoutPlan, out_path
         for fr in read_frames(src, start, duration, fps, work_w, work_h, timeout=timeout):
             t = n / fps
             gp = next(gp_iter) if gp_iter is not None else None
-            proc.stdin.write(compose(fr, plan, t, gp).tobytes())
+            out_frame = compose(fr, plan, t, gp)
+            for card, oy, until in overlays or []:
+                if until is None or t < until:
+                    out_frame = blend(np.ascontiguousarray(out_frame), card, oy)
+            proc.stdin.write(out_frame.tobytes())
             n += 1
         proc.stdin.close()
         _, err = proc.communicate(timeout=timeout)
