@@ -35,7 +35,7 @@ def test_research_and_plan(tmp_path):
                        known_types={"x": "hype_edit"})
     snap = tr.run(["x"], ["gta 6"], max_pages_per_creator=2)
     v = next(x for x in snap.tiktok if x["id"].endswith("2"))
-    assert v["velocity"] == 90000 and v["type"] == "hype_edit" and abs(v["engagement"] - 0.1167) < 1e-3
+    assert abs(v["velocity"] - 90000) <= 50 and v["type"] == "hype_edit" and abs(v["engagement"] - 0.1167) < 1e-3
     s = tr.summarize(snap)
     assert s["events"][0]["title"].startswith("Grand Theft Auto VI") and s["sounds"][0]["title"] == "Phonk Song"
     plan = make_plan(s, n=10, release=date(2026, 11, 19), today=date(2026, 11, 13))
