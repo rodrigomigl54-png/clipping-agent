@@ -274,6 +274,11 @@ class TextRenderer:
     def draw(self, frame: np.ndarray, t: float) -> None:
         H, W = frame.shape[:2]
         cy = H * self.y
+        wm = self.vars.get("watermark")
+        if wm and t < self.tpl["duration"] - 0.4:           # small channel tag below the centre, like the references
+            if "_wm" not in self.cache:
+                self.cache["_wm"] = _text_rgba(wm, max(16, int(H * 0.02)), 0.0, 0.08)
+            _over(frame, self.cache["_wm"], W / 2, H * 0.62, alpha=0.55)
         for ev in self.tpl.get("text", []):
             if not ev["t0"] <= t < ev["t1"]:
                 continue

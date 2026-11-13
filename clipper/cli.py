@@ -631,7 +631,7 @@ def cmd_hype(app: App, a) -> int:
             out = outdir / f"{name}.mp4"
             print(f"rendering {t['id']} ({t.get('creator')}, sound '{t.get('sound')}')…")
             try:
-                res = T.make_template_edit(t, footage, out, {"days": days}, audio_from=str(ref) if ref.exists() else None,
+                res = T.make_template_edit(t, footage, out, {"days": days, "watermark": hcfg.get("watermark", "")}, audio_from=str(ref) if ref.exists() else None,
                                            shot_cache=app.settings.path("data/shot_cache"), exclude=recent)
             except Exception as e:
                 print(f"  ! {t['id']}: {e}"); continue

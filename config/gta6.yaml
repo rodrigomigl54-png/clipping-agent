@@ -124,7 +124,7 @@ hype:
     trailer2: "https://www.youtube.com/watch?v=VQRLujxTm3c"   # Rockstar — Trailer 2
     features: "https://www.youtube.com/watch?v=8L0CzL2V72c"   # PlayStation — Features Trailer
     preload: "https://www.youtube.com/watch?v=_yl5ELcmugI"    # Rockstar — Pre-Load Now
-  watermark: ""            # channel name, small, in the bottom band — set once the channel is named
+  watermark: "@mostwanted.vi"   # channel tag, small, on every edit
   templates:
     ZSp9cW6JW: {sound: "worry - ultra slowed", author: "LONOWN & riserayss",
                 reference: "https://www.tiktok.com/@norage_ae/video/7678858598683888914"}     # 14.9 M views
