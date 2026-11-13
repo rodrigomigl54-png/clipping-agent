@@ -49,6 +49,10 @@ SOURCE_ACTIVE = (Stage.IMPORTING.value, Stage.TRANSCRIBING.value, Stage.ANALYZIN
 CLIP_ACTIVE = (Stage.CLIPPING.value, Stage.EDITING.value, Stage.QUALITY_CHECKING.value, Stage.EXPORTING.value)
 
 
+def prof_ab(settings, profile: str) -> bool:
+    return settings.profile(profile).feature("ab_variants")
+
+
 class Orchestrator:
     def __init__(self, settings: Settings, db: Database | None = None, *, transcriber: Transcriber | None = None,
                  gemini: GeminiClient | None = None, rss_fetch: Callable | None = None):
@@ -66,6 +70,11 @@ class Orchestrator:
         self.editor = AdaptiveEditor(settings, self.gate, self.db)
         self.exporter = ExportManager(self.db, settings)
         self.should_stop: Callable[[], bool] = lambda: False
+        try:   # continue from the durable memory in the repo when this database is fresh
+            from . import memory as _memory
+            _memory.load(self.db, settings.path("memory"))
+        except Exception as e:
+            log.warning("could not load memory: %s", e)
 
     # ================================================================ recovery
     def recover(self) -> dict[str, int]:
@@ -218,11 +227,13 @@ class Orchestrator:
             out.append(r)
         return out
 
-    def produce_clip(self, cand: dict) -> dict[str, Any]:
+    def produce_clip(self, cand: dict, variant: str = "A", variant_of: dict | None = None) -> dict[str, Any]:
+        """Render one clip. ``variant`` B re-uses the same moment with a different hook and layout
+        (A/B test); it is linked to variant A and exempt from the duplicate checks against it."""
         src = self.store.get(cand["source_id"])
         prof = self.settings.profile(cand["profile"])
-        dup = self.dupes.check_candidate(cand)
-        if dup.is_duplicate:
+        dup = self.dupes.check_candidate(cand) if variant == "A" else None
+        if dup is not None and dup.is_duplicate:
             self.db.update("candidates", "id", cand["id"], {"status": CandidateStatus.DUPLICATE.value,
                            "status_reason": dup.reason, "updated_at": now_iso()})
             return {"candidate_id": cand["id"], "status": "duplicate", "reason": dup.reason}
@@ -249,9 +260,18 @@ class Orchestrator:
                                    segments_text=[x.text for x in tr.window(cand["start"], cand["end"])],
                                    start=cand["start"], end=cand["end"], attribution=pre.attribution,
                                    trend_terms=self.research.trends.trend_terms(prof.id), gemini=self.gemini,
-                                   headline_examples=self._headlines(prof.id, cand_full.get("category")))["title"]
+                                   headline_examples=self._headlines(prof.id, cand_full.get("category")),
+                                   gemini_title=variant == "A")["title"]
+            force_layout = None
+            if variant == "B" and variant_of:
+                from ..metadata.title_generator import alternative_title
+                title = alternative_title(variant_of.get("title") or title,
+                                          [x.text for x in tr.window(cand["start"], cand["end"])], participants)
+                force_layout = {"letterbox": "fit_blur", "fit_blur": "letterbox", "focus": "fit_blur",
+                                "stack_regions": "fit_blur"}.get(variant_of.get("layout") or "", "letterbox")
             result = self.editor.edit(source=src, candidate=cand_full, transcript=tr, audio=audio, clip_id=clip_id,
-                                      out_dir=self.work("renders", prof.id), title=title, gemini=self.gemini)
+                                      out_dir=self.work("renders", prof.id), title=title,
+                                      gemini=self.gemini if variant == "A" else None, force_layout=force_layout)
             stage(Stage.QUALITY_CHECKING, render_path=str(result.path), duration=result.duration,
                   layout=result.layout, format=result.format)
             phash = video_phash(result.path)
@@ -275,6 +295,20 @@ class Orchestrator:
             content = content_checks(transcript=tr, start=result.start, end=result.end, scores=scores,
                                      cfg=self.settings.quality["content"], caption_report=result.captions if result.captions_enabled else None,
                                      ai_analysis=cand_full["ai_analysis"])
+            qcfg = self.settings.quality
+            mu = float(qcfg.get("technical", {}).get("max_upscale", 2.0))
+            if result.upscale:
+                tech.add("sharp_enough", result.upscale <= mu,
+                         f"source enlarged {result.upscale}x (max {mu}x) — anything above looks soft/blurry")
+            hook_min = float(qcfg.get("content", {}).get("min_hook_score", 4.5))
+            hook = float(scores.get("hook_strength", 0) or 0)
+            first_word = next((w.start for w in tr.words_in(result.start, result.end)), None)
+            dead = (first_word - result.start) if first_word is not None else None
+            has_title = bool(meta.get("title"))
+            strong = hook >= hook_min or (has_title and (dead is not None and dead <= 0.7))
+            content.add("strong_hook", strong,
+                        f"hook score {hook:.1f} (min {hook_min}), speech starts at {dead if dead is None else round(dead, 2)}s, "
+                        f"title on screen: {has_title}", "review")
             tp = result.text_placement or {}
             content.add("text_clear_of_content", tp.get("ok", True),
                         "; ".join(tp.get("notes", [])) or "title and captions placed outside protected areas", "review")
@@ -287,9 +321,14 @@ class Orchestrator:
                 source_duration=src.get("duration"), policy=self.settings.rights.get("monetization", {}),
                 profile_policy=prof.monetization)
             rdup = self.dupes.check_render(prof.id, clip_id, phash, afp)
+            if variant == "B" and rdup.is_duplicate and variant_of and rdup.match_clip_id == variant_of.get("clip_id"):
+                rdup.is_duplicate = False          # B is meant to be the same moment as A
             qc = decide(technical=tech, content=content, rights=rights, monetization=mon, duplicate=rdup,
                         scores=scores, rights_unknown_policy=self.settings.quality.get("decision", {}).get(
                             "rights_unknown_third_party", "needs_review"))
+            meta["variant"] = variant
+            if variant_of:
+                meta["variant_of"] = variant_of.get("clip_id")
             meta["monetization_suitability"] = mon.to_dict()
             meta["rights_status"] = rights.status
             meta["viral_potential_score"] = cand["total_score"]
@@ -349,7 +388,12 @@ class Orchestrator:
         if res.get("stage") == Stage.CLIPPING.value:
             for cand in self.db.query("SELECT * FROM candidates WHERE source_id=? AND status='new' "
                                       "ORDER BY total_score DESC LIMIT ?", (sid, max_clips)):
-                clips.append(self.produce_clip(cand))
+                a = self.produce_clip(cand)
+                clips.append(a)
+                if prof_ab(self.settings, profile) and a.get("private_test"):
+                    ca = self.db.one("SELECT layout, metadata FROM clips WHERE id=?", (a["clip_id"],))
+                    clips.append(self.produce_clip(cand, "B", {"clip_id": a["clip_id"], "layout": ca["layout"],
+                                                               "title": loads(ca["metadata"], {}).get("title")}))
         return {"source": res, "clips": clips}
 
     # ================================================================ review workflow

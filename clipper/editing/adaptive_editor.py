@@ -30,6 +30,7 @@ class EditResult:
     text_placement: dict | None = None
     captions_enabled: bool = True
     output_duration: float | None = None
+    upscale: float | None = None
     details: list | None = None
 
     @property
@@ -108,7 +109,8 @@ class AdaptiveEditor:
         return sorted(times)
 
     def edit(self, *, source: dict, candidate: dict, transcript: Transcript, audio: AudioFeatures | None,
-             clip_id: str, out_dir: Path, title: str | None = None, gemini=None) -> EditResult:
+             clip_id: str, out_dir: Path, title: str | None = None, gemini=None,
+             force_layout: str | None = None) -> EditResult:
         prof = self.settings.profile(source["profile"])
         ecfg = self.settings.editing
         out_w, out_h = int(ecfg.output["width"]), int(ecfg.output["height"])
@@ -158,9 +160,30 @@ class AdaptiveEditor:
                 if layout == "stack_regions":
                     stack = self._cam_stack(p, cam, region, source, out_w, out_h)
                 reason = f"style from examples ({choice.reason}); {reason}"
+        if force_layout:
+            layout, reason, stack = force_layout, f"A/B variant B layout ({force_layout})", []
         plan = LayoutPlan(layout=layout, out_w=out_w, out_h=out_h, streamer_fraction=fraction, region=region,
                           camera=cam, zoom_cfg=dict(ecfg.zoom), needs_gameplay=layout in ("split_gta", "hybrid"),
                           reason=reason, stack=stack)
+        # ---- quality gate: never enlarge the source so much that the clip looks soft
+        from ..core.media import media_info as _mi0
+        from .text_safety import upscale_factor
+        _si = _mi0(source["local_path"])
+        max_up = float(self.settings.quality.get("technical", {}).get("max_upscale", 2.0))
+        up = upscale_factor(plan, _si["width"], _si["height"])
+        if up > max_up and not fmt:          # experiment formats (A/B/C) are never switched silently
+            for alt in ("letterbox", "fit_blur"):
+                if alt == plan.layout:
+                    continue
+                trial = LayoutPlan(layout=alt, out_w=out_w, out_h=out_h, camera=cam, zoom_cfg=dict(ecfg.zoom), reason="")
+                if upscale_factor(trial, _si["width"], _si["height"]) <= max_up:
+                    plan = LayoutPlan(layout=alt, out_w=out_w, out_h=out_h, camera=cam, zoom_cfg=dict(ecfg.zoom),
+                                      reason=f"{reason}; switched to {alt}: source {_si['width']}x{_si['height']} would be "
+                                             f"enlarged {up:.1f}x in '{layout}' (max {max_up}x)")
+                    layout, reason = alt, plan.reason
+                    up = upscale_factor(plan, _si["width"], _si["height"])
+                    break
+        self.last_upscale = round(up, 2)
         if prof.editing.zoom_emphasis and ecfg.zoom.get("enabled", True) and layout in ("focus", "fit_blur", "letterbox"):
             plan.zoom_times = self.zoom_times(audio, start, end, int(ecfg.zoom.get("max_emphasis_per_clip", 3)))
         # ---- retention timeline (dead-air jump cuts) and detail tools (zoom / circle / arrow / freeze)
@@ -246,4 +269,4 @@ class AdaptiveEditor:
                           {"title_y": placement.title_y, "title_scale": placement.title_scale,
                            "caption_center": placement.caption_center, "protected": placement.protected,
                            "notes": placement.notes, "ok": placement.ok}, captions_on, timeline.duration,
-                          [d.__dict__ for d in details])
+                          [d.__dict__ for d in details], self.last_upscale)

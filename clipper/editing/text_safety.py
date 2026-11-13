@@ -138,3 +138,31 @@ def place_text(plan: LayoutPlan, src_w: int, src_h: int, *, title_h: int | None,
             return TextPlacement(None, 1.0, round(cy / H, 4), prot, notes, True)
     notes.append("captions turned off for this clip: no free space that would not cover the streamer/content")
     return TextPlacement(first_fit[1] if first_fit else None, first_fit[0] if first_fit else 1.0, None, prot, notes, True)
+
+
+
+def upscale_factor(plan: LayoutPlan, src_w: int, src_h: int) -> float:
+    """How much the source picture is enlarged in the output (1.0 = native). >~1.8 looks soft, >2.2 blurry."""
+    W, H = plan.out_w, plan.out_h
+    if plan.layout in ("fit_blur", "letterbox"):
+        z = max([1.0] + ([float(plan.zoom_cfg.get("emphasis", 1.12))] if plan.zoom_times else []))
+        return W * z / src_w
+    if plan.layout == "focus":
+        if src_w / src_h > W / H:                         # landscape source: crop keeps full height
+            return H / src_h
+        return W / src_w
+    if plan.layout == "stack_regions" and plan.stack:
+        worst, y = 1.0, 0
+        for i, (region, frac) in enumerate(plan.stack):
+            ph = H - y if i == len(plan.stack) - 1 else int(round(H * frac / 2) * 2)
+            rw, rh = region[2] * src_w, region[3] * src_h
+            worst = max(worst, max(W / rw, ph / rh) if rw and rh else 1.0)
+            y += ph
+        return worst
+    if plan.layout in ("split_gta", "hybrid"):
+        sh = plan.streamer_h                               # streamer panel: W x sh cropped from the source
+        if plan.region:
+            rw, rh = plan.region[2] * src_w, plan.region[3] * src_h
+            return max(W / rw, sh / rh)
+        return sh / src_h if src_w / src_h > W / sh else W / src_w
+    return H / src_h

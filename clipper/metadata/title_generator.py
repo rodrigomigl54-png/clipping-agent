@@ -68,3 +68,14 @@ def validate_ai_title(title: str, transcript: str, allowed_names: list[str], max
         if words and not all(w in known or w in norm for w in words):
             return False
     return True
+
+
+def alternative_title(title_a: str, segments_text: list[str], participants: list[str]) -> str:
+    """Variant-B hook without any AI call: a different angle than title A — a real quote from the clip
+    if A was a statement, otherwise a curiosity line built from A."""
+    who = participants[0] if participants else ""
+    quote = best_quote(segments_text, max_len=48)
+    if quote and quote.lower() not in title_a.lower():
+        return (f'{who}: "{quote.rstrip(".")}" 😳' if who else f'"{quote.rstrip(".")}" 😳')[:90]
+    core = re.sub(r"[\U0001F300-\U0001FAFF\u2600-\u27BF]", "", title_a).strip(" .!")
+    return f"Wait for the end… {core} 👀"[:90]

@@ -16,7 +16,7 @@ log = get_logger("metadata")
 def build_metadata(settings: Settings, *, source: dict, candidate: dict, participants: list[str],
                    segments_text: list[str], start: float, end: float, attribution: list[str],
                    trend_terms: set[str], gemini=None, title: str | None = None,
-                   headline_examples: list[str] | None = None) -> dict[str, Any]:
+                   headline_examples: list[str] | None = None, gemini_title: bool = True) -> dict[str, Any]:
     prof = settings.profile(source["profile"])
     max_chars = int(prof.metadata.get("title_max_chars", 90))
     transcript = " ".join(segments_text)
@@ -26,7 +26,7 @@ def build_metadata(settings: Settings, *, source: dict, candidate: dict, partici
     title_source = "fixed" if fixed_title else "heuristic"
     ai = candidate.get("ai_analysis") or {}
     summary = (ai.get("summary") if isinstance(ai, dict) else None) or candidate.get("summary") or ""
-    if gemini is not None and gemini.available() and not fixed_title:
+    if gemini is not None and gemini_title and gemini.available() and not fixed_title:
         try:
             res = gemini.generate_json(
                 "Write ONE short, punchy on-screen title for a vertical short clip, in the style clip channels "

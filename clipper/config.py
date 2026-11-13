@@ -188,6 +188,8 @@ class ProfileCfg(BaseModel):
     group_youtube_handles: list[str] = []  # official group channels (e.g. AMP, CORE)
     topic: str | None = None                # niche profiles (e.g. GTA 6): what every clip is about
     topic_keywords: list[str] = []          # words that make a moment on-topic (also boost scoring)
+    release_date: str | None = None         # niche event date (e.g. game release) — drives the content phase
+    trend_research: dict[str, Any] = {}     # tiktok_watchlist, youtube_queries, videos_per_day, ...
     content_categories: list[str] = []
     affiliates_are_members: bool = False
     attention: AttentionCfg = AttentionCfg()

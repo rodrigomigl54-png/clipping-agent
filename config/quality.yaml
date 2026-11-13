@@ -8,12 +8,16 @@ technical:
   silence_noise_db: -45
   max_silence_fraction: 0.5
   min_bitrate_kbps: 400
+  max_upscale: 2.0              # source may be enlarged at most 2x (else another layout, or rejected)
+  min_source_height: 480
 
 content:
   min_context_score: 5.0
   min_speech_coverage: 0.35     # fraction of the clip containing transcribed speech
   max_low_confidence_fraction: 0.15
   require_sentence_boundaries: true
+  min_hook_score: 4.5           # hook strength (0-10) the first seconds must reach
+  max_dead_start_s: 0.7         # speech/action must start within this many seconds
 
 decision:
   rights_unknown_third_party: needs_review   # needs_review | reject

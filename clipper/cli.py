@@ -578,6 +578,93 @@ def cmd_examples(app: App, a) -> int:
     return 0
 
 
+def cmd_trends(app: App, a) -> int:
+    import json as _json
+    from datetime import date as _date
+    from .research.planner import make_plan, save_plan
+    from .research.trends import TrendResearch
+    from .styles.style_library import StyleLibrary
+    prof = app.settings.profile(a.profile)
+    cfg = prof.trend_research
+    mem = app.settings.path("memory/research")
+    if a.action == "research":
+        tr = TrendResearch(mem, known_types=cfg.get("creator_types", {}))
+        extra = []
+        disc = mem / "discovered_creators.json"
+        if disc.exists():
+            extra = [h for h, n in _json.loads(disc.read_text()).items() if n >= 2][:25]
+        handles = list(dict.fromkeys(cfg.get("tiktok_watchlist", []) + extra))
+        snap = tr.run(handles, cfg.get("youtube_queries", []), max_pages_per_creator=int(cfg.get("pages_per_creator", 4)))
+        summ = tr.summarize(snap)
+        # discover creators mentioned in on-topic captions
+        import re as _re
+        from .research.trends import on_topic
+        counts = _json.loads(disc.read_text()) if disc.exists() else {}
+        for v in snap.tiktok:
+            if on_topic(v.get("desc")):
+                for h in _re.findall(r"@([A-Za-z0-9_.]{3,24})", v.get("desc") or ""):
+                    if h.lower() not in [x.lower() for x in handles]:
+                        counts[h] = counts.get(h, 0) + 1
+        disc.write_text(_json.dumps(counts, indent=1))
+        (mem / "summary_latest.json").write_text(_json.dumps(summ, indent=1, ensure_ascii=False))
+        _print_trends(summ)
+    elif a.action == "show":
+        _print_trends(_json.loads((mem / "summary_latest.json").read_text()))
+    elif a.action == "plan":
+        summ = _json.loads((mem / "summary_latest.json").read_text())
+        lib = StyleLibrary(app.db, app.settings)
+        heads = {c: lib.headline_examples(prof.id, c) for c in ("streamer_reaction", "hype_edit", "meme_skit", "fun_fact", "news_trailer")}
+        rel = _date.fromisoformat(prof.release_date) if prof.release_date else None
+        plan = make_plan(summ, n=a.n or int(cfg.get("videos_per_day", 12)), release=rel, headlines=heads,
+                         duration_targets=lib.duration_targets(prof.id))
+        path = save_plan(plan, app.settings.path("memory"))
+        print(f"Plan {plan['date']} — phase {plan['phase']} ({plan['days_to_release']} days to release) — {plan['videos']} videos")
+        print("allocation:", plan["allocation"])
+        for s_ in plan["slots"]:
+            snd = s_["sound"] if isinstance(s_["sound"], str) else f"{s_['sound']['title']} — {s_['sound']['author']}"
+            print(f"  {s_['slot']:>2}. {s_['type']:<13} {s_['target_length_s'] or '?':>3}s  topic: {s_['topic']}  |  {s_['series']}\n"
+                  f"      sound: {snd}\n      headline style: {(s_['headline_style'] or ['-'])[0]}")
+        print(f"\nsaved: {path}")
+    return 0
+
+
+def _print_trends(s: dict) -> None:
+    print(f"Research {s['taken_at']}: {s['tiktok_videos']} TikTok + {s['youtube_videos']} YouTube videos")
+    print("\nGTA 6 content types right now (median views/hour, engagement):")
+    for t, v in s["types"].items():
+        print(f"  {t:<14} n={v['n']:<3} {v['median_velocity']:>7}/h  eng {v['median_engagement']:.1%}  shares {v['median_share_rate']:.2%}")
+    print("\nFastest GTA 6 TikToks:")
+    for v in s["top_tiktok"][:10]:
+        print(f"  {v['velocity']:>7}/h  {v['views']:>9} views  {v['age_h']:>5}h old  x{v['outlier']} vs creator  "
+              f"{v['type']:<13} @{v['author']}: {(v['desc'] or '')[:55]}")
+    print("\nTrending topics:", ", ".join(t for t, _ in s["topics"][:15]))
+    print("Trending sounds:", "; ".join(f"{x['title']} — {x['author']}" for x in s["sounds"][:6]))
+    if s.get("top_youtube"):
+        print("\nFastest GTA 6 YouTube:")
+        for r in s["top_youtube"][:6]:
+            print(f"  {r['velocity']:>7}/h  {r['views']:>9}  {r['title'][:60]} | {r['channel']}")
+    adj = s.get("adjacent_trends", {})
+    if adj.get("topics"):
+        print("\nAdjacent (non-GTA) trends:", ", ".join(t for t, _ in adj["topics"][:8]))
+    if s.get("errors"):
+        print("errors:", s["errors"][:5])
+
+
+def cmd_memory(app: App, a) -> int:
+    from .core import memory
+    from .styles.style_library import StyleLibrary
+    if a.action == "save":
+        counts = memory.save(app.db, app.settings.path("memory"))
+        lib = StyleLibrary(app.db, app.settings)
+        for pid in app.settings.profiles:
+            if lib.list(pid):
+                lib.export(pid, app.settings.path(f"config/style_examples/{pid}.json"))
+        print("saved to memory/:", counts, "(commit and push to keep it)")
+    else:
+        print("loaded:", memory.load(app.db, app.settings.path("memory")))
+    return 0
+
+
 # ----------------------------------------------------------------------------- parser
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="main.py", description="Local AI Clipping Machine (AMP / CORE / LosPollosTV)")
@@ -650,6 +737,12 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--profile", choices=PROFILE_IDS); s.add_argument("--category"); s.add_argument("--label")
     s.add_argument("--notes"); s.add_argument("--no-ai", action="store_true", help="skip Gemini vision (saves quota)")
     s.set_defaults(fn=cmd_examples)
+    s = sub.add_parser("trends", help="trend research (TikTok first) and the daily content plan")
+    s.add_argument("action", choices=["research", "show", "plan"]); s.add_argument("--profile", choices=PROFILE_IDS, default="gta6")
+    s.add_argument("--n", type=int, help="videos in the plan (default from config)")
+    s.set_defaults(fn=cmd_trends)
+    s = sub.add_parser("memory", help="save/load the durable memory kept in the repo (memory/)")
+    s.add_argument("action", choices=["save", "load"]); s.set_defaults(fn=cmd_memory)
     sub.add_parser("compare-formats", help="compare LosPollosTV formats A/B/C").set_defaults(fn=cmd_compare_formats)
     s = sub.add_parser("learning", help="learning recommendations and config history")
     s.add_argument("action", choices=["analyze", "list", "apply", "dismiss", "history"])
