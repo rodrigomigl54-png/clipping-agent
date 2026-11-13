@@ -190,6 +190,7 @@ class ProfileCfg(BaseModel):
     topic_keywords: list[str] = []          # words that make a moment on-topic (also boost scoring)
     release_date: str | None = None         # niche event date (e.g. game release) — drives the content phase
     trend_research: dict[str, Any] = {}     # tiktok_watchlist, youtube_queries, videos_per_day, ...
+    hype: dict[str, Any] = {}               # hype edit engine: beat templates (sound per reference), watermark
     content_categories: list[str] = []
     affiliates_are_members: bool = False
     attention: AttentionCfg = AttentionCfg()

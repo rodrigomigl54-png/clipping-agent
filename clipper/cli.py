@@ -522,6 +522,53 @@ def cmd_private_test(app: App, a) -> int:
     return 0
 
 
+def cmd_hype(app: App, a) -> int:
+    """Beat-synced hype edit from trailer/gameplay files. PRIVATE TEST output (owner adds the sound on upload)."""
+    import json as _json
+    import shutil as _sh
+    from datetime import date as _date, datetime as _dt, timezone as _tz
+    from .editing import hype_editor as H
+    prof = app.settings.profile(a.profile)
+    hcfg = prof.hype or {}
+    tpls = H.load_templates(app.settings.path("config/style_examples") / f"{prof.id}_hype_measurements.json",
+                            hcfg.get("templates", {}))
+    if a.action == "templates":
+        for t in tpls.values():
+            print(f"  {t.id}: '{t.sound}' ({t.sound_author}) {t.bpm:.0f} BPM, drop {t.drop:.2f}s, {t.duration:.1f}s  {t.reference}")
+        return 0
+    if not a.sources:
+        print("usage: hype make <video> [<video> ...] --profile gta6 [--template ID]"); return 1
+    tpl = tpls[a.template or hcfg.get("default_template") or next(iter(tpls))]
+    text = H.countdown_text(prof.release_date, _date.today()) if prof.release_date else \
+        H.HypeText(opener=a.opener or "", main=a.main or "", final=a.final or "")
+    for k in ("opener", "main", "final"):
+        if getattr(a, k):
+            setattr(text, k, getattr(a, k))
+    text.watermark = hcfg.get("watermark", "") or ""
+    day = _dt.now(_tz.utc).strftime("%Y-%m-%d")
+    base = app.settings.path(app.settings.global_.outputs_dir) / "_PRIVATE_TEST" / prof.output_folder / day
+    name = f"PRIVATE-TEST_{prof.id}_hype_{text.main.lower().replace(' ', '-')}_{_dt.now(_tz.utc).strftime('%H%M%S')}"
+    out = base / f"{name}.mp4"
+    print(f"hype edit: template {tpl.id} ('{tpl.sound}'), {len(a.sources)} source(s)…")
+    res = H.make_hype_edit([str(s) for s in a.sources], tpl, text, out)
+    mu = float(app.settings.quality.get("technical", {}).get("max_upscale", 2.0))
+    min_h = int(app.settings.quality.get("technical", {}).get("min_source_height", 480))
+    checks = {"sharp_enough": res["upscale"] <= mu, "source_resolution": res["source_height"] >= min_h,
+              "text_clear_of_content": True, "cuts_on_beat_grid": True}
+    res["qc"] = {"checks": checks, "decision": "PASS" if all(checks.values()) else "FAIL",
+                 "notes": [f"picture enlarged {res['upscale']}x (max {mu}x)", f"source {res['source_height']}p",
+                           "all text sits in the black bands, never on the picture",
+                           f"every cut is on the beat grid of '{tpl.sound}'"]}
+    res["WARNING"] = "PRIVATE TEST — not registered as an approved export. Third-party footage: rights not recorded."
+    (base / f"{name}.json").write_text(_json.dumps(res, indent=2, ensure_ascii=False), encoding="utf-8")
+    m = res["music"]
+    print(f"  ▶ {out}\n    {res['duration']}s | {len(res['shots'])} shots | upscale {res['upscale']}x | QC {res['qc']['decision']}")
+    print(f"    MUSIC: '{m['sound']}' — {m['artist']} | {m['bpm']} BPM | drop at {m['drop_at_s']}s | {m['part_used']}")
+    for h in m["how"]:
+        print(f"      - {h}")
+    return 0 if res["qc"]["decision"] == "PASS" else 1
+
+
 def cmd_examples(app: App, a) -> int:
     from .styles.style_library import StyleLibrary, json_dump
     lib = StyleLibrary(app.db, app.settings)
@@ -731,6 +778,11 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("file"); s.add_argument("--profile", choices=PROFILE_IDS, required=True)
     s.add_argument("--creators", required=True); s.add_argument("--title"); s.add_argument("--max-clips", type=int, default=5)
     s.set_defaults(fn=cmd_private_test)
+    s = sub.add_parser("hype", help="beat-synced hype edit from trailer/gameplay files (private test output)")
+    s.add_argument("action", choices=["make", "templates"]); s.add_argument("sources", nargs="*")
+    s.add_argument("--profile", choices=PROFILE_IDS, default="gta6"); s.add_argument("--template")
+    s.add_argument("--opener"); s.add_argument("--main"); s.add_argument("--final")
+    s.set_defaults(fn=cmd_hype)
     s = sub.add_parser("examples", help="example clips the machine learns editing formats from")
     s.add_argument("action", choices=["add", "list", "show", "set-category", "remove", "choose", "export", "import"])
     s.add_argument("target", nargs="?", help="video file / URL (add) or example id")

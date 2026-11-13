@@ -76,7 +76,29 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 40 automated tests passi
 - Retention timeline: dead-air jump cuts; adaptive length scored against engagement-weighted example lengths
   per content type (gta6 hard limits widened to 6–180 s).
 - AI headlines follow the real headline style of the same content type.
-- Not yet: beat-synced hype-edit montage engine (most engaging type in the references).
+- (Hype-edit engine added 2026-11-13, see below.)
+
+## Added 2026-11-13
+- **Trend research, free** (`research/trends.py`, `trends research|show`): TikTok creator embeds + public
+  video pages (views, likes, shares, saves, sound, post time) and YouTube search (this week). Velocity
+  (views/h), engagement, outlier vs creator median, type, topics, trending sounds, official events.
+  New creators discovered from @mentions. No Gemini / vidIQ quota used.
+- **Daily plan** (`research/planner.py`, `trends plan`): phase (pre-release / launch week / post-launch),
+  allocation per type, series, angles, sounds, A/B variants, hook rule; saved in `memory/plans/`.
+- **Quality gate**: `max_upscale` 2.0 — layouts that would enlarge the source too much switch to a sharper
+  layout or are rejected (`sharp_enough` QC); `strong_hook` QC.
+- **A/B variants** (variant B = alternative title + alternate layout), **durable memory** in `memory/`
+  (`memory save|load`, loaded automatically on start).
+- **Hype-edit engine** (`editing/hype_editor.py`, `python main.py hype make <videos...>`): shot detection
+  (rejects text cards, logos, black/fades, soft shots), crop centred on faces/action, opener (cinematic,
+  optional ≤0.6x interpolated slow motion) → first cut on the drop → one shot per beat starting on its
+  motion peak, alternating look (brightness/hue), punch-in on every cut, white flashes on the kicks,
+  countdown text from the release date, cut to black on the last beat. Cut on the measured beat grid of a
+  reference edit whose TikTok sound is known (`hype templates`); output is silent and comes with music
+  instructions (sound, start 0:00, BPM, drop second). Layout: 4:5 picture (1.34x from 1080p) with text
+  only in the black bands. Output goes to `outputs/_PRIVATE_TEST/` (third-party trailer footage).
+- **Automatic morning run**: a scheduled task (07:43 Europe/Belgrade) runs trends research + plan +
+  memory save and reports the day's plan in the chat.
 
 ## In progress
 - Nothing partially implemented.

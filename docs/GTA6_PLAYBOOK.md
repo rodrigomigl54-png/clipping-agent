@@ -14,7 +14,7 @@ Examples: @norage_ae 14.9 M views · @stackz_jm8 2.3 M · @moribontaru 1.2 M · 
 - **One short centred white line** (y ≈ 0.45–0.5), viewer's voice: "I can't wait to play as Lucia",
   "Literally next week btw...", "I need this game right now", countdown "844 DAYS → 127 DAYS → ARE YOU READY".
 - **Ending**: hard cut to black on the last beat, or seamless loop back to the first shot.
-- Not yet produced by the machine automatically (needs the beat-sync montage engine).
+- Produced by `python main.py hype make <trailer/gameplay files>` (beat-sync engine, see the recipe below).
 
 ## 2. Meme / "fake feature" skit — biggest reach (up to 4.1 M), lower engagement (0.03–0.18)
 Examples: @gta_memes_sol ×6 (period system 4.1 M, shower scene 2.6 M, "not woke" 1.7 M …)

@@ -111,3 +111,16 @@ metadata:
   base_hashtags: [gta6, gta, gtavi, gaming, shorts]
   max_hashtags: 8
   title_max_chars: 90
+
+# Hype edit engine (python main.py hype ...). Each template is a measured reference edit whose cuts sit on the
+# beat of a known TikTok sound: the edit is cut on that grid, the owner adds the sound from 0:00 on upload.
+hype:
+  default_template: ZSp9cW6JW
+  watermark: ""            # channel name, small, in the bottom band — set once the channel is named
+  templates:
+    ZSp9cW6JW: {sound: "worry - ultra slowed", author: "LONOWN & riserayss",
+                reference: "https://www.tiktok.com/@norage_ae/video/7678858598683888914"}     # 14.9 M views
+    ZSp9cXNmB: {sound: "RAMPAGE - SLOWED", author: "?",
+                reference: "https://www.tiktok.com/@mt.editz.mt/video/7706334683532905761"}   # 0.7 M views
+    ZSp9WEEmC: {sound: "original sound (mfx.3dits)", author: "mfx.3dits",
+                reference: "https://www.tiktok.com/@mfx.3dits/video/7706988282600508705"}     # 0.5 M views

@@ -66,6 +66,9 @@ python main.py init
 | Status | `python main.py status` |
 | Transcript search | `python main.py search "race"` |
 | Creator attention | `python main.py attention` |
+| GTA 6 trends + daily plan | `python main.py trends research` / `trends plan` |
+| Hype / countdown edit | `python main.py hype make trailer1.mp4 trailer2.mp4 --profile gta6` (`hype templates` lists sounds) |
+| Durable memory | `python main.py memory save` / `memory load` |
 
 ## GTA 6 niche + learning formats from example clips
 
