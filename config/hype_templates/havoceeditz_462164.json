@@ -1,0 +1,211 @@
+{
+ "id": "havoceeditz_462164",
+ "reference_file": "havoceeditz_462164.mp4",
+ "orientation": "vertical",
+ "duration": 13.367,
+ "cuts": [
+  6.1,
+  7.067,
+  7.6,
+  8.033,
+  8.667,
+  9.167,
+  9.6,
+  10.033,
+  10.333,
+  10.6,
+  11.067,
+  11.467,
+  11.967,
+  12.4,
+  12.867
+ ],
+ "slots": [
+  {
+   "t0": 0.0,
+   "t1": 6.1,
+   "bright": 146.6,
+   "sat": 30.8,
+   "hue": 109.0,
+   "motion": 0.0392,
+   "faces": 0
+  },
+  {
+   "t0": 6.1,
+   "t1": 7.067,
+   "bright": 141.7,
+   "sat": 86.3,
+   "hue": 19.0,
+   "motion": 0.0679,
+   "faces": 0
+  },
+  {
+   "t0": 7.067,
+   "t1": 7.6,
+   "bright": 119.5,
+   "sat": 80.5,
+   "hue": 100.0,
+   "motion": 0.1045,
+   "faces": 0
+  },
+  {
+   "t0": 7.6,
+   "t1": 8.033,
+   "bright": 129.1,
+   "sat": 92.2,
+   "hue": 6.0,
+   "motion": 0.0791,
+   "faces": 0
+  },
+  {
+   "t0": 8.033,
+   "t1": 8.667,
+   "bright": 131.6,
+   "sat": 107.3,
+   "hue": 60.0,
+   "motion": 0.1307,
+   "faces": 1
+  },
+  {
+   "t0": 8.667,
+   "t1": 9.167,
+   "bright": 163.9,
+   "sat": 146.3,
+   "hue": 18.0,
+   "motion": 0.0437,
+   "faces": 0
+  },
+  {
+   "t0": 9.167,
+   "t1": 9.6,
+   "bright": 150.2,
+   "sat": 63.2,
+   "hue": 21.0,
+   "motion": 0.0728,
+   "faces": 1
+  },
+  {
+   "t0": 9.6,
+   "t1": 10.033,
+   "bright": 74.7,
+   "sat": 54.9,
+   "hue": 27.0,
+   "motion": 0.0644,
+   "faces": 1
+  },
+  {
+   "t0": 10.033,
+   "t1": 10.333,
+   "bright": 204.5,
+   "sat": 2.0,
+   "hue": -1,
+   "motion": 0.0892,
+   "faces": 0
+  },
+  {
+   "t0": 10.333,
+   "t1": 10.6,
+   "bright": 91.6,
+   "sat": 56.1,
+   "hue": 114.0,
+   "motion": 0.0644,
+   "faces": 0
+  },
+  {
+   "t0": 10.6,
+   "t1": 11.067,
+   "bright": 129.6,
+   "sat": 47.0,
+   "hue": 20.0,
+   "motion": 0.0576,
+   "faces": 0
+  },
+  {
+   "t0": 11.067,
+   "t1": 11.467,
+   "bright": 86.7,
+   "sat": 60.3,
+   "hue": 107.0,
+   "motion": 0.0862,
+   "faces": 0
+  },
+  {
+   "t0": 11.467,
+   "t1": 11.967,
+   "bright": 140.2,
+   "sat": 60.6,
+   "hue": 11.0,
+   "motion": 0.1376,
+   "faces": 0
+  },
+  {
+   "t0": 11.967,
+   "t1": 12.4,
+   "bright": 114.3,
+   "sat": 58.4,
+   "hue": 11.0,
+   "motion": 0.1059,
+   "faces": 0
+  },
+  {
+   "t0": 12.4,
+   "t1": 12.867,
+   "bright": 113.0,
+   "sat": 92.6,
+   "hue": 17.0,
+   "motion": 0.0383,
+   "faces": 0
+  },
+  {
+   "t0": 12.867,
+   "t1": 13.367,
+   "bright": 32.5,
+   "sat": 89.5,
+   "hue": 38.0,
+   "motion": 0.0253,
+   "faces": 0
+  }
+ ],
+ "fade_out_from": null,
+ "transition": "whip",
+ "text": [
+  {
+   "type": "line",
+   "t0": 0,
+   "t1": 6.1,
+   "text": "new GTA 6 gameplay just dropped!"
+  },
+  {
+   "type": "line",
+   "t0": 6.1,
+   "t1": 13.367,
+   "text": "absolutely insane."
+  }
+ ],
+ "text_style": {
+  "y": 0.49,
+  "line_size": 0.042,
+  "size": 0.058
+ },
+ "bpm": 123.0,
+ "beats": [
+  0.07,
+  0.511,
+  0.975,
+  1.463,
+  1.95,
+  2.438,
+  2.902,
+  3.39
+ ],
+ "reference": "https://www.tiktok.com/@havoceeditz/video/7707356950983462164",
+ "video_id": "7707356950983462164",
+ "creator": "havoceeditz",
+ "views": 323400,
+ "created": 1794508886,
+ "outlier": 1.75,
+ "sound": "GOOD LOOKING (HARDTEKK) (edited version)",
+ "sound_author": "4cyzon & 4VNX & zhyar",
+ "category": "hype_edit",
+ "text_review": true
+}

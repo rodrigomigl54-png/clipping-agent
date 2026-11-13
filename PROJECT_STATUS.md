@@ -100,6 +100,23 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 40 automated tests passi
 - **Automatic morning run**: a scheduled task (07:43 Europe/Belgrade) runs trends research + plan +
   memory save and reports the day's plan in the chat.
 
+## Added 2026-11-13 (later): template edits — the machine copies viral edit structures by itself
+- **Template learning** (`editing/template_edit.py`, `hype learn <TikTok URL|file>` / `hype learn-trending`):
+  from the day's research the machine downloads the top hype edits, measures every cut frame-accurately, the look
+  of each shot (brightness, colour, motion, faces), the sound's tempo (librosa), the fade-out and the orientation,
+  and reads the on-screen text with one free Gemini call (rolling countdowns become `{days}+N -> {days}`).
+  Saved in `config/hype_templates/*.json`.
+- **Template rendering** (`hype render <id>` / `hype daily`): each slot gets the most similar shot from the official
+  trailers (`assets/footage/gta6`, imported free via vidIQ), cut on the same frames as the reference, whip
+  transitions, rolling counter / word-by-word lines with glow / letter scatter, fade-out. Cinematic black bars are
+  cropped away (landscape) or avoided (vertical). Preview with the reference sound + silent upload copy. Shots used
+  in the last 3 days are avoided (`memory/hype_used.json`). Lines copied from another creator are flagged
+  CHECK TEXT. First learned templates: mfx.3dits countdown (owner's example), havoceeditz ×2, norage_ae.
+- **Local Whisper works** (free): Hugging Face hosts allowed; model `small.en` downloaded; audio is decoded with
+  ffmpeg (the faster-whisper PyAV decoder failed with this PyAV version).
+- Morning scheduled task now runs the full production: research -> plan -> learn templates -> daily edits ->
+  review -> send to the owner -> memory commit.
+
 ## In progress
 - Nothing partially implemented.
 
@@ -115,9 +132,8 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 40 automated tests passi
    this key (free tier without billing) — grounded research/trends are recorded as `failed` until
    billing is enabled in Google AI Studio. Never replaced with ungrounded "research".
 2. **Gemini transcription engine added and verified live** (fallback when the Whisper model can't
-   be downloaded): accurate sentence segments, word timings estimated. **Whisper model not exercised here**: Hugging Face was unreachable in the sandbox, so the
-   faster-whisper path is untested end-to-end; the sidecar transcript path is fully tested. On your
-   machine the model downloads on first use (or set `WHISPER_MODEL_PATH`).
+   be downloaded): accurate sentence segments, word timings estimated. **Local Whisper verified 2026-11-13**
+   (`small.en`, free, ~32 s for a 2 min clip on CPU).
 3. **Face tracking uses OpenCV's Haar frontal-face cascade**: misses profiles, tiny facecams and
    heavy lighting. Tested with mocked detections (synthetic test media has no faces). For streams
    with a facecam overlay, set `facecam_region` in the sidecar — it is far more reliable.

@@ -116,6 +116,40 @@ class TikTokPublic:
                           "original": bool(mu.get("original"))},
                 "url": f"https://www.tiktok.com/@{(it.get('author') or {}).get('uniqueId') or handle}/video/{it['id']}"}
 
+    @staticmethod
+    def download(handle: str, vid: str, dest: Path, timeout: float = 120) -> Path:
+        """Save a public reference video (for template learning only: cuts, beat, text timing). The page sets
+        the cookies its own video address needs, so both requests share one cookie jar."""
+        import http.cookiejar
+        jar = http.cookiejar.CookieJar()
+        op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))
+        page = f"https://www.tiktok.com/@{handle.lstrip('@')}/video/{vid}"
+        h = op.open(urllib.request.Request(page, headers={"User-Agent": UA}), timeout=30).read().decode("utf-8", "replace")
+        m = re.search(r'<script id="__UNIVERSAL_DATA_FOR_REHYDRATION__"[^>]*>(.*?)</script>', h, re.S)
+        if not m:
+            raise ValueError("video page without data")
+        it = json.loads(m.group(1))["__DEFAULT_SCOPE__"]["webapp.video-detail"]["itemInfo"]["itemStruct"]
+        v = it.get("video") or {}
+        urls = [v.get("playAddr")] + [u for b in v.get("bitrateInfo") or [] for u in (b.get("PlayAddr") or {}).get("UrlList") or []]
+        urls = [u for i, u in enumerate(urls) if u and u not in urls[:i]]
+        urls.sort(key=lambda u: "www.tiktok.com" not in u)          # same-site address first (fewest hosts needed)
+        if not urls:
+            raise ValueError("no playable address on the public page")
+        data, err = None, None
+        for u in urls:
+            try:
+                data = op.open(urllib.request.Request(u, headers={"User-Agent": UA, "Referer": page, "Range": "bytes=0-"}),
+                               timeout=timeout).read()
+                if len(data) > 50_000:
+                    break
+            except Exception as e:                       # try the next CDN address
+                err, data = e, None
+        if not data:
+            raise ValueError(f"video not downloadable ({err})")
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_bytes(data)
+        return dest
+
 
 class YouTubePublic:
     WEEK_SHORTS = "EgYIAxABGAE%253D"      # filter: this week, video type

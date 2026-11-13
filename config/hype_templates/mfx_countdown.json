@@ -1,0 +1,318 @@
+{
+ "id": "mfx_countdown",
+ "reference_file": "mfx_countdown.mp4",
+ "orientation": "landscape",
+ "duration": 17.2,
+ "cuts": [
+  0.7,
+  1.5,
+  2.233,
+  2.867,
+  3.6,
+  4.167,
+  4.7,
+  5.633,
+  6.267,
+  6.967,
+  7.6,
+  8.3,
+  9.0,
+  9.667,
+  10.333,
+  11.033,
+  11.733,
+  12.4,
+  13.067,
+  13.767
+ ],
+ "slots": [
+  {
+   "t0": 0.0,
+   "t1": 0.7,
+   "bright": 60.1,
+   "sat": 55.8,
+   "hue": 72.0,
+   "motion": 0.0499,
+   "faces": 0
+  },
+  {
+   "t0": 0.7,
+   "t1": 1.5,
+   "bright": 64.1,
+   "sat": 110.7,
+   "hue": 41.0,
+   "motion": 0.0409,
+   "faces": 0
+  },
+  {
+   "t0": 1.5,
+   "t1": 2.233,
+   "bright": 31.6,
+   "sat": 128.8,
+   "hue": 144.0,
+   "motion": 0.0338,
+   "faces": 0
+  },
+  {
+   "t0": 2.233,
+   "t1": 2.867,
+   "bright": 61.8,
+   "sat": 76.4,
+   "hue": 51.0,
+   "motion": 0.0485,
+   "faces": 0
+  },
+  {
+   "t0": 2.867,
+   "t1": 3.6,
+   "bright": 36.0,
+   "sat": 103.9,
+   "hue": 135.0,
+   "motion": 0.0426,
+   "faces": 0
+  },
+  {
+   "t0": 3.6,
+   "t1": 4.167,
+   "bright": 185.5,
+   "sat": 55.1,
+   "hue": 86.0,
+   "motion": 0.0798,
+   "faces": 0
+  },
+  {
+   "t0": 4.167,
+   "t1": 4.7,
+   "bright": 135.6,
+   "sat": 54.9,
+   "hue": 15.0,
+   "motion": 0.0513,
+   "faces": 1
+  },
+  {
+   "t0": 4.7,
+   "t1": 5.633,
+   "bright": 38.7,
+   "sat": 114.5,
+   "hue": 120.0,
+   "motion": 0.0502,
+   "faces": 0
+  },
+  {
+   "t0": 5.633,
+   "t1": 6.267,
+   "bright": 65.5,
+   "sat": 103.2,
+   "hue": 132.0,
+   "motion": 0.0658,
+   "faces": 0
+  },
+  {
+   "t0": 6.267,
+   "t1": 6.967,
+   "bright": 118.5,
+   "sat": 41.4,
+   "hue": 21.0,
+   "motion": 0.1031,
+   "faces": 0
+  },
+  {
+   "t0": 6.967,
+   "t1": 7.6,
+   "bright": 174.8,
+   "sat": 54.0,
+   "hue": 96.0,
+   "motion": 0.0686,
+   "faces": 0
+  },
+  {
+   "t0": 7.6,
+   "t1": 8.3,
+   "bright": 75.6,
+   "sat": 140.9,
+   "hue": 122.0,
+   "motion": 0.0571,
+   "faces": 0
+  },
+  {
+   "t0": 8.3,
+   "t1": 9.0,
+   "bright": 125.6,
+   "sat": 161.2,
+   "hue": 17.0,
+   "motion": 0.0826,
+   "faces": 1
+  },
+  {
+   "t0": 9.0,
+   "t1": 9.667,
+   "bright": 139.3,
+   "sat": 53.3,
+   "hue": 106.0,
+   "motion": 0.0527,
+   "faces": 0
+  },
+  {
+   "t0": 9.667,
+   "t1": 10.333,
+   "bright": 49.4,
+   "sat": 135.3,
+   "hue": 109.0,
+   "motion": 0.043,
+   "faces": 0
+  },
+  {
+   "t0": 10.333,
+   "t1": 11.033,
+   "bright": 126.3,
+   "sat": 84.4,
+   "hue": 14.0,
+   "motion": 0.0916,
+   "faces": 0
+  },
+  {
+   "t0": 11.033,
+   "t1": 11.733,
+   "bright": 116.2,
+   "sat": 47.6,
+   "hue": 23.0,
+   "motion": 0.083,
+   "faces": 0
+  },
+  {
+   "t0": 11.733,
+   "t1": 12.4,
+   "bright": 105.9,
+   "sat": 123.1,
+   "hue": 15.0,
+   "motion": 0.0882,
+   "faces": 0
+  },
+  {
+   "t0": 12.4,
+   "t1": 13.067,
+   "bright": 65.3,
+   "sat": 153.5,
+   "hue": 113.0,
+   "motion": 0.0584,
+   "faces": 0
+  },
+  {
+   "t0": 13.067,
+   "t1": 13.767,
+   "bright": 186.6,
+   "sat": 43.5,
+   "hue": 15.0,
+   "motion": 0.0675,
+   "faces": 0
+  },
+  {
+   "t0": 13.767,
+   "t1": 17.2,
+   "bright": 33.6,
+   "sat": 242.4,
+   "hue": 116.0,
+   "motion": 0.0285,
+   "faces": 0
+  }
+ ],
+ "fade_out_from": 16.4,
+ "transition": "whip",
+ "text": [
+  {
+   "type": "counter",
+   "t0": 0.0,
+   "t1": 2.867,
+   "every": 0.1,
+   "from": "{days}+986",
+   "to": "{days}",
+   "suffix": "DAYS"
+  },
+  {
+   "type": "line",
+   "t0": 2.867,
+   "t1": 3.6,
+   "text": "ARE"
+  },
+  {
+   "type": "line",
+   "t0": 3.6,
+   "t1": 4.167,
+   "text": "ARE YOU"
+  },
+  {
+   "type": "line",
+   "t0": 4.167,
+   "t1": 5.6,
+   "text": "ARE YOU READYYYYYY"
+  },
+  {
+   "type": "scatter",
+   "t0": 5.6,
+   "t1": 6.05,
+   "text": "ARE YOU READYYYYYY"
+  }
+ ],
+ "text_style": {
+  "size": 0.058,
+  "line_size": 0.04,
+  "glow": 0.9,
+  "tracking": 0.05,
+  "y": 0.5
+ },
+ "bpm": 172.3,
+ "beats": [
+  0.139,
+  0.488,
+  0.836,
+  1.161,
+  1.509,
+  1.858,
+  2.183,
+  2.531,
+  2.879,
+  3.228,
+  3.576,
+  3.901,
+  4.226,
+  4.574,
+  4.923,
+  5.271,
+  5.596,
+  5.944,
+  6.293,
+  6.618,
+  6.966,
+  7.314,
+  7.639,
+  7.988,
+  8.336,
+  8.684,
+  9.009,
+  9.358,
+  9.683,
+  10.031,
+  10.379,
+  10.728,
+  11.053,
+  11.401,
+  11.749,
+  12.074,
+  12.423,
+  12.771,
+  13.096,
+  13.444
+ ],
+ "reference": "https://www.tiktok.com/@mfx.3dits/video/7706988282600508705",
+ "creator": "mfx.3dits",
+ "views_when_learned": 495100,
+ "sound": "original sound - mfx.3dits",
+ "sound_author": "mfx.3dits",
+ "category": "hype_edit",
+ "style": "countdown_whip",
+ "notes": "Rolling day counter (every 3 frames, 993 -> real days) over the first cuts, then 'ARE' / 'ARE YOU' / 'ARE YOU READYYYYYY' word by word on the beat, letters scatter, then a montage cut every 2 beats (172 BPM) with whip transitions; long dark outro that fades to black. Landscape 16:9, no bands.",
+ "text_measured_from": "frame-by-frame read of the reference (10 fps contact sheet)",
+ "video_id": "7706988282600508705",
+ "views": 495100,
+ "created": null
+}

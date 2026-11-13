@@ -116,6 +116,14 @@ metadata:
 # beat of a known TikTok sound: the edit is cut on that grid, the owner adds the sound from 0:00 on upload.
 hype:
   default_template: ZSp9cW6JW
+  daily: 4                  # template edits per day (hype daily), best learned templates first
+  footage_dir: assets/footage/gta6      # official trailers (gitignored); re-imported free via vidIQ if missing
+  refs_dir: assets/hype_refs            # downloaded reference edits (template sound for previews)
+  footage_sources:                      # official uploads only
+    trailer1: "https://www.youtube.com/watch?v=QdBZY2fkU-0"   # Rockstar — Trailer 1
+    trailer2: "https://www.youtube.com/watch?v=VQRLujxTm3c"   # Rockstar — Trailer 2
+    features: "https://www.youtube.com/watch?v=8L0CzL2V72c"   # PlayStation — Features Trailer
+    preload: "https://www.youtube.com/watch?v=_yl5ELcmugI"    # Rockstar — Pre-Load Now
   watermark: ""            # channel name, small, in the bottom band — set once the channel is named
   templates:
     ZSp9cW6JW: {sound: "worry - ultra slowed", author: "LONOWN & riserayss",

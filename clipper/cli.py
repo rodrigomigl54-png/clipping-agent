@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import os
 import shutil
 import sys
@@ -523,19 +524,141 @@ def cmd_private_test(app: App, a) -> int:
 
 
 def cmd_hype(app: App, a) -> int:
-    """Beat-synced hype edit from trailer/gameplay files. PRIVATE TEST output (owner adds the sound on upload)."""
+    """Hype edits. make: beat-grid edit (4:5). learn / learn-trending: learn the exact template of a viral edit.
+    render: rebuild one template with our footage. daily: the day's edits from the best templates."""
     import json as _json
-    import shutil as _sh
     from datetime import date as _date, datetime as _dt, timezone as _tz
     from .editing import hype_editor as H
+    from .editing import template_edit as T
     prof = app.settings.profile(a.profile)
     hcfg = prof.hype or {}
+    root = app.settings.root
+    day = _dt.now(_tz.utc).strftime("%Y-%m-%d")
+    outdir = app.settings.path(app.settings.global_.outputs_dir) / "_PRIVATE_TEST" / prof.output_folder / day
+    refs_dir = app.settings.path(hcfg.get("refs_dir", "assets/hype_refs"))
+    footage = sorted(str(p) for p in app.settings.path(hcfg.get("footage_dir", f"assets/footage/{prof.id}")).glob("*.mp4"))
+    days = H.days_until(prof.release_date) if prof.release_date else 0
+
+    if a.action == "templates":
+        tpls = H.load_templates(app.settings.path("config/style_examples") / f"{prof.id}_hype_measurements.json",
+                                hcfg.get("templates", {}))
+        print("beat grids (hype make):")
+        for t in tpls.values():
+            print(f"  {t.id}: '{t.sound}' ({t.sound_author}) {t.bpm:.0f} BPM, drop {t.drop:.2f}s  {t.reference}")
+        print("learned templates (hype render / daily), best first:")
+        for t in sorted(T.list_templates(root), key=T.template_score, reverse=True):
+            print(f"  {t['id']}: {t.get('creator', '?')} {t.get('views') or t.get('views_when_learned') or '?'} views | "
+                  f"{t['orientation']} {t['duration']}s {len(t['cuts'])} cuts {t.get('bpm', '?')} BPM | sound "
+                  f"'{t.get('sound', '?')}' | text events {len(t.get('text', []))}  {t.get('reference', '')}")
+        return 0
+
+    if a.action in ("learn", "learn-trending"):
+        from .research.trends import TikTokPublic
+        jobs = []
+        if a.action == "learn":
+            if not a.sources:
+                print("usage: hype learn <tiktok url | video file> [--id ID]"); return 1
+            src = a.sources[0]
+            m = re.search(r"tiktok\.com/@([^/]+)/video/(\d+)", src)
+            jobs.append({"file": None if m else src, "author": m.group(1) if m else None, "vid": m.group(2) if m else None,
+                         "id": a.id})
+        else:
+            snaps = sorted((app.settings.path("memory/research")).glob("snapshot_*.json"))
+            if not snaps:
+                print("no research snapshot: run `trends research` first"); return 1
+            have = {t.get("video_id") for t in T.list_templates(root)}
+            vids = [v for v in _json.loads(snaps[-1].read_text()).get("tiktok", [])
+                    if v.get("type") == "hype_edit" and v.get("id") not in have]
+            vids.sort(key=lambda v: (v.get("velocity") or 0) * (1 + 0.3 * (v.get("outlier") or 1)), reverse=True)
+            jobs = [{"file": None, "author": v["author"], "vid": v["id"], "meta": v} for v in vids[:a.top]]
+        tt = TikTokPublic()
+        for j in jobs:
+            meta = j.get("meta") or {}
+            if j["file"] is None and not meta:
+                meta = tt.video(j["author"], j["vid"]) or {}
+            tid = j.get("id") or (f"{j['author']}_{j['vid'][-6:]}".replace(".", "_") if j["vid"] else Path(j["file"]).stem)
+            ref = Path(j["file"]) if j["file"] else refs_dir / f"{tid}.mp4"
+            try:
+                if j["file"] is None and not ref.exists():
+                    tt.download(j["author"], j["vid"], ref)
+                tpl = T.learn_template(str(ref), tid)
+                if len(tpl["cuts"]) < 6:
+                    print(f"  - {tid}: only {len(tpl['cuts'])} cuts — not a beat edit, skipped"); continue
+                snd = meta.get("sound") or {}
+                tpl.update({"reference": meta.get("url"), "video_id": j.get("vid"), "creator": meta.get("author") or j.get("author"),
+                            "views": meta.get("views"), "created": meta.get("created"), "outlier": meta.get("outlier"),
+                            "sound": snd.get("title"), "sound_author": snd.get("author"), "category": "hype_edit",
+                            "reference_file": ref.name})
+                if not a.no_ai and app.orch.gemini.available():
+                    try:
+                        tpl["text"] = T.learn_text(str(ref), tpl, app.orch.gemini)
+                        # lines other than countdowns are the other creator's words: check they fit our footage
+                        tpl["text_review"] = any(e["type"] == "line" and "{days}" not in e["text"] for e in tpl["text"])
+                    except Exception as e:                      # quota / model errors: template still usable
+                        tpl["text_error"] = str(e)[:200]
+                T.save_template(root, tpl)
+                print(f"  + {tid}: {tpl['orientation']} {tpl['duration']}s, {len(tpl['cuts'])} cuts, {tpl.get('bpm', '?')} BPM, "
+                      f"{len(tpl.get('text', []))} text events, sound '{tpl.get('sound')}'")
+            except Exception as e:
+                print(f"  ! {tid}: {e}")
+        return 0
+
+    if a.action in ("render", "daily"):
+        if not footage:
+            print(f"no footage in {hcfg.get('footage_dir', f'assets/footage/{prof.id}')} (official trailers): import it first")
+            return 1
+        tpls = sorted(T.list_templates(root), key=T.template_score, reverse=True)
+        if a.action == "render":
+            tpls = [t for t in tpls if t["id"] in (a.sources or [])] or tpls[:1]
+        else:
+            tpls = [t for t in tpls if not (days < 1 and any(e.get("type") == "counter" for e in t.get("text", [])))]
+            tpls = tpls[:a.n or int(hcfg.get("daily", 3))]
+        used_f = app.settings.path("memory/hype_used.json")
+        used = _json.loads(used_f.read_text()) if used_f.exists() else {}
+        from datetime import timedelta as _td
+        cutoff = (_date.today() - _td(days=3)).isoformat()
+        recent = {(x[0], x[1]) for d, xs in used.items() if d >= cutoff for x in xs}
+        made = []
+        for t in tpls:
+            ref = refs_dir / t.get("reference_file", f"{t['id']}.mp4")
+            if not ref.exists() and t.get("video_id") and t.get("creator"):
+                try:
+                    from .research.trends import TikTokPublic
+                    TikTokPublic.download(t["creator"], t["video_id"], ref)
+                except Exception as e:
+                    print(f"  (no reference audio for {t['id']}: {e})")
+            name = f"PRIVATE-TEST_{prof.id}_{t['id']}_{days}d_{_dt.now(_tz.utc).strftime('%H%M%S')}"
+            out = outdir / f"{name}.mp4"
+            print(f"rendering {t['id']} ({t.get('creator')}, sound '{t.get('sound')}')…")
+            try:
+                res = T.make_template_edit(t, footage, out, {"days": days}, audio_from=str(ref) if ref.exists() else None,
+                                           shot_cache=app.settings.path("data/shot_cache"), exclude=recent)
+            except Exception as e:
+                print(f"  ! {t['id']}: {e}"); continue
+            mu = float(app.settings.quality.get("technical", {}).get("max_upscale", 2.0))
+            res["qc"] = {"sharp_enough": res["upscale"] <= mu, "source_1080p": res["source_height"] >= 1080}
+            res["music"] = {"sound": t.get("sound"), "artist": t.get("sound_author"), "reference_post": t.get("reference"),
+                            "bpm": t.get("bpm"), "how": [
+                                "TikTok: open the reference post, tap the sound -> Use this sound.",
+                                "Start the sound at 0:00 (do not trim): every cut sits on the same frame as in the reference.",
+                                "Upload the *_silent.mp4 file and keep the original-video volume at 0."]}
+            res["WARNING"] = "PRIVATE TEST — not an approved export; official trailer footage (rights not recorded)."
+            if t.get("text_review"):
+                res["text_review"] = "on-screen lines copied from the reference: check they are true for this footage"
+            out.with_suffix(".json").write_text(_json.dumps(res, indent=2, ensure_ascii=False), encoding="utf-8")
+            used.setdefault(day, []).extend(res["used_shots"])
+            made.append(res)
+            ok = all(res["qc"].values())
+            print(f"  ▶ {res.get('preview_with_sound') or res['file']}\n    {res['duration']}s {res['size']} | "
+                  f"upscale {res['upscale']}x | QC {'PASS' if ok else 'FAIL'} | sound '{t.get('sound')}' from 0:00"
+                  + (" | CHECK TEXT" if t.get("text_review") else ""))
+        used_f.parent.mkdir(parents=True, exist_ok=True)
+        used_f.write_text(_json.dumps({d: v for d, v in sorted(used.items())[-7:]}, indent=0))
+        return 0 if made else 1
+
+    # make: the original beat-grid edit (4:5 picture + bands, silent)
     tpls = H.load_templates(app.settings.path("config/style_examples") / f"{prof.id}_hype_measurements.json",
                             hcfg.get("templates", {}))
-    if a.action == "templates":
-        for t in tpls.values():
-            print(f"  {t.id}: '{t.sound}' ({t.sound_author}) {t.bpm:.0f} BPM, drop {t.drop:.2f}s, {t.duration:.1f}s  {t.reference}")
-        return 0
     if not a.sources:
         print("usage: hype make <video> [<video> ...] --profile gta6 [--template ID]"); return 1
     tpl = tpls[a.template or hcfg.get("default_template") or next(iter(tpls))]
@@ -545,29 +668,17 @@ def cmd_hype(app: App, a) -> int:
         if getattr(a, k):
             setattr(text, k, getattr(a, k))
     text.watermark = hcfg.get("watermark", "") or ""
-    day = _dt.now(_tz.utc).strftime("%Y-%m-%d")
-    base = app.settings.path(app.settings.global_.outputs_dir) / "_PRIVATE_TEST" / prof.output_folder / day
     name = f"PRIVATE-TEST_{prof.id}_hype_{text.main.lower().replace(' ', '-')}_{_dt.now(_tz.utc).strftime('%H%M%S')}"
-    out = base / f"{name}.mp4"
-    print(f"hype edit: template {tpl.id} ('{tpl.sound}'), {len(a.sources)} source(s)…")
+    out = outdir / f"{name}.mp4"
     res = H.make_hype_edit([str(s) for s in a.sources], tpl, text, out)
     mu = float(app.settings.quality.get("technical", {}).get("max_upscale", 2.0))
-    min_h = int(app.settings.quality.get("technical", {}).get("min_source_height", 480))
-    checks = {"sharp_enough": res["upscale"] <= mu, "source_resolution": res["source_height"] >= min_h,
-              "text_clear_of_content": True, "cuts_on_beat_grid": True}
-    res["qc"] = {"checks": checks, "decision": "PASS" if all(checks.values()) else "FAIL",
-                 "notes": [f"picture enlarged {res['upscale']}x (max {mu}x)", f"source {res['source_height']}p",
-                           "all text sits in the black bands, never on the picture",
-                           f"every cut is on the beat grid of '{tpl.sound}'"]}
+    res["qc"] = {"decision": "PASS" if res["upscale"] <= mu else "FAIL"}
     res["WARNING"] = "PRIVATE TEST — not registered as an approved export. Third-party footage: rights not recorded."
-    (base / f"{name}.json").write_text(_json.dumps(res, indent=2, ensure_ascii=False), encoding="utf-8")
+    (outdir / f"{name}.json").write_text(_json.dumps(res, indent=2, ensure_ascii=False), encoding="utf-8")
     m = res["music"]
-    print(f"  ▶ {out}\n    {res['duration']}s | {len(res['shots'])} shots | upscale {res['upscale']}x | QC {res['qc']['decision']}")
-    print(f"    MUSIC: '{m['sound']}' — {m['artist']} | {m['bpm']} BPM | drop at {m['drop_at_s']}s | {m['part_used']}")
-    for h in m["how"]:
-        print(f"      - {h}")
+    print(f"  ▶ {out}\n    {res['duration']}s | upscale {res['upscale']}x | QC {res['qc']['decision']}")
+    print(f"    MUSIC: '{m['sound']}' — {m['artist']} | {m['bpm']} BPM | drop at {m['drop_at_s']}s")
     return 0 if res["qc"]["decision"] == "PASS" else 1
-
 
 def cmd_examples(app: App, a) -> int:
     from .styles.style_library import StyleLibrary, json_dump
@@ -779,8 +890,11 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--creators", required=True); s.add_argument("--title"); s.add_argument("--max-clips", type=int, default=5)
     s.set_defaults(fn=cmd_private_test)
     s = sub.add_parser("hype", help="beat-synced hype edit from trailer/gameplay files (private test output)")
-    s.add_argument("action", choices=["make", "templates"]); s.add_argument("sources", nargs="*")
+    s.add_argument("action", choices=["make", "templates", "learn", "learn-trending", "render", "daily"])
+    s.add_argument("sources", nargs="*", help="make: videos | learn: TikTok URL or file | render: template ids")
     s.add_argument("--profile", choices=PROFILE_IDS, default="gta6"); s.add_argument("--template")
+    s.add_argument("--id"); s.add_argument("--top", type=int, default=3); s.add_argument("--n", type=int)
+    s.add_argument("--no-ai", action="store_true", help="learn without Gemini (no text events)")
     s.add_argument("--opener"); s.add_argument("--main"); s.add_argument("--final")
     s.set_defaults(fn=cmd_hype)
     s = sub.add_parser("examples", help="example clips the machine learns editing formats from")
