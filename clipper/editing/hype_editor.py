@@ -82,6 +82,8 @@ class Shot:
     sharp: float           # Laplacian variance at analysis size
     detail: float          # fraction of pixels with edges (text cards / logos / black are low)
     cx: float              # horizontal centre of interest 0-1 (for the 4:5 crop)
+    faces: int = 0         # faces found in the mid frame (character shot vs scenery)
+    bar: float = 0.0       # cinematic black bar height (fraction of frame height, top and bottom)
     usable: bool = True
     reason: str = ""
 
@@ -169,6 +171,25 @@ def reject_reason(bright: float, bright_min: float, detail: float, motion: float
     return ""
 
 
+def letterbox_bar(img: np.ndarray, thr: float = 14.0) -> float:
+    """Height of the black bars at top/bottom (fraction of height, the smaller of the two, rounded down)."""
+    rows = img.reshape(img.shape[0], -1).astype(np.float32)
+    mean, mx = rows.mean(1), rows.max(1)
+    H = img.shape[0]
+
+    def run(order) -> int:
+        n = 0
+        for i in order:
+            if mean[i] < thr and mx[i] < 60:
+                n += 1
+            else:
+                break
+        return n
+    top, bot = run(range(H)), run(range(H - 1, -1, -1))
+    b = min(top, bot) / H
+    return round(b, 3) if b >= 0.03 else 0.0
+
+
 def _face_centres(path: str, shots: list[Shot]) -> None:
     """Centre the crop on the biggest face of character shots (mid frame, 640x360)."""
     from ..detection.visual_analyzer import detect_faces
@@ -180,10 +201,13 @@ def _face_centres(path: str, shots: list[Shot]) -> None:
                              capture_output=True).stdout
         if len(raw) != 640 * 360 * 3:
             continue
-        faces = detect_faces(np.frombuffer(raw, np.uint8).reshape(360, 640, 3), 0.08)
+        img = np.frombuffer(raw, np.uint8).reshape(360, 640, 3)
+        s.bar = letterbox_bar(img)
+        faces = detect_faces(img, 0.08)
         if faces:
             x, y, w, h = max(faces, key=lambda f: f[2] * f[3])
             s.cx = (x + w / 2) / 640
+            s.faces = len(faces)
 
 
 # ------------------------------------------------------------------ selection

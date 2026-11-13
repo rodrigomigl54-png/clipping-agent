@@ -23,6 +23,16 @@ from ..models import Segment, Transcript, Word
 log = get_logger("transcription")
 
 
+
+def _pcm16k(path: Path):
+    """Decode audio with ffmpeg (16 kHz mono float32). Avoids faster-whisper's PyAV decoder, which breaks
+    with some PyAV versions."""
+    import subprocess
+    import numpy as np
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(path), "-ac", "1", "-ar", "16000", "-f", "f32le", "-"],
+                         capture_output=True, check=True).stdout
+    return np.frombuffer(raw, np.float32).copy()
+
 class TranscriptionError(RuntimeError):
     pass
 
@@ -141,7 +151,7 @@ class FasterWhisperTranscriber:
 
     def transcribe(self, audio_path: Path, source_id: str) -> Transcript:
         model = self._load()
-        seg_iter, _info = model.transcribe(str(audio_path), language=self.cfg.language, word_timestamps=True,
+        seg_iter, _info = model.transcribe(_pcm16k(audio_path), language=self.cfg.language, word_timestamps=True,
                                            vad_filter=self.cfg.vad_filter, condition_on_previous_text=False)
         segs = []
         for s in seg_iter:

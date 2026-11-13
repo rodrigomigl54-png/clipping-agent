@@ -68,6 +68,8 @@ python main.py init
 | Creator attention | `python main.py attention` |
 | GTA 6 trends + daily plan | `python main.py trends research` / `trends plan` |
 | Hype / countdown edit | `python main.py hype make trailer1.mp4 trailer2.mp4 --profile gta6` (`hype templates` lists sounds) |
+| Learn a viral edit's template | `python main.py hype learn <tiktok url>` / `hype learn-trending --top 3` |
+| Day's template edits | `python main.py hype daily` (or `hype render <template id>`) |
 | Durable memory | `python main.py memory save` / `memory load` |
 
 ## GTA 6 niche + learning formats from example clips
