@@ -14,13 +14,14 @@ duration:
 # Initial research priorities. These are attention weights, NOT clip quotas.
 # Channel IDs are intentionally empty: add the creators' real channel IDs yourself.
 creators:
-  - {name: Kai Cenat,    priority: very_high,   aliases: [kai, kai cenat],        hashtags: [kaicenat],    youtube_channel_ids: []}
-  - {name: Fanum,        priority: high,        aliases: [fanum],                 hashtags: [fanum],       youtube_channel_ids: []}
-  - {name: Agent 00,     priority: high,        aliases: [agent, agent 00, agent00], hashtags: [agent00],  youtube_channel_ids: []}
-  - {name: Duke Dennis,  priority: medium_high, aliases: [duke, duke dennis],     hashtags: [dukedennis],  youtube_channel_ids: []}
-  - {name: Chrisnxtdoor, priority: medium_high, aliases: [chris, chrisnxtdoor],   hashtags: [chrisnxtdoor],youtube_channel_ids: []}
-  - {name: ImDavisss,    priority: medium_high, aliases: [davis, imdavisss],      hashtags: [imdavisss],   youtube_channel_ids: []}
+  - {name: Kai Cenat,    priority: very_high,   aliases: [kai, kai cenat],        hashtags: [kaicenat],    youtube_channel_ids: [], youtube_handles: ["@KaiCenatLive"]}
+  - {name: Fanum,        priority: high,        aliases: [fanum],                 hashtags: [fanum],       youtube_channel_ids: [], youtube_handles: ["@FanumLive"]}
+  - {name: Agent 00,     priority: high,        aliases: [agent, agent 00, agent00], hashtags: [agent00],  youtube_channel_ids: [], youtube_handles: ["@Agent00"]}
+  - {name: Duke Dennis,  priority: medium_high, aliases: [duke, duke dennis],     hashtags: [dukedennis],  youtube_channel_ids: [], youtube_handles: ["@DukeDennisAMP"]}
+  - {name: Chrisnxtdoor, priority: medium_high, aliases: [chris, chrisnxtdoor],   hashtags: [chrisnxtdoor],youtube_channel_ids: [], youtube_handles: ["@chrisnxtdoorlive"]}
+  - {name: ImDavisss,    priority: medium_high, aliases: [davis, imdavisss],      hashtags: [imdavisss],   youtube_channel_ids: [], youtube_handles: ["@ImDavisssTV"]}
 group_name: AMP
+group_youtube_handles: ["@AMPEXCLUSIVE"]
 content_categories: [individual_stream, official_group_video, challenge, group_reaction, conversation, collaboration]
 affiliates_are_members: false     # guests are tagged as guests, never as AMP members
 

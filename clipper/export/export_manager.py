@@ -93,6 +93,28 @@ class ExportManager:
             c.execute("UPDATE candidates SET status='exported', updated_at=? WHERE id=?", (now_iso(), clip["candidate_id"]))
         return self.summary(clip_id)
 
+    def export_private_test(self, clip_id: str) -> dict:
+        """Copy a clip to outputs/_PRIVATE_TEST/<BRAND>/<date>/ for private evaluation only."""
+        clip = self.db.one("SELECT * FROM clips WHERE id=?", (clip_id,))
+        meta = loads(clip["metadata"], {})
+        prof = self.settings.profile(clip["profile"])
+        day = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        base = self.settings.path(self.settings.global_.outputs_dir) / "_PRIVATE_TEST" / prof.output_folder / day
+        base.mkdir(parents=True, exist_ok=True)
+        name = f"PRIVATE-TEST_{clip['profile']}_{slugify(meta.get('title', 'clip'))}_{clip_id[-6:]}"
+        dst = base / f"{name}.mp4"
+        shutil.copy2(clip["render_path"], dst)
+        if clip["thumbnail_path"] and Path(clip["thumbnail_path"]).exists():
+            shutil.copy2(clip["thumbnail_path"], base / f"{name}.jpg")
+        record = {**meta, "clip_id": clip_id, "file": str(dst.resolve()),
+                  "WARNING": "PRIVATE TEST — NOT FOR PUBLICATION. No permission from the rights holders.",
+                  "qc_decision": clip["decision"], "qc_reasons": loads(clip["decision_reasons"], [])}
+        (base / f"{name}.json").write_text(json.dumps(record, indent=2, ensure_ascii=False), encoding="utf-8")
+        return {"clip_id": clip_id, "profile": prof.display_name, "title": meta.get("title"),
+                "duration": round(clip["duration"] or 0, 1), "quality_score": clip["quality_score"],
+                "viral_potential_score": clip["viral_score"], "rights_status": clip["rights_status"],
+                "format": clip["format"], "file": str(dst.resolve())}
+
     def summary(self, clip_id: str) -> dict:
         clip = self.db.one("SELECT * FROM clips WHERE id=?", (clip_id,))
         meta = loads(clip["metadata"], {})

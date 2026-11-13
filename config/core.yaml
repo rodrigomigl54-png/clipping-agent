@@ -13,13 +13,14 @@ duration:
 
 # Equal initial attention (~1/6 each). Not a clip quota.
 creators:
-  - {name: Adapt,          priority: equal, aliases: [adapt],                 hashtags: [adapt],          youtube_channel_ids: []}
-  - {name: Silky,          priority: equal, aliases: [silky],                 hashtags: [silky],          youtube_channel_ids: []}
-  - {name: JasonTheWeen,   priority: equal, aliases: [jason, jasontheween],   hashtags: [jasontheween],   youtube_channel_ids: []}
-  - {name: Lacy,           priority: equal, aliases: [lacy],                  hashtags: [lacy],           youtube_channel_ids: []}
-  - {name: Marlon,         priority: equal, aliases: [marlon],                hashtags: [marlon],         youtube_channel_ids: []}
-  - {name: Stable Ronaldo, priority: equal, aliases: [ronaldo, stable, stable ronaldo], hashtags: [stableronaldo], youtube_channel_ids: []}
+  - {name: Adapt,          priority: equal, aliases: [adapt],                 hashtags: [adapt],          youtube_channel_ids: [], youtube_handles: ["@AdaptLive", "@adapt"]}
+  - {name: Silky,          priority: equal, aliases: [silky],                 hashtags: [silky],          youtube_channel_ids: [], youtube_handles: ["@SilkyLive"]}
+  - {name: JasonTheWeen,   priority: equal, aliases: [jason, jasontheween],   hashtags: [jasontheween],   youtube_channel_ids: [], youtube_handles: ["@JasonTheWeenie"]}
+  - {name: Lacy,           priority: equal, aliases: [lacy],                  hashtags: [lacy],           youtube_channel_ids: [], youtube_handles: ["@LacyHimself"]}
+  - {name: Marlon,         priority: equal, aliases: [marlon],                hashtags: [marlon],         youtube_channel_ids: [], youtube_handles: ["@Mar3LG", "@OtherSideOfMarlon", "@MarlonReacts", "@MarlonVODs"]}
+  - {name: Stable Ronaldo, priority: equal, aliases: [ronaldo, stable, stable ronaldo], hashtags: [stableronaldo], youtube_channel_ids: [], youtube_handles: ["@StableRonaldoLive"]}
 group_name: CORE
+group_youtube_handles: ["@createownruneverything"]
 content_categories: [individual, duo_interaction, full_group, official_video, challenge, argument_debate, reaction, funny_interaction, unexpected_group_moment]
 affiliates_are_members: false
 

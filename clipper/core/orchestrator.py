@@ -49,6 +49,10 @@ SOURCE_ACTIVE = (Stage.IMPORTING.value, Stage.TRANSCRIBING.value, Stage.ANALYZIN
 CLIP_ACTIVE = (Stage.CLIPPING.value, Stage.EDITING.value, Stage.QUALITY_CHECKING.value, Stage.EXPORTING.value)
 
 
+def prof_ab(settings, profile: str) -> bool:
+    return settings.profile(profile).feature("ab_variants")
+
+
 class Orchestrator:
     def __init__(self, settings: Settings, db: Database | None = None, *, transcriber: Transcriber | None = None,
                  gemini: GeminiClient | None = None, rss_fetch: Callable | None = None):
@@ -66,6 +70,11 @@ class Orchestrator:
         self.editor = AdaptiveEditor(settings, self.gate, self.db)
         self.exporter = ExportManager(self.db, settings)
         self.should_stop: Callable[[], bool] = lambda: False
+        try:   # continue from the durable memory in the repo when this database is fresh
+            from . import memory as _memory
+            _memory.load(self.db, settings.path("memory"))
+        except Exception as e:
+            log.warning("could not load memory: %s", e)
 
     # ================================================================ recovery
     def recover(self) -> dict[str, int]:
@@ -129,14 +138,15 @@ class Orchestrator:
         self.store.update(sid, rights_status=decision.status, rights_reason=decision.summary())
         place_source_file(self.store, self.settings, self.store.get(sid), decision.status)
         src = self.store.get(sid)
-        if not decision.passed:
+        private = bool(loads(src.get("extra"), {}).get("private_test"))
+        if not decision.passed and not private:
             self.store.set_stage(sid, Stage.BLOCKED_RIGHTS, decision.summary())
             return {"source_id": sid, "stage": Stage.BLOCKED_RIGHTS.value, "rights": decision.to_dict()}
         if not self.store.in_window(src):
             return {"source_id": sid, "stage": src["stage"], "skipped": "outside research window"}
         try:
             self.store.set_stage(sid, Stage.IMPORTING)
-            media = ingest(self.store, self.settings, src, decision.passed)
+            media = ingest(self.store, self.settings, src, decision.passed or private)
             src = self.store.get(sid)
             self.store.set_stage(sid, Stage.TRANSCRIBING)
             audio, _, wav = self._features(src, media)
@@ -161,6 +171,20 @@ class Orchestrator:
             log.error("source %s failed: %s", sid, e)
             return {"source_id": sid, "stage": Stage.FAILED.value, "error": str(e)}
 
+    def _headlines(self, profile: str, category: str | None) -> list[str] | None:
+        try:
+            from ..styles.style_library import StyleLibrary
+            return StyleLibrary(self.db, self.settings).headline_examples(profile, category) or None
+        except Exception:
+            return None
+
+    def _duration_targets(self, profile: str) -> dict | None:
+        try:
+            from ..styles.style_library import StyleLibrary
+            return StyleLibrary(self.db, self.settings).duration_targets(profile) or None
+        except Exception:
+            return None
+
     def detect_and_store(self, src: dict, tr, audio, vis) -> int:
         prof = self.settings.profile(src["profile"])
         src = dict(src)
@@ -169,7 +193,8 @@ class Orchestrator:
             "SELECT transcript_text FROM export_registry WHERE profile=?", (prof.id,))]
         inp = DetectionInputs(source=src, transcript=tr, audio=audio, visual=vis,
                               media_duration=float(src["duration"] or audio.duration),
-                              trend_terms=self.research.trends.trend_terms(prof.id), exported_texts=exported)
+                              trend_terms=self.research.trends.trend_terms(prof.id), exported_texts=exported,
+                              duration_targets=self._duration_targets(prof.id))
         cands = self.detector.detect(inp, prof, self.settings.global_.pipeline.max_candidates_per_source)
         with self.db.transaction() as c:
             for cand in cands:
@@ -202,11 +227,13 @@ class Orchestrator:
             out.append(r)
         return out
 
-    def produce_clip(self, cand: dict) -> dict[str, Any]:
+    def produce_clip(self, cand: dict, variant: str = "A", variant_of: dict | None = None) -> dict[str, Any]:
+        """Render one clip. ``variant`` B re-uses the same moment with a different hook and layout
+        (A/B test); it is linked to variant A and exempt from the duplicate checks against it."""
         src = self.store.get(cand["source_id"])
         prof = self.settings.profile(cand["profile"])
-        dup = self.dupes.check_candidate(cand)
-        if dup.is_duplicate:
+        dup = self.dupes.check_candidate(cand) if variant == "A" else None
+        if dup is not None and dup.is_duplicate:
             self.db.update("candidates", "id", cand["id"], {"status": CandidateStatus.DUPLICATE.value,
                            "status_reason": dup.reason, "updated_at": now_iso()})
             return {"candidate_id": cand["id"], "status": "duplicate", "reason": dup.reason}
@@ -227,8 +254,24 @@ class Orchestrator:
             stage(Stage.EDITING)
             cand_full = dict(cand)
             cand_full["ai_analysis"] = loads(cand["ai_analysis"])
+            participants = loads(src["participants"], [])
+            pre = self.gate.evaluate(src, "export")
+            title = build_metadata(self.settings, source=src, candidate=cand_full, participants=participants,
+                                   segments_text=[x.text for x in tr.window(cand["start"], cand["end"])],
+                                   start=cand["start"], end=cand["end"], attribution=pre.attribution,
+                                   trend_terms=self.research.trends.trend_terms(prof.id), gemini=self.gemini,
+                                   headline_examples=self._headlines(prof.id, cand_full.get("category")),
+                                   gemini_title=variant == "A")["title"]
+            force_layout = None
+            if variant == "B" and variant_of:
+                from ..metadata.title_generator import alternative_title
+                title = alternative_title(variant_of.get("title") or title,
+                                          [x.text for x in tr.window(cand["start"], cand["end"])], participants)
+                force_layout = {"letterbox": "fit_blur", "fit_blur": "letterbox", "focus": "fit_blur",
+                                "stack_regions": "fit_blur"}.get(variant_of.get("layout") or "", "letterbox")
             result = self.editor.edit(source=src, candidate=cand_full, transcript=tr, audio=audio, clip_id=clip_id,
-                                      out_dir=self.work("renders", prof.id))
+                                      out_dir=self.work("renders", prof.id), title=title,
+                                      gemini=self.gemini if variant == "A" else None, force_layout=force_layout)
             stage(Stage.QUALITY_CHECKING, render_path=str(result.path), duration=result.duration,
                   layout=result.layout, format=result.format)
             phash = video_phash(result.path)
@@ -241,16 +284,34 @@ class Orchestrator:
             meta = build_metadata(self.settings, source=src, candidate=cand_full, participants=participants,
                                   segments_text=segs, start=result.start, end=result.end,
                                   attribution=pre_rights.attribution,
-                                  trend_terms=self.research.trends.trend_terms(prof.id), gemini=self.gemini)
+                                  trend_terms=self.research.trends.trend_terms(prof.id), gemini=self.gemini,
+                                  title=title)
             thumb = make_thumbnail(result.path, meta["title"], self.work("renders", prof.id) / f"{clip_id}.jpg",
                                    self.settings.root)
             tech, info = technical_checks(result.path, cfg=self.settings.quality["technical"],
                                           min_dur=prof.duration.min_seconds, max_dur=prof.duration.max_seconds,
-                                          caption_report=result.captions, caption_size=prof.editing.caption.size)
+                                          caption_report=result.captions if result.captions_enabled else None, caption_size=prof.editing.caption.size)
             scores = loads(cand["scores"], {})
             content = content_checks(transcript=tr, start=result.start, end=result.end, scores=scores,
-                                     cfg=self.settings.quality["content"], caption_report=result.captions,
+                                     cfg=self.settings.quality["content"], caption_report=result.captions if result.captions_enabled else None,
                                      ai_analysis=cand_full["ai_analysis"])
+            qcfg = self.settings.quality
+            mu = float(qcfg.get("technical", {}).get("max_upscale", 2.0))
+            if result.upscale:
+                tech.add("sharp_enough", result.upscale <= mu,
+                         f"source enlarged {result.upscale}x (max {mu}x) — anything above looks soft/blurry")
+            hook_min = float(qcfg.get("content", {}).get("min_hook_score", 4.5))
+            hook = float(scores.get("hook_strength", 0) or 0)
+            first_word = next((w.start for w in tr.words_in(result.start, result.end)), None)
+            dead = (first_word - result.start) if first_word is not None else None
+            has_title = bool(meta.get("title"))
+            strong = hook >= hook_min or (has_title and (dead is not None and dead <= 0.7))
+            content.add("strong_hook", strong,
+                        f"hook score {hook:.1f} (min {hook_min}), speech starts at {dead if dead is None else round(dead, 2)}s, "
+                        f"title on screen: {has_title}", "review")
+            tp = result.text_placement or {}
+            content.add("text_clear_of_content", tp.get("ok", True),
+                        "; ".join(tp.get("notes", [])) or "title and captions placed outside protected areas", "review")
             rights = self.gate.evaluate(src, "export", clip_duration=result.duration, assets=assets,
                                         metadata_text=meta["description"])
             mon = monetization_check.assess(
@@ -260,9 +321,14 @@ class Orchestrator:
                 source_duration=src.get("duration"), policy=self.settings.rights.get("monetization", {}),
                 profile_policy=prof.monetization)
             rdup = self.dupes.check_render(prof.id, clip_id, phash, afp)
+            if variant == "B" and rdup.is_duplicate and variant_of and rdup.match_clip_id == variant_of.get("clip_id"):
+                rdup.is_duplicate = False          # B is meant to be the same moment as A
             qc = decide(technical=tech, content=content, rights=rights, monetization=mon, duplicate=rdup,
                         scores=scores, rights_unknown_policy=self.settings.quality.get("decision", {}).get(
                             "rights_unknown_third_party", "needs_review"))
+            meta["variant"] = variant
+            if variant_of:
+                meta["variant_of"] = variant_of.get("clip_id")
             meta["monetization_suitability"] = mon.to_dict()
             meta["rights_status"] = rights.status
             meta["viral_potential_score"] = cand["total_score"]
@@ -276,6 +342,14 @@ class Orchestrator:
             # keep trimmed boundaries on the candidate so the registry reflects what was exported
             self.db.update("candidates", "id", cand["id"], {"start": result.start, "end": result.end})
             out: dict[str, Any] = {"clip_id": clip_id, "decision": qc.decision, "reasons": qc.reasons}
+            if loads(src.get("extra"), {}).get("private_test"):
+                # private evaluation: never enters outputs/<BRAND>, never the export registry
+                stage(Stage.NEEDS_REVIEW)
+                self.db.update("candidates", "id", cand["id"], {"status": CandidateStatus.NEEDS_REVIEW.value,
+                               "status_reason": "private test clip — not for publication"})
+                technical_ok = not tech.failed("fail")
+                out["private_test"] = self.exporter.export_private_test(clip_id) if technical_ok else None
+                return out
             if qc.decision == Decision.APPROVED.value:
                 stage(Stage.EXPORTING)
                 self.db.update("candidates", "id", cand["id"], {"status": CandidateStatus.APPROVED.value})
@@ -299,6 +373,28 @@ class Orchestrator:
             self.db.log_error("produce_clip", clip_id, str(e), traceback.format_exc(), prof.id)
             log.error("clip %s failed: %s", clip_id, e)
             return {"clip_id": clip_id, "decision": "FAILED", "error": str(e)}
+
+    def private_test(self, file: str, profile: str, creators: list[str], title: str | None = None,
+                     max_clips: int = 5) -> dict[str, Any]:
+        """Run the full pipeline on a local recording for private evaluation only. Rights are NOT
+        approved: clips go to outputs/_PRIVATE_TEST/ labelled NOT FOR PUBLICATION."""
+        from pathlib import Path as _P
+        path = str(_P(file).resolve())
+        sid, _ = self.store.register(profile=profile, kind="local_file", key=f"private:{path}", title=title or _P(path).stem,
+                                     local_path=path, creators=creators, discovery_method="private_test",
+                                     extra={"private_test": True, "ignore_window": True})
+        res = self.process_source(sid)
+        clips = []
+        if res.get("stage") == Stage.CLIPPING.value:
+            for cand in self.db.query("SELECT * FROM candidates WHERE source_id=? AND status='new' "
+                                      "ORDER BY total_score DESC LIMIT ?", (sid, max_clips)):
+                a = self.produce_clip(cand)
+                clips.append(a)
+                if prof_ab(self.settings, profile) and a.get("private_test"):
+                    ca = self.db.one("SELECT layout, metadata FROM clips WHERE id=?", (a["clip_id"],))
+                    clips.append(self.produce_clip(cand, "B", {"clip_id": a["clip_id"], "layout": ca["layout"],
+                                                               "title": loads(ca["metadata"], {}).get("title")}))
+        return {"source": res, "clips": clips}
 
     # ================================================================ review workflow
     def approve_review(self, clip_id: str, note: str = "") -> dict:

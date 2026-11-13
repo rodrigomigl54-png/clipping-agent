@@ -13,7 +13,14 @@ from .audio_analyzer import AudioFeatures
 from .text_signals import LEXICON, count_terms, ends_sentence, jaccard, shingles, starts_dangling
 
 OPENERS = ["let me tell you", "story time", "so basically", "you won't believe", "guess what",
-           "listen to this", "one time", "remember when", "so yesterday", "so last night"]
+           "listen to this", "one time", "remember when", "so yesterday", "so last night", "look at this",
+           "wait chat", "yo chat", "chat look", "chat chat"]
+TRANSITIONS = ["anyway", "moving on", "okay anyway", "let's queue", "let's cue", "back to the game",
+               "where were we", "let's get back", "next game", "let's just play", "back to it", "next match"]
+
+
+def is_transition(text: str) -> bool:
+    return count_terms(text, TRANSITIONS) > 0
 
 
 def is_opener(text: str) -> bool:
@@ -62,6 +69,17 @@ def _seg_index_at(segs: list[Segment], t: float) -> int:
     return len(segs) - 1
 
 
+def _start_at(segs: list[Segment], i: int, lead: float) -> float:
+    """Clip start before segment i: a short lead-in, never reaching into the previous segment's words."""
+    floor = segs[i - 1].end + 0.02 if i > 0 else 0.0
+    return max(0.0, floor, segs[i].start - lead) if floor <= segs[i].start else segs[i].start
+
+
+def _end_at(segs: list[Segment], i: int, tail: float) -> float:
+    ceil = segs[i + 1].start - 0.02 if i + 1 < len(segs) else segs[i].end + tail
+    return max(segs[i].end, min(segs[i].end + tail, ceil))
+
+
 def find_window(tr: Transcript, peak: float, audio: AudioFeatures | None, p: ContextParams,
                 media_duration: float) -> ContextWindow | None:
     segs = tr.segments
@@ -82,6 +100,9 @@ def find_window(tr: Transcript, peak: float, audio: AudioFeatures | None, p: Con
         if setup >= p.min_setup:
             # a story/topic opener in the current segment is the natural start
             if is_opener(cur.text) and not starts_dangling(cur.text):
+                break
+            # the previous segment closes/changes the topic ("okay anyway, let's queue up")
+            if is_transition(prev.text) and not starts_dangling(cur.text):
                 break
             # stop at a long pause when the current segment starts cleanly
             if gap >= p.topic_pause and not starts_dangling(cur.text):
@@ -111,17 +132,22 @@ def find_window(tr: Transcript, peak: float, audio: AudioFeatures | None, p: Con
             a, b = cur.end, cur.end + p.calm_seconds
             calm = audio.mean_z(a, b) < p.reaction_calm_z
         gap = nxt.start - cur.end
-        continues = gap < 1.0 and is_reaction(nxt.text)   # the exchange is still going
+        # the story is still going if reactions follow soon, or if it wraps up before an upcoming
+        # topic change ("okay anyway…", "let's play the next game") — end right before that change
+        ahead = [x for x in segs[ei + 1: ei + 12] if x.start - cur.end <= 8.0]
+        t_idx = next((j for j, x in enumerate(ahead) if is_transition(x.text)), None)
+        before = ahead[:t_idx] if t_idx is not None else ahead
+        continues = gap < 1.5 and t_idx != 0 and (any(is_reaction(x.text) for x in before) or t_idx is not None)
         if after >= p.min_payoff and ends_sentence(cur.text) and (calm or gap >= p.topic_pause) and not continues:
             break
         ei += 1
 
-    start = max(0.0, segs[si].start - p.lead_in)
-    end = segs[ei].end + p.tail
+    start = _start_at(segs, si, p.lead_in)
+    end = _end_at(segs, ei, p.tail)
     # let a non-verbal reaction (laughter, screaming) finish after the last words
     if audio is not None:
         t = end
-        limit = min(media_duration, end + 4.0)
+        limit = min(media_duration, end + 4.0, segs[ei + 1].start - 0.02 if ei + 1 < len(segs) else media_duration)
         while t < limit and audio.mean_z(t, t + 0.5) >= p.reaction_calm_z and audio.silence_fraction(t, t + 0.5) < 0.8:
             t += 0.5
         end = t
@@ -132,20 +158,20 @@ def find_window(tr: Transcript, peak: float, audio: AudioFeatures | None, p: Con
         grow_back = si > 0 and (peak - segs[si - 1].start <= p.max_setup or ei >= len(segs) - 1)
         if grow_back:
             si -= 1
-            start = max(0.0, segs[si].start - p.lead_in)
+            start = _start_at(segs, si, p.lead_in)
         elif ei < len(segs) - 1:
             ei += 1
-            end = min(media_duration, segs[ei].end + p.tail)
+            end = min(media_duration, _end_at(segs, ei, p.tail))
         else:
             break
     if end - start < p.min_duration:
         return None  # moment too short to stand alone; do not pad with silence
     while end - start > p.max_duration and si < pi:
         si += 1
-        start = max(0.0, segs[si].start - p.lead_in)
+        start = _start_at(segs, si, p.lead_in)
     while end - start > p.max_duration and ei > pi:
         ei -= 1
-        end = segs[ei].end + p.tail
+        end = _end_at(segs, ei, p.tail)
     if end - start > p.max_duration:
         return None
 

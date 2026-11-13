@@ -66,6 +66,28 @@ python main.py init
 | Status | `python main.py status` |
 | Transcript search | `python main.py search "race"` |
 | Creator attention | `python main.py attention` |
+| GTA 6 trends + daily plan | `python main.py trends research` / `trends plan` |
+| Hype / countdown edit | `python main.py hype make trailer1.mp4 trailer2.mp4 --profile gta6` (`hype templates` lists sounds) |
+| Durable memory | `python main.py memory save` / `memory load` |
+
+## GTA 6 niche + learning formats from example clips
+
+The `gta6` profile (`config/gta6.yaml`) is topic-based: any streamer or video about GTA 6, with
+GTA-specific categories (funny_gameplay, chaos_moment, police_chase, heist_mission, glitch_bug,
+easter_egg, streamer_reaction, story_moment, tips_tricks, news_trailer). Its layout policy is
+`style_examples`: each clip copies the editing format of your example clips for that category.
+
+```bash
+python main.py examples add example1.mp4 --profile gta6 --category funny_gameplay --label "split cam + gameplay"
+python main.py examples list --profile gta6
+python main.py examples choose --profile gta6 --category police_chase   # which format a new clip would get
+```
+
+Each example is measured locally (layout: split screen / blurred bands / full screen, split height,
+camera position, cuts per minute, length, loudness) and, when Gemini is available, described from 4
+frames (caption position/colours/case/words per line, title banner, effects). The result is a style
+preset. Without an example for a category, the most common learned format is used. Profiles are any
+`config/<id>.yaml` with an `id:` — add new brands without code changes.
 
 ## How it works
 

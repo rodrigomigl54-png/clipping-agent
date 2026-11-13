@@ -52,18 +52,30 @@ def heuristic_title(segments_text: list[str], participants: list[str], hook_type
     return title[:max_chars].rstrip()
 
 
-def validate_ai_title(title: str, transcript: str, allowed_names: list[str], max_chars: int) -> bool:
+def validate_ai_title(title: str, transcript: str, allowed_names: list[str], max_chars: int,
+                      people: list[str] | None = None) -> bool:
+    """Accept an AI title only if it fits, every quote is verbatim from the transcript, and every
+    person it names (as reported by the model) is a known creator/participant or is named in the clip."""
     if not title or len(title) > max_chars:
         return False
     norm = re.sub(r"\s+", " ", transcript.lower())
     for q in re.findall(r'"([^"]+)"', title):
         if re.sub(r"\s+", " ", q.lower().strip(" .!?")) not in norm:
             return False
-    # capitalised multi-letter tokens that look like names must be known
     known = {w.lower() for n in allowed_names for w in n.split()}
-    stop = {"i", "the", "a", "and", "he", "she", "they", "this", "that", "when", "why", "how", "what", "his",
-            "her", "gets", "chat", "stream", "bro", "no", "wait", "can't", "loses", "after"}
-    for tok in re.findall(r"\b[A-Z][a-zA-Z0-9]{2,}\b", title.split('"')[0] if '"' in title else title):
-        if tok.lower() not in known and tok.lower() not in stop and tok.lower() not in norm:
+    for person in people or []:
+        words = [w for w in re.findall(r"[a-z0-9]+", person.lower()) if len(w) > 1]
+        if words and not all(w in known or w in norm for w in words):
             return False
     return True
+
+
+def alternative_title(title_a: str, segments_text: list[str], participants: list[str]) -> str:
+    """Variant-B hook without any AI call: a different angle than title A — a real quote from the clip
+    if A was a statement, otherwise a curiosity line built from A."""
+    who = participants[0] if participants else ""
+    quote = best_quote(segments_text, max_len=48)
+    if quote and quote.lower() not in title_a.lower():
+        return (f'{who}: "{quote.rstrip(".")}" 😳' if who else f'"{quote.rstrip(".")}" 😳')[:90]
+    core = re.sub(r"[\U0001F300-\U0001FAFF\u2600-\u27BF]", "", title_a).strip(" .!")
+    return f"Wait for the end… {core} 👀"[:90]

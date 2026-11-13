@@ -508,6 +508,210 @@ def cmd_research_notes(app: App, a) -> int:
     return 0
 
 
+def cmd_private_test(app: App, a) -> int:
+    print("PRIVATE TEST: clips go to outputs/_PRIVATE_TEST/ and must NOT be published (no rights approval).")
+    res = app.orch.private_test(a.file, a.profile, _csv(a.creators), a.title, a.max_clips)
+    print(f"source: {res['source'].get('stage')} {res['source'].get('error') or ''}")
+    for c in res["clips"]:
+        t = c.get("private_test")
+        if t:
+            print(f"  ▶ [{t['profile']}] {t['title']}\n     {t['duration']}s | quality {t['quality_score']} | "
+                  f"viral potential {t['viral_potential_score']} | format {t['format'] or '-'}\n     file: {t['file']}")
+        else:
+            print(f"  ! {c.get('clip_id') or c.get('candidate_id')}: {c.get('error') or c.get('reason') or '; '.join(c.get('reasons', []))[:200]}")
+    return 0
+
+
+def cmd_hype(app: App, a) -> int:
+    """Beat-synced hype edit from trailer/gameplay files. PRIVATE TEST output (owner adds the sound on upload)."""
+    import json as _json
+    import shutil as _sh
+    from datetime import date as _date, datetime as _dt, timezone as _tz
+    from .editing import hype_editor as H
+    prof = app.settings.profile(a.profile)
+    hcfg = prof.hype or {}
+    tpls = H.load_templates(app.settings.path("config/style_examples") / f"{prof.id}_hype_measurements.json",
+                            hcfg.get("templates", {}))
+    if a.action == "templates":
+        for t in tpls.values():
+            print(f"  {t.id}: '{t.sound}' ({t.sound_author}) {t.bpm:.0f} BPM, drop {t.drop:.2f}s, {t.duration:.1f}s  {t.reference}")
+        return 0
+    if not a.sources:
+        print("usage: hype make <video> [<video> ...] --profile gta6 [--template ID]"); return 1
+    tpl = tpls[a.template or hcfg.get("default_template") or next(iter(tpls))]
+    text = H.countdown_text(prof.release_date, _date.today()) if prof.release_date else \
+        H.HypeText(opener=a.opener or "", main=a.main or "", final=a.final or "")
+    for k in ("opener", "main", "final"):
+        if getattr(a, k):
+            setattr(text, k, getattr(a, k))
+    text.watermark = hcfg.get("watermark", "") or ""
+    day = _dt.now(_tz.utc).strftime("%Y-%m-%d")
+    base = app.settings.path(app.settings.global_.outputs_dir) / "_PRIVATE_TEST" / prof.output_folder / day
+    name = f"PRIVATE-TEST_{prof.id}_hype_{text.main.lower().replace(' ', '-')}_{_dt.now(_tz.utc).strftime('%H%M%S')}"
+    out = base / f"{name}.mp4"
+    print(f"hype edit: template {tpl.id} ('{tpl.sound}'), {len(a.sources)} source(s)…")
+    res = H.make_hype_edit([str(s) for s in a.sources], tpl, text, out)
+    mu = float(app.settings.quality.get("technical", {}).get("max_upscale", 2.0))
+    min_h = int(app.settings.quality.get("technical", {}).get("min_source_height", 480))
+    checks = {"sharp_enough": res["upscale"] <= mu, "source_resolution": res["source_height"] >= min_h,
+              "text_clear_of_content": True, "cuts_on_beat_grid": True}
+    res["qc"] = {"checks": checks, "decision": "PASS" if all(checks.values()) else "FAIL",
+                 "notes": [f"picture enlarged {res['upscale']}x (max {mu}x)", f"source {res['source_height']}p",
+                           "all text sits in the black bands, never on the picture",
+                           f"every cut is on the beat grid of '{tpl.sound}'"]}
+    res["WARNING"] = "PRIVATE TEST — not registered as an approved export. Third-party footage: rights not recorded."
+    (base / f"{name}.json").write_text(_json.dumps(res, indent=2, ensure_ascii=False), encoding="utf-8")
+    m = res["music"]
+    print(f"  ▶ {out}\n    {res['duration']}s | {len(res['shots'])} shots | upscale {res['upscale']}x | QC {res['qc']['decision']}")
+    print(f"    MUSIC: '{m['sound']}' — {m['artist']} | {m['bpm']} BPM | drop at {m['drop_at_s']}s | {m['part_used']}")
+    for h in m["how"]:
+        print(f"      - {h}")
+    return 0 if res["qc"]["decision"] == "PASS" else 1
+
+
+def cmd_examples(app: App, a) -> int:
+    from .styles.style_library import StyleLibrary, json_dump
+    lib = StyleLibrary(app.db, app.settings)
+    if a.action == "add":
+        if not a.target:
+            print("usage: examples add <video file> --profile gta6 [--category X] [--label ...]"); return 1
+        src = a.target
+        if src.startswith(("http://", "https://")):
+            import urllib.request
+            dest_dir = app.settings.path("assets/examples") / a.profile
+            dest_dir.mkdir(parents=True, exist_ok=True)
+            dest = dest_dir / f"example_{len(list(dest_dir.glob('*.mp4'))) + 1:03d}.mp4"
+            with urllib.request.urlopen(src, timeout=300) as r, dest.open("wb") as fh:
+                fh.write(r.read())
+            src = str(dest)
+        if a.category and a.category not in app.settings.profile(a.profile).content_categories:
+            print(f"unknown category; choose from: {', '.join(app.settings.profile(a.profile).content_categories)}"); return 1
+        res = lib.add(src, a.profile, label=a.label, category=a.category, source=a.target,
+                      gemini=None if a.no_ai else app.orch.gemini, notes=a.notes)
+        m, p = res["metrics"], res["preset"]
+        print(f"Example {res['id']} saved for {a.profile} (category: {res['category'] or 'none yet'})")
+        print(f"  measured: {m['duration']}s, {m['width']}x{m['height']}, layout guess {m['layout_guess']}, "
+              f"split at {m['seam_y']}, {m['cuts_per_min']} cuts/min, faces/frame {m['faces_per_frame']}")
+        if res["vision"] and "error" not in res["vision"]:
+            v = res["vision"]
+            print(f"  seen by AI: layout {v.get('layout')}, camera {v.get('facecam_position')}, captions "
+                  f"{'yes' if v.get('captions_present') else 'no'}, title banner {'yes' if v.get('title_banner_present') else 'no'}"
+                  f"{' (' + v['title_text'] + ')' if v.get('title_text') else ''}, effects {v.get('effects')}")
+        elif res["vision"]:
+            print(f"  AI vision unavailable: {res['vision']['error'][:120]} (local analysis still saved)")
+        print("  style preset:", json_dump(p).replace("\n", "\n  "))
+    elif a.action == "list":
+        rows = lib.list(a.profile)
+        for r in rows:
+            r["layout"] = r["preset"].get("layout"); r["dur"] = r["metrics"].get("duration")
+            r["title_banner"] = (r["preset"].get("title_overlay") or {}).get("enabled")
+        print(table(rows, ["id", "profile", "label", "category", "layout", "dur", "title_banner", "created_at"]))
+        if a.profile:
+            print("\nsummary:", json_dump(lib.summary(a.profile)))
+    elif a.action == "show":
+        print(json_dump(next((r for r in lib.list() if r["id"] == a.target), None)))
+    elif a.action == "set-category":
+        lib.set_category(a.target, a.category); print(f"{a.target} -> {a.category}")
+    elif a.action == "remove":
+        lib.remove(a.target); print(f"removed {a.target}")
+    elif a.action == "export":
+        path = app.settings.path(f"config/style_examples/{a.profile}.json")
+        print(f"exported {lib.export(a.profile, path)} examples to {path}")
+    elif a.action == "import":
+        print(f"imported {lib.import_file(Path(a.target))} examples")
+    elif a.action == "choose":
+        c = lib.choose(a.profile, a.category)
+        print(json_dump(c.__dict__ if c else None))
+    return 0
+
+
+def cmd_trends(app: App, a) -> int:
+    import json as _json
+    from datetime import date as _date
+    from .research.planner import make_plan, save_plan
+    from .research.trends import TrendResearch
+    from .styles.style_library import StyleLibrary
+    prof = app.settings.profile(a.profile)
+    cfg = prof.trend_research
+    mem = app.settings.path("memory/research")
+    if a.action == "research":
+        tr = TrendResearch(mem, known_types=cfg.get("creator_types", {}))
+        extra = []
+        disc = mem / "discovered_creators.json"
+        if disc.exists():
+            extra = [h for h, n in _json.loads(disc.read_text()).items() if n >= 2][:25]
+        handles = list(dict.fromkeys(cfg.get("tiktok_watchlist", []) + extra))
+        snap = tr.run(handles, cfg.get("youtube_queries", []), max_pages_per_creator=int(cfg.get("pages_per_creator", 4)))
+        summ = tr.summarize(snap)
+        # discover creators mentioned in on-topic captions
+        import re as _re
+        from .research.trends import on_topic
+        counts = _json.loads(disc.read_text()) if disc.exists() else {}
+        for v in snap.tiktok:
+            if on_topic(v.get("desc")):
+                for h in _re.findall(r"@([A-Za-z0-9_.]{3,24})", v.get("desc") or ""):
+                    if h.lower() not in [x.lower() for x in handles]:
+                        counts[h] = counts.get(h, 0) + 1
+        disc.write_text(_json.dumps(counts, indent=1))
+        (mem / "summary_latest.json").write_text(_json.dumps(summ, indent=1, ensure_ascii=False))
+        _print_trends(summ)
+    elif a.action == "show":
+        _print_trends(_json.loads((mem / "summary_latest.json").read_text()))
+    elif a.action == "plan":
+        summ = _json.loads((mem / "summary_latest.json").read_text())
+        lib = StyleLibrary(app.db, app.settings)
+        heads = {c: lib.headline_examples(prof.id, c) for c in ("streamer_reaction", "hype_edit", "meme_skit", "fun_fact", "news_trailer")}
+        rel = _date.fromisoformat(prof.release_date) if prof.release_date else None
+        plan = make_plan(summ, n=a.n or int(cfg.get("videos_per_day", 12)), release=rel, headlines=heads,
+                         duration_targets=lib.duration_targets(prof.id))
+        path = save_plan(plan, app.settings.path("memory"))
+        print(f"Plan {plan['date']} — phase {plan['phase']} ({plan['days_to_release']} days to release) — {plan['videos']} videos")
+        print("allocation:", plan["allocation"])
+        for s_ in plan["slots"]:
+            snd = s_["sound"] if isinstance(s_["sound"], str) else f"{s_['sound']['title']} — {s_['sound']['author']}"
+            print(f"  {s_['slot']:>2}. {s_['type']:<13} {s_['target_length_s'] or '?':>3}s  topic: {s_['topic']}  |  {s_['series']}\n"
+                  f"      sound: {snd}\n      headline style: {(s_['headline_style'] or ['-'])[0]}")
+        print(f"\nsaved: {path}")
+    return 0
+
+
+def _print_trends(s: dict) -> None:
+    print(f"Research {s['taken_at']}: {s['tiktok_videos']} TikTok + {s['youtube_videos']} YouTube videos")
+    print("\nGTA 6 content types right now (median views/hour, engagement):")
+    for t, v in s["types"].items():
+        print(f"  {t:<14} n={v['n']:<3} {v['median_velocity']:>7}/h  eng {v['median_engagement']:.1%}  shares {v['median_share_rate']:.2%}")
+    print("\nFastest GTA 6 TikToks:")
+    for v in s["top_tiktok"][:10]:
+        print(f"  {v['velocity']:>7}/h  {v['views']:>9} views  {v['age_h']:>5}h old  x{v['outlier']} vs creator  "
+              f"{v['type']:<13} @{v['author']}: {(v['desc'] or '')[:55]}")
+    print("\nTrending topics:", ", ".join(t for t, _ in s["topics"][:15]))
+    print("Trending sounds:", "; ".join(f"{x['title']} — {x['author']}" for x in s["sounds"][:6]))
+    if s.get("top_youtube"):
+        print("\nFastest GTA 6 YouTube:")
+        for r in s["top_youtube"][:6]:
+            print(f"  {r['velocity']:>7}/h  {r['views']:>9}  {r['title'][:60]} | {r['channel']}")
+    adj = s.get("adjacent_trends", {})
+    if adj.get("topics"):
+        print("\nAdjacent (non-GTA) trends:", ", ".join(t for t, _ in adj["topics"][:8]))
+    if s.get("errors"):
+        print("errors:", s["errors"][:5])
+
+
+def cmd_memory(app: App, a) -> int:
+    from .core import memory
+    from .styles.style_library import StyleLibrary
+    if a.action == "save":
+        counts = memory.save(app.db, app.settings.path("memory"))
+        lib = StyleLibrary(app.db, app.settings)
+        for pid in app.settings.profiles:
+            if lib.list(pid):
+                lib.export(pid, app.settings.path(f"config/style_examples/{pid}.json"))
+        print("saved to memory/:", counts, "(commit and push to keep it)")
+    else:
+        print("loaded:", memory.load(app.db, app.settings.path("memory")))
+    return 0
+
+
 # ----------------------------------------------------------------------------- parser
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="main.py", description="Local AI Clipping Machine (AMP / CORE / LosPollosTV)")
@@ -570,6 +774,27 @@ def build_parser() -> argparse.ArgumentParser:
     s = sub.add_parser("analytics", help="performance analytics")
     s.add_argument("action", choices=["show", "import", "template"], nargs="?", default="show")
     s.add_argument("file", nargs="?"); s.add_argument("--profile", choices=PROFILE_IDS); s.set_defaults(fn=cmd_analytics)
+    s = sub.add_parser("private-test", help="full pipeline on a local recording, PRIVATE (never for publication)")
+    s.add_argument("file"); s.add_argument("--profile", choices=PROFILE_IDS, required=True)
+    s.add_argument("--creators", required=True); s.add_argument("--title"); s.add_argument("--max-clips", type=int, default=5)
+    s.set_defaults(fn=cmd_private_test)
+    s = sub.add_parser("hype", help="beat-synced hype edit from trailer/gameplay files (private test output)")
+    s.add_argument("action", choices=["make", "templates"]); s.add_argument("sources", nargs="*")
+    s.add_argument("--profile", choices=PROFILE_IDS, default="gta6"); s.add_argument("--template")
+    s.add_argument("--opener"); s.add_argument("--main"); s.add_argument("--final")
+    s.set_defaults(fn=cmd_hype)
+    s = sub.add_parser("examples", help="example clips the machine learns editing formats from")
+    s.add_argument("action", choices=["add", "list", "show", "set-category", "remove", "choose", "export", "import"])
+    s.add_argument("target", nargs="?", help="video file / URL (add) or example id")
+    s.add_argument("--profile", choices=PROFILE_IDS); s.add_argument("--category"); s.add_argument("--label")
+    s.add_argument("--notes"); s.add_argument("--no-ai", action="store_true", help="skip Gemini vision (saves quota)")
+    s.set_defaults(fn=cmd_examples)
+    s = sub.add_parser("trends", help="trend research (TikTok first) and the daily content plan")
+    s.add_argument("action", choices=["research", "show", "plan"]); s.add_argument("--profile", choices=PROFILE_IDS, default="gta6")
+    s.add_argument("--n", type=int, help="videos in the plan (default from config)")
+    s.set_defaults(fn=cmd_trends)
+    s = sub.add_parser("memory", help="save/load the durable memory kept in the repo (memory/)")
+    s.add_argument("action", choices=["save", "load"]); s.set_defaults(fn=cmd_memory)
     sub.add_parser("compare-formats", help="compare LosPollosTV formats A/B/C").set_defaults(fn=cmd_compare_formats)
     s = sub.add_parser("learning", help="learning recommendations and config history")
     s.add_argument("action", choices=["analyze", "list", "apply", "dismiss", "history"])

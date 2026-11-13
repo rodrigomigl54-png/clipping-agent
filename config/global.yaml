@@ -15,7 +15,8 @@ research:
   enable_youtube_rss: true       # metadata-only discovery from official channel RSS feeds
 
 google_ai:
-  model: gemini-2.5-flash        # change here if Google retires/renames the model
+  model: gemini-3.8-flash        # change here if Google retires/renames the model
+  fallback_models: [gemini-3.5-flash, gemini-3.7-flash, gemini-3.6-flash, gemini-flash-latest, gemini-3.5-flash-lite, gemini-3.1-flash-lite, gemini-flash-lite-latest]   # tried when the main model is overloaded/unavailable
   api_key_env: GEMINI_API_KEY
   timeout_seconds: 90
   max_retries: 3
@@ -26,7 +27,8 @@ google_ai:
   max_candidates_for_semantic: 12
 
 transcription:
-  engine: faster_whisper         # faster_whisper | sidecar_only
+  engine: faster_whisper         # faster_whisper | gemini | sidecar_only
+  fallback_to_gemini: true       # if the Whisper model can't be loaded, transcribe with Gemini
   model_size: small.en
   model_path_env: WHISPER_MODEL_PATH
   device: auto

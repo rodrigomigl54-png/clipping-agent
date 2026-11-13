@@ -197,3 +197,14 @@ def test_core_profile_independent(fast_project, sample_video):
     assert json.loads(cand["scores"])["group_chemistry"] > 5      # two speakers bantering
     # other profiles untouched
     assert orch.db.one("SELECT count(*) n FROM candidates WHERE profile!='core'")["n"] == 0
+
+
+def test_private_test_never_reaches_real_outputs(fast_project, sample_video):
+    orch = _orch(fast_project)
+    v = fast_project / "rec.mp4"; shutil.copy(sample_video, v); write_transcript(v)
+    res = orch.private_test(str(v), "amp", ["Kai Cenat"], max_clips=1)
+    files = [c["private_test"]["file"] for c in res["clips"] if c.get("private_test")]
+    assert files and "/outputs/_PRIVATE_TEST/AMP/" in files[0] and Path(files[0]).exists()
+    assert not list((fast_project / "outputs" / "AMP").rglob("*.mp4"))
+    assert orch.db.one("SELECT count(*) n FROM export_registry")["n"] == 0
+    assert orch.db.one("SELECT count(*) n FROM permissions")["n"] == 0

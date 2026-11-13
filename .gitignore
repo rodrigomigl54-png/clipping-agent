@@ -9,6 +9,7 @@ logs/*
 work/*
 !work/.gitkeep
 outputs/*/*
+outputs/_PRIVATE_TEST/
 !outputs/*/.gitkeep
 sources/**/*
 !sources/**/

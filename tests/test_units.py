@@ -101,7 +101,10 @@ def test_titles_are_truthful():
     assert quote.lower() in " ".join(segs).lower()
     assert not validate_ai_title('Kai Cenat: "he stole my car"', " ".join(segs), ["Kai Cenat"], 90)
     assert validate_ai_title('Kai Cenat: "No way bro"', " ".join(segs), ["Kai Cenat"], 90)
-    assert not validate_ai_title("Kai Cenat and Drake race in the store", " ".join(segs), ["Kai Cenat"], 90)
+    assert not validate_ai_title("Kai Cenat and Drake race in the store", " ".join(segs), ["Kai Cenat"], 90,
+                                 people=["Kai Cenat", "Drake"])
+    assert validate_ai_title("Kai Cenat Gets Destroyed In A Store Race", " ".join(segs), ["Kai Cenat"], 90,
+                             people=["Kai Cenat"])
 
 
 def test_extract_json_and_redaction(monkeypatch):
@@ -251,3 +254,14 @@ def test_face_tracker_smooths_and_holds_through_misses(monkeypatch):
     assert abs(cam.cx[5] - cam.cx[3]) < 1e-6          # held during misses
     assert abs(cam.cx[7] - cam.cx[6]) < 1e-6          # jitter inside dead zone ignored
     assert cam.cx[-1] > cam.cx[7] and cam.cx[-1] < 0.75  # moves toward new position smoothly, no jump
+
+
+def test_youtube_handle_resolution_and_config(settings, db):
+    assert "@KaiCenatLive" in settings.profile("amp").creator("Kai Cenat").youtube_handles
+    assert settings.profile("core").group_youtube_handles == ["@createownruneverything"]
+    store = SourceStore(db, settings)
+    html = b'<html>..."externalId":"UCabcdefghijklmnopqrstuv"...</html>'
+    calls = []
+    d = YouTubeRSSDiscovery(store, settings, fetch=lambda u: calls.append(u) or html)
+    assert d.resolve_handle("@KaiCenatLive") == "UCabcdefghijklmnopqrstuv"
+    assert d.resolve_handle("@KaiCenatLive") == "UCabcdefghijklmnopqrstuv" and len(calls) == 1   # cached

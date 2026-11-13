@@ -30,6 +30,9 @@ Common requests → commands:
 | compare LosPollosTV formats | `python main.py compare-formats` |
 | change threshold / durations | `python main.py set-threshold <p> <v>` / `set-duration <p> --min --max` |
 | system status | `python main.py status` |
+| learn a format from an example clip | `python main.py examples add <file> --profile gta6 --category <cat>` |
+| hype / countdown edit from trailer files | `python main.py hype make <video> [<video>...] --profile gta6` |
+| private quality test on a recording | `python main.py private-test <file> --profile gta6 --creators "<name>"` |
 
 Development: code lives in `clipper/`; run `python -m pytest -q` before committing; keep
 `PROJECT_STATUS.md` up to date after major changes.

@@ -24,6 +24,13 @@ from ..core.retry import TransientError, retry_call
 log = get_logger("google_ai")
 
 
+_EXHAUSTED: set[str] = set()   # models whose quota ran out in this process
+
+
+class ModelNotFound(RuntimeError):
+    """The requested model is retired or not available to this key."""
+
+
 class GeminiUnavailable(RuntimeError):
     """Raised when no API key / SDK is configured. Callers must degrade gracefully."""
 
@@ -63,6 +70,7 @@ class GeminiClient:
     def __init__(self, cfg: GoogleAICfg, client: Any = None):
         self.cfg = cfg
         self._client = client
+        self.last_model: str | None = None
 
     @property
     def api_key(self) -> str | None:
@@ -92,21 +100,37 @@ class GeminiClient:
 
     # ------------------------------------------------------------------ core call
     def _generate(self, contents: str, config: Any) -> Any:
-        def call():
+        """Call the configured model; on overload/unavailability fall back to the next model."""
+        models = [self.cfg.model] + [m for m in self.cfg.fallback_models if m != self.cfg.model]
+        last: Exception | None = None
+        for model in [m for m in models if m not in _EXHAUSTED] or models[-1:]:
+            def call(model=model):
+                try:
+                    resp = self.client().models.generate_content(model=model, contents=contents, config=config)
+                    self.last_model = model
+                    return resp
+                except GeminiUnavailable:
+                    raise
+                except Exception as e:  # classify transient vs permanent
+                    name = type(e).__name__
+                    code = getattr(e, "code", None) or getattr(e, "status_code", None)
+                    msg = redact(str(e))
+                    if code == 429 and ("quota" in msg.lower() or "RESOURCE_EXHAUSTED" in msg):
+                        _EXHAUSTED.add(model)          # daily free-tier quota: don't retry this model today
+                        raise ModelNotFound(f"{model}: quota exhausted") from e
+                    if name in ("ServerError", "TimeoutException", "ConnectError", "ReadTimeout") or code in (429, 500, 502, 503, 504):
+                        raise TransientError(f"{name}: {msg}") from e
+                    if code == 404:
+                        raise ModelNotFound(f"{model}: {msg}") from e
+                    raise RuntimeError(f"Gemini request failed ({name}): {msg}") from e
             try:
-                return self.client().models.generate_content(model=self.cfg.model, contents=contents,
-                                                             config=config)
-            except GeminiUnavailable:
-                raise
-            except Exception as e:  # classify transient vs permanent
-                name = type(e).__name__
-                code = getattr(e, "code", None) or getattr(e, "status_code", None)
-                msg = redact(str(e))
-                if name in ("ServerError", "TimeoutException", "ConnectError", "ReadTimeout") or code in (429, 500, 502, 503, 504):
-                    raise TransientError(f"{name}: {msg}") from e
-                raise RuntimeError(f"Gemini request failed ({name}): {msg}") from e
-        return retry_call(call, attempts=self.cfg.max_retries, backoff=self.cfg.retry_backoff_seconds,
-                          what="gemini.generate_content")
+                return retry_call(call, attempts=self.cfg.max_retries, backoff=self.cfg.retry_backoff_seconds,
+                                  what=f"gemini.generate_content[{model}]")
+            except (TransientError, ModelNotFound) as e:
+                log.warning("model %s unavailable (%s); trying fallback", model, str(e)[:120])
+                last = e
+        assert last is not None
+        raise last
 
     def generate_json(self, prompt: str, schema: dict | None = None, temperature: float = 0.2) -> Any:
         from google.genai import types
@@ -138,4 +162,5 @@ class GeminiClient:
             data = extract_json(text)
         except ValueError:
             data = None
-        return GroundedResult(text=text, data=data, citations=citations, queries=queries, model=self.cfg.model)
+        return GroundedResult(text=text, data=data, citations=citations, queries=queries,
+                              model=self.last_model or self.cfg.model)

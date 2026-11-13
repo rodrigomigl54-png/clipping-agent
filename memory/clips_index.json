@@ -1,0 +1,19 @@
+[
+{
+"id": "clip_358c1336f314",
+"profile": "amp",
+"source_id": "src_625501141058",
+"decision": "NEEDS_REVIEW",
+"format": null,
+"layout": "fit_blur",
+"duration": 41.95,
+"quality_score": 83.3,
+"viral_score": 69.87,
+"export_path": null,
+"created_at": "2026-11-03T16:01:14+00:00",
+"start": 7.69,
+"end": 49.64,
+"category": "individual_stream",
+"hook_type": "surprise"
+}
+]

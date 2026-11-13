@@ -19,7 +19,26 @@ from pydantic import BaseModel, Field, field_validator
 PROJECT_ROOT = Path(os.environ.get("CLIPPER_ROOT", Path(__file__).resolve().parent.parent))
 CONFIG_DIR = Path(os.environ.get("CLIPPER_CONFIG_DIR", PROJECT_ROOT / "config"))
 OVERRIDES_FILE = "local_overrides.yaml"
-PROFILE_IDS = ("amp", "core", "lospollostv")
+NON_PROFILE_FILES = {"global", "editing", "quality", "rights", "content_lexicons", "local_overrides"}
+
+
+def discover_profile_ids(config_dir: Path | None = None) -> tuple[str, ...]:
+    """Every config/<id>.yaml that declares `id:` is a clipping profile (brand)."""
+    cdir = Path(config_dir or CONFIG_DIR)
+    ids = []
+    for f in sorted(cdir.glob("*.yaml")):
+        if f.stem in NON_PROFILE_FILES:
+            continue
+        try:
+            data = yaml.safe_load(f.read_text(encoding="utf-8")) or {}
+        except yaml.YAMLError:
+            continue
+        if isinstance(data, dict) and data.get("id") == f.stem and data.get("display_name"):
+            ids.append(f.stem)
+    return tuple(ids)
+
+
+PROFILE_IDS = discover_profile_ids()
 
 PRIORITY_WEIGHTS = {
     "very_high": 1.6,
@@ -42,7 +61,8 @@ class ResearchCfg(BaseModel):
 
 
 class GoogleAICfg(BaseModel):
-    model: str = "gemini-2.5-flash"
+    model: str = "gemini-3.8-flash"
+    fallback_models: list[str] = ["gemini-3.5-flash", "gemini-3.7-flash", "gemini-3.6-flash", "gemini-flash-latest", "gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemini-flash-lite-latest"]
     api_key_env: str = "GEMINI_API_KEY"
     timeout_seconds: int = 90
     max_retries: int = 3
@@ -63,6 +83,7 @@ class TranscriptionCfg(BaseModel):
     vad_filter: bool = True
     low_confidence_threshold: float = 0.55
     prefer_sidecar: bool = True
+    fallback_to_gemini: bool = True
 
 
 class PipelineCfg(BaseModel):
@@ -106,6 +127,9 @@ class CreatorCfg(BaseModel):
     aliases: list[str] = []
     hashtags: list[str] = []
     youtube_channel_ids: list[str] = []
+    youtube_handles: list[str] = []        # e.g. "@KaiCenatLive"; resolved to channel IDs at discovery time
+    twitch: list[str] = []
+    kick: list[str] = []
 
     @property
     def initial_weight(self) -> float:
@@ -140,6 +164,8 @@ class ProfileEditingCfg(BaseModel):
     layout_policy: str = "auto"
     caption: CaptionCfg = CaptionCfg()
     zoom_emphasis: bool = True
+    dead_air_removal: bool = False     # jump-cut silent pauses inside a clip (retention)
+    detail_tools: bool = False         # let the editor add zoom/circle/arrow/freeze on key details
 
 
 class FormatExperimentCfg(BaseModel):
@@ -159,6 +185,12 @@ class ProfileCfg(BaseModel):
     duration: DurationCfg = DurationCfg()
     creators: list[CreatorCfg] = []
     group_name: str | None = None
+    group_youtube_handles: list[str] = []  # official group channels (e.g. AMP, CORE)
+    topic: str | None = None                # niche profiles (e.g. GTA 6): what every clip is about
+    topic_keywords: list[str] = []          # words that make a moment on-topic (also boost scoring)
+    release_date: str | None = None         # niche event date (e.g. game release) — drives the content phase
+    trend_research: dict[str, Any] = {}     # tiktok_watchlist, youtube_queries, videos_per_day, ...
+    hype: dict[str, Any] = {}               # hype edit engine: beat templates (sound per reference), watermark
     content_categories: list[str] = []
     affiliates_are_members: bool = False
     attention: AttentionCfg = AttentionCfg()
@@ -187,6 +219,7 @@ class EditingCfg(BaseModel):
     zoom: dict[str, Any]
     safe_zones: dict[str, float]
     trim: dict[str, float]
+    title_overlay: dict[str, Any] = {"enabled": True}
 
 
 class Settings(BaseModel):
@@ -261,7 +294,7 @@ def load_settings(root: Path | None = None, config_dir: Path | None = None) -> S
 
     g = deep_merge(_read_yaml(cdir / "global.yaml"), overrides.get("global", {}))
     profiles = {}
-    for pid in PROFILE_IDS:
+    for pid in discover_profile_ids(cdir):
         raw = deep_merge(_read_yaml(cdir / f"{pid}.yaml"), overrides.get("profiles", {}).get(pid, {}))
         if raw:
             profiles[pid] = ProfileCfg(**raw)

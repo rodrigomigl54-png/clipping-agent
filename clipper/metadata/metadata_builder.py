@@ -15,25 +15,41 @@ log = get_logger("metadata")
 
 def build_metadata(settings: Settings, *, source: dict, candidate: dict, participants: list[str],
                    segments_text: list[str], start: float, end: float, attribution: list[str],
-                   trend_terms: set[str], gemini=None) -> dict[str, Any]:
+                   trend_terms: set[str], gemini=None, title: str | None = None,
+                   headline_examples: list[str] | None = None, gemini_title: bool = True) -> dict[str, Any]:
     prof = settings.profile(source["profile"])
     max_chars = int(prof.metadata.get("title_max_chars", 90))
     transcript = " ".join(segments_text)
-    title = heuristic_title(segments_text, participants, candidate.get("hook_type") or "statement",
-                            prof.group_name, max_chars)
-    title_source = "heuristic"
+    fixed_title = title
+    title = fixed_title or heuristic_title(segments_text, participants, candidate.get("hook_type") or "statement",
+                                           prof.group_name, max_chars)
+    title_source = "fixed" if fixed_title else "heuristic"
     ai = candidate.get("ai_analysis") or {}
     summary = (ai.get("summary") if isinstance(ai, dict) else None) or candidate.get("summary") or ""
-    if gemini is not None and gemini.available():
+    if gemini is not None and gemini_title and gemini.available() and not fixed_title:
         try:
             res = gemini.generate_json(
-                "Write ONE engaging but strictly truthful English title (max "
-                f"{max_chars} chars) for a vertical short clip. Use ONLY facts in this transcript; no "
-                "clickbait that implies something that did not happen. Quotes must be verbatim. "
-                f"People in the clip: {', '.join(participants) or 'unknown'}.\nTranscript:\n{transcript[:4000]}",
-                {"type": "object", "properties": {"title": {"type": "string"}}, "required": ["title"]})
+                "Write ONE short, punchy on-screen title for a vertical short clip, in the style clip channels "
+                "use (e.g. 'Kai Cenat Gets Roasted By His Own Chat'): 3-9 words, max 50 characters, starts with "
+                "who it is about, says what happens, makes people want to watch. Strictly truthful: use ONLY "
+                "facts in this transcript, no clickbait implying something that did not happen; any quote must "
+                "be verbatim. List every person the title names in people_mentioned. "
+                "IMPORTANT: the transcript has several speakers and is NOT labelled by speaker. Only say a "
+                "named person did or said something if the transcript makes it unambiguous; otherwise "
+                "describe the situation (e.g. 'Kai Cenat's TikTok Guest Claims...'). Guests and other "
+                "speakers are not the creator. "
+                + (("Match the style of these real headlines that performed well for this type of video "
+                    "(structure, CAPS on key words, emoji use) but write about THIS clip: "
+                    + " | ".join(headline_examples) + "\n") if headline_examples else "")
+                + f"People in the clip: {', '.join(participants) or 'unknown'}.\n"
+                + (f"What happens (from the moment analysis, trust it for who did what): {summary}\n" if summary else "")
+                + f"Transcript:\n{transcript[:4000]}",
+                {"type": "object", "properties": {"title": {"type": "string"},
+                                                 "people_mentioned": {"type": "array", "items": {"type": "string"}}},
+                 "required": ["title", "people_mentioned"]})
             cand = str((res or {}).get("title", "")).strip()
-            if validate_ai_title(cand, transcript, participants + [c.name for c in prof.creators], max_chars):
+            people = [str(x) for x in (res or {}).get("people_mentioned", [])]
+            if validate_ai_title(cand, transcript, participants + [c.name for c in prof.creators], max_chars, people):
                 title, title_source = cand, f"gemini:{settings.global_.google_ai.model}"
             else:
                 log.info("AI title rejected by truthfulness validator: %r", cand)

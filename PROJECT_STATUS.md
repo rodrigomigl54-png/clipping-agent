@@ -1,6 +1,6 @@
 # Project Status
 
-_Last updated: 2026-11-03 — all 7 phases implemented. 39 automated tests passing (`python -m pytest -q`)._
+_Last updated: 2026-11-03 — all 7 phases implemented. 40 automated tests passing (`python -m pytest -q`)._
 
 ## Completed (implemented and tested)
 
@@ -46,6 +46,60 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 39 automated tests passi
 | 7 | Orchestrator with checkpoints, crash recovery, per-item failure isolation | `core/orchestrator.py` | recovery test |
 | 7 | Scheduler: interval cycles, pause/resume, SIGINT/SIGTERM shutdown, single-runner lock, heartbeat | `core/scheduler.py` | manual `start --once` |
 
+## Added 2026-11-11 (GTA 6 pivot)
+- `gta6` topic profile; profiles are now auto-discovered from `config/*.yaml`.
+- Style library (`clipper/styles/`): learn editing formats from example clips (local analysis + Gemini
+  vision), choose per category, applied by the editor (`layout_policy: style_examples`): split camera +
+  gameplay, blurred bands, full screen; caption position/colours/case/words; title banner style.
+- On-screen title banner, Gemini semantic moment discovery, Gemini transcription fallback,
+  private-test command, stacked-region layout. 45 tests passing.
+- Limits: local split detection is heuristic (static graphic patterns can look like a split; Gemini
+  vision overrides it); camera detection uses the largest/steady face — set `facecam_region` per
+  channel for exact placement; Gemini free tier ≈20 requests/model/day.
+
+## Added 2026-11-12
+- Text safety (`clipper/editing/text_safety.py`): title card and captions are placed only outside
+  protected areas — every face found in sample output frames, the real picture in blurred/black-band
+  layouts, the centre of gameplay panels. Title shrinks before captions move; captions are turned off
+  rather than covering content; QC reports `text_clear_of_content`.
+- Letterbox (black bars) layout, image title card with colour emojis, examples from written analyses.
+- Style library: 3 analysed GTA 6 examples (meme skit, streamer clip, hype montage — montage marked
+  not yet supported); 21 more saved as pending (TikTok cannot be downloaded here; vidIQ credits used up).
+
+## Added 2026-11-12 (later)
+- All reachable reference clips analysed: 22 TikToks downloaded from their public pages (author, caption,
+  engagement), Gemini video blueprints (hook, beat structure, every on-screen text, captions, effects, audio,
+  pacing, ending, recipe) + local measurements. Library persisted in `config/style_examples/gta6.json`
+  (auto-loaded); human summary in `docs/GTA6_PLAYBOOK.md`. 2 clips unavailable on TikTok.
+- Detail tools: zoom-to-point, animated circle/arrow, label (placed off faces), freeze frame with audio pause;
+  used automatically only when Gemini finds a key visual detail (category or "look at…" cues).
+- Retention timeline: dead-air jump cuts; adaptive length scored against engagement-weighted example lengths
+  per content type (gta6 hard limits widened to 6–180 s).
+- AI headlines follow the real headline style of the same content type.
+- (Hype-edit engine added 2026-11-13, see below.)
+
+## Added 2026-11-13
+- **Trend research, free** (`research/trends.py`, `trends research|show`): TikTok creator embeds + public
+  video pages (views, likes, shares, saves, sound, post time) and YouTube search (this week). Velocity
+  (views/h), engagement, outlier vs creator median, type, topics, trending sounds, official events.
+  New creators discovered from @mentions. No Gemini / vidIQ quota used.
+- **Daily plan** (`research/planner.py`, `trends plan`): phase (pre-release / launch week / post-launch),
+  allocation per type, series, angles, sounds, A/B variants, hook rule; saved in `memory/plans/`.
+- **Quality gate**: `max_upscale` 2.0 — layouts that would enlarge the source too much switch to a sharper
+  layout or are rejected (`sharp_enough` QC); `strong_hook` QC.
+- **A/B variants** (variant B = alternative title + alternate layout), **durable memory** in `memory/`
+  (`memory save|load`, loaded automatically on start).
+- **Hype-edit engine** (`editing/hype_editor.py`, `python main.py hype make <videos...>`): shot detection
+  (rejects text cards, logos, black/fades, soft shots), crop centred on faces/action, opener (cinematic,
+  optional ≤0.6x interpolated slow motion) → first cut on the drop → one shot per beat starting on its
+  motion peak, alternating look (brightness/hue), punch-in on every cut, white flashes on the kicks,
+  countdown text from the release date, cut to black on the last beat. Cut on the measured beat grid of a
+  reference edit whose TikTok sound is known (`hype templates`); output is silent and comes with music
+  instructions (sound, start 0:00, BPM, drop second). Layout: 4:5 picture (1.34x from 1080p) with text
+  only in the black bands. Output goes to `outputs/_PRIVATE_TEST/` (third-party trailer footage).
+- **Automatic morning run**: a scheduled task (07:43 Europe/Belgrade) runs trends research + plan +
+  memory save and reports the day's plan in the chat.
+
 ## In progress
 - Nothing partially implemented.
 
@@ -55,11 +109,13 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 39 automated tests passi
 - Twitch discovery (needs Twitch API credentials — add only if you want it).
 
 ## Known limitations (honest)
-1. **Gemini not tested against the live API** in the build sandbox (no API key; Google docs host
-   blocked there). The client was written against the installed `google-genai` SDK and tested
-   with a fake client. First real run: `python main.py research amp --gemini` and check
-   `research-notes`. If Google renames the model, change `google_ai.model` in `config/global.yaml`.
-2. **Whisper model not exercised here**: Hugging Face was unreachable in the sandbox, so the
+1. **Gemini verified live (2026-11-03)**: plain/JSON calls work; `gemini-2.5-flash` is retired, so
+   the default is `gemini-3.8-flash` with automatic fallbacks (`gemini-3.5-flash`, ...) because
+   3.8 often returns 503 "high demand". **Google Search grounding returns 429 quota exceeded** on
+   this key (free tier without billing) — grounded research/trends are recorded as `failed` until
+   billing is enabled in Google AI Studio. Never replaced with ungrounded "research".
+2. **Gemini transcription engine added and verified live** (fallback when the Whisper model can't
+   be downloaded): accurate sentence segments, word timings estimated. **Whisper model not exercised here**: Hugging Face was unreachable in the sandbox, so the
    faster-whisper path is untested end-to-end; the sidecar transcript path is fully tested. On your
    machine the model downloads on first use (or set `WHISPER_MODEL_PATH`).
 3. **Face tracking uses OpenCV's Haar frontal-face cascade**: misses profiles, tiny facecams and
@@ -70,8 +126,9 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 39 automated tests passi
 5. **Laughter / reaction detection** is lexical + loudness-relative; there is no audio event model.
 6. **Audio fingerprint** is a coarse loudness contour (good for near-identical re-uploads, not for
    re-encoded audio with different mixing).
-7. **YouTube RSS** discovery needs real channel IDs you add to the profile YAML (left empty on
-   purpose) and was only tested offline. Leads are metadata only; you must supply the media.
+7. **YouTube RSS discovery verified live**: all 19 configured handles resolved to channel IDs; first
+   run indexed 90 videos from the 7-day window as metadata-only leads (PENDING_VERIFICATION).
+   Leads list only the channel owner as participant; guests must be added before rights can pass.
 8. **Speed**: rendering ≈ real-time for 1080×1920 at preset `medium` on 4 cores; visual analysis
    of a multi-hour VOD at 1 fps takes minutes. `start` runs in the foreground (use tmux/nohup).
 9. Learning recommendations need ≥8 clips with retention data per profile; format verdicts need
@@ -79,6 +136,9 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 39 automated tests passi
 10. Scores are heuristic estimates of potential, not predictions of views or retention.
 
 ## Bugs
+- Fixed (2026-11-03, found on a 113 s synthetic stream): overlapping windows now compete by total
+  score (a setup-only window no longer blocks the full story); clips end at the story wrap-up before
+  the next topic change; lead-in no longer catches the previous sentence's last word.
 - Fixed: peaks were processed in time order, letting a weak early peak claim the context window
   of a stronger moment (regression asserted in `test_lospollos_split_format_with_licensed_gameplay`).
 - No known open bugs.
