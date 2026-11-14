@@ -11,6 +11,7 @@ def test_post_kit_all_platforms():
     assert "5 days left" in k["youtube"]["description"] and len(k["x"]["text"]) <= 280
     assert k["tiktok"]["cover_text"] == "POV: it's November 19 and you finally load in"
     assert "YOUTUBE SHORTS" in as_text(k)
+    assert "Caption:" not in as_text(k) and k["tiktok"]["caption"] in as_text(k).splitlines()   # caption alone on its line
 
 
 def test_post_kit_landscape_and_countdown():
