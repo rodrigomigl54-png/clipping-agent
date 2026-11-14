@@ -68,3 +68,15 @@ def test_learn_and_render_roundtrip(tmp_path):
     fills = T.assign(tpl, shots)
     res = T.render_template(tpl, fills, tmp_path / "o.mp4", {"days": 6}, src_size=(1920, 1080))
     assert res["size"] == "1080x1920" and abs(res["duration"] - tpl["duration"]) < 0.05 and res["upscale"] <= 2.0
+
+
+def test_landscape_template_comes_out_vertical(tmp_path):
+    src = tmp_path / "s.mp4"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "testsrc2=s=1920x1080:d=3:r=30", str(src)], check=True)
+    sh = Shot(src=str(src), start=0, end=3, motion=0.05, peak=0.5, bright=100, sat=100, hue=30, sharp=900, detail=0.2, cx=0.5)
+    tpl = {"orientation": "landscape", "duration": 1.0, "slots": [], "text": [{"type": "line", "t0": 0, "t1": 1, "text": "ARE"}]}
+    res = T.render_template(tpl, [T.Fill(0, 1.0, sh, 0.2)], tmp_path / "o.mp4", {"days": 5}, src_size=(1920, 1080))
+    assert res["size"] == "1080x1920"
+    out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "stream=width,height", "-of", "csv=p=0", res["file"]],
+                         capture_output=True, text=True).stdout.strip()
+    assert out == "1080,1920"

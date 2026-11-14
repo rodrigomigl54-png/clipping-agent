@@ -11,6 +11,10 @@ the full table). Rules for the operator:
 * Never invent performance numbers. Analytics come only from CSVs the user imports.
 * Do not change production settings silently: use `set-threshold`, `set-duration` or
   `learning apply`, which log to `learning history`.
+* **Every video is posted to BOTH TikTok and YouTube Shorts** (same file, channel Most Wanted: TikTok
+  @mostwanted.vi, YouTube @mostwantedgtavi). So every output is vertical 1080x1920 (landscape/square edits are
+  centred on a blurred copy), carries no channel tag, and ships with a post kit for both platforms. Target
+  10–20 videos per day (memes + edits).
 * Do not add publishing/upload integrations, cloud services, dashboards, or scraping/downloader
   tools (e.g. yt-dlp) — out of scope by design.
 
@@ -33,6 +37,7 @@ Common requests → commands:
 | learn a format from an example clip | `python main.py examples add <file> --profile gta6 --category <cat>` |
 | hype / countdown edit from trailer files | `python main.py hype make <video> [<video>...] --profile gta6` |
 | learn viral edit templates / make the day's edits | `python main.py hype learn-trending` / `python main.py hype daily` |
+| reaction memes (caption + clip) | `python main.py meme daily --n 8` (`meme add <url>` to learn a clip) |
 | private quality test on a recording | `python main.py private-test <file> --profile gta6 --creators "<name>"` |
 
 Development: code lives in `clipper/`; run `python -m pytest -q` before committing; keep

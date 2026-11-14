@@ -84,6 +84,8 @@ class Shot:
     cx: float              # horizontal centre of interest 0-1 (for the 4:5 crop)
     faces: int = 0         # faces found in the mid frame (character shot vs scenery)
     bar: float = 0.0       # cinematic black bar height (fraction of frame height, top and bottom)
+    iconic: float = 5.0    # 1-10: how iconic / wow the shot is (AI tag, cached per footage file)
+    ui: bool = False       # phone / social-media / chat / HUD overlay inside the trailer shot
     usable: bool = True
     reason: str = ""
 

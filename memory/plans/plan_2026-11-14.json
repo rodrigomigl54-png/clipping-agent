@@ -1,0 +1,373 @@
+{
+ "date": "2026-11-14",
+ "phase": "pre_release",
+ "days_to_release": 5,
+ "videos": 12,
+ "allocation": {
+  "streamer_clip": 2,
+  "hype_edit": 5,
+  "meme_skit": 1,
+  "fun_fact": 1,
+  "news": 3
+ },
+ "slots": [
+  {
+   "slot": 1,
+   "type": "hype_edit",
+   "category": "hype_edit",
+   "series": "Countdown edit — '5 DAYS' (daily until release), then 'GTA 6 edit of the day'",
+   "topic": "1 week left",
+   "source_to_find": "newest official trailer / features trailer footage (highest resolution available) + best shots from previous trailers",
+   "headline_style": [
+    "Literally next week btw...",
+    "13 years of waiting paid off.",
+    "I need this Game Right Fucking now"
+   ],
+   "target_length_s": 19,
+   "sound": {
+    "title": "BAIXO SONICO (Slowed)",
+    "author": "SEKIMANE & ZMAJOR & -Prey",
+    "why": "trending now on 2 hype edit video(s)"
+   },
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@mfx.3dits/video/7706988282600508705",
+     "views": 866400,
+     "velocity_per_h": 14465
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 2,
+   "type": "hype_edit",
+   "category": "hype_edit",
+   "series": "Countdown edit — '5 DAYS' (daily until release), then 'GTA 6 edit of the day'",
+   "topic": "GTA 6 Preload trailer",
+   "source_to_find": "newest official trailer / features trailer footage (highest resolution available) + best shots from previous trailers",
+   "headline_style": [
+    "Literally next week btw...",
+    "13 years of waiting paid off.",
+    "I need this Game Right Fucking now"
+   ],
+   "target_length_s": 19,
+   "sound": {
+    "title": "Swim",
+    "author": "Chase Atlantic",
+    "why": "trending now on 1 hype edit video(s)"
+   },
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@norage_ae/video/7706912652248829205",
+     "views": 827900,
+     "velocity_per_h": 12779
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 3,
+   "type": "hype_edit",
+   "category": "hype_edit",
+   "series": "Countdown edit — '5 DAYS' (daily until release), then 'GTA 6 edit of the day'",
+   "topic": "GTA 6 IS PURE GOLD!! 🐊",
+   "source_to_find": "newest official trailer / features trailer footage (highest resolution available) + best shots from previous trailers",
+   "headline_style": [
+    "Literally next week btw...",
+    "13 years of waiting paid off.",
+    "I need this Game Right Fucking now"
+   ],
+   "target_length_s": 19,
+   "sound": {
+    "title": "GOOD LOOKING (HARDTEKK) (edited version)",
+    "author": "4cyzon & 4VNX & zhyar",
+    "why": "trending now on 1 hype edit video(s)"
+   },
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@havoceeditz/video/7707724738990230804",
+     "views": 141400,
+     "velocity_per_h": 11530
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 4,
+   "type": "hype_edit",
+   "category": "hype_edit",
+   "series": "Countdown edit — '5 DAYS' (daily until release), then 'GTA 6 edit of the day'",
+   "topic": "THIS IS INSANE",
+   "source_to_find": "newest official trailer / features trailer footage (highest resolution available) + best shots from previous trailers",
+   "headline_style": [
+    "Literally next week btw...",
+    "13 years of waiting paid off.",
+    "I need this Game Right Fucking now"
+   ],
+   "target_length_s": 19,
+   "sound": {
+    "title": "code.red - slowed",
+    "author": "DudePlaya & DXNTVX & DxFuSee",
+    "why": "trending now on 3 hype edit video(s)"
+   },
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@havoceeditz/video/7707739686537661716",
+     "views": 126500,
+     "velocity_per_h": 11198
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 5,
+   "type": "hype_edit",
+   "category": "hype_edit",
+   "series": "Countdown edit — '5 DAYS' (daily until release), then 'GTA 6 edit of the day'",
+   "topic": "ROCKSTAR HAS CHANGED GTA 6 A LOT!! 🐊",
+   "source_to_find": "newest official trailer / features trailer footage (highest resolution available) + best shots from previous trailers",
+   "headline_style": [
+    "Literally next week btw...",
+    "13 years of waiting paid off.",
+    "I need this Game Right Fucking now"
+   ],
+   "target_length_s": 19,
+   "sound": {
+    "title": "ZIRALESMO (Slowed)",
+    "author": "Avenxir & MXPAL & mørvy",
+    "why": "trending now on 1 hype edit video(s)"
+   },
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@havoceeditz/video/7707713413635443989",
+     "views": 136400,
+     "velocity_per_h": 10496
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 6,
+   "type": "news",
+   "category": "news_trailer",
+   "series": "GTA 6 news in 15 seconds",
+   "topic": "TRAILER",
+   "source_to_find": "the announcement itself (trailer, post, screenshot) — lead with the payoff in the first second",
+   "headline_style": [
+    "Starting to feel real",
+    "NOVEMBER 19, 2026",
+    "GTA 6 is bringing back the gym grind"
+   ],
+   "target_length_s": 30,
+   "sound": {
+    "title": "Se Me Nota (Agarrame)",
+    "author": "Chimbala & Omega",
+    "why": "trending now on 1 news video(s)"
+   },
+   "inspiration": [],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 7,
+   "type": "news",
+   "category": "news_trailer",
+   "series": "GTA 6 news in 15 seconds",
+   "topic": "Grand Theft Auto VI: Pre-Load Now",
+   "source_to_find": "the announcement itself (trailer, post, screenshot) — lead with the payoff in the first second",
+   "headline_style": [
+    "Starting to feel real",
+    "NOVEMBER 19, 2026",
+    "GTA 6 is bringing back the gym grind"
+   ],
+   "target_length_s": 30,
+   "sound": {
+    "title": "we fell in love in october",
+    "author": "girl in red",
+    "why": "trending now on 1 news video(s)"
+   },
+   "inspiration": [],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 8,
+   "type": "news",
+   "category": "news_trailer",
+   "series": "GTA 6 news in 15 seconds",
+   "topic": "Grand Theft Auto VI - Features Trailer",
+   "source_to_find": "the announcement itself (trailer, post, screenshot) — lead with the payoff in the first second",
+   "headline_style": [
+    "Starting to feel real",
+    "NOVEMBER 19, 2026",
+    "GTA 6 is bringing back the gym grind"
+   ],
+   "target_length_s": 30,
+   "sound": {
+    "title": "Se Me Nota (Agarrame)",
+    "author": "Chimbala & Omega",
+    "why": "trending now on 1 news video(s)"
+   },
+   "inspiration": [],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 9,
+   "type": "streamer_clip",
+   "category": "streamer_reaction",
+   "series": "Streamer moment of the day",
+   "topic": "Lucia is my favorite person ever 🤩",
+   "source_to_find": "VODs/clips of the streamers trending right now on the topic",
+   "headline_style": [
+    "Agent does a stream with Lucia from GTA 6 🔥",
+    "Lacy announces his GTA 6 Marathon 😳🔥",
+    "Agent00 streams with the real Lucia from GTA 6"
+   ],
+   "target_length_s": 29,
+   "sound": "original audio (stream sound)",
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@overtime/video/7707882322376379661",
+     "views": 407500,
+     "velocity_per_h": 197337
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 10,
+   "type": "streamer_clip",
+   "category": "streamer_reaction",
+   "series": "Streamer moment of the day",
+   "topic": "GTA or Pirate Token 👀",
+   "source_to_find": "VODs/clips of the streamers trending right now on the topic",
+   "headline_style": [
+    "Agent does a stream with Lucia from GTA 6 🔥",
+    "Lacy announces his GTA 6 Marathon 😳🔥",
+    "Agent00 streams with the real Lucia from GTA 6"
+   ],
+   "target_length_s": 29,
+   "sound": "original audio (stream sound)",
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@overtime/video/7707887340152229134",
+     "views": 14400,
+     "velocity_per_h": 8277
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 11,
+   "type": "fun_fact",
+   "category": "fun_fact",
+   "series": "Detail of the day — one detail you missed (zoom + circle)",
+   "topic": "GTA 6",
+   "source_to_find": "official trailer frames where a small detail is visible; or a comparison pair (GTA 6 vs real place)",
+   "headline_style": [
+    "Literally next week btw...",
+    "How ima be moving in GTA 6 wit that new cocoteo fm radio 🤝🏼",
+    "How it feels having Gta 6 downloaded rn"
+   ],
+   "target_length_s": 19,
+   "sound": "pick a trending sound",
+   "inspiration": [],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 12,
+   "type": "meme_skit",
+   "category": "meme_skit",
+   "series": "POV: GTA 6 … (series of POV memes)",
+   "topic": "I’m gonna get alot of these hits",
+   "source_to_find": "gameplay/trailer footage that fits the joke; letterbox + top headline format",
+   "headline_style": [
+    "How ima be moving in GTA 6 wit that new cocoteo fm radio 🤝🏼",
+    "How it feels having Gta 6 downloaded rn",
+    "19.11 - 00:01"
+   ],
+   "target_length_s": 16,
+   "sound": {
+    "title": "Feel So Close (Radio Edit)",
+    "author": "Calvin Harris",
+    "why": "trending now on 1 meme skit video(s)"
+   },
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@gta_6.2026/video/7707321202112597270",
+     "views": 6100000,
+     "velocity_per_h": 159012
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  }
+ ],
+ "adjacent_trends": [
+  [
+   "lacy",
+   389969
+  ],
+  [
+   "streamer",
+   355034
+  ],
+  [
+   "streamerawards",
+   352168
+  ],
+  [
+   "year",
+   322234
+  ],
+  [
+   "streamer year",
+   322234
+  ]
+ ]
+}

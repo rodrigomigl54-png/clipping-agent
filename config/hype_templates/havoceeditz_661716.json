@@ -1,0 +1,350 @@
+{
+ "id": "havoceeditz_661716",
+ "reference_file": "havoceeditz_661716.mp4",
+ "orientation": "vertical",
+ "duration": 16.433,
+ "cuts": [
+  0.533,
+  0.9,
+  1.667,
+  2.2,
+  2.967,
+  3.733,
+  4.233,
+  5.767,
+  7.033,
+  7.8,
+  8.3,
+  8.867,
+  9.3,
+  9.833,
+  10.267,
+  10.833,
+  11.333,
+  11.833,
+  12.333,
+  12.6,
+  12.967,
+  13.933,
+  14.4,
+  14.933,
+  15.4,
+  15.933
+ ],
+ "slots": [
+  {
+   "t0": 0.0,
+   "t1": 0.533,
+   "bright": 119.1,
+   "sat": 58.5,
+   "hue": 13.0,
+   "motion": 0.1196,
+   "faces": 0
+  },
+  {
+   "t0": 0.533,
+   "t1": 0.9,
+   "bright": 102.3,
+   "sat": 81.9,
+   "hue": 16.0,
+   "motion": 0.0946,
+   "faces": 0
+  },
+  {
+   "t0": 0.9,
+   "t1": 1.667,
+   "bright": 163.2,
+   "sat": 69.1,
+   "hue": 99.0,
+   "motion": 0.0597,
+   "faces": 0
+  },
+  {
+   "t0": 1.667,
+   "t1": 2.2,
+   "bright": 161.3,
+   "sat": 56.9,
+   "hue": 99.0,
+   "motion": 0.0581,
+   "faces": 0
+  },
+  {
+   "t0": 2.2,
+   "t1": 2.967,
+   "bright": 78.3,
+   "sat": 78.5,
+   "hue": 18.0,
+   "motion": 0.0613,
+   "faces": 0
+  },
+  {
+   "t0": 2.967,
+   "t1": 3.733,
+   "bright": 83.4,
+   "sat": 72.2,
+   "hue": 13.0,
+   "motion": 0.0608,
+   "faces": 0
+  },
+  {
+   "t0": 3.733,
+   "t1": 4.233,
+   "bright": 118.1,
+   "sat": 63.5,
+   "hue": 16.0,
+   "motion": 0.1093,
+   "faces": 0
+  },
+  {
+   "t0": 4.233,
+   "t1": 5.767,
+   "bright": 68.3,
+   "sat": 55.0,
+   "hue": 104.0,
+   "motion": 0.0476,
+   "faces": 1
+  },
+  {
+   "t0": 5.767,
+   "t1": 7.033,
+   "bright": 97.6,
+   "sat": 67.8,
+   "hue": 107.0,
+   "motion": 0.0754,
+   "faces": 0
+  },
+  {
+   "t0": 7.033,
+   "t1": 7.8,
+   "bright": 88.8,
+   "sat": 70.2,
+   "hue": 18.0,
+   "motion": 0.0441,
+   "faces": 0
+  },
+  {
+   "t0": 7.8,
+   "t1": 8.3,
+   "bright": 57.9,
+   "sat": 91.2,
+   "hue": 20.0,
+   "motion": 0.0619,
+   "faces": 0
+  },
+  {
+   "t0": 8.3,
+   "t1": 8.867,
+   "bright": 191.6,
+   "sat": 22.8,
+   "hue": 53.0,
+   "motion": 0.0467,
+   "faces": 0
+  },
+  {
+   "t0": 8.867,
+   "t1": 9.3,
+   "bright": 115.3,
+   "sat": 93.1,
+   "hue": 60.0,
+   "motion": 0.0885,
+   "faces": 0
+  },
+  {
+   "t0": 9.3,
+   "t1": 9.833,
+   "bright": 141.3,
+   "sat": 58.7,
+   "hue": 45.0,
+   "motion": 0.0718,
+   "faces": 0
+  },
+  {
+   "t0": 9.833,
+   "t1": 10.267,
+   "bright": 138.3,
+   "sat": 92.9,
+   "hue": 14.0,
+   "motion": 0.1025,
+   "faces": 0
+  },
+  {
+   "t0": 10.267,
+   "t1": 10.833,
+   "bright": 183.5,
+   "sat": 14.9,
+   "hue": 24.0,
+   "motion": 0.0814,
+   "faces": 0
+  },
+  {
+   "t0": 10.833,
+   "t1": 11.333,
+   "bright": 75.9,
+   "sat": 89.5,
+   "hue": 110.0,
+   "motion": 0.1113,
+   "faces": 0
+  },
+  {
+   "t0": 11.333,
+   "t1": 11.833,
+   "bright": 121.9,
+   "sat": 65.3,
+   "hue": 21.0,
+   "motion": 0.1677,
+   "faces": 0
+  },
+  {
+   "t0": 11.833,
+   "t1": 12.333,
+   "bright": 126.7,
+   "sat": 82.5,
+   "hue": 19.0,
+   "motion": 0.1551,
+   "faces": 0
+  },
+  {
+   "t0": 12.333,
+   "t1": 12.6,
+   "bright": 220.3,
+   "sat": 7.6,
+   "hue": -1,
+   "motion": 0.0713,
+   "faces": 0
+  },
+  {
+   "t0": 12.6,
+   "t1": 12.967,
+   "bright": 134.8,
+   "sat": 56.9,
+   "hue": 96.0,
+   "motion": 0.0698,
+   "faces": 0
+  },
+  {
+   "t0": 12.967,
+   "t1": 13.933,
+   "bright": 121.8,
+   "sat": 63.7,
+   "hue": 12.0,
+   "motion": 0.0937,
+   "faces": 0
+  },
+  {
+   "t0": 13.933,
+   "t1": 14.4,
+   "bright": 84.8,
+   "sat": 57.7,
+   "hue": 96.0,
+   "motion": 0.0935,
+   "faces": 0
+  },
+  {
+   "t0": 14.4,
+   "t1": 14.933,
+   "bright": 156.4,
+   "sat": 39.5,
+   "hue": 19.0,
+   "motion": 0.0634,
+   "faces": 0
+  },
+  {
+   "t0": 14.933,
+   "t1": 15.4,
+   "bright": 115.2,
+   "sat": 50.5,
+   "hue": 107.0,
+   "motion": 0.1087,
+   "faces": 0
+  },
+  {
+   "t0": 15.4,
+   "t1": 15.933,
+   "bright": 135.6,
+   "sat": 75.2,
+   "hue": 15.0,
+   "motion": 0.0475,
+   "faces": 0
+  },
+  {
+   "t0": 15.933,
+   "t1": 16.433,
+   "bright": 57.8,
+   "sat": 86.7,
+   "hue": 113.0,
+   "motion": 0.0573,
+   "faces": 0
+  }
+ ],
+ "fade_out_from": null,
+ "transition": "whip",
+ "text": [
+  {
+   "type": "line",
+   "t0": 0,
+   "t1": 7.8,
+   "text": "\"GTA 6 won't live up to the hype\""
+  },
+  {
+   "type": "line",
+   "t0": 7.8,
+   "t1": 16.4,
+   "text": "the trailer:"
+  }
+ ],
+ "text_style": {
+  "y": 0.5,
+  "line_size": 0.042,
+  "size": 0.058
+ },
+ "bpm": 117.5,
+ "beats": [
+  0.07,
+  0.557,
+  1.068,
+  1.579,
+  2.09,
+  2.601,
+  3.111,
+  3.622,
+  4.133,
+  4.621,
+  5.132,
+  5.642,
+  6.153,
+  6.687,
+  7.175,
+  7.686,
+  8.173,
+  8.707,
+  9.218,
+  9.706,
+  10.217,
+  10.728,
+  11.238,
+  11.749,
+  12.26,
+  12.771,
+  13.282,
+  13.793,
+  14.303,
+  14.814,
+  15.302,
+  15.813
+ ],
+ "reference": "https://www.tiktok.com/@havoceeditz/video/7707739686537661716",
+ "video_id": "7707739686537661716",
+ "creator": "havoceeditz",
+ "views": 126500,
+ "created": 1794597998,
+ "outlier": 0.96,
+ "sound": "BAIXO SONICO (Slowed)",
+ "sound_author": "SEKIMANE & ZMAJOR & -Prey",
+ "category": "hype_edit",
+ "text_review": false,
+ "original_text": [
+  "\"GTA 6 doesn't deserve GOTY after this\"",
+  "mogged."
+ ],
+ "text_rewritten": "own truthful lines (original was a then-vs-now comparison / other creator's caption)"
+}

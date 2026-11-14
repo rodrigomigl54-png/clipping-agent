@@ -96,7 +96,8 @@ def learn_template(ref: str | Path, tid: str, *, cut_thr: float = 0.35, merge_s:
                       "sat": round(float(hsv[..., 1].mean()), 1),
                       "hue": round(float(np.median(hsv[..., 0][sat_mask])), 1) if sat_mask.any() else -1,
                       "motion": round(mot, 4), "faces": len(detect_faces(mid, 0.08))})
-    tpl = {"id": tid, "reference_file": Path(ref).name, "orientation": "landscape" if info["w"] > info["h"] else "vertical",
+    tpl = {"id": tid, "reference_file": Path(ref).name, "orientation": ("square" if abs(info["w"] - info["h"]) <= 0.15 * info["h"]
+                                                                 else "landscape" if info["w"] > info["h"] else "vertical"),
            "duration": round(dur, 3), "cuts": cuts, "slots": slots, "fade_out_from": fade_from,
            "transition": "whip", "text": [], "text_style": {}}
     if info["audio"]:
@@ -154,7 +155,7 @@ class Fill:
 def assign(tpl: dict, shots: list[Shot], min_speed: float = 0.6, exclude: set | None = None) -> list[Fill]:
     """Fill each slot with the most similar unused shot. `exclude` = shots used in recent videos (avoided
     when possible so daily videos do not repeat the same shots)."""
-    pool = [s for s in shots if s.usable]
+    pool = [s for s in shots if s.usable and not s.ui]          # never shots with social-media / phone UI
     exclude = exclude or set()
     used: set[tuple[str, float]] = set()
     fills = []
@@ -165,9 +166,13 @@ def assign(tpl: dict, shots: list[Shot], min_speed: float = 0.6, exclude: set | 
             ok = [s for s in pool if s.length >= dur * min_speed + 0.1]
         if not ok:
             raise ValueError(f"no shot long enough for slot {sig['t0']:.2f}-{sig['t1']:.2f}")
+        fresh = [s for s in ok if (Path(s.src).name, round(s.start, 2)) not in exclude]
+        if fresh:                        # shots used in recent videos only when nothing else fits
+            ok = fresh
         vertical = tpl.get("orientation") == "vertical"
         best = min(ok, key=lambda s: _dist(sig, s) + (0.0 if s.length >= dur + 0.1 else 0.6)
-                   + (0.9 if vertical and s.bar else 0.0)            # vertical: avoid letterboxed shots
+                   + (2.5 if vertical and s.bar else 0.0)            # vertical: avoid letterboxed shots
+                   - (s.iconic - 5.0) * 0.15                          # prefer the most iconic shots
                    + (1.5 if (Path(s.src).name, round(s.start, 2)) in exclude else 0.0))
         used.add((best.src, best.start))
         speed = min(1.0, (best.length - 0.1) / dur)
@@ -247,12 +252,13 @@ def _counter_value(ev: dict, t: float, vars: dict) -> int:
 
 
 class TextRenderer:
-    def __init__(self, tpl: dict, vars: dict, H: int, W: int | None = None):
+    def __init__(self, tpl: dict, vars: dict, H: int, W: int | None = None, scale: float = 1.0):
         self.tpl, self.vars, self.H = tpl, vars, H
         self.max_w = int((W or H) * 0.86)
         st = tpl.get("text_style", {})
-        self.size = int(H * st.get("size", 0.058))
-        self.line_size = int(H * st.get("line_size", 0.040))
+        # scale > 1: the frame will be shrunk into a vertical video, so text is drawn bigger to stay readable
+        self.size = int(H * st.get("size", 0.058) * scale)
+        self.line_size = int(H * st.get("line_size", 0.040) * scale)
         self.glow = float(st.get("glow", 0.9))
         self.track = float(st.get("tracking", 0.04))
         self.y = float(st.get("y", 0.5))
@@ -274,6 +280,11 @@ class TextRenderer:
     def draw(self, frame: np.ndarray, t: float) -> None:
         H, W = frame.shape[:2]
         cy = H * self.y
+        wm = self.vars.get("watermark")
+        if wm and t < self.tpl["duration"] - 0.4:           # small channel tag below the centre, like the references
+            if "_wm" not in self.cache:
+                self.cache["_wm"] = _text_rgba(wm, max(16, int(H * 0.02)), 0.0, 0.08)
+            _over(frame, self.cache["_wm"], W / 2, H * 0.62, alpha=0.55)
         for ev in self.tpl.get("text", []):
             if not ev["t0"] <= t < ev["t1"]:
                 continue
@@ -354,8 +365,8 @@ def _read_segment(src: str, start: float, dur: float, speed: float, W: int, H: i
 
 
 def render_template(tpl: dict, fills: list[Fill], out: Path, vars: dict, *, audio_from: str | None = None,
-                    src_size: tuple[int, int] = (1920, 1080)) -> dict:
-    W, H = (1920, 1080) if tpl["orientation"] == "landscape" else (1080, 1920)
+                    src_size: tuple[int, int] = (1920, 1080), vertical_out: bool = True) -> dict:
+    W, H = {"landscape": (1920, 1080), "square": (1080, 1080)}.get(tpl["orientation"], (1080, 1920))
     sw, sh = src_size
     upscale = max(W / sw, H / sh)
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -363,7 +374,8 @@ def render_template(tpl: dict, fills: list[Fill], out: Path, vars: dict, *, audi
     enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{W}x{H}",
                             "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "16",
                             "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(silent)], stdin=subprocess.PIPE)
-    text = TextRenderer(tpl, vars, H, W)
+    to_vertical = vertical_out and tpl["orientation"] != "vertical"
+    text = TextRenderer(tpl, vars, H, W, scale=(1.7 if tpl["orientation"] == "landscape" else 1.25) if to_vertical else 1.0)
     cuts = [f.t0 for f in fills[1:]]
     whip_on = tpl.get("transition") == "whip"
     fade = tpl.get("fade_out_from")
@@ -397,8 +409,11 @@ def render_template(tpl: dict, fills: list[Fill], out: Path, vars: dict, *, audi
     enc.stdin.close()
     if enc.wait() != 0:
         raise RuntimeError("ffmpeg encode failed")
+    if to_vertical:
+        to_vertical_video(silent)
+        W, H = 1080, 1920
     res = {"file": str(silent), "duration": round(n_frames / FPS, 2), "shots": log, "upscale": round(upscale, 2),
-           "size": f"{W}x{H}"}
+           "size": f"{W}x{H}", "layout": "vertical (landscape/square picture centred on a blurred copy)" if to_vertical else None}
     if audio_from:
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(silent), "-i", audio_from, "-map", "0:v", "-map", "1:a",
                         "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", str(out)], check=True)
@@ -406,11 +421,26 @@ def render_template(tpl: dict, fills: list[Fill], out: Path, vars: dict, *, audi
     return res
 
 
+def to_vertical_video(path: Path) -> None:
+    """Every video is posted to TikTok AND YouTube Shorts, and Shorts must be vertical: a landscape/square edit is
+    placed full-width in the middle of a 1080x1920 frame over a blurred, darkened copy of itself."""
+    tmp = path.with_name(path.stem + ".v.mp4")
+    fc = ("[0:v]split[a][b];[a]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
+          "gblur=sigma=28,eq=brightness=-0.18:saturation=1.1[bg];[b]scale=1080:-2:flags=lanczos[fg];"
+          "[bg][fg]overlay=0:(H-h)/2,format=yuv420p[v]")
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(path), "-filter_complex", fc, "-map", "[v]", "-map", "0:a?",
+                    "-c:v", "libx264", "-preset", "slow", "-crf", "16", "-c:a", "copy", "-movflags", "+faststart", str(tmp)],
+                   check=True)
+    tmp.replace(path)
+
+
 def make_template_edit(tpl: dict, sources: list[str], out: Path, vars: dict, *, audio_from: str | None = None,
-                       shot_cache: Path | None = None, exclude: set | None = None) -> dict:
+                       shot_cache: Path | None = None, exclude: set | None = None, tags_dir: Path | None = None,
+                       gemini=None, vertical_out: bool = True) -> dict:
     shots: list[Shot] = []
     for s in sources:
-        cp = shot_cache / (Path(s).name + ".shots.json") if shot_cache else None
+        # keyed by folder + name: different footage sets reuse names like trailer1.mp4
+        cp = shot_cache / f"{Path(s).parent.name}__{Path(s).name}.shots.json" if shot_cache else None
         if cp and cp.exists() and cp.stat().st_mtime >= Path(s).stat().st_mtime:
             shots += [Shot(**d) for d in json.loads(cp.read_text())]
             continue
@@ -419,9 +449,13 @@ def make_template_edit(tpl: dict, sources: list[str], out: Path, vars: dict, *, 
             cp.parent.mkdir(parents=True, exist_ok=True)
             cp.write_text(json.dumps([d.__dict__ for d in found]))
         shots += found
+    if tags_dir is not None:
+        for src in sources:
+            tag_shots(src, [x for x in shots if x.src == src], tags_dir, gemini)
     info = _probe(sources[0])
     fills = assign(tpl, shots, exclude=exclude)
-    res = render_template(tpl, fills, out, vars, audio_from=audio_from, src_size=(info["w"], info["h"]))
+    res = render_template(tpl, fills, out, vars, audio_from=audio_from, src_size=(info["w"], info["h"]),
+                          vertical_out=vertical_out)
     res.update({"template": tpl["id"], "shots_usable": sum(s.usable for s in shots), "source_height": info["h"],
                 "used_shots": [[Path(f.shot.src).name, round(f.shot.start, 2)] for f in fills]})
     return res
@@ -509,3 +543,59 @@ def template_score(tpl: dict, now: float | None = None) -> float:
     age_h = max(1.0, ((now or time.time()) - float(tpl.get("created") or 0)) / 3600) if tpl.get("created") else None
     v = views / age_h if age_h else views / 500
     return v * (1 + 0.3 * float(tpl.get("outlier") or 1))
+
+
+# ------------------------------------------------------------------ shot tags (AI, cached per footage file)
+TAG_SCHEMA = {"type": "object", "properties": {"shots": {"type": "array", "items": {"type": "object", "properties": {
+    "i": {"type": "integer"}, "iconic": {"type": "number"}, "ui_overlay": {"type": "boolean"},
+    "what": {"type": "string"}}, "required": ["i", "iconic", "ui_overlay"]}}}, "required": ["shots"]}
+
+TAG_PROMPT = """This image is a grid of numbered frames, one per shot of an official game trailer (the number is in the
+yellow box in each tile's corner). For EVERY number rate the shot for a viral hype edit:
+- iconic: 1-10 (10 = instantly recognisable, breathtaking or high-action: skyline/aerial, main characters' close-ups,
+  explosions, chases, beach/party crowds; 1 = generic interior, dull filler, logo/rating card).
+- ui_overlay: true if the frame shows phone / social-media / livestream / news-TV / chat / app interface, usernames,
+  "Follow" buttons, captions or any other UI or text on top of the picture.
+- what: 3-8 words describing that tile.
+Numbers: 0..{last}."""
+
+
+def _grid(src: str, shots: list[Shot], tile_w: int = 256, cols: int = 8) -> bytes:
+    th = tile_w * 9 // 16
+    rows = (len(shots) + cols - 1) // cols
+    grid = np.zeros((rows * th, cols * tile_w, 3), np.uint8)
+    for k, x in enumerate(shots):
+        raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{(x.start + x.end) / 2:.2f}", "-i", src, "-frames:v", "1",
+                              "-vf", f"scale={tile_w}:{th}", "-f", "rawvideo", "-pix_fmt", "bgr24", "-"],
+                             capture_output=True).stdout
+        if len(raw) == tile_w * th * 3:
+            tile = np.frombuffer(raw, np.uint8).reshape(th, tile_w, 3).copy()
+            cv2.rectangle(tile, (0, 0), (34, 22), (0, 220, 255), -1)
+            cv2.putText(tile, str(k), (3, 17), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
+            r, c = divmod(k, cols)
+            grid[r * th:(r + 1) * th, c * tile_w:(c + 1) * tile_w] = tile
+    return cv2.imencode(".jpg", grid, [cv2.IMWRITE_JPEG_QUALITY, 88])[1].tobytes()
+
+
+def tag_shots(src: str, shots: list[Shot], tags_dir: Path, gemini=None) -> None:
+    """Attach iconic score + UI flag to each shot. One free Gemini call per footage file (a numbered grid of the
+    shots' middle frames, so every answer maps to exactly one shot), stored in the repo (tags_dir/<file>.json)
+    and never repeated. Without Gemini the defaults stay (iconic 5, no UI)."""
+    tf = tags_dir / (Path(src).stem + ".json")
+    tags = json.loads(tf.read_text()) if tf.exists() else None
+    if tags is None and gemini is not None and gemini.available() and shots:
+        from google.genai import types
+        try:
+            res = gemini.generate_json([types.Part.from_bytes(data=_grid(src, shots), mime_type="image/jpeg"),
+                                        TAG_PROMPT.format(last=len(shots) - 1)], TAG_SCHEMA, temperature=0.1)
+            tags = {f"{shots[r['i']].start:.2f}": {"iconic": float(r["iconic"]), "ui": bool(r["ui_overlay"]),
+                                                   "what": r.get("what", "")}
+                    for r in (res or {}).get("shots", []) if 0 <= r.get("i", -1) < len(shots)}
+            tf.parent.mkdir(parents=True, exist_ok=True)
+            tf.write_text(json.dumps(tags, indent=0, ensure_ascii=False))
+        except Exception:
+            tags = None
+    for x in shots:
+        t = (tags or {}).get(f"{x.start:.2f}")
+        if t:
+            x.iconic, x.ui = t["iconic"], t["ui"]

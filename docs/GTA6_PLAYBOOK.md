@@ -77,3 +77,22 @@ Raw numbers: `config/style_examples/gta6_hype_measurements.json`.
 7. **Framing variants**: full-screen 9:16 crop; 16:9 with black bars; and footage rotated 90° to fill the
    screen (@norage_ae, the 14.9 M one).
 8. **Length**: 11–17 s for pure beat edits (loop-friendly), 22–34 s only when there is a story or dialogue.
+
+## Release-week memes (9 more references, 2026-11-14) — biggest reach in the niche
+@gta_6.2026 5.6 M (7 % share rate) · @mr_lumbago1899 2.8 M (25 % engagement) · @morisofficial_ 1.9 M · @frostysheeps 1.6 M ·
+@ryanpostvids 1.3 M · @el_rumano504 1.2 M · @jobagakes 0.7 M · @gaming.memeology 0.4 M
+- **Formula: one relatable line + one famous reaction clip.** The line is the joke's setup, the clip is the payoff;
+  no GTA footage needed at all in most of them.
+- **The line** (white, top black bar or centred, no box): a date/time stamp ("19.11 - 00:01", "POV: 19 NOVEMBER 00:01",
+  "Pov: it's November 19th 12:00 and you finally open gta6…"), "How it feels having GTA 6 downloaded rn",
+  "how ALL of us will be waking up on november 19", "POV: Day before GTA VI", a fake system message
+  ("This location is only accessible with the Ultimate Edition bundle." / "Me:").
+- **The clip**: universally known reaction footage — someone driving like a maniac, a dog going for food, a crying
+  athlete, Walter White kicking a door, Fast & Furious driving, a green-screen meme character composited in front of a
+  GTA location (strip club, map with a pin circled).
+- **Layouts**: black bars with the line in the top bar (most), split top/bottom (GTA map/image over the reaction),
+  full frame with centred caption.
+- **Length** 5–31 s; the 5-6 s one-joke loops have the highest share rates. **Sound** = the clip's own audio or one
+  trending song; no captions besides the line.
+- **Themes that work this week**: release-night rush (strip club / map pin), download/preload waiting, crying from the
+  soundtrack, morning-of-release routine, paywall/edition jokes, the goth bartender character.

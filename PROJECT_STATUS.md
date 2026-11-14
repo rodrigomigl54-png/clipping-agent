@@ -117,6 +117,23 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 40 automated tests passi
 - Morning scheduled task now runs the full production: research -> plan -> learn templates -> daily edits ->
   review -> send to the owner -> memory commit.
 
+## Added 2026-11-14
+- **Post kit** (`metadata/post_kit.py`): TikTok caption/hashtags/cover text/sound steps, YouTube Shorts title/
+  description/tags/settings, X text and posting time — written next to every video as `<video>.post.txt`.
+- **Shot tags** (`config/footage_tags/<set>/`): iconic score + UI flag for every trailer shot, one free Gemini call per
+  footage file using a numbered grid of mid-frames (exact mapping); UI shots (social media, TV news, HUD, title
+  cards) are never used; recently used shots are excluded when alternatives exist.
+- **Meme maker** (`editing/meme_maker.py`, `meme add|daily|list`): clean reaction clips are extracted from reference
+  memes (moving band = footage, still caption/bars dropped), described in `config/meme_clips/gta6.json`; daily
+  captions are written by one free Gemini call per batch from trends + viral headline style; render = caption in
+  the top bar + clip (max 2x upscale) + clip audio, 1080x1920, same file for TikTok and Shorts.
+- **Niko Bellic edits**: GTA IV official trailers (`assets/footage/gta4`, 720p, imported free), templates with
+  `footage: gta4`, square 1080x1080 output (1.5x) and GTA IV hashtags; shot cache keyed by folder + file name.
+- 12 template edits/day, no channel tag on videos.
+- **Every video goes to TikTok AND YouTube Shorts**: all outputs are 1080x1920; landscape/square template edits are
+  rendered with bigger text and centred on a blurred copy (`to_vertical_video`, `hype.all_vertical: true`).
+- YouTube channel guide `docs/YOUTUBE_SETUP.md` + banner `docs/brand/youtube_banner_2560x1440.jpg`.
+
 ## In progress
 - Nothing partially implemented.
 

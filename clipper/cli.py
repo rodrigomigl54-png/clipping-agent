@@ -592,6 +592,9 @@ def cmd_hype(app: App, a) -> int:
                 if not a.no_ai and app.orch.gemini.available():
                     try:
                         tpl["text"] = T.learn_text(str(ref), tpl, app.orch.gemini)
+                        handle = (tpl.get("creator") or "").lower().replace(".", "").replace("_", "")
+                        tpl["text"] = [e for e in tpl["text"] if not (handle and handle[-6:] in
+                                       (e.get("text") or "").lower().replace(".", "").replace("_", "").replace(" ", ""))]
                         # lines other than countdowns are the other creator's words: check they fit our footage
                         tpl["text_review"] = any(e["type"] == "line" and "{days}" not in e["text"] for e in tpl["text"])
                     except Exception as e:                      # quota / model errors: template still usable
@@ -611,8 +614,10 @@ def cmd_hype(app: App, a) -> int:
         if a.action == "render":
             tpls = [t for t in tpls if t["id"] in (a.sources or [])] or tpls[:1]
         else:
-            tpls = [t for t in tpls if not (days < 1 and any(e.get("type") == "counter" for e in t.get("text", [])))]
-            tpls = tpls[:a.n or int(hcfg.get("daily", 3))]
+            tpls = [t for t in tpls if not t.get("disabled")
+                    and not (days < 1 and any(e.get("type") == "counter" for e in t.get("text", [])))]
+            want = a.n or int(hcfg.get("daily", 3))
+            tpls = [tpls[i % len(tpls)] for i in range(want)] if tpls else []   # cycle: each pass uses fresh shots
         used_f = app.settings.path("memory/hype_used.json")
         used = _json.loads(used_f.read_text()) if used_f.exists() else {}
         from datetime import timedelta as _td
@@ -631,27 +636,36 @@ def cmd_hype(app: App, a) -> int:
             out = outdir / f"{name}.mp4"
             print(f"rendering {t['id']} ({t.get('creator')}, sound '{t.get('sound')}')…")
             try:
-                res = T.make_template_edit(t, footage, out, {"days": days}, audio_from=str(ref) if ref.exists() else None,
-                                           shot_cache=app.settings.path("data/shot_cache"), exclude=recent)
+                fdir = t.get("footage") or prof.id                    # e.g. Niko Bellic edits use GTA IV footage
+                tfoot = footage if fdir == prof.id else sorted(str(p) for p in app.settings.path(f"assets/footage/{fdir}").glob("*.mp4"))
+                res = T.make_template_edit(t, tfoot, out, {"days": days, "watermark": hcfg.get("watermark", "")}, audio_from=str(ref) if ref.exists() else None,
+                                           shot_cache=app.settings.path("data/shot_cache"), exclude=recent,
+                                           tags_dir=app.settings.path(f"config/footage_tags/{fdir}"),
+                                           gemini=app.orch.gemini, vertical_out=bool(hcfg.get("all_vertical", True)))
             except Exception as e:
                 print(f"  ! {t['id']}: {e}"); continue
             mu = float(app.settings.quality.get("technical", {}).get("max_upscale", 2.0))
-            res["qc"] = {"sharp_enough": res["upscale"] <= mu, "source_1080p": res["source_height"] >= 1080}
+            res["qc"] = {"sharp_enough": res["upscale"] <= mu, "source_720p_or_better": res["source_height"] >= 720}
             res["music"] = {"sound": t.get("sound"), "artist": t.get("sound_author"), "reference_post": t.get("reference"),
                             "bpm": t.get("bpm"), "how": [
                                 "TikTok: open the reference post, tap the sound -> Use this sound.",
                                 "Start the sound at 0:00 (do not trim): every cut sits on the same frame as in the reference.",
                                 "Upload the *_silent.mp4 file and keep the original-video volume at 0."]}
+            res["post"] = _post_kit(app, t, days)
+            from .metadata.post_kit import as_text as _kit_text
+            out.with_suffix(".post.txt").write_text(_kit_text(res["post"], t["id"]), encoding="utf-8")
             res["WARNING"] = "PRIVATE TEST — not an approved export; official trailer footage (rights not recorded)."
             if t.get("text_review"):
                 res["text_review"] = "on-screen lines copied from the reference: check they are true for this footage"
             out.with_suffix(".json").write_text(_json.dumps(res, indent=2, ensure_ascii=False), encoding="utf-8")
             used.setdefault(day, []).extend(res["used_shots"])
+            recent |= {(x[0], x[1]) for x in res["used_shots"]}          # next video avoids these shots
             made.append(res)
             ok = all(res["qc"].values())
             print(f"  ▶ {res.get('preview_with_sound') or res['file']}\n    {res['duration']}s {res['size']} | "
                   f"upscale {res['upscale']}x | QC {'PASS' if ok else 'FAIL'} | sound '{t.get('sound')}' from 0:00"
                   + (" | CHECK TEXT" if t.get("text_review") else ""))
+            print(f"    post: {res['post']['tiktok']['caption']}")
         used_f.parent.mkdir(parents=True, exist_ok=True)
         used_f.write_text(_json.dumps({d: v for d, v in sorted(used.items())[-7:]}, indent=0))
         return 0 if made else 1
@@ -679,6 +693,101 @@ def cmd_hype(app: App, a) -> int:
     print(f"  ▶ {out}\n    {res['duration']}s | upscale {res['upscale']}x | QC {res['qc']['decision']}")
     print(f"    MUSIC: '{m['sound']}' — {m['artist']} | {m['bpm']} BPM | drop at {m['drop_at_s']}s")
     return 0 if res["qc"]["decision"] == "PASS" else 1
+
+def _post_kit(app: App, t: dict, days: int) -> dict:
+    """Post texts for one rendered template edit (TikTok / YouTube Shorts / X)."""
+    import json as _json
+    from .metadata.post_kit import build
+    lines = []
+    for e in t.get("text", []):
+        if e.get("type") == "line":
+            lines.append(e["text"].replace("{days}", str(days)))
+        elif e.get("type") == "counter":
+            lines.append(f"{days} DAYS")
+    lines = [l for i, l in enumerate(lines) if l not in lines[:i]]
+    topics = []
+    sp = app.settings.path("memory/research/summary_latest.json")
+    if sp.exists():
+        try:
+            topics = [x if isinstance(x, str) else x.get("topic", "") for x in _json.loads(sp.read_text()).get("topics", [])][:15]
+        except Exception:
+            topics = []
+    hcfg = app.settings.profile("gta6").hype or {}
+    return build(lines=lines, days=days, topics=topics, kind=t.get("category") or "hype_edit", seed=t["id"], sound=t.get("sound"), sound_ref=t.get("reference"),
+                 handle=hcfg.get("watermark") or "", orientation=t.get("orientation", "vertical"))
+
+
+
+def cmd_meme(app: App, a) -> int:
+    """Reaction memes: add <TikTok url|file> learns a clean reaction clip; daily writes new captions (Gemini, one call)
+    and renders them; list shows the clip library."""
+    import json as _json
+    from datetime import date as _date, datetime as _dt, timezone as _tz
+    from .editing import meme_maker as M
+    from .editing.hype_editor import days_until
+    from .metadata.post_kit import as_text, build
+    prof = app.settings.profile(a.profile)
+    root = app.settings.root
+    lib = M.load_library(root, prof.id)
+    if a.action == "list":
+        for c in lib:
+            print(f"  {c['id']}: {c['duration']}s | {c['what']} | used: {len(c.get('used_captions', []))}")
+        return 0
+    if a.action == "add":
+        from .research.trends import TikTokPublic
+        src = a.target or ""
+        m = re.search(r"tiktok\.com/@([^/]+)/video/(\d+)", src)
+        if m:
+            f = app.settings.path("assets/meme_refs") / f"{m.group(1)}_{m.group(2)}.mp4"
+            if not f.exists():
+                TikTokPublic.download(m.group(1), m.group(2), f)
+            cid = f"{m.group(1)}_{m.group(2)[-6:]}".replace(".", "_")
+        else:
+            f, cid = Path(src), Path(src).stem
+        r = M.extract_clip(str(f), app.settings.path(f"assets/meme_clips/{cid}.mp4"), start=a.start or 0.0, end=a.end)
+        entry = {"id": cid, "file": f"assets/meme_clips/{cid}.mp4", "what": a.what or "", "emotion": _csv(a.emotion or ""),
+                 "reference": src if m else None, "duration": r["duration"], "used_captions": []}
+        lib = [c for c in lib if c["id"] != cid] + [entry]
+        M.save_library(root, prof.id, lib)
+        print(f"  + {cid}: {r['duration']}s, crop {r['box']}, upscale {r['upscale']}x — describe it with --what/--emotion")
+        return 0
+    # daily
+    days = days_until(prof.release_date) if prof.release_date else 0
+    clips = [c for c in lib if Path(root / c["file"]).exists() and c.get("what")][: a.n or 6]
+    if not clips:
+        print("meme library is empty: meme add <tiktok url> --what ... --emotion ..."); return 1
+    topics, examples = [], []
+    sp = app.settings.path("memory/research/summary_latest.json")
+    if sp.exists():
+        summ = _json.loads(sp.read_text())
+        topics = [x if isinstance(x, str) else x.get("topic", "") for x in summ.get("topics", [])]
+    try:
+        from .styles.style_library import StyleLibrary
+        examples = StyleLibrary(app.db, app.settings).headline_examples(prof.id, "meme_skit") or []
+    except Exception:
+        examples = []
+    if not app.orch.gemini.available():
+        print("Gemini unavailable: no new captions today"); return 1
+    caps = M.write_captions(clips, app.orch.gemini, days=days, topics=topics, examples=examples,
+                            today=_date.today().isoformat())
+    day = _dt.now(_tz.utc).strftime("%Y-%m-%d")
+    outdir = app.settings.path(app.settings.global_.outputs_dir) / "_PRIVATE_TEST" / prof.output_folder / day / "memes"
+    made = 0
+    for c in clips:
+        cap = caps.get(c["id"])
+        if not cap:
+            continue
+        out = outdir / f"MEME_{c['id']}_{_dt.now(_tz.utc).strftime('%H%M%S')}.mp4"
+        r = M.render_meme(str(root / c["file"]), cap, out)
+        kit = build(lines=[cap], days=days, kind="meme_skit")
+        out.with_suffix(".post.txt").write_text(as_text(kit, cap), encoding="utf-8")
+        out.with_suffix(".json").write_text(_json.dumps({**r, "clip": c["id"], "post": kit}, indent=2, ensure_ascii=False))
+        c.setdefault("used_captions", []).append(cap)
+        made += 1
+        print(f"  ▶ {out}\n    {r['duration']}s | {cap}")
+    M.save_library(root, prof.id, lib)
+    return 0 if made else 1
+
 
 def cmd_examples(app: App, a) -> int:
     from .styles.style_library import StyleLibrary, json_dump
@@ -897,6 +1006,11 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--no-ai", action="store_true", help="learn without Gemini (no text events)")
     s.add_argument("--opener"); s.add_argument("--main"); s.add_argument("--final")
     s.set_defaults(fn=cmd_hype)
+    s = sub.add_parser("meme", help="reaction memes: caption + well-known clip (TikTok + YouTube Shorts)")
+    s.add_argument("action", choices=["daily", "add", "list"]); s.add_argument("target", nargs="?")
+    s.add_argument("--profile", choices=PROFILE_IDS, default="gta6"); s.add_argument("--n", type=int)
+    s.add_argument("--what"); s.add_argument("--emotion"); s.add_argument("--start", type=float); s.add_argument("--end", type=float)
+    s.set_defaults(fn=cmd_meme)
     s = sub.add_parser("examples", help="example clips the machine learns editing formats from")
     s.add_argument("action", choices=["add", "list", "show", "set-category", "remove", "choose", "export", "import"])
     s.add_argument("target", nargs="?", help="video file / URL (add) or example id")

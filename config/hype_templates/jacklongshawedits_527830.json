@@ -1,0 +1,225 @@
+{
+ "id": "jacklongshawedits_527830",
+ "reference_file": "jacklongshawedits_527830.mp4",
+ "orientation": "landscape",
+ "duration": 11.2,
+ "cuts": [
+  3.533,
+  4.0,
+  4.233,
+  4.7,
+  5.333,
+  5.8,
+  6.233,
+  6.667,
+  7.133,
+  7.533,
+  8.033,
+  8.467,
+  9.8,
+  10.467
+ ],
+ "slots": [
+  {
+   "t0": 0.0,
+   "t1": 3.533,
+   "bright": 43.8,
+   "sat": 140.3,
+   "hue": 151.0,
+   "motion": 0.0342,
+   "faces": 0
+  },
+  {
+   "t0": 3.533,
+   "t1": 4.0,
+   "bright": 35.0,
+   "sat": 145.9,
+   "hue": 17.0,
+   "motion": 0.0927,
+   "faces": 1
+  },
+  {
+   "t0": 4.0,
+   "t1": 4.233,
+   "bright": 55.5,
+   "sat": 149.8,
+   "hue": 30.0,
+   "motion": 0.0769,
+   "faces": 0
+  },
+  {
+   "t0": 4.233,
+   "t1": 4.7,
+   "bright": 27.6,
+   "sat": 139.9,
+   "hue": 12.0,
+   "motion": 0.0474,
+   "faces": 1
+  },
+  {
+   "t0": 4.7,
+   "t1": 5.333,
+   "bright": 28.4,
+   "sat": 163.6,
+   "hue": 160.0,
+   "motion": 0.0199,
+   "faces": 0
+  },
+  {
+   "t0": 5.333,
+   "t1": 5.8,
+   "bright": 70.9,
+   "sat": 141.0,
+   "hue": 14.0,
+   "motion": 0.0625,
+   "faces": 0
+  },
+  {
+   "t0": 5.8,
+   "t1": 6.233,
+   "bright": 154.1,
+   "sat": 47.5,
+   "hue": 105.0,
+   "motion": 0.0984,
+   "faces": 2
+  },
+  {
+   "t0": 6.233,
+   "t1": 6.667,
+   "bright": 47.7,
+   "sat": 139.4,
+   "hue": 122.0,
+   "motion": 0.0636,
+   "faces": 0
+  },
+  {
+   "t0": 6.667,
+   "t1": 7.133,
+   "bright": 31.9,
+   "sat": 102.5,
+   "hue": 15.0,
+   "motion": 0.0099,
+   "faces": 1
+  },
+  {
+   "t0": 7.133,
+   "t1": 7.533,
+   "bright": 50.7,
+   "sat": 136.4,
+   "hue": 15.0,
+   "motion": 0.0458,
+   "faces": 0
+  },
+  {
+   "t0": 7.533,
+   "t1": 8.033,
+   "bright": 85.8,
+   "sat": 126.6,
+   "hue": 17.0,
+   "motion": 0.0551,
+   "faces": 0
+  },
+  {
+   "t0": 8.033,
+   "t1": 8.467,
+   "bright": 34.8,
+   "sat": 86.1,
+   "hue": 25.0,
+   "motion": 0.0323,
+   "faces": 0
+  },
+  {
+   "t0": 8.467,
+   "t1": 9.8,
+   "bright": 55.7,
+   "sat": 194.0,
+   "hue": 16.0,
+   "motion": 0.0484,
+   "faces": 0
+  },
+  {
+   "t0": 9.8,
+   "t1": 10.467,
+   "bright": 56.0,
+   "sat": 97.9,
+   "hue": 14.0,
+   "motion": 0.0466,
+   "faces": 0
+  },
+  {
+   "t0": 10.467,
+   "t1": 11.2,
+   "bright": 35.6,
+   "sat": 116.9,
+   "hue": 128.0,
+   "motion": 0.051,
+   "faces": 0
+  }
+ ],
+ "fade_out_from": null,
+ "transition": "whip",
+ "text": [],
+ "text_style": {
+  "y": 79.52,
+  "line_size": 0.042,
+  "size": 0.058
+ },
+ "bpm": 136.0,
+ "beats": [
+  0.116,
+  0.557,
+  0.998,
+  1.416,
+  1.858,
+  2.276,
+  2.717,
+  3.158,
+  3.553,
+  4.017,
+  4.481,
+  4.899,
+  5.364,
+  5.828,
+  6.269,
+  6.711,
+  7.175,
+  7.616,
+  8.057,
+  8.499,
+  8.963,
+  9.381,
+  9.822,
+  10.286,
+  10.751
+ ],
+ "reference": "https://www.tiktok.com/@jacklongshawedits/video/7701764320853527830",
+ "video_id": "7701764320853527830",
+ "creator": "jacklongshawedits",
+ "views": 1100000,
+ "created": 1793206750,
+ "outlier": null,
+ "sound": "original sound",
+ "sound_author": "Jack Longshaw Edits",
+ "category": "hype_edit",
+ "text_review": false,
+ "original_text": [
+  {
+   "type": "line",
+   "t0": 0.0,
+   "t1": 2.1,
+   "text": "CHARLIE ROSE"
+  },
+  {
+   "type": "line",
+   "t0": 2.1,
+   "t1": 4.0,
+   "text": "CHARLIE ROSE"
+  },
+  {
+   "type": "line",
+   "t0": 10.0,
+   "t1": 11.2,
+   "text": "CHARLIE ROSE"
+  }
+ ]
+}
