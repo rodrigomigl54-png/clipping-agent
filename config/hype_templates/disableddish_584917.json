@@ -1,0 +1,203 @@
+{
+ "id": "disableddish_584917",
+ "reference_file": "disableddish_584917.mp4",
+ "orientation": "landscape",
+ "duration": 10.533,
+ "cuts": [
+  1.0,
+  1.967,
+  2.667,
+  4.667,
+  5.033,
+  5.267,
+  6.233,
+  6.9,
+  7.233,
+  7.633,
+  7.933,
+  8.533,
+  8.967,
+  9.933
+ ],
+ "slots": [
+  {
+   "t0": 0.0,
+   "t1": 1.0,
+   "bright": 41.9,
+   "sat": 97.4,
+   "hue": 16.0,
+   "motion": 0.0302,
+   "faces": 0
+  },
+  {
+   "t0": 1.0,
+   "t1": 1.967,
+   "bright": 15.5,
+   "sat": 129.8,
+   "hue": 39.0,
+   "motion": 0.0121,
+   "faces": 0
+  },
+  {
+   "t0": 1.967,
+   "t1": 2.667,
+   "bright": 59.9,
+   "sat": 85.8,
+   "hue": 60.0,
+   "motion": 0.1381,
+   "faces": 1
+  },
+  {
+   "t0": 2.667,
+   "t1": 4.667,
+   "bright": 25.1,
+   "sat": 68.1,
+   "hue": 106.0,
+   "motion": 0.0457,
+   "faces": 0
+  },
+  {
+   "t0": 4.667,
+   "t1": 5.033,
+   "bright": 53.0,
+   "sat": 95.7,
+   "hue": 18.0,
+   "motion": 0.1047,
+   "faces": 0
+  },
+  {
+   "t0": 5.033,
+   "t1": 5.267,
+   "bright": 89.9,
+   "sat": 84.5,
+   "hue": 17.0,
+   "motion": 0.099,
+   "faces": 0
+  },
+  {
+   "t0": 5.267,
+   "t1": 6.233,
+   "bright": 99.1,
+   "sat": 65.5,
+   "hue": 14.0,
+   "motion": 0.0809,
+   "faces": 0
+  },
+  {
+   "t0": 6.233,
+   "t1": 6.9,
+   "bright": 74.9,
+   "sat": 71.4,
+   "hue": 20.0,
+   "motion": 0.0614,
+   "faces": 2
+  },
+  {
+   "t0": 6.9,
+   "t1": 7.233,
+   "bright": 20.5,
+   "sat": 96.7,
+   "hue": 60.0,
+   "motion": 0.04,
+   "faces": 3
+  },
+  {
+   "t0": 7.233,
+   "t1": 7.633,
+   "bright": 50.1,
+   "sat": 102.9,
+   "hue": 15.0,
+   "motion": 0.0891,
+   "faces": 0
+  },
+  {
+   "t0": 7.633,
+   "t1": 7.933,
+   "bright": 73.9,
+   "sat": 51.3,
+   "hue": 97.0,
+   "motion": 0.06,
+   "faces": 1
+  },
+  {
+   "t0": 7.933,
+   "t1": 8.533,
+   "bright": 101.3,
+   "sat": 88.8,
+   "hue": 13.0,
+   "motion": 0.1311,
+   "faces": 1
+  },
+  {
+   "t0": 8.533,
+   "t1": 8.967,
+   "bright": 79.2,
+   "sat": 46.9,
+   "hue": 16.0,
+   "motion": 0.1263,
+   "faces": 0
+  },
+  {
+   "t0": 8.967,
+   "t1": 9.933,
+   "bright": 40.7,
+   "sat": 71.5,
+   "hue": 45.0,
+   "motion": 0.0662,
+   "faces": 1
+  },
+  {
+   "t0": 9.933,
+   "t1": 10.533,
+   "bright": 93.3,
+   "sat": 52.0,
+   "hue": 99.0,
+   "motion": 0.1396,
+   "faces": 0
+  }
+ ],
+ "fade_out_from": null,
+ "transition": "whip",
+ "text": [
+  {
+   "type": "line",
+   "t0": 1.967,
+   "t1": 2.667,
+   "text": "AIN'T NUTHIN"
+  }
+ ],
+ "text_style": {
+  "y": 0.58,
+  "line_size": 0.042,
+  "size": 0.058
+ },
+ "bpm": 92.3,
+ "beats": [
+  0.07,
+  0.673,
+  1.393,
+  2.09,
+  2.74,
+  3.39,
+  4.04,
+  4.69,
+  5.317,
+  5.968,
+  6.641,
+  7.314,
+  7.964,
+  8.615,
+  9.265,
+  9.915
+ ],
+ "reference": "https://www.tiktok.com/@disableddish/video/7678954247865584917",
+ "video_id": "7678954247865584917",
+ "creator": "disableddish",
+ "views": 1200000,
+ "created": 1787895866,
+ "outlier": null,
+ "sound": "original sound - DisabledDish",
+ "sound_author": "DisabledDish",
+ "category": "hype_edit",
+ "text_review": false
+}

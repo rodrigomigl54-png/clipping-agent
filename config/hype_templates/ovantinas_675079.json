@@ -1,0 +1,688 @@
+{
+ "id": "ovantinas_675079",
+ "reference_file": "ovantinas_675079.mp4",
+ "orientation": "landscape",
+ "duration": 43.4,
+ "cuts": [
+  6.6,
+  11.4,
+  16.1,
+  20.833,
+  21.733,
+  22.3,
+  23.2,
+  24.1,
+  24.7,
+  25.567,
+  26.467,
+  27.067,
+  27.967,
+  28.833,
+  29.167,
+  29.433,
+  29.767,
+  30.333,
+  31.233,
+  31.833,
+  32.7,
+  33.633,
+  34.2,
+  35.1,
+  36.0,
+  36.6,
+  37.467,
+  38.367,
+  38.667,
+  38.967,
+  39.3,
+  39.833
+ ],
+ "slots": [
+  {
+   "t0": 0.0,
+   "t1": 6.6,
+   "bright": 18.2,
+   "sat": 36.7,
+   "hue": 30.0,
+   "motion": 0.0055,
+   "faces": 0
+  },
+  {
+   "t0": 6.6,
+   "t1": 11.4,
+   "bright": 17.4,
+   "sat": 125.1,
+   "hue": 18.0,
+   "motion": 0.009,
+   "faces": 2
+  },
+  {
+   "t0": 11.4,
+   "t1": 16.1,
+   "bright": 14.3,
+   "sat": 105.6,
+   "hue": 38.0,
+   "motion": 0.0027,
+   "faces": 0
+  },
+  {
+   "t0": 16.1,
+   "t1": 20.833,
+   "bright": 19.0,
+   "sat": 173.7,
+   "hue": 16.0,
+   "motion": 0.0036,
+   "faces": 1
+  },
+  {
+   "t0": 20.833,
+   "t1": 21.733,
+   "bright": 6.8,
+   "sat": 133.3,
+   "hue": 17.0,
+   "motion": 0.0069,
+   "faces": 2
+  },
+  {
+   "t0": 21.733,
+   "t1": 22.3,
+   "bright": 23.1,
+   "sat": 72.2,
+   "hue": 15.0,
+   "motion": 0.0119,
+   "faces": 1
+  },
+  {
+   "t0": 22.3,
+   "t1": 23.2,
+   "bright": 29.2,
+   "sat": 110.4,
+   "hue": 40.0,
+   "motion": 0.0017,
+   "faces": 1
+  },
+  {
+   "t0": 23.2,
+   "t1": 24.1,
+   "bright": 6.3,
+   "sat": 80.8,
+   "hue": 45.0,
+   "motion": 0.006,
+   "faces": 1
+  },
+  {
+   "t0": 24.1,
+   "t1": 24.7,
+   "bright": 10.1,
+   "sat": 114.3,
+   "hue": 30.0,
+   "motion": 0.0061,
+   "faces": 1
+  },
+  {
+   "t0": 24.7,
+   "t1": 25.567,
+   "bright": 29.6,
+   "sat": 71.4,
+   "hue": 23.0,
+   "motion": 0.052,
+   "faces": 0
+  },
+  {
+   "t0": 25.567,
+   "t1": 26.467,
+   "bright": 14.6,
+   "sat": 125.8,
+   "hue": 19.0,
+   "motion": 0.0084,
+   "faces": 0
+  },
+  {
+   "t0": 26.467,
+   "t1": 27.067,
+   "bright": 17.5,
+   "sat": 123.9,
+   "hue": 21.0,
+   "motion": 0.0099,
+   "faces": 1
+  },
+  {
+   "t0": 27.067,
+   "t1": 27.967,
+   "bright": 26.9,
+   "sat": 86.5,
+   "hue": 19.0,
+   "motion": 0.0022,
+   "faces": 1
+  },
+  {
+   "t0": 27.967,
+   "t1": 28.833,
+   "bright": 29.0,
+   "sat": 74.5,
+   "hue": 22.0,
+   "motion": 0.0091,
+   "faces": 0
+  },
+  {
+   "t0": 28.833,
+   "t1": 29.167,
+   "bright": 19.9,
+   "sat": 136.0,
+   "hue": 17.0,
+   "motion": 0.02,
+   "faces": 0
+  },
+  {
+   "t0": 29.167,
+   "t1": 29.433,
+   "bright": 28.6,
+   "sat": 113.3,
+   "hue": 23.0,
+   "motion": 0.0173,
+   "faces": 1
+  },
+  {
+   "t0": 29.433,
+   "t1": 29.767,
+   "bright": 28.6,
+   "sat": 100.6,
+   "hue": 18.0,
+   "motion": 0.016,
+   "faces": 1
+  },
+  {
+   "t0": 29.767,
+   "t1": 30.333,
+   "bright": 24.6,
+   "sat": 93.1,
+   "hue": 103.0,
+   "motion": 0.0006,
+   "faces": 1
+  },
+  {
+   "t0": 30.333,
+   "t1": 31.233,
+   "bright": 33.1,
+   "sat": 71.2,
+   "hue": 38.0,
+   "motion": 0.0276,
+   "faces": 0
+  },
+  {
+   "t0": 31.233,
+   "t1": 31.833,
+   "bright": 14.4,
+   "sat": 135.2,
+   "hue": 20.0,
+   "motion": 0.0215,
+   "faces": 2
+  },
+  {
+   "t0": 31.833,
+   "t1": 32.7,
+   "bright": 38.4,
+   "sat": 100.9,
+   "hue": 40.0,
+   "motion": 0.0088,
+   "faces": 1
+  },
+  {
+   "t0": 32.7,
+   "t1": 33.633,
+   "bright": 9.9,
+   "sat": 186.9,
+   "hue": 19.0,
+   "motion": 0.0026,
+   "faces": 3
+  },
+  {
+   "t0": 33.633,
+   "t1": 34.2,
+   "bright": 21.2,
+   "sat": 130.9,
+   "hue": 25.0,
+   "motion": 0.0166,
+   "faces": 1
+  },
+  {
+   "t0": 34.2,
+   "t1": 35.1,
+   "bright": 27.5,
+   "sat": 105.2,
+   "hue": 40.0,
+   "motion": 0.0033,
+   "faces": 2
+  },
+  {
+   "t0": 35.1,
+   "t1": 36.0,
+   "bright": 10.5,
+   "sat": 112.6,
+   "hue": 38.0,
+   "motion": 0.0067,
+   "faces": 1
+  },
+  {
+   "t0": 36.0,
+   "t1": 36.6,
+   "bright": 23.8,
+   "sat": 62.9,
+   "hue": 13.0,
+   "motion": 0.0074,
+   "faces": 0
+  },
+  {
+   "t0": 36.6,
+   "t1": 37.467,
+   "bright": 6.2,
+   "sat": 141.4,
+   "hue": 30.0,
+   "motion": 0.0052,
+   "faces": 1
+  },
+  {
+   "t0": 37.467,
+   "t1": 38.367,
+   "bright": 8.9,
+   "sat": 165.7,
+   "hue": 21.0,
+   "motion": 0.0056,
+   "faces": 0
+  },
+  {
+   "t0": 38.367,
+   "t1": 38.667,
+   "bright": 37.0,
+   "sat": 96.7,
+   "hue": 40.0,
+   "motion": 0.0191,
+   "faces": 1
+  },
+  {
+   "t0": 38.667,
+   "t1": 38.967,
+   "bright": 30.4,
+   "sat": 91.5,
+   "hue": 21.0,
+   "motion": 0.0224,
+   "faces": 1
+  },
+  {
+   "t0": 38.967,
+   "t1": 39.3,
+   "bright": 23.9,
+   "sat": 95.3,
+   "hue": 15.0,
+   "motion": 0.0019,
+   "faces": 0
+  },
+  {
+   "t0": 39.3,
+   "t1": 39.833,
+   "bright": 34.9,
+   "sat": 122.5,
+   "hue": 38.0,
+   "motion": 0.0008,
+   "faces": 1
+  },
+  {
+   "t0": 39.833,
+   "t1": 43.4,
+   "bright": 2.5,
+   "sat": 0.2,
+   "hue": 60.0,
+   "motion": 0.0024,
+   "faces": 0
+  }
+ ],
+ "fade_out_from": 39.3,
+ "transition": "whip",
+ "text": [
+  {
+   "type": "line",
+   "t0": 0,
+   "t1": 0.6,
+   "text": "My"
+  },
+  {
+   "type": "line",
+   "t0": 0.6,
+   "t1": 2,
+   "text": "My Name Is Niko Bellic"
+  },
+  {
+   "type": "line",
+   "t0": 2,
+   "t1": 2.7,
+   "text": "I"
+  },
+  {
+   "type": "line",
+   "t0": 2.7,
+   "t1": 4.7,
+   "text": "I Was Born In Yugoslavia"
+  },
+  {
+   "type": "line",
+   "t0": 4.7,
+   "t1": 5.6,
+   "text": "I Was Born In Yugoslavia And Grew Up"
+  },
+  {
+   "type": "line",
+   "t0": 5.6,
+   "t1": 6.6,
+   "text": "I Was Born In Yugoslavia And Grew Up Surrounded By War"
+  },
+  {
+   "type": "line",
+   "t0": 6.6,
+   "t1": 7.6,
+   "text": "I"
+  },
+  {
+   "type": "line",
+   "t0": 7.6,
+   "t1": 8.6,
+   "text": "I Watched People Die"
+  },
+  {
+   "type": "line",
+   "t0": 8.6,
+   "t1": 9.5,
+   "text": "I Watched People Die I"
+  },
+  {
+   "type": "line",
+   "t0": 9.5,
+   "t1": 10.4,
+   "text": "I Watched People Die I Watched Friends"
+  },
+  {
+   "type": "line",
+   "t0": 10.4,
+   "t1": 11.4,
+   "text": "I Watched People Die I Watched Friends Become Enemies"
+  },
+  {
+   "type": "line",
+   "t0": 11.4,
+   "t1": 12.4,
+   "text": "I Was"
+  },
+  {
+   "type": "line",
+   "t0": 12.4,
+   "t1": 13.4,
+   "text": "I Was Betrayed By People"
+  },
+  {
+   "type": "line",
+   "t0": 13.4,
+   "t1": 15,
+   "text": "I Was Betrayed By People I Trusted"
+  },
+  {
+   "type": "line",
+   "t0": 15,
+   "t1": 15.8,
+   "text": "And Lost"
+  },
+  {
+   "type": "line",
+   "t0": 15.8,
+   "t1": 16.7,
+   "text": "And Lost People I"
+  },
+  {
+   "type": "line",
+   "t0": 16.7,
+   "t1": 17.8,
+   "text": "And Lost People I Never Should Have Lost"
+  },
+  {
+   "type": "line",
+   "t0": 17.8,
+   "t1": 18.5,
+   "text": "For"
+  },
+  {
+   "type": "line",
+   "t0": 18.5,
+   "t1": 19.3,
+   "text": "For Years"
+  },
+  {
+   "type": "line",
+   "t0": 19.3,
+   "t1": 20.833,
+   "text": "For Years I Tried"
+  },
+  {
+   "type": "line",
+   "t0": 20.833,
+   "t1": 21.733,
+   "text": "For Years I Tried To Leave That Life"
+  },
+  {
+   "type": "line",
+   "t0": 21.733,
+   "t1": 22.8,
+   "text": "For Years I Tried To Leave That Life Behind"
+  },
+  {
+   "type": "line",
+   "t0": 22.8,
+   "t1": 23.6,
+   "text": "Until I"
+  },
+  {
+   "type": "line",
+   "t0": 23.6,
+   "t1": 24.7,
+   "text": "Until I Crossed The Ocean"
+  },
+  {
+   "type": "line",
+   "t0": 24.7,
+   "t1": 25.567,
+   "text": "Searching"
+  },
+  {
+   "type": "line",
+   "t0": 25.567,
+   "t1": 26.8,
+   "text": "Searching For Something Better"
+  },
+  {
+   "type": "line",
+   "t0": 26.8,
+   "t1": 27.6,
+   "text": "Liberty City"
+  },
+  {
+   "type": "line",
+   "t0": 27.6,
+   "t1": 28.5,
+   "text": "Liberty City Was"
+  },
+  {
+   "type": "line",
+   "t0": 28.5,
+   "t1": 29.433,
+   "text": "Liberty City Was Supposed To Be A New"
+  },
+  {
+   "type": "line",
+   "t0": 29.433,
+   "t1": 30.7,
+   "text": "Liberty City Was Supposed To Be A New Beginning"
+  },
+  {
+   "type": "line",
+   "t0": 30.7,
+   "t1": 31.6,
+   "text": "But Some Things"
+  },
+  {
+   "type": "line",
+   "t0": 31.6,
+   "t1": 33.633,
+   "text": "But Some Things Cannot Be Left Behind"
+  },
+  {
+   "type": "line",
+   "t0": 33.633,
+   "t1": 34.6,
+   "text": "Some Mistakes"
+  },
+  {
+   "type": "line",
+   "t0": 34.6,
+   "t1": 35.3,
+   "text": "Some"
+  },
+  {
+   "type": "line",
+   "t0": 35.3,
+   "t1": 36.3,
+   "text": "Some Memories"
+  },
+  {
+   "type": "line",
+   "t0": 36.3,
+   "t1": 37.467,
+   "text": "Some Memories And Some Ghosts"
+  },
+  {
+   "type": "line",
+   "t0": 37.467,
+   "t1": 38.667,
+   "text": "Some Memories And Some Ghosts Never"
+  },
+  {
+   "type": "line",
+   "t0": 38.667,
+   "t1": 39.833,
+   "text": "Some Memories And Some Ghosts Never Stay Behind"
+  }
+ ],
+ "text_style": {
+  "y": 0.94,
+  "line_size": 0.032,
+  "size": 0.045
+ },
+ "bpm": 136.0,
+ "beats": [
+  0.511,
+  0.975,
+  1.37,
+  1.718,
+  2.09,
+  2.485,
+  2.926,
+  3.39,
+  3.831,
+  4.272,
+  4.714,
+  5.155,
+  5.619,
+  6.084,
+  6.548,
+  6.989,
+  7.454,
+  7.941,
+  8.359,
+  8.824,
+  9.311,
+  9.799,
+  10.194,
+  10.612,
+  11.053,
+  11.447,
+  11.865,
+  12.283,
+  12.701,
+  13.096,
+  13.56,
+  13.978,
+  14.42,
+  14.861,
+  15.279,
+  15.697,
+  16.138,
+  16.579,
+  17.043,
+  17.485,
+  17.903,
+  18.321,
+  18.762,
+  19.18,
+  19.621,
+  20.039,
+  20.457,
+  20.944,
+  21.409,
+  21.873,
+  22.314,
+  22.756,
+  23.197,
+  23.615,
+  24.079,
+  24.497,
+  24.915,
+  25.333,
+  25.751,
+  26.192,
+  26.633,
+  27.074,
+  27.539,
+  28.096,
+  28.561,
+  29.002,
+  29.466,
+  29.931,
+  30.348,
+  30.79,
+  31.231,
+  31.672,
+  32.136,
+  32.578,
+  33.019,
+  33.46,
+  33.924,
+  34.366,
+  34.807,
+  35.248,
+  35.712,
+  36.153,
+  36.595,
+  37.059,
+  37.477,
+  37.895,
+  38.359,
+  38.824,
+  39.242,
+  39.66,
+  40.147,
+  40.612,
+  41.053,
+  41.494,
+  41.935,
+  42.376,
+  42.818,
+  43.259
+ ],
+ "reference": "https://www.tiktok.com/@ovantinas/video/7683697292544675079",
+ "video_id": "7683697292544675079",
+ "creator": "ovantinas",
+ "views": 2000000,
+ "created": 1789000195,
+ "outlier": null,
+ "sound": "som original",
+ "sound_author": "Vantinas",
+ "category": "niko_edit",
+ "text_review": false,
+ "footage": "gta4"
+}

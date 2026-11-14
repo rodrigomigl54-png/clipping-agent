@@ -27,6 +27,8 @@ def _hook(lines: list[str], days: int) -> str:
         return f"GTA 6 in {days} days." if days > 0 else "GTA 6 is here."
     if len(ls) == 1:
         return ls[0]
+    if len(ls) > 3:                      # word-by-word reveals: the fullest line says it best
+        return max(ls, key=len)
     a, b = ls[0], ls[-1]
     if re.fullmatch(r"\d+", a) or a.upper().endswith("DAYS") and len(a) < 10:     # countdown counter
         return f"{days} days. {b[0].upper() + b[1:] if b else ''}".strip()
@@ -45,8 +47,10 @@ def build(*, lines: list[str], days: int, kind: str = "hype_edit", topics: list[
           sound: str | None = None, sound_ref: str | None = None, handle: str = "@mostwanted.vi",
           release: str = "November 19, 2026", orientation: str = "vertical") -> dict:
     hook = _hook(lines, days)
-    tags = list(BASE_TAGS)
-    if days > 0:
+    tags = list(BASE_TAGS) if kind != "meme_skit" else ["#gta6", "#gtavi", "#gta6memes", "#gamingmemes"]
+    if kind == "niko_edit":                     # GTA IV character edit: no countdown, GTA IV tags
+        tags, days = ["#gta4", "#nikobellic", "#gtaiv", "#gtaedits", "#gta"], -999
+    if days > 0 and kind != "niko_edit":
         tags.append("#gta6countdown")
     for t in topics or []:
         tag = TOPIC_TAGS.get(t.lower())
@@ -57,22 +61,27 @@ def build(*, lines: list[str], days: int, kind: str = "hype_edit", topics: list[
     tags = tags[:6]
     emoji = "🌴" if "leonida" in hook.lower() or "vice" in hook.lower() else "🔥"
     when = f"{days} days left" if days > 1 else ("1 day left" if days == 1 else "out now")
+    game = "GTA IV" if kind == "niko_edit" else "GTA 6"
 
     tiktok = f"{hook} {emoji} {' '.join(tags)}"
     yt_title = f"{hook} {emoji}"
-    if days > 0 and str(days) not in yt_title:
+    if days > 0 and str(days) not in yt_title and kind != "niko_edit":
         yt_title = f"{yt_title} | GTA 6 in {days} days"
     yt_title = (yt_title[:90].rstrip() + " #Shorts") if len(yt_title) > 90 else yt_title + " #Shorts"
+    if kind == "niko_edit":
+        yt_desc_tail = "#GTA4 #NikoBellic #Shorts"
+    else:
+        yt_desc_tail = "#GTA6 #GTAVI #Shorts"
     yt_desc = "\n".join([
         f"{hook} {emoji}",
-        f"GTA 6 release: {release} ({when}).",
+        f"GTA 6 release: {release} ({when})." if kind != "niko_edit" else "Niko Bellic — GTA IV. The original. GTA 6 drops November 19, 2026.",
         "New GTA 6 edit, meme or clip every day — subscribe so you don't miss one.",
         "",
-        "Footage: official Rockstar Games trailers. Fan edit, not affiliated with Rockstar Games.",
+        f"Footage: official Rockstar Games {game} trailers. Fan edit, not affiliated with Rockstar Games.",
         "",
-        "#GTA6 #GTAVI #Shorts",
+        yt_desc_tail,
     ])
-    x_text = f"{hook} {emoji}\n\n#GTA6 #GTAVI" + (" #GTA6Countdown" if days > 0 else "")
+    x_text = f"{hook} {emoji}\n\n" + ("#GTA4 #NikoBellic" if kind == "niko_edit" else "#GTA6 #GTAVI" + (" #GTA6Countdown" if days > 0 else ""))
     music = {
         "tiktok": (f"Use this sound: '{sound}' — open {sound_ref}, tap the sound → Use this sound → scissors → drag to "
                    "the very start (0:00). Upload the *_silent.mp4 file, original volume 0.") if sound else
@@ -93,7 +102,7 @@ def build(*, lines: list[str], days: int, kind: str = "hype_edit", topics: list[
         "best_time": "TikTok/Shorts: 18:00–22:00 Belgrade (12:00–16:00 New York) or 00:00–02:00 Belgrade "
                      "(US evening). Space posts at least 2–3 h apart.",
         "orientation": orientation,
-        "platforms": ["tiktok", "youtube_shorts", "x"] if orientation == "vertical" else ["tiktok", "x"],
+        "platforms": ["tiktok", "youtube_shorts", "x"] if orientation != "landscape" else ["tiktok", "x"],
     }
 
 

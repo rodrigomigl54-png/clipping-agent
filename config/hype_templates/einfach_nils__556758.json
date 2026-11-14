@@ -1,0 +1,258 @@
+{
+ "id": "einfach_nils__556758",
+ "reference_file": "einfach_nils__556758.mp4",
+ "orientation": "square",
+ "duration": 22.7,
+ "cuts": [
+  12.067,
+  14.733,
+  15.967,
+  16.467,
+  17.167,
+  18.067,
+  18.833,
+  19.3,
+  19.767,
+  20.5
+ ],
+ "slots": [
+  {
+   "t0": 0.0,
+   "t1": 12.067,
+   "bright": 24.7,
+   "sat": 28.9,
+   "hue": 16.0,
+   "motion": 0.0051,
+   "faces": 0
+  },
+  {
+   "t0": 12.067,
+   "t1": 14.733,
+   "bright": 31.5,
+   "sat": 20.6,
+   "hue": 101.0,
+   "motion": 0.0046,
+   "faces": 0
+  },
+  {
+   "t0": 14.733,
+   "t1": 15.967,
+   "bright": 18.6,
+   "sat": 41.9,
+   "hue": 8.0,
+   "motion": 0.0176,
+   "faces": 0
+  },
+  {
+   "t0": 15.967,
+   "t1": 16.467,
+   "bright": 8.2,
+   "sat": 51.0,
+   "hue": 60.0,
+   "motion": 0.0053,
+   "faces": 1
+  },
+  {
+   "t0": 16.467,
+   "t1": 17.167,
+   "bright": 32.3,
+   "sat": 26.2,
+   "hue": 15.0,
+   "motion": 0.0087,
+   "faces": 0
+  },
+  {
+   "t0": 17.167,
+   "t1": 18.067,
+   "bright": 70.7,
+   "sat": 21.5,
+   "hue": 30.0,
+   "motion": 0.0087,
+   "faces": 0
+  },
+  {
+   "t0": 18.067,
+   "t1": 18.833,
+   "bright": 50.6,
+   "sat": 27.5,
+   "hue": 79.0,
+   "motion": 0.0047,
+   "faces": 1
+  },
+  {
+   "t0": 18.833,
+   "t1": 19.3,
+   "bright": 28.0,
+   "sat": 26.5,
+   "hue": 100.0,
+   "motion": 0.0119,
+   "faces": 0
+  },
+  {
+   "t0": 19.3,
+   "t1": 19.767,
+   "bright": 9.5,
+   "sat": 45.7,
+   "hue": 27.0,
+   "motion": 0.0031,
+   "faces": 0
+  },
+  {
+   "t0": 19.767,
+   "t1": 20.5,
+   "bright": 26.7,
+   "sat": 19.5,
+   "hue": 38.0,
+   "motion": 0.0185,
+   "faces": 0
+  },
+  {
+   "t0": 20.5,
+   "t1": 22.7,
+   "bright": 21.8,
+   "sat": 11.4,
+   "hue": 78.0,
+   "motion": 0.0052,
+   "faces": 0
+  }
+ ],
+ "fade_out_from": 19.87,
+ "transition": "whip",
+ "text": [
+  {
+   "type": "line",
+   "t0": 0.0,
+   "t1": 0.62,
+   "text": "a crew"
+  },
+  {
+   "type": "line",
+   "t0": 0.62,
+   "t1": 1.83,
+   "text": "Some of the Old Guys"
+  },
+  {
+   "type": "line",
+   "t0": 1.83,
+   "t1": 2.76,
+   "text": "There"
+  },
+  {
+   "type": "line",
+   "t0": 2.76,
+   "t1": 3.7,
+   "text": "no"
+  },
+  {
+   "type": "line",
+   "t0": 3.7,
+   "t1": 4.73,
+   "text": "Guys\""
+  },
+  {
+   "type": "line",
+   "t0": 4.73,
+   "t1": 6.8,
+   "text": "There was a ..."
+  },
+  {
+   "type": "line",
+   "t0": 6.8,
+   "t1": 7.8,
+   "text": "Eastern European Guy"
+  },
+  {
+   "type": "line",
+   "t0": 7.8,
+   "t1": 8.8,
+   "text": "Making moves in"
+  },
+  {
+   "type": "line",
+   "t0": 8.8,
+   "t1": 9.87,
+   "text": "Liberty City"
+  },
+  {
+   "type": "line",
+   "t0": 10.47,
+   "t1": 12.067,
+   "text": "Nah, he went quiet"
+  },
+  {
+   "type": "line",
+   "t0": 12.067,
+   "t1": 12.87,
+   "text": "Welcome"
+  },
+  {
+   "type": "line",
+   "t0": 12.87,
+   "t1": 13.67,
+   "text": "Welcome to"
+  },
+  {
+   "type": "line",
+   "t0": 13.67,
+   "t1": 14.733,
+   "text": "Welcome to America"
+  }
+ ],
+ "text_style": {
+  "y": 0.76,
+  "line_size": 0.042,
+  "size": 0.058
+ },
+ "bpm": 95.7,
+ "beats": [
+  0.139,
+  0.813,
+  1.44,
+  1.95,
+  2.461,
+  3.088,
+  3.738,
+  4.319,
+  4.923,
+  5.55,
+  6.177,
+  6.803,
+  7.407,
+  8.011,
+  8.661,
+  9.265,
+  9.985,
+  10.681,
+  11.331,
+  11.981,
+  12.585,
+  13.212,
+  13.839,
+  14.42,
+  15.0,
+  15.604,
+  16.254,
+  16.881,
+  17.485,
+  18.088,
+  18.715,
+  19.342,
+  19.946,
+  20.55,
+  21.177,
+  21.687,
+  22.198
+ ],
+ "reference": "https://www.tiktok.com/@einfach.nils_/video/7695352104369556758",
+ "video_id": "7695352104369556758",
+ "creator": "einfach.nils_",
+ "views": 195700,
+ "created": 1791802800,
+ "outlier": null,
+ "sound": "Soviet Connection (Theme from GTA IV)",
+ "sound_author": "Michael Hunter",
+ "category": "niko_edit",
+ "text_review": false,
+ "footage": "gta4",
+ "disabled": "same dialog as elpa07p_864992 (cleaner text there)"
+}

@@ -125,6 +125,11 @@ hype:
     trailer2: "https://www.youtube.com/watch?v=VQRLujxTm3c"   # Rockstar — Trailer 2
     features: "https://www.youtube.com/watch?v=8L0CzL2V72c"   # PlayStation — Features Trailer
     preload: "https://www.youtube.com/watch?v=_yl5ELcmugI"    # Rockstar — Pre-Load Now
+  footage_sources_gta4:                 # assets/footage/gta4 — Niko Bellic edits (official Rockstar uploads, 720p)
+    trailer1: "https://www.youtube.com/watch?v=M80K51DosFo"   # GTA IV Trailer 1 "Things Will Be Different"
+    trailer2: "https://www.youtube.com/watch?v=kOZ8bRAO7YQ"   # GTA IV Trailer #2
+    trailer4: "https://www.youtube.com/watch?v=mNrm7wqnpVI"   # GTA IV Trailer #4
+    complete: "https://www.youtube.com/watch?v=ZQzIZkxsWYw"   # GTA IV Complete Edition
   watermark: ""                 # no channel tag: the same file goes to TikTok, YouTube Shorts and X
   templates:
     ZSp9cW6JW: {sound: "worry - ultra slowed", author: "LONOWN & riserayss",

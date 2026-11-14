@@ -33,6 +33,7 @@ Common requests → commands:
 | learn a format from an example clip | `python main.py examples add <file> --profile gta6 --category <cat>` |
 | hype / countdown edit from trailer files | `python main.py hype make <video> [<video>...] --profile gta6` |
 | learn viral edit templates / make the day's edits | `python main.py hype learn-trending` / `python main.py hype daily` |
+| reaction memes (caption + clip) | `python main.py meme daily --n 8` (`meme add <url>` to learn a clip) |
 | private quality test on a recording | `python main.py private-test <file> --profile gta6 --creators "<name>"` |
 
 Development: code lives in `clipper/`; run `python -m pytest -q` before committing; keep

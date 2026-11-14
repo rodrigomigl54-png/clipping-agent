@@ -96,7 +96,8 @@ def learn_template(ref: str | Path, tid: str, *, cut_thr: float = 0.35, merge_s:
                       "sat": round(float(hsv[..., 1].mean()), 1),
                       "hue": round(float(np.median(hsv[..., 0][sat_mask])), 1) if sat_mask.any() else -1,
                       "motion": round(mot, 4), "faces": len(detect_faces(mid, 0.08))})
-    tpl = {"id": tid, "reference_file": Path(ref).name, "orientation": "landscape" if info["w"] > info["h"] else "vertical",
+    tpl = {"id": tid, "reference_file": Path(ref).name, "orientation": ("square" if abs(info["w"] - info["h"]) <= 0.15 * info["h"]
+                                                                 else "landscape" if info["w"] > info["h"] else "vertical"),
            "duration": round(dur, 3), "cuts": cuts, "slots": slots, "fade_out_from": fade_from,
            "transition": "whip", "text": [], "text_style": {}}
     if info["audio"]:
@@ -364,7 +365,7 @@ def _read_segment(src: str, start: float, dur: float, speed: float, W: int, H: i
 
 def render_template(tpl: dict, fills: list[Fill], out: Path, vars: dict, *, audio_from: str | None = None,
                     src_size: tuple[int, int] = (1920, 1080)) -> dict:
-    W, H = (1920, 1080) if tpl["orientation"] == "landscape" else (1080, 1920)
+    W, H = {"landscape": (1920, 1080), "square": (1080, 1080)}.get(tpl["orientation"], (1080, 1920))
     sw, sh = src_size
     upscale = max(W / sw, H / sh)
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -420,7 +421,8 @@ def make_template_edit(tpl: dict, sources: list[str], out: Path, vars: dict, *, 
                        gemini=None) -> dict:
     shots: list[Shot] = []
     for s in sources:
-        cp = shot_cache / (Path(s).name + ".shots.json") if shot_cache else None
+        # keyed by folder + name: different footage sets reuse names like trailer1.mp4
+        cp = shot_cache / f"{Path(s).parent.name}__{Path(s).name}.shots.json" if shot_cache else None
         if cp and cp.exists() and cp.stat().st_mtime >= Path(s).stat().st_mtime:
             shots += [Shot(**d) for d in json.loads(cp.read_text())]
             continue
