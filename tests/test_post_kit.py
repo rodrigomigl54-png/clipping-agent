@@ -15,7 +15,7 @@ def test_post_kit_all_platforms():
 
 def test_post_kit_landscape_and_countdown():
     k = build(lines=["5 DAYS", "ARE YOU READYYYYYY"], days=5, orientation="landscape")
-    assert k["hook"].startswith("5 days.") and "youtube_shorts" not in k["platforms"]
-    assert "not for this one" in as_text(k)
+    assert k["hook"].startswith("5 days.") and "youtube_shorts" in k["platforms"]   # every video goes to both
+    assert "YOUTUBE SHORTS" in as_text(k)
     k0 = build(lines=[], days=0)
     assert "#gta6countdown" not in k0["tiktok"]["caption"] and "out now" in k0["youtube"]["description"]

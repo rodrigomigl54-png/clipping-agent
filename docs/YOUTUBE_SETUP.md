@@ -54,13 +54,13 @@ Svaki Short ubaci u odgovarajuću plejlistu (plejliste dižu gledanost kanala).
 
 ## 9. Kako objavljuješ Short
 1. YouTube app → **+ → Upload a video** → izaberi **verziju SA muzikom** (ne `_silent`) — Shorts nema TikTok zvukove.
-2. Samo **vertikalni** videi idu na Shorts (horizontalni odbrojavanje ide samo na TikTok i X).
+2. Svaki video ide i na TikTok i na Shorts — mašina pravi sve videe vertikalne (1080x1920).
 3. Naslov, opis i tagove kopiraj iz `.post.txt` fajla koji mašina pravi uz svaki video.
 4. **Select audience:** No, not made for kids.
 5. Content ID zahtev na pesmu je normalan: video ostaje, zaradu od te pesme dobija vlasnik. Strike dobijaš samo za ceo trailer ili film — to ne radimo.
 
 ## Ritam
-- 2–3 Shorts dnevno, iste videe kao na TikTok-u (naš fajl, bez TikTok vodenog žiga — YouTube smanjuje doseg videa sa tuđim vodenim žigom).
+- 10–20 Shorts dnevno, iste videe kao na TikTok-u (naš fajl, bez TikTok vodenog žiga — YouTube smanjuje doseg videa sa tuđim vodenim žigom).
 - Razmak 2–3 h; najbolje 18:00–22:00 po našem vremenu (podne–popodne u Americi).
 
 ## Monetizacija (kasnije)

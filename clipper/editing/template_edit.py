@@ -252,12 +252,13 @@ def _counter_value(ev: dict, t: float, vars: dict) -> int:
 
 
 class TextRenderer:
-    def __init__(self, tpl: dict, vars: dict, H: int, W: int | None = None):
+    def __init__(self, tpl: dict, vars: dict, H: int, W: int | None = None, scale: float = 1.0):
         self.tpl, self.vars, self.H = tpl, vars, H
         self.max_w = int((W or H) * 0.86)
         st = tpl.get("text_style", {})
-        self.size = int(H * st.get("size", 0.058))
-        self.line_size = int(H * st.get("line_size", 0.040))
+        # scale > 1: the frame will be shrunk into a vertical video, so text is drawn bigger to stay readable
+        self.size = int(H * st.get("size", 0.058) * scale)
+        self.line_size = int(H * st.get("line_size", 0.040) * scale)
         self.glow = float(st.get("glow", 0.9))
         self.track = float(st.get("tracking", 0.04))
         self.y = float(st.get("y", 0.5))
@@ -364,7 +365,7 @@ def _read_segment(src: str, start: float, dur: float, speed: float, W: int, H: i
 
 
 def render_template(tpl: dict, fills: list[Fill], out: Path, vars: dict, *, audio_from: str | None = None,
-                    src_size: tuple[int, int] = (1920, 1080)) -> dict:
+                    src_size: tuple[int, int] = (1920, 1080), vertical_out: bool = True) -> dict:
     W, H = {"landscape": (1920, 1080), "square": (1080, 1080)}.get(tpl["orientation"], (1080, 1920))
     sw, sh = src_size
     upscale = max(W / sw, H / sh)
@@ -373,7 +374,8 @@ def render_template(tpl: dict, fills: list[Fill], out: Path, vars: dict, *, audi
     enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{W}x{H}",
                             "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "16",
                             "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(silent)], stdin=subprocess.PIPE)
-    text = TextRenderer(tpl, vars, H, W)
+    to_vertical = vertical_out and tpl["orientation"] != "vertical"
+    text = TextRenderer(tpl, vars, H, W, scale=(1.7 if tpl["orientation"] == "landscape" else 1.25) if to_vertical else 1.0)
     cuts = [f.t0 for f in fills[1:]]
     whip_on = tpl.get("transition") == "whip"
     fade = tpl.get("fade_out_from")
@@ -407,8 +409,11 @@ def render_template(tpl: dict, fills: list[Fill], out: Path, vars: dict, *, audi
     enc.stdin.close()
     if enc.wait() != 0:
         raise RuntimeError("ffmpeg encode failed")
+    if to_vertical:
+        to_vertical_video(silent)
+        W, H = 1080, 1920
     res = {"file": str(silent), "duration": round(n_frames / FPS, 2), "shots": log, "upscale": round(upscale, 2),
-           "size": f"{W}x{H}"}
+           "size": f"{W}x{H}", "layout": "vertical (landscape/square picture centred on a blurred copy)" if to_vertical else None}
     if audio_from:
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(silent), "-i", audio_from, "-map", "0:v", "-map", "1:a",
                         "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", str(out)], check=True)
@@ -416,9 +421,22 @@ def render_template(tpl: dict, fills: list[Fill], out: Path, vars: dict, *, audi
     return res
 
 
+def to_vertical_video(path: Path) -> None:
+    """Every video is posted to TikTok AND YouTube Shorts, and Shorts must be vertical: a landscape/square edit is
+    placed full-width in the middle of a 1080x1920 frame over a blurred, darkened copy of itself."""
+    tmp = path.with_name(path.stem + ".v.mp4")
+    fc = ("[0:v]split[a][b];[a]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
+          "gblur=sigma=28,eq=brightness=-0.18:saturation=1.1[bg];[b]scale=1080:-2:flags=lanczos[fg];"
+          "[bg][fg]overlay=0:(H-h)/2,format=yuv420p[v]")
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(path), "-filter_complex", fc, "-map", "[v]", "-map", "0:a?",
+                    "-c:v", "libx264", "-preset", "slow", "-crf", "16", "-c:a", "copy", "-movflags", "+faststart", str(tmp)],
+                   check=True)
+    tmp.replace(path)
+
+
 def make_template_edit(tpl: dict, sources: list[str], out: Path, vars: dict, *, audio_from: str | None = None,
                        shot_cache: Path | None = None, exclude: set | None = None, tags_dir: Path | None = None,
-                       gemini=None) -> dict:
+                       gemini=None, vertical_out: bool = True) -> dict:
     shots: list[Shot] = []
     for s in sources:
         # keyed by folder + name: different footage sets reuse names like trailer1.mp4
@@ -436,7 +454,8 @@ def make_template_edit(tpl: dict, sources: list[str], out: Path, vars: dict, *, 
             tag_shots(src, [x for x in shots if x.src == src], tags_dir, gemini)
     info = _probe(sources[0])
     fills = assign(tpl, shots, exclude=exclude)
-    res = render_template(tpl, fills, out, vars, audio_from=audio_from, src_size=(info["w"], info["h"]))
+    res = render_template(tpl, fills, out, vars, audio_from=audio_from, src_size=(info["w"], info["h"]),
+                          vertical_out=vertical_out)
     res.update({"template": tpl["id"], "shots_usable": sum(s.usable for s in shots), "source_height": info["h"],
                 "used_shots": [[Path(f.shot.src).name, round(f.shot.start, 2)] for f in fills]})
     return res

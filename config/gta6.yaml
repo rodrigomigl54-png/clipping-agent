@@ -131,6 +131,7 @@ hype:
     trailer4: "https://www.youtube.com/watch?v=mNrm7wqnpVI"   # GTA IV Trailer #4
     complete: "https://www.youtube.com/watch?v=ZQzIZkxsWYw"   # GTA IV Complete Edition
   watermark: ""                 # no channel tag: the same file goes to TikTok, YouTube Shorts and X
+  all_vertical: true            # every video goes to TikTok AND YouTube Shorts -> always 1080x1920
   templates:
     ZSp9cW6JW: {sound: "worry - ultra slowed", author: "LONOWN & riserayss",
                 reference: "https://www.tiktok.com/@norage_ae/video/7678858598683888914"}     # 14.9 M views

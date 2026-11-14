@@ -115,7 +115,7 @@ def build(*, lines: list[str], days: int, kind: str = "hype_edit", topics: list[
         "best_time": "TikTok/Shorts: 18:00–22:00 Belgrade (12:00–16:00 New York) or 00:00–02:00 Belgrade "
                      "(US evening). Space posts at least 2–3 h apart.",
         "orientation": orientation,
-        "platforms": ["tiktok", "youtube_shorts", "x"] if orientation != "landscape" else ["tiktok", "x"],
+        "platforms": ["tiktok", "youtube_shorts", "x"],          # every video goes to TikTok AND YouTube Shorts
     }
 
 

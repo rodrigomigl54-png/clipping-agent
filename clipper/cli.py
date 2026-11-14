@@ -641,7 +641,7 @@ def cmd_hype(app: App, a) -> int:
                 res = T.make_template_edit(t, tfoot, out, {"days": days, "watermark": hcfg.get("watermark", "")}, audio_from=str(ref) if ref.exists() else None,
                                            shot_cache=app.settings.path("data/shot_cache"), exclude=recent,
                                            tags_dir=app.settings.path(f"config/footage_tags/{fdir}"),
-                                           gemini=app.orch.gemini)
+                                           gemini=app.orch.gemini, vertical_out=bool(hcfg.get("all_vertical", True)))
             except Exception as e:
                 print(f"  ! {t['id']}: {e}"); continue
             mu = float(app.settings.quality.get("technical", {}).get("max_upscale", 2.0))
