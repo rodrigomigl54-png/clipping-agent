@@ -612,7 +612,8 @@ def cmd_hype(app: App, a) -> int:
             tpls = [t for t in tpls if t["id"] in (a.sources or [])] or tpls[:1]
         else:
             tpls = [t for t in tpls if not (days < 1 and any(e.get("type") == "counter" for e in t.get("text", [])))]
-            tpls = tpls[:a.n or int(hcfg.get("daily", 3))]
+            want = a.n or int(hcfg.get("daily", 3))
+            tpls = [tpls[i % len(tpls)] for i in range(want)] if tpls else []   # cycle: each pass uses fresh shots
         used_f = app.settings.path("memory/hype_used.json")
         used = _json.loads(used_f.read_text()) if used_f.exists() else {}
         from datetime import timedelta as _td
@@ -652,6 +653,7 @@ def cmd_hype(app: App, a) -> int:
                 res["text_review"] = "on-screen lines copied from the reference: check they are true for this footage"
             out.with_suffix(".json").write_text(_json.dumps(res, indent=2, ensure_ascii=False), encoding="utf-8")
             used.setdefault(day, []).extend(res["used_shots"])
+            recent |= {(x[0], x[1]) for x in res["used_shots"]}          # next video avoids these shots
             made.append(res)
             ok = all(res["qc"].values())
             print(f"  ▶ {res.get('preview_with_sound') or res['file']}\n    {res['duration']}s {res['size']} | "
