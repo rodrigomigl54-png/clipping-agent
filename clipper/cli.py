@@ -644,6 +644,9 @@ def cmd_hype(app: App, a) -> int:
                                 "TikTok: open the reference post, tap the sound -> Use this sound.",
                                 "Start the sound at 0:00 (do not trim): every cut sits on the same frame as in the reference.",
                                 "Upload the *_silent.mp4 file and keep the original-video volume at 0."]}
+            res["post"] = _post_kit(app, t, days)
+            from .metadata.post_kit import as_text as _kit_text
+            out.with_suffix(".post.txt").write_text(_kit_text(res["post"], t["id"]), encoding="utf-8")
             res["WARNING"] = "PRIVATE TEST — not an approved export; official trailer footage (rights not recorded)."
             if t.get("text_review"):
                 res["text_review"] = "on-screen lines copied from the reference: check they are true for this footage"
@@ -654,6 +657,7 @@ def cmd_hype(app: App, a) -> int:
             print(f"  ▶ {res.get('preview_with_sound') or res['file']}\n    {res['duration']}s {res['size']} | "
                   f"upscale {res['upscale']}x | QC {'PASS' if ok else 'FAIL'} | sound '{t.get('sound')}' from 0:00"
                   + (" | CHECK TEXT" if t.get("text_review") else ""))
+            print(f"    post: {res['post']['tiktok']['caption']}")
         used_f.parent.mkdir(parents=True, exist_ok=True)
         used_f.write_text(_json.dumps({d: v for d, v in sorted(used.items())[-7:]}, indent=0))
         return 0 if made else 1
@@ -681,6 +685,30 @@ def cmd_hype(app: App, a) -> int:
     print(f"  ▶ {out}\n    {res['duration']}s | upscale {res['upscale']}x | QC {res['qc']['decision']}")
     print(f"    MUSIC: '{m['sound']}' — {m['artist']} | {m['bpm']} BPM | drop at {m['drop_at_s']}s")
     return 0 if res["qc"]["decision"] == "PASS" else 1
+
+def _post_kit(app: App, t: dict, days: int) -> dict:
+    """Post texts for one rendered template edit (TikTok / YouTube Shorts / X)."""
+    import json as _json
+    from .metadata.post_kit import build
+    lines = []
+    for e in t.get("text", []):
+        if e.get("type") == "line":
+            lines.append(e["text"].replace("{days}", str(days)))
+        elif e.get("type") == "counter":
+            lines.append(f"{days} DAYS")
+    lines = [l for i, l in enumerate(lines) if l not in lines[:i]]
+    topics = []
+    sp = app.settings.path("memory/research/summary_latest.json")
+    if sp.exists():
+        try:
+            topics = [x if isinstance(x, str) else x.get("topic", "") for x in _json.loads(sp.read_text()).get("topics", [])][:15]
+        except Exception:
+            topics = []
+    hcfg = app.settings.profile("gta6").hype or {}
+    return build(lines=lines, days=days, topics=topics, sound=t.get("sound"), sound_ref=t.get("reference"),
+                 handle=hcfg.get("watermark") or "", orientation=t.get("orientation", "vertical"))
+
+
 
 def cmd_examples(app: App, a) -> int:
     from .styles.style_library import StyleLibrary, json_dump
