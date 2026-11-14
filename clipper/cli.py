@@ -713,7 +713,7 @@ def _post_kit(app: App, t: dict, days: int) -> dict:
         except Exception:
             topics = []
     hcfg = app.settings.profile("gta6").hype or {}
-    return build(lines=lines, days=days, topics=topics, kind=t.get("category") or "hype_edit", sound=t.get("sound"), sound_ref=t.get("reference"),
+    return build(lines=lines, days=days, topics=topics, kind=t.get("category") or "hype_edit", seed=t["id"], sound=t.get("sound"), sound_ref=t.get("reference"),
                  handle=hcfg.get("watermark") or "", orientation=t.get("orientation", "vertical"))
 
 

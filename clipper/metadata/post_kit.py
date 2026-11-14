@@ -20,11 +20,20 @@ def _clean(line: str) -> str:
     return re.sub(r"\s+", " ", line.replace("\n", " ")).strip().strip('"')
 
 
-def _hook(lines: list[str], days: int) -> str:
+GENERIC = ["GTA 6 in {d} days.", "{d} days until Leonida.", "Leonida in {d} days. Are you ready?",
+           "This is GTA 6. {d} days left.", "{d} more days of waiting.", "Vice City in {d} days."]
+GENERIC_OUT = ["GTA 6 is finally here.", "Welcome to Leonida.", "Vice City is open."]
+
+
+def _hook(lines: list[str], days: int, seed: str = "") -> str:
     """One readable sentence from the on-screen lines (what the viewer reads in the video)."""
+    import zlib
     ls = [_clean(l) for l in lines if _clean(l)]
+    if len(ls) == 1 and len(ls[0].split()) <= 2 and ls[0].isupper():      # a lone lyric shout says nothing
+        ls = []
     if not ls:
-        return f"GTA 6 in {days} days." if days > 0 else "GTA 6 is here."
+        k = zlib.crc32(seed.encode())
+        return (GENERIC[k % len(GENERIC)].format(d=days) if days > 0 else GENERIC_OUT[k % len(GENERIC_OUT)])
     if len(ls) == 1:
         return ls[0]
     if len(ls) > 3:                      # word-by-word reveals: the fullest line says it best
@@ -45,12 +54,16 @@ def _cover(lines: list[str], hook: str, limit: int = 45) -> str:
 
 def build(*, lines: list[str], days: int, kind: str = "hype_edit", topics: list[str] | None = None,
           sound: str | None = None, sound_ref: str | None = None, handle: str = "@mostwanted.vi",
-          release: str = "November 19, 2026", orientation: str = "vertical") -> dict:
-    hook = _hook(lines, days)
+          release: str = "November 19, 2026", orientation: str = "vertical", seed: str = "") -> dict:
+    hook = _hook(lines, days, seed)
+    if kind == "niko_edit" and lines:          # quote the line the edit ends on
+        hook = f'Niko Bellic: "{_clean(lines[-1]).rstrip(".")}"'
+    elif kind != "meme_skit" and not [l for l in lines if _clean(l)] and seed:
+        pass
     tags = list(BASE_TAGS) if kind != "meme_skit" else ["#gta6", "#gtavi", "#gta6memes", "#gamingmemes"]
     if kind == "niko_edit":                     # GTA IV character edit: no countdown, GTA IV tags
         tags, days = ["#gta4", "#nikobellic", "#gtaiv", "#gtaedits", "#gta"], -999
-    if days > 0 and kind != "niko_edit":
+    if days > 0 and kind not in ("niko_edit", "meme_skit"):
         tags.append("#gta6countdown")
     for t in topics or []:
         tag = TOPIC_TAGS.get(t.lower())
@@ -59,7 +72,7 @@ def build(*, lines: list[str], days: int, kind: str = "hype_edit", topics: list[
     if "#leonida" not in tags and "leonida" in hook.lower():
         tags.append("#leonida")
     tags = tags[:6]
-    emoji = "🌴" if "leonida" in hook.lower() or "vice" in hook.lower() else "🔥"
+    emoji = "💀" if kind == "meme_skit" else ("🌴" if "leonida" in hook.lower() or "vice" in hook.lower() else "🔥")
     when = f"{days} days left" if days > 1 else ("1 day left" if days == 1 else "out now")
     game = "GTA IV" if kind == "niko_edit" else "GTA 6"
 

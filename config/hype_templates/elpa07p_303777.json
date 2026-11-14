@@ -388,5 +388,6 @@
  "category": "niko_edit",
  "text_error": "Gemini request failed (ReadError): [Errno 104] Connection reset by peer",
  "footage": "gta4",
- "text_review": false
+ "text_review": false,
+ "disabled": "has an 8.4 s slot: no GTA IV shot is that long"
 }
