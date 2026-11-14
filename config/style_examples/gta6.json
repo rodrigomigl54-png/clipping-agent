@@ -2718,265 +2718,6 @@
   "created_at": "2026-11-12T22:49:40+00:00"
  },
  {
-  "id": "ex_7932554f2c7e",
-  "profile": "gta6",
-  "label": "@mfx.3dits: A fast-paced GTA 6 hype edit counting down days with beat-sy",
-  "category": "hype_edit",
-  "source": "https://www.tiktok.com/@mfx.3dits/video/7706988282600508705",
-  "metrics": {
-   "duration": 17.2,
-   "width": 962,
-   "height": 576,
-   "vertical": false,
-   "seam_y": null,
-   "seam_strength": 3.16,
-   "blur_band_ratio": 0.785,
-   "faces_per_frame": 0.08,
-   "face_y": 0.241,
-   "cuts_per_min": 90.7,
-   "loudness_p90_db": -10.5,
-   "layout_guess": "fit_blur",
-   "cam_position": null,
-   "cuts_at": [
-    0.7,
-    1.5,
-    2.2,
-    2.9,
-    3.6,
-    4.2,
-    4.7,
-    6.3,
-    7.0,
-    7.6,
-    8.3,
-    9.0,
-    9.7,
-    10.3,
-    11.0,
-    11.7,
-    12.4,
-    13.1,
-    13.8,
-    16.3,
-    16.6
-   ],
-   "n_cuts": 21,
-   "avg_shot_s": 0.78,
-   "min_shot_s": 0.3,
-   "bpm_est": 85.7,
-   "cuts_on_beat_frac": 0.57,
-   "silence_frac": 0.0,
-   "fps": 30.0,
-   "black_band_frac": 0.0,
-   "stats": {
-    "diggCount": 85300,
-    "shareCount": 10700,
-    "commentCount": 389,
-    "playCount": 495100,
-    "collectCount": "11224"
-   },
-   "engagement_rate": 0.2174,
-   "share_rate": 0.0216
-  },
-  "vision": {
-   "content_type": "hype_edit",
-   "category": "hype_edit",
-   "summary": "A fast-paced GTA 6 hype edit counting down days with beat-synced trailer cuts and heavy bass drops.",
-   "hook": {
-    "first_2s": "Aerial city nighttime view with a countdown number ticking down rapidly.",
-    "hook_text": "844 DAYS",
-    "hook_type": "countdown",
-    "why_it_hooks": "Creates immediate urgency and anticipation for GTA 6 release date countdown."
-   },
-   "structure": [
-    {
-     "start": 0.0,
-     "end": 2.2,
-     "beat": "hook",
-     "what_happens": "Rapid countdown overlayed on aerial and nighttime cityscape cinematic shots."
-    },
-    {
-     "start": 2.2,
-     "end": 8.3,
-     "beat": "escalation",
-     "what_happens": "Rapid beat-synced cuts showing various GTA 6 trailer characters, car drives, beach dives, and party scenes."
-    },
-    {
-     "start": 8.3,
-     "end": 16.3,
-     "beat": "payoff",
-     "what_happens": "High energy montage of boat chases, roof parties, club scenes, and diving into pools."
-    },
-    {
-     "start": 16.3,
-     "end": 17.2,
-     "beat": "loop",
-     "what_happens": "Cut to black ending matching song fade."
-    }
-   ],
-   "layout": {
-    "type": "full_frame",
-    "picture_top": 0.0,
-    "picture_bottom": 1.0,
-    "facecam_position": "none",
-    "background": "black"
-   },
-   "on_screen_text": [
-    {
-     "text": "844 DAYS",
-     "start": 0.0,
-     "end": 0.7,
-     "position_y": 0.5,
-     "purpose": "Countdown timer",
-     "case": "uppercase",
-     "color": "#FFFFFF",
-     "outline": true,
-     "emoji": false,
-     "animation": "pop"
-    },
-    {
-     "text": "485 DAYS",
-     "start": 0.7,
-     "end": 1.5,
-     "position_y": 0.5,
-     "purpose": "Countdown timer",
-     "case": "uppercase",
-     "color": "#FFFFFF",
-     "outline": true,
-     "emoji": false,
-     "animation": "pop"
-    },
-    {
-     "text": "127 DAYS",
-     "start": 1.5,
-     "end": 2.2,
-     "position_y": 0.5,
-     "purpose": "Countdown timer",
-     "case": "uppercase",
-     "color": "#FFFFFF",
-     "outline": true,
-     "emoji": false,
-     "animation": "pop"
-    },
-    {
-     "text": "ARE YOU READYYYYY",
-     "start": 2.2,
-     "end": 6.3,
-     "position_y": 0.6,
-     "purpose": "Hyping audience",
-     "case": "uppercase",
-     "color": "#FFFFFF",
-     "outline": true,
-     "emoji": false,
-     "animation": "pulse"
-    }
-   ],
-   "captions": {
-    "present": false,
-    "position_y": 0.0,
-    "uppercase": false,
-    "words_per_line": 0,
-    "color": "",
-    "highlight_color": "",
-    "animation": ""
-   },
-   "visual_effects": [
-    {
-     "effect": "flash",
-     "at": 2.2,
-     "purpose": "Transition to heavy beat drop"
-    },
-    {
-     "effect": "motion blur",
-     "at": 0.7,
-     "purpose": "Fast transition between clips"
-    }
-   ],
-   "detail_tools": {
-    "zoom_to_detail": false,
-    "freeze_frame": false,
-    "circle": false,
-    "arrow": false,
-    "text_label": false,
-    "slow_motion": false,
-    "replay": false
-   },
-   "audio": {
-    "music_present": true,
-    "music_genre": "Phonk/Hip Hop remix",
-    "music_energy": "high",
-    "beat_synced_cuts": true,
-    "voice": "none",
-    "sfx": [
-     "bass drop",
-     "whoosh"
-    ],
-    "audio_notes": "Heavy bass remix matching rapid action cuts."
-   },
-   "pacing": {
-    "cuts_per_minute": 85.0,
-    "typical_shot_seconds": 0.7,
-    "energy_curve": "Starts fast with countdown and ramps up aggressively on beat drop."
-   },
-   "ending": {
-    "type": "cut_to_black",
-    "description": "Hard cut to black matching the end of the song."
-   },
-   "duration_reason": "Short enough to maintain high viewer retention, long enough to deliver an impactful hype montage.",
-   "retention_tactics": [
-    "Rapid countdown numbers in the beginning",
-    "Beat-synced hard cuts every 0.7 seconds",
-    "High-contrast color grading and flashes"
-   ],
-   "why_it_works": "Leverages massive GTA 6 anticipation, combining rapid countdown hooks with perfectly beat-synced trailer footage.",
-   "reproduction_recipe": [
-    "Gather official GTA 6 trailer footage and high quality b-roll.",
-    "Select an energetic phonk or remix track with clear bass drops.",
-    "Add dynamic text counters counting down days in the first 2 seconds.",
-    "Cut every single shot precisely on the beat at around 0.7s intervals.",
-    "Include a watermark signature like MFX and export in 9:16 vertical ratio."
-   ],
-   "risks": [
-    "Potential copyright flags from using official Rockstar game trailers without transformative editing.",
-    "Fast flashing lights might trigger sensitivity warnings."
-   ]
-  },
-  "preset": {
-   "layout": "full_gameplay",
-   "split_ratio": 0.5,
-   "cam_position": "top",
-   "target_duration": 17.2,
-   "cuts_per_min": 90.7,
-   "caption": {
-    "enabled": false
-   },
-   "title_overlay": {
-    "enabled": true,
-    "position": 0.4,
-    "box_color": "#FFFFFF",
-    "text_color": "#FFFFFF"
-   },
-   "effects": [
-    "flash",
-    "motion blur"
-   ],
-   "content_type": "hype_edit",
-   "detail_tools": {
-    "zoom_to_detail": false,
-    "freeze_frame": false,
-    "circle": false,
-    "arrow": false,
-    "text_label": false,
-    "slow_motion": false,
-    "replay": false
-   },
-   "ending": "cut_to_black",
-   "format_type": "beat_sync_montage"
-  },
-  "notes": null,
-  "created_at": "2026-11-12T22:49:44+00:00"
- },
- {
   "id": "ex_5a081f660c93",
   "profile": "gta6",
   "label": "@gtavlviralclips: Video discusses the return of San Andreas-style body mechani",
@@ -4706,5 +4447,1617 @@
   },
   "notes": null,
   "created_at": "2026-11-12T22:50:39+00:00"
+ },
+ {
+  "id": "ex_7e21adcd5e29",
+  "profile": "gta6",
+  "label": "@el_rumano504: Fast & Furious driving clip paired with upbeat Latin music t",
+  "category": "meme_skit",
+  "source": "https://www.tiktok.com/@el_rumano504/video/7700629583900511501",
+  "metrics": {
+   "duration": 13.6,
+   "width": 1080,
+   "height": 1920,
+   "vertical": true,
+   "seam_y": 0.3,
+   "seam_strength": 711583108.98,
+   "blur_band_ratio": 0.372,
+   "black_band_frac": 0.588,
+   "faces_per_frame": 0.08,
+   "face_y": 0.474,
+   "cuts_per_min": 0.0,
+   "loudness_p90_db": -19.7,
+   "layout_guess": "letterbox",
+   "cam_position": null,
+   "cuts_at": [],
+   "n_cuts": 0,
+   "avg_shot_s": 13.58,
+   "min_shot_s": 13.58,
+   "bpm_est": 150.0,
+   "cuts_on_beat_frac": null,
+   "silence_frac": 0.0,
+   "fps": 59.93,
+   "stats": {
+    "playCount": 1200000,
+    "diggCount": 255700,
+    "commentCount": 559,
+    "shareCount": 57100,
+    "collectCount": 23513
+   },
+   "engagement_rate": 0.2807,
+   "share_rate": 0.0476
+  },
+  "vision": {
+   "content_type": "meme_skit",
+   "category": "meme_skit",
+   "summary": "Fast & Furious driving clip paired with upbeat Latin music to parody driving in GTA 6.",
+   "hook": {
+    "first_2s": "Fast & Furious sports car scene with GTA 6 radio text overlay.",
+    "hook_text": "How ima be moving in GTA 6 wit that new cocoteo fm radio 🤝🏼",
+    "hook_type": "Text overlay meme",
+    "why_it_hooks": "Combines GTA 6 hype with funny audio contrast."
+   },
+   "structure": [
+    {
+     "start": 0,
+     "end": 3.5,
+     "beat": "setup",
+     "what_happens": "Driver gets ready as radio drop voice plays."
+    },
+    {
+     "start": 3.5,
+     "end": 13.6,
+     "beat": "payoff",
+     "what_happens": "High-speed car chase unfolds with fast Latin music."
+    }
+   ],
+   "layout": {
+    "type": "black_bars",
+    "picture_top": 0.25,
+    "picture_bottom": 0.75,
+    "facecam_position": "none",
+    "background": "black"
+   },
+   "on_screen_text": [
+    {
+     "text": "How ima be moving in GTA 6 wit that new cocoteo fm radio 🤝🏼",
+     "start": 0,
+     "end": 13.6,
+     "position_y": 0.18,
+     "purpose": "Main joke premise",
+     "case": "sentence",
+     "color": "#FFFFFF",
+     "outline": false,
+     "emoji": true
+    }
+   ],
+   "captions": {
+    "present": false
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "Merengue / Latin",
+    "music_energy": "high",
+    "beat_synced_cuts": false,
+    "voice": "DJ radio tag voiceover",
+    "sfx": [
+     "engine rev"
+    ],
+    "audio_notes": "Transition from radio intro voice tag to energetic Merengue music track."
+   },
+   "pacing": {
+    "cuts_per_minute": 35.0,
+    "typical_shot_seconds": 1.7,
+    "energy_curve": "Starts quiet with voice tag, spikes immediately into fast music driving."
+   },
+   "ending": {
+    "type": "loop",
+    "description": "Cuts mid-speed to seamlessly loop back to start."
+   },
+   "duration_reason": "Short 13-second length optimizes re-watchability and completion rate.",
+   "retention_tactics": [
+    "Relatable gaming reference",
+    "Audio-visual humor contrast",
+    "Short format for quick loop"
+   ],
+   "why_it_works": "Contrasting aggressive movie action scenes with energetic Latin radio music creates instant comedic irony.",
+   "reproduction_recipe": [
+    "Source iconic high-speed car chase footage.",
+    "Add top text referencing GTA 6 radio station.",
+    "Edit custom radio intro voiceover transitioning into fast Latin song.",
+    "Export in vertical 9:16 aspect ratio."
+   ],
+   "risks": [
+    "Copyright flag on movie footage or copyrighted song."
+   ]
+  },
+  "preset": {
+   "layout": "letterbox",
+   "split_ratio": 0.3,
+   "cam_position": "top",
+   "target_duration": 13.6,
+   "cuts_per_min": 0.0,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.18,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "meme_skit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "loop"
+  },
+  "notes": null,
+  "created_at": "2026-11-14T00:09:22+00:00"
+ },
+ {
+  "id": "ex_125ad77f29b6",
+  "profile": "gta6",
+  "label": "@gta_6.2026: A GTA meme showing a driver recklessly speeding to reach the",
+  "category": "meme_skit",
+  "source": "https://www.tiktok.com/@gta_6.2026/video/7707321202112597270",
+  "metrics": {
+   "duration": 6.0,
+   "width": 576,
+   "height": 1024,
+   "vertical": true,
+   "seam_y": 0.558,
+   "seam_strength": 96.8,
+   "blur_band_ratio": 0.43,
+   "black_band_frac": 0.169,
+   "faces_per_frame": 0.17,
+   "face_y": 0.673,
+   "cuts_per_min": 0.0,
+   "loudness_p90_db": -20.3,
+   "layout_guess": "split_cam",
+   "cam_position": "bottom",
+   "cuts_at": [],
+   "n_cuts": 0,
+   "avg_shot_s": 5.97,
+   "min_shot_s": 5.97,
+   "bpm_est": 75.0,
+   "cuts_on_beat_frac": null,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "stats": {
+    "playCount": 5600000,
+    "diggCount": 824500,
+    "commentCount": 2756,
+    "shareCount": 400700,
+    "collectCount": 67613
+   },
+   "engagement_rate": 0.2314,
+   "share_rate": 0.0716
+  },
+  "vision": {
+   "content_type": "meme_skit",
+   "category": "meme_skit",
+   "summary": "A GTA meme showing a driver recklessly speeding to reach the strip club location marked on the map at midnight.",
+   "hook": {
+    "first_2s": "Split-screen visual of map with shoe icon and aggressive car driving.",
+    "hook_text": "19.11 - 00:01",
+    "hook_type": "relatable gamer meme",
+    "why_it_hooks": "Humorous depiction of gamer priorities at midnight in GTA."
+   },
+   "structure": [
+    {
+     "start": 0,
+     "end": 6,
+     "beat": "payoff",
+     "what_happens": "Man aggressively steers car, synced with high-speed engine rev audio."
+    }
+   ],
+   "layout": {
+    "type": "split_top_bottom",
+    "picture_top": 0,
+    "picture_bottom": 0.5,
+    "facecam_position": "none",
+    "split_ratio": 0.5,
+    "background": "#000000"
+   },
+   "on_screen_text": [
+    {
+     "text": "19.11 - 00:01",
+     "start": 0,
+     "end": 6,
+     "position_y": 0.48,
+     "purpose": "timestamp display",
+     "case": "standard",
+     "color": "#FFFFFF",
+     "box_color": "#000000",
+     "box_shape": "none",
+     "outline": false,
+     "emoji": false,
+     "animation": "none"
+    }
+   ],
+   "captions": {
+    "present": false
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": true,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": false,
+    "music_genre": "none",
+    "music_energy": "high",
+    "beat_synced_cuts": false,
+    "voice": "none",
+    "sfx": [
+     "car engine revving"
+    ],
+    "audio_notes": "Continuous high-RPM engine acceleration audio."
+   },
+   "pacing": {
+    "cuts_per_minute": 0,
+    "typical_shot_seconds": 6,
+    "energy_curve": "Sustained high energy"
+   },
+   "ending": {
+    "type": "loop",
+    "description": "Cuts directly back to the beginning of the motion seamlessly."
+   },
+   "duration_reason": "Short 6-second duration optimizes completion rate and replay loops.",
+   "retention_tactics": [
+    "High visual motion",
+    "Relatable gaming trope",
+    "Seamless loop length"
+   ],
+   "why_it_works": "Pairs universally recognized gaming behavior with exaggerated real-world footage for comedic contrast.",
+   "reproduction_recipe": [
+    "Source GTA map graphic with red circle target",
+    "Add timestamp text line",
+    "Overlay chaotic driving camera clip on bottom split",
+    "Sync aggressive car engine SFX"
+   ],
+   "risks": [
+    "Template saturation"
+   ]
+  },
+  "preset": {
+   "layout": "split_cam",
+   "split_ratio": 0.5,
+   "cam_position": "bottom",
+   "target_duration": 6.0,
+   "cuts_per_min": 0.0,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.4,
+    "box_color": "#000000",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "meme_skit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": true,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "loop"
+  },
+  "notes": null,
+  "created_at": "2026-11-14T00:14:10+00:00"
+ },
+ {
+  "id": "ex_5d806b14f484",
+  "profile": "gta6",
+  "label": "@jobagakes: Compilation of crying and emotional viral clips representing",
+  "category": "meme_skit",
+  "source": "https://www.tiktok.com/@jobagakes/video/7704859838332800286",
+  "metrics": {
+   "duration": 31.6,
+   "width": 720,
+   "height": 1280,
+   "vertical": true,
+   "seam_y": 0.781,
+   "seam_strength": 445.12,
+   "blur_band_ratio": 0.018,
+   "black_band_frac": 0.438,
+   "faces_per_frame": 0.5,
+   "face_y": 0.479,
+   "cuts_per_min": 11.4,
+   "loudness_p90_db": -12.9,
+   "layout_guess": "letterbox",
+   "cam_position": null,
+   "cuts_at": [
+    6.4,
+    11.4,
+    18.6,
+    22.1,
+    23.0
+   ],
+   "n_cuts": 5,
+   "avg_shot_s": 5.27,
+   "min_shot_s": 0.9,
+   "bpm_est": 120.0,
+   "cuts_on_beat_frac": 1.0,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "stats": {
+    "playCount": 716800,
+    "diggCount": 126300,
+    "commentCount": 697,
+    "shareCount": 18100,
+    "collectCount": 12053
+   },
+   "engagement_rate": 0.2192,
+   "share_rate": 0.0253
+  },
+  "vision": {
+   "content_type": "meme_skit",
+   "category": "meme_skit",
+   "summary": "Compilation of crying and emotional viral clips representing fans reacting to the opening soundtrack of GTA 6 on release day.",
+   "hook": {
+    "first_2s": "A clip of a man crying heavily with tears streaming down his face set to emotional music.",
+    "hook_text": "Pov: it's November 19th 12:00 and you finally open gta6 and hear this masterpiece",
+    "hook_type": "relatable_situation",
+    "why_it_hooks": "Taps into intense community anticipation for GTA 6 using extreme emotional hyperbole."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 6.4,
+     "beat": "hook",
+     "what_happens": "Man crying tears with emotional music playing."
+    },
+    {
+     "start": 6.4,
+     "end": 11.4,
+     "beat": "escalation",
+     "what_happens": "Stefon Diggs emotional interview clip."
+    },
+    {
+     "start": 11.4,
+     "end": 18.6,
+     "beat": "escalation",
+     "what_happens": "Victor Wembanyama celebrating emotionally."
+    },
+    {
+     "start": 18.6,
+     "end": 22.1,
+     "beat": "escalation",
+     "what_happens": "Shia LaBeouf crying under a hood."
+    },
+    {
+     "start": 22.1,
+     "end": 31.6,
+     "beat": "payoff",
+     "what_happens": "Vince Carter screaming emotionally on court as music peaks."
+    }
+   ],
+   "layout": {
+    "type": "black_bars",
+    "picture_top": 0.25,
+    "picture_bottom": 0.75,
+    "facecam_position": "none",
+    "split_ratio": 1.0,
+    "background": "#000000"
+   },
+   "on_screen_text": [
+    {
+     "text": "Pov: it's November 19th 12:00 and you finally open gta6 and hear this masterpiece",
+     "start": 0.0,
+     "end": 31.6,
+     "position_y": 0.55,
+     "purpose": "context",
+     "case": "mixed",
+     "color": "#FFFFFF",
+     "box_color": "#000000",
+     "box_shape": "none",
+     "outline": false,
+     "emoji": false,
+     "animation": "static"
+    }
+   ],
+   "captions": {
+    "present": false,
+    "position_y": 0.0,
+    "uppercase": false,
+    "words_per_line": 0,
+    "color": "#FFFFFF",
+    "highlight_color": "#FFFFFF",
+    "animation": "none"
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "synthpop",
+    "music_energy": "emotional",
+    "beat_synced_cuts": true,
+    "voice": "none",
+    "sfx": [],
+    "audio_notes": "Atmospheric vocal synth song played throughout."
+   },
+   "pacing": {
+    "cuts_per_minute": 9.5,
+    "typical_shot_seconds": 6.3,
+    "energy_curve": "Steady high emotion building towards the end."
+   },
+   "ending": {
+    "type": "cut_to_black",
+    "description": "Ends on Vince Carter screaming passionately."
+   },
+   "duration_reason": "Matches the chorus length of the featured background track.",
+   "retention_tactics": [
+    "High anticipation topic (GTA 6)",
+    "Relatable humorous hyperbole",
+    "Popular reaction clips"
+   ],
+   "why_it_works": "Combines massive gamer hype with iconic crying memes and an uplifting synth track to create a shared, emotional, comedic moment.",
+   "reproduction_recipe": [
+    "Add a fixed POV caption about an anticipated event at the center of the frame.",
+    "Collect iconic clips of people crying or overwhelmed with emotion.",
+    "Cut the clips to the main melodic beats of a dramatic synth-pop track."
+   ],
+   "risks": [
+    "Overused meme format",
+    "Audio copyright claims"
+   ]
+  },
+  "preset": {
+   "layout": "letterbox",
+   "split_ratio": 0.75,
+   "cam_position": "top",
+   "target_duration": 31.6,
+   "cuts_per_min": 11.4,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.4,
+    "box_color": "#000000",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "meme_skit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "cut_to_black",
+   "format_type": "beat_sync_montage"
+  },
+  "notes": null,
+  "created_at": "2026-11-14T00:18:59+00:00"
+ },
+ {
+  "id": "ex_209b71726eeb",
+  "profile": "gta6",
+  "label": "@ryanpostvids: An animated morning routine meme expressing the overwhelming",
+  "category": "hype_edit",
+  "source": "https://www.tiktok.com/@ryanpostvids/video/7706005940549602591",
+  "metrics": {
+   "duration": 18.7,
+   "width": 1080,
+   "height": 1920,
+   "vertical": true,
+   "seam_y": 0.219,
+   "seam_strength": 907.84,
+   "blur_band_ratio": 0.035,
+   "black_band_frac": 0.439,
+   "faces_per_frame": 0.17,
+   "face_y": 0.57,
+   "cuts_per_min": 22.5,
+   "loudness_p90_db": -15.2,
+   "layout_guess": "letterbox",
+   "cam_position": null,
+   "cuts_at": [
+    1.2,
+    3.9,
+    7.3,
+    9.8,
+    10.9,
+    11.2
+   ],
+   "n_cuts": 6,
+   "avg_shot_s": 2.67,
+   "min_shot_s": 0.3,
+   "bpm_est": 120.0,
+   "cuts_on_beat_frac": 0.33,
+   "silence_frac": 0.0,
+   "fps": 40.2,
+   "stats": {
+    "playCount": 1300000,
+    "diggCount": 123000,
+    "commentCount": 2699,
+    "shareCount": 14000,
+    "collectCount": 9340
+   },
+   "engagement_rate": 0.1146,
+   "share_rate": 0.0108
+  },
+  "vision": {
+   "content_type": "hype_edit",
+   "category": "hype_edit",
+   "summary": "An animated morning routine meme expressing the overwhelming excitement and pristine mood gamers will experience on November 19 in anticipation of GTA 6 news.",
+   "hook": {
+    "first_2s": "A character enthusiastically dancing behind a shower curtain transitions to an energetic mirror grooming routine.",
+    "hook_text": "how ALL of us will be waking up feeling on november 19",
+    "hook_type": "relatable anticipation meme",
+    "why_it_hooks": "Taps into shared community anticipation for a milestone date with vibrant animation and an iconic uplifting soundtrack."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 1.2,
+     "beat": "hook",
+     "what_happens": "A man dances joyfully in the shower silhouette."
+    },
+    {
+     "start": 1.2,
+     "end": 3.9,
+     "beat": "setup",
+     "what_happens": "He slaps aftershave on his cheeks and reaches for a comb."
+    },
+    {
+     "start": 3.9,
+     "end": 7.3,
+     "beat": "escalation",
+     "what_happens": "He styles his hair smoothly in front of a three-way mirror."
+    },
+    {
+     "start": 7.3,
+     "end": 10.9,
+     "beat": "escalation",
+     "what_happens": "He opens his wardrobe, selects the perfect tie, and straightens his collar."
+    },
+    {
+     "start": 10.9,
+     "end": 18.7,
+     "beat": "payoff",
+     "what_happens": "He flips pancakes with culinary flair, decorates them with cream and powdered sugar, and moonwalks through the kitchen carrying the plate."
+    }
+   ],
+   "layout": {
+    "type": "black_bars",
+    "picture_top": 0.22,
+    "picture_bottom": 0.78,
+    "facecam_position": "none",
+    "split_ratio": 1.0,
+    "background": "#000000"
+   },
+   "on_screen_text": [
+    {
+     "text": "how ALL of us will be waking up feeling on november 19",
+     "start": 0.0,
+     "end": 18.7,
+     "position_y": 0.5,
+     "purpose": "contextual meme hook",
+     "case": "lowercase with capitalized word",
+     "color": "#FFFFFF",
+     "box_color": "#00000000",
+     "box_shape": "none",
+     "outline": true,
+     "emoji": false,
+     "animation": "static"
+    }
+   ],
+   "captions": {
+    "present": false,
+    "position_y": 0.0,
+    "uppercase": false,
+    "words_per_line": 0,
+    "color": "#000000",
+    "highlight_color": "#000000",
+    "animation": "none"
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "dance pop / EDM",
+    "music_energy": "high",
+    "beat_synced_cuts": true,
+    "voice": "licensed music lyrics",
+    "sfx": [],
+    "audio_notes": "Calvin Harris - 'Feel So Close' playing with build-up and drop matching the cooking payoff."
+   },
+   "pacing": {
+    "cuts_per_minute": 19.25,
+    "typical_shot_seconds": 3.1,
+    "energy_curve": "rising into energetic euphoria"
+   },
+   "ending": {
+    "type": "cut_to_black",
+    "description": "Cuts out mid-kitchen dance with the plate held triumphantly in the air."
+   },
+   "duration_reason": "Matches the intro verse and drop of 'Feel So Close' perfectly for a punchy 18-second meme format.",
+   "retention_tactics": [
+    "High-energy classic audio track triggering immediate nostalgia",
+    "Relatable date-specific expectation meme",
+    "Fast, satisfying micro-actions (hair styling, tie adjustment, pancake flip)"
+   ],
+   "why_it_works": "The contrast between an absurdly perfect, cinematic morning routine and gamer hype over a potential trailer or release date creates effortless humor and viral shareability.",
+   "reproduction_recipe": [
+    "Find an animated clip showing an exaggeratedly perfect or energetic morning montage.",
+    "Add a centered relatable text prompt referencing a widely anticipated game milestone or event.",
+    "Sync the cuts and action beats to an upbeat feel-good EDM track like 'Feel So Close'.",
+    "Keep text static throughout so viewers immediately grasp the joke while watching the visual gag."
+   ],
+   "risks": [
+    "If the referenced date passes without news, the video quickly dates itself.",
+    "Copyright claims on popular commercial pop music."
+   ]
+  },
+  "preset": {
+   "layout": "letterbox",
+   "split_ratio": 0.75,
+   "cam_position": "top",
+   "target_duration": 18.7,
+   "cuts_per_min": 22.5,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.4,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "hype_edit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "cut_to_black",
+   "format_type": "beat_sync_montage"
+  },
+  "notes": null,
+  "created_at": "2026-11-14T00:22:52+00:00"
+ },
+ {
+  "id": "ex_ff89287fb851",
+  "profile": "gta6",
+  "label": "@morisofficial_: Meme featuring greenscreened Beetlejuice standing outside Va",
+  "category": "meme_skit",
+  "source": "https://www.tiktok.com/@morisofficial_/video/7706465783190162721",
+  "metrics": {
+   "duration": 10.1,
+   "width": 576,
+   "height": 1024,
+   "vertical": true,
+   "seam_y": 0.2,
+   "seam_strength": 183.87,
+   "blur_band_ratio": 5.098,
+   "black_band_frac": 0.009,
+   "faces_per_frame": 0.08,
+   "face_y": 0.838,
+   "cuts_per_min": 0.0,
+   "loudness_p90_db": -7.5,
+   "layout_guess": "split_cam",
+   "cam_position": "bottom",
+   "cuts_at": [],
+   "n_cuts": 0,
+   "avg_shot_s": 10.05,
+   "min_shot_s": 10.05,
+   "bpm_est": 100.0,
+   "cuts_on_beat_frac": null,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "stats": {
+    "playCount": 1900000,
+    "diggCount": 146400,
+    "commentCount": 325,
+    "shareCount": 133200,
+    "collectCount": 9172
+   },
+   "engagement_rate": 0.1522,
+   "share_rate": 0.0701
+  },
+  "vision": {
+   "content_type": "meme_skit",
+   "category": "meme_skit",
+   "summary": "Meme featuring greenscreened Beetlejuice standing outside Vanilla Unicorn strip club in GTA, referencing 19 November.",
+   "hook": {
+    "first_2s": "Beetlejuice turns around outside the strip club.",
+    "hook_text": "POV: 19 NOVEMBER 00:01",
+    "hook_type": "text_prompt",
+    "why_it_hooks": "Relatable humor referencing a specific date and infamous GTA location."
+   },
+   "structure": [
+    {
+     "start": 0,
+     "end": 3,
+     "beat": "hook",
+     "what_happens": "Beetlejuice turns to look at camera outside Vanilla Unicorn."
+    },
+    {
+     "start": 3,
+     "end": 7,
+     "beat": "escalation",
+     "what_happens": "Dialogue plays asking what he is doing, Beetlejuice replies 'Nothing'."
+    },
+    {
+     "start": 7,
+     "end": 10.1,
+     "beat": "payoff",
+     "what_happens": "Beetlejuice laughs and says 'Just hanging around'."
+    }
+   ],
+   "layout": {
+    "type": "full_frame",
+    "facecam_position": "none",
+    "background": "GTA V Vanilla Unicorn exterior at night with purple lighting"
+   },
+   "on_screen_text": [
+    {
+     "text": "POV: 19 NOVEMBER 00:01",
+     "start": 0,
+     "end": 10.1,
+     "position_y": 0.2,
+     "purpose": "meme context",
+     "case": "uppercase",
+     "color": "#FFFFFF"
+    }
+   ],
+   "captions": {
+    "present": false
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": false,
+    "voice": "Beetlejuice dialogue clip",
+    "sfx": [],
+    "audio_notes": "Original audio clip from Beetlejuice interview"
+   },
+   "pacing": {
+    "cuts_per_minute": 0,
+    "typical_shot_seconds": 10.1,
+    "energy_curve": "Flat humorous dialogue tone"
+   },
+   "ending": {
+    "type": "punchline",
+    "description": "Beetlejuice finishes his punchline and clip ends."
+   },
+   "duration_reason": "Short meme video optimized for high replay rate.",
+   "retention_tactics": [
+    "Relatable meme text",
+    "Famous internet character cutout"
+   ],
+   "why_it_works": "Combines iconic internet personality Beetlejuice with GTA humor and date-specific meme framing.",
+   "reproduction_recipe": [
+    "Record background footage of Vanilla Unicorn in GTA",
+    "Overlay greenscreen Beetlejuice audio/clip",
+    "Add POV text prompt top center and GTA VI logo bottom right"
+   ],
+   "risks": [
+    "Overused meme format"
+   ]
+  },
+  "preset": {
+   "layout": "full_gameplay",
+   "split_ratio": 0.2,
+   "cam_position": "bottom",
+   "target_duration": 10.1,
+   "cuts_per_min": 0.0,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.2,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "meme_skit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "punchline"
+  },
+  "notes": null,
+  "created_at": "2026-11-14T00:23:52+00:00"
+ },
+ {
+  "id": "ex_d7514365ac0c",
+  "profile": "gta6",
+  "label": "@gaming.memeology: Meme clip expressing gamer frustration over paywalled map lo",
+  "category": "meme_skit",
+  "source": "https://www.tiktok.com/@gaming.memeology/video/7689760680727104782",
+  "metrics": {
+   "duration": 15.5,
+   "width": 720,
+   "height": 1280,
+   "vertical": true,
+   "seam_y": 0.447,
+   "seam_strength": 908.04,
+   "blur_band_ratio": 1.401,
+   "black_band_frac": 0.388,
+   "faces_per_frame": 0.25,
+   "face_y": 0.267,
+   "cuts_per_min": 0.0,
+   "loudness_p90_db": -12.3,
+   "layout_guess": "letterbox",
+   "cam_position": null,
+   "cuts_at": [],
+   "n_cuts": 0,
+   "avg_shot_s": 15.47,
+   "min_shot_s": 15.47,
+   "bpm_est": 100.0,
+   "cuts_on_beat_frac": null,
+   "silence_frac": 0.0,
+   "fps": 30.0,
+   "stats": {
+    "playCount": 398800,
+    "diggCount": 44300,
+    "commentCount": 342,
+    "shareCount": 14800,
+    "collectCount": 3134
+   },
+   "engagement_rate": 0.1569,
+   "share_rate": 0.0371
+  },
+  "vision": {
+   "content_type": "meme_skit",
+   "category": "meme_skit",
+   "summary": "Meme clip expressing gamer frustration over paywalled map locations using a Breaking Bad video edit.",
+   "hook": {
+    "first_2s": "Displaying paywall prompt with Walter White trying to open a locked door.",
+    "hook_text": "This location is only accessible with the Ultimate Edition bundle.",
+    "hook_type": "relatable_pain_point",
+    "why_it_hooks": "Instantly communicates a universally hated gaming trope."
+   },
+   "structure": [
+    {
+     "start": 0,
+     "end": 4,
+     "beat": "setup",
+     "what_happens": "Player encounters DLC lock message and tries door knob."
+    },
+    {
+     "start": 4,
+     "end": 8,
+     "beat": "escalation",
+     "what_happens": "Walter White kicks door repeatedly out of anger."
+    },
+    {
+     "start": 8,
+     "end": 15.5,
+     "beat": "payoff",
+     "what_happens": "Throws random object at door in desperation."
+    }
+   ],
+   "layout": {
+    "type": "split_top_bottom",
+    "picture_top": 0,
+    "picture_bottom": 1,
+    "facecam_position": "none",
+    "split_ratio": 0.35,
+    "background": "#000000"
+   },
+   "on_screen_text": [
+    {
+     "text": "This location is only accessible with the Ultimate Edition bundle.",
+     "start": 0,
+     "end": 15.5,
+     "position_y": 0.2,
+     "purpose": "context",
+     "case": "sentence",
+     "color": "#FFFFFF",
+     "box_color": "#111111",
+     "box_shape": "rectangle",
+     "outline": false,
+     "emoji": false,
+     "animation": "static"
+    },
+    {
+     "text": "Me:",
+     "start": 0,
+     "end": 15.5,
+     "position_y": 0.4,
+     "purpose": "caption",
+     "case": "title",
+     "color": "#FFFFFF",
+     "box_color": "none",
+     "box_shape": "none",
+     "outline": false,
+     "emoji": false,
+     "animation": "static"
+    }
+   ],
+   "captions": {
+    "present": false,
+    "position_y": 0,
+    "uppercase": false,
+    "words_per_line": 0,
+    "color": "",
+    "highlight_color": "",
+    "animation": ""
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": true,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "indie_rock",
+    "music_energy": "melancholic",
+    "beat_synced_cuts": false,
+    "voice": "none",
+    "sfx": [],
+    "audio_notes": "Features background song playing over clip."
+   },
+   "pacing": {
+    "cuts_per_minute": 15,
+    "typical_shot_seconds": 4,
+    "energy_curve": "starts mild, escalates to comedic rage"
+   },
+   "ending": {
+    "type": "loop",
+    "description": "Ends on violent throw animation for seamless video looping."
+   },
+   "duration_reason": "Short 15s length keeps engagement high and encourages rewatches.",
+   "retention_tactics": [
+    "Relatable gaming complaint",
+    "Popular pop culture video template",
+    "Seamless loop potential"
+   ],
+   "why_it_works": "Combines shared gaming frustration with famous Breaking Bad reaction footage for high shareability.",
+   "reproduction_recipe": [
+    "Place game map screenshot with paywall prompt on top.",
+    "Add 'Me:' label in middle separator.",
+    "Overlay green screen/trimmed video of Walter White door scene below."
+   ],
+   "risks": [
+    "Overused meme format",
+    "Copyright flag on music track"
+   ]
+  },
+  "preset": {
+   "layout": "letterbox",
+   "split_ratio": 0.35,
+   "cam_position": "top",
+   "target_duration": 15.5,
+   "cuts_per_min": 0.0,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.2,
+    "box_color": "#111111",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "meme_skit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": true,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "loop"
+  },
+  "notes": null,
+  "created_at": "2026-11-14T00:24:22+00:00"
+ },
+ {
+  "id": "ex_d76f09ccbc61",
+  "profile": "gta6",
+  "label": "@frostysheeps: Edit highlighting the GTA 6 goth bartender character paired ",
+  "category": "hype_edit",
+  "source": "https://www.tiktok.com/@frostysheeps/video/7679461695130995986",
+  "metrics": {
+   "duration": 23.5,
+   "width": 1080,
+   "height": 1080,
+   "vertical": false,
+   "seam_y": 0.681,
+   "seam_strength": 88.65,
+   "blur_band_ratio": 0.516,
+   "black_band_frac": 0.0,
+   "faces_per_frame": 0.58,
+   "face_y": 0.362,
+   "cuts_per_min": 45.9,
+   "loudness_p90_db": -16.8,
+   "layout_guess": "fit_blur",
+   "cam_position": null,
+   "cuts_at": [
+    6.5,
+    6.8,
+    7.1,
+    9.8,
+    10.1,
+    12.0,
+    12.3,
+    14.7,
+    15.0,
+    16.7,
+    17.0,
+    18.1,
+    20.8
+   ],
+   "n_cuts": 13,
+   "avg_shot_s": 1.68,
+   "min_shot_s": 0.3,
+   "bpm_est": 100.0,
+   "cuts_on_beat_frac": 0.54,
+   "silence_frac": 0.0,
+   "fps": 60.0,
+   "stats": {
+    "playCount": 1600000,
+    "diggCount": 200100,
+    "commentCount": 1470,
+    "shareCount": 40700,
+    "collectCount": 27109
+   },
+   "engagement_rate": 0.1684,
+   "share_rate": 0.0254
+  },
+  "vision": {
+   "content_type": "hype_edit",
+   "category": "hype_edit",
+   "summary": "Edit highlighting the GTA 6 goth bartender character paired with viral reaction clips and music.",
+   "hook": {
+    "first_2s": "GTA 6 goth bartender visual with text overlay.",
+    "hook_text": "13 years of waiting paid off.",
+    "hook_type": "text_overlay",
+    "why_it_hooks": "Combines GTA 6 hype with appealing character design."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 6.5,
+     "beat": "hook",
+     "what_happens": "GTA 6 goth bartender clips playing with text overlay."
+    },
+    {
+     "start": 6.5,
+     "end": 9.8,
+     "beat": "escalation",
+     "what_happens": "Rapid cut to IShowSpeed screaming reaction."
+    },
+    {
+     "start": 9.8,
+     "end": 12.0,
+     "beat": "payoff",
+     "what_happens": "Cut to Lego Bruce Wayne stunned reaction shot."
+    },
+    {
+     "start": 12.0,
+     "end": 23.5,
+     "beat": "loop",
+     "what_happens": "Rhythmic cuts between GTA 6 character and Lego reaction shot synced to music."
+    }
+   ],
+   "layout": {
+    "type": "full_frame",
+    "facecam_position": "none",
+    "background": "full vertical video clips"
+   },
+   "on_screen_text": [
+    {
+     "text": "13 years of waiting paid off.",
+     "start": 0.0,
+     "end": 23.5,
+     "position_y": 0.8,
+     "purpose": "persistent hook text",
+     "case": "sentence",
+     "color": "#FFFFFF",
+     "outline": true,
+     "emoji": false
+    }
+   ],
+   "captions": {
+    "present": false
+   },
+   "visual_effects": [
+    {
+     "effect": "flash cut",
+     "at": 6.5,
+     "purpose": "transition to reaction clip"
+    },
+    {
+     "effect": "beat-synced quick cuts",
+     "at": 12.0,
+     "purpose": "maintain high energy and rhythm"
+    }
+   ],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "pop",
+    "music_energy": "high",
+    "beat_synced_cuts": true,
+    "voice": "none",
+    "sfx": [],
+    "audio_notes": "Upbeat track synced to clip switches."
+   },
+   "pacing": {
+    "cuts_per_minute": 33.2,
+    "typical_shot_seconds": 1.8,
+    "energy_curve": "Starts calm, spikes at 6.5s and maintains high rhythm to end."
+   },
+   "ending": {
+    "type": "loop",
+    "description": "Ends on a Lego reaction shot seamlessly looping back to the opening bartender clip."
+   },
+   "duration_reason": "23.5 seconds matches music phrase and optimizes loop completion rate.",
+   "retention_tactics": [
+    "Persistent text hook",
+    "High-contrast popular meme reactions",
+    "Fast beat-synced editing"
+   ],
+   "why_it_works": "Leverages massive GTA 6 anticipation and popular reaction memes over an addictive music track.",
+   "reproduction_recipe": [
+    "Source high quality footage of GTA 6 trailer character.",
+    "Add reaction clips (IShowSpeed, Lego Batman).",
+    "Sync cuts to music beat at key moments.",
+    "Overlay white centered caption text."
+   ],
+   "risks": [
+    "Copyright claims on reaction clips or music track."
+   ]
+  },
+  "preset": {
+   "layout": "full_gameplay",
+   "split_ratio": 0.681,
+   "cam_position": "top",
+   "target_duration": 23.5,
+   "cuts_per_min": 45.9,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.4,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [
+    "flash cut",
+    "beat-synced quick cuts"
+   ],
+   "content_type": "hype_edit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "loop",
+   "format_type": "beat_sync_montage"
+  },
+  "notes": null,
+  "created_at": "2026-11-14T00:24:51+00:00"
+ },
+ {
+  "id": "ex_8353a08c5413",
+  "profile": "gta6",
+  "label": "@mr_lumbago1899: A cute puppy in a car eagerly sniffs and paws at a sealed pl",
+  "category": "meme_skit",
+  "source": "https://www.tiktok.com/@mr_lumbago1899/video/7706640664980720909",
+  "metrics": {
+   "duration": 13.4,
+   "width": 540,
+   "height": 690,
+   "vertical": true,
+   "seam_y": 0.654,
+   "seam_strength": 34.69,
+   "blur_band_ratio": 0.1,
+   "black_band_frac": 0.0,
+   "faces_per_frame": 0.0,
+   "face_y": null,
+   "cuts_per_min": 0.0,
+   "loudness_p90_db": -18.2,
+   "layout_guess": "fit_blur",
+   "cam_position": null,
+   "cuts_at": [],
+   "n_cuts": 0,
+   "avg_shot_s": 13.42,
+   "min_shot_s": 13.42,
+   "bpm_est": 120.0,
+   "cuts_on_beat_frac": null,
+   "silence_frac": 0.015,
+   "fps": 30.0,
+   "stats": {
+    "playCount": 2800000,
+    "diggCount": 473300,
+    "commentCount": 3628,
+    "shareCount": 191600,
+    "collectCount": 34433
+   },
+   "engagement_rate": 0.2511,
+   "share_rate": 0.0684
+  },
+  "vision": {
+   "content_type": "meme_skit",
+   "category": "meme_skit",
+   "summary": "A cute puppy in a car eagerly sniffs and paws at a sealed plastic container of warm roast chicken, serving as a relatable meme for having GTA 6 downloaded but waiting to play it.",
+   "hook": {
+    "first_2s": "A puppy leaning intently over takeout food with text overlay about GTA 6.",
+    "hook_text": "How it feels having Gta 6 downloaded rn",
+    "hook_type": "relatable_meme",
+    "why_it_hooks": "Combines universal viral cute pet footage with massive gaming hype around GTA 6."
+   },
+   "structure": [
+    {
+     "start": 0,
+     "end": 13.4,
+     "beat": "setup",
+     "what_happens": "Continuous shot of the small puppy repeatedly sniffing and licking the plastic lid of hot takeout chicken, yearning to taste it."
+    }
+   ],
+   "layout": {
+    "type": "full_frame",
+    "picture_top": 0,
+    "picture_bottom": 1,
+    "facecam_position": "none",
+    "split_ratio": 1,
+    "background": "car backseat interior"
+   },
+   "on_screen_text": [
+    {
+     "text": "How it feels having Gta 6 downloaded rn",
+     "start": 0,
+     "end": 13.4,
+     "position_y": 0.72,
+     "purpose": "meme_caption",
+     "case": "Sentence case",
+     "color": "#FFFFFF",
+     "box_color": "",
+     "box_shape": "",
+     "outline": true,
+     "emoji": false,
+     "animation": "none"
+    }
+   ],
+   "captions": {
+    "present": false,
+    "position_y": 0,
+    "uppercase": false,
+    "words_per_line": 0,
+    "color": "",
+    "highlight_color": "",
+    "animation": "none"
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": true,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "Soul / R&B",
+    "music_energy": "relaxed",
+    "beat_synced_cuts": false,
+    "voice": "none",
+    "sfx": [],
+    "audio_notes": "Smooth soul music track playing in background to emphasize temptation."
+   },
+   "pacing": {
+    "cuts_per_minute": 0,
+    "typical_shot_seconds": 13.4,
+    "energy_curve": "Steady comedic longing tone throughout."
+   },
+   "ending": {
+    "type": "loop",
+    "description": "Puppy continues trying to reach the chicken as video seamlessly loops."
+   },
+   "duration_reason": "Ideal short length (13s) to maximize loop count and watch time percentage.",
+   "retention_tactics": [
+    "High emotional appeal from cute pet",
+    "Trending pop-culture topic (GTA 6)",
+    "Short duration encouraging replay loop"
+   ],
+   "why_it_works": "Pairs cute visual temptation with the agonizing excitement of waiting to play a newly downloaded major video game.",
+   "reproduction_recipe": [
+    "Source cute footage of an animal trying to reach sealed food or objects",
+    "Overlay white text with black drop-shadow about a highly anticipated gaming release or event",
+    "Set to soft soul music emphasizing longing"
+   ],
+   "risks": [
+    "Overused meme format if trend timing passes"
+   ]
+  },
+  "preset": {
+   "layout": "full_gameplay",
+   "split_ratio": 0.75,
+   "cam_position": "top",
+   "target_duration": 13.4,
+   "cuts_per_min": 0.0,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.4,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "meme_skit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": true,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "loop"
+  },
+  "notes": null,
+  "created_at": "2026-11-14T00:25:29+00:00"
+ },
+ {
+  "id": "ex_7932554f2c7e",
+  "profile": "gta6",
+  "label": "@None: A video contrasting a perfectly wholesome morning routine wi",
+  "category": "meme_skit",
+  "source": "https://vt.tiktok.com/ZSpXJjYVp/",
+  "metrics": {
+   "duration": 30.6,
+   "width": 1920,
+   "height": 1080,
+   "vertical": false,
+   "seam_y": null,
+   "seam_strength": 9.63,
+   "blur_band_ratio": 2.519,
+   "black_band_frac": 0.035,
+   "faces_per_frame": 0.0,
+   "face_y": null,
+   "cuts_per_min": 27.4,
+   "loudness_p90_db": -31.1,
+   "layout_guess": "fit_blur",
+   "cam_position": null,
+   "cuts_at": [
+    1.8,
+    3.4,
+    4.4,
+    5.8,
+    7.8,
+    8.6,
+    10.3,
+    11.4,
+    11.7,
+    22.6,
+    24.9
+   ],
+   "n_cuts": 11,
+   "avg_shot_s": 2.55,
+   "min_shot_s": 0.3,
+   "bpm_est": 100.0,
+   "cuts_on_beat_frac": 0.36,
+   "silence_frac": 0.033,
+   "fps": 60.0
+  },
+  "vision": {
+   "content_type": "meme_skit",
+   "category": "meme_skit",
+   "summary": "A video contrasting a perfectly wholesome morning routine with the anticipation of playing GTA VI the next day.",
+   "hook": {
+    "first_2s": "A man dancing happily while taking a shower.",
+    "hook_text": "POV: Day before GTA VI",
+    "hook_type": "relatable_meme",
+    "why_it_hooks": "Humorous depiction of extreme good behavior right before a chaotic game release."
+   },
+   "structure": [
+    {
+     "start": 0.0,
+     "end": 1.8,
+     "beat": "hook",
+     "what_happens": "Man dances cheerfully in the shower."
+    },
+    {
+     "start": 1.8,
+     "end": 7.8,
+     "beat": "setup",
+     "what_happens": "Man grooms his hair and selects a suit."
+    },
+    {
+     "start": 7.8,
+     "end": 22.6,
+     "beat": "escalation",
+     "what_happens": "Man cooks pancakes and affectionately serves them to his mother."
+    },
+    {
+     "start": 22.6,
+     "end": 30.6,
+     "beat": "payoff",
+     "what_happens": "Man steps outside cheerfully greeting his neighbors."
+    }
+   ],
+   "layout": {
+    "type": "full_frame",
+    "facecam_position": "none",
+    "background": "animation animation clip"
+   },
+   "on_screen_text": [
+    {
+     "text": "POV: Day before GTA VI",
+     "start": 0.0,
+     "end": 30.6,
+     "position_y": 0.15,
+     "purpose": "context",
+     "case": "mixed",
+     "color": "#FFFFFF",
+     "outline": true
+    }
+   ],
+   "captions": {
+    "present": false
+   },
+   "visual_effects": [],
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "audio": {
+    "music_present": true,
+    "music_genre": "disco pop",
+    "music_energy": "upbeat",
+    "beat_synced_cuts": false,
+    "voice": "character voices",
+    "sfx": [],
+    "audio_notes": "Upbeat track playing alongside movie vocal cues."
+   },
+   "pacing": {
+    "cuts_per_minute": 22.0,
+    "typical_shot_seconds": 2.7,
+    "energy_curve": "consistently cheerful and high energy"
+   },
+   "ending": {
+    "type": "punchline",
+    "description": "Character waves happily to neighbors as clip fades."
+   },
+   "duration_reason": "30 seconds keeps viewer engagement high during a movie montage sequence.",
+   "retention_tactics": [
+    "Gaming culture meme context",
+    "Upbeat background track",
+    "Fast comedic transitions"
+   ],
+   "why_it_works": "Uses humorous irony by contrasting an ideal, peaceful citizen routine with the notorious chaos of the Grand Theft Auto franchise.",
+   "reproduction_recipe": [
+    "Source animated cinematic morning routine.",
+    "Overlay persistent POV text referencing GTA VI release.",
+    "Balance cheerful 70s soundtrack with character voice lines."
+   ],
+   "risks": [
+    "Copyright strikes on animation footage and audio."
+   ]
+  },
+  "preset": {
+   "layout": "full_gameplay",
+   "split_ratio": 0.5,
+   "cam_position": "top",
+   "target_duration": 30.6,
+   "cuts_per_min": 27.4,
+   "caption": {
+    "enabled": false
+   },
+   "title_overlay": {
+    "enabled": true,
+    "position": 0.15,
+    "box_color": "#FFFFFF",
+    "text_color": "#FFFFFF"
+   },
+   "effects": [],
+   "content_type": "meme_skit",
+   "detail_tools": {
+    "zoom_to_detail": false,
+    "freeze_frame": false,
+    "circle": false,
+    "arrow": false,
+    "text_label": false,
+    "slow_motion": false,
+    "replay": false
+   },
+   "ending": "punchline"
+  },
+  "notes": null,
+  "created_at": "2026-11-14T00:26:01+00:00"
  }
 ]
