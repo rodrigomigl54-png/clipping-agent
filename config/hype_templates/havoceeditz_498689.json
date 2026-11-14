@@ -223,13 +223,13 @@
    "type": "line",
    "t0": 0,
    "t1": 5.667,
-   "text": "what GTA 6 looked like\nin the august version:"
+   "text": "{days} days until GTA 6..."
   },
   {
    "type": "line",
    "t0": 5.667,
    "t1": 14.4,
-   "text": "in november:"
+   "text": "and it looks like THIS."
   }
  ],
  "text_style": {
@@ -260,5 +260,10 @@
  "sound": "RUPTURE (Super Slowed)",
  "sound_author": "CHIEF DORO & CASAP",
  "category": "hype_edit",
- "text_review": true
+ "text_review": false,
+ "original_text": [
+  "what GTA 6 looked like\nin the august version:",
+  "in november:"
+ ],
+ "text_rewritten": "own truthful lines (original was a then-vs-now comparison / other creator's caption)"
 }

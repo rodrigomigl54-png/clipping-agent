@@ -1,0 +1,221 @@
+{
+ "id": "havoceeditz_443989",
+ "reference_file": "havoceeditz_443989.mp4",
+ "orientation": "vertical",
+ "duration": 10.3,
+ "cuts": [
+  0.6,
+  1.2,
+  1.733,
+  2.3,
+  2.9,
+  3.433,
+  4.6,
+  5.167,
+  5.667,
+  6.7,
+  7.967,
+  8.167,
+  8.6,
+  9.733,
+  10.267
+ ],
+ "slots": [
+  {
+   "t0": 0.0,
+   "t1": 0.6,
+   "bright": 60.0,
+   "sat": 73.8,
+   "hue": 115.0,
+   "motion": 0.0355,
+   "faces": 0
+  },
+  {
+   "t0": 0.6,
+   "t1": 1.2,
+   "bright": 58.9,
+   "sat": 59.6,
+   "hue": 30.0,
+   "motion": 0.0277,
+   "faces": 0
+  },
+  {
+   "t0": 1.2,
+   "t1": 1.733,
+   "bright": 148.6,
+   "sat": 49.0,
+   "hue": 107.0,
+   "motion": 0.0617,
+   "faces": 1
+  },
+  {
+   "t0": 1.733,
+   "t1": 2.3,
+   "bright": 121.1,
+   "sat": 45.0,
+   "hue": 15.0,
+   "motion": 0.0899,
+   "faces": 0
+  },
+  {
+   "t0": 2.3,
+   "t1": 2.9,
+   "bright": 94.3,
+   "sat": 38.8,
+   "hue": 105.0,
+   "motion": 0.0561,
+   "faces": 0
+  },
+  {
+   "t0": 2.9,
+   "t1": 3.433,
+   "bright": 48.2,
+   "sat": 79.8,
+   "hue": 19.0,
+   "motion": 0.0415,
+   "faces": 0
+  },
+  {
+   "t0": 3.433,
+   "t1": 4.6,
+   "bright": 41.6,
+   "sat": 114.4,
+   "hue": 11.0,
+   "motion": 0.0273,
+   "faces": 0
+  },
+  {
+   "t0": 4.6,
+   "t1": 5.167,
+   "bright": 64.0,
+   "sat": 76.7,
+   "hue": 13.0,
+   "motion": 0.0564,
+   "faces": 0
+  },
+  {
+   "t0": 5.167,
+   "t1": 5.667,
+   "bright": 104.9,
+   "sat": 70.5,
+   "hue": 103.0,
+   "motion": 0.0778,
+   "faces": 0
+  },
+  {
+   "t0": 5.667,
+   "t1": 6.7,
+   "bright": 180.1,
+   "sat": 37.5,
+   "hue": 56.0,
+   "motion": 0.0498,
+   "faces": 0
+  },
+  {
+   "t0": 6.7,
+   "t1": 7.967,
+   "bright": 135.7,
+   "sat": 73.2,
+   "hue": 55.0,
+   "motion": 0.0611,
+   "faces": 0
+  },
+  {
+   "t0": 7.967,
+   "t1": 8.167,
+   "bright": 235.6,
+   "sat": 0.5,
+   "hue": -1,
+   "motion": 0.0376,
+   "faces": 0
+  },
+  {
+   "t0": 8.167,
+   "t1": 8.6,
+   "bright": 187.0,
+   "sat": 17.4,
+   "hue": 25.0,
+   "motion": 0.055,
+   "faces": 0
+  },
+  {
+   "t0": 8.6,
+   "t1": 9.733,
+   "bright": 118.6,
+   "sat": 89.5,
+   "hue": 17.0,
+   "motion": 0.0635,
+   "faces": 0
+  },
+  {
+   "t0": 9.733,
+   "t1": 10.267,
+   "bright": 110.4,
+   "sat": 63.1,
+   "hue": 24.0,
+   "motion": 0.1132,
+   "faces": 0
+  },
+  {
+   "t0": 10.267,
+   "t1": 10.3,
+   "bright": 227.7,
+   "sat": 4.0,
+   "hue": -1,
+   "motion": 0.0,
+   "faces": 0
+  }
+ ],
+ "fade_out_from": null,
+ "transition": "whip",
+ "text": [
+  {
+   "type": "line",
+   "t0": 0,
+   "t1": 5.667,
+   "text": "{days} days left."
+  },
+  {
+   "type": "line",
+   "t0": 5.667,
+   "t1": 10.267,
+   "text": "Leonida is waiting."
+  }
+ ],
+ "text_style": {
+  "y": 0.48
+ },
+ "bpm": 103.4,
+ "beats": [
+  0.255,
+  0.929,
+  1.509,
+  2.067,
+  2.647,
+  3.204,
+  3.785,
+  4.365,
+  4.946,
+  5.503,
+  6.06,
+  6.641,
+  7.221,
+  7.802,
+  8.359
+ ],
+ "reference": "https://www.tiktok.com/@havoceeditz/video/7707713413635443989",
+ "video_id": "7707713413635443989",
+ "creator": "havoceeditz",
+ "views": 136400,
+ "created": 1794591884,
+ "outlier": 1.04,
+ "sound": "code.red - slowed",
+ "sound_author": "DudePlaya & DXNTVX & DxFuSee",
+ "category": "hype_edit",
+ "text_review": false,
+ "original_text": [
+  "this was GTA 6\nback in august:",
+  "in november:"
+ ],
+ "text_rewritten": "own truthful lines (original was a then-vs-now comparison / other creator's caption)"
+}

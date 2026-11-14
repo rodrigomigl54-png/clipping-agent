@@ -154,7 +154,7 @@ class Fill:
 def assign(tpl: dict, shots: list[Shot], min_speed: float = 0.6, exclude: set | None = None) -> list[Fill]:
     """Fill each slot with the most similar unused shot. `exclude` = shots used in recent videos (avoided
     when possible so daily videos do not repeat the same shots)."""
-    pool = [s for s in shots if s.usable]
+    pool = [s for s in shots if s.usable and not s.ui]          # never shots with social-media / phone UI
     exclude = exclude or set()
     used: set[tuple[str, float]] = set()
     fills = []
@@ -167,7 +167,8 @@ def assign(tpl: dict, shots: list[Shot], min_speed: float = 0.6, exclude: set | 
             raise ValueError(f"no shot long enough for slot {sig['t0']:.2f}-{sig['t1']:.2f}")
         vertical = tpl.get("orientation") == "vertical"
         best = min(ok, key=lambda s: _dist(sig, s) + (0.0 if s.length >= dur + 0.1 else 0.6)
-                   + (0.9 if vertical and s.bar else 0.0)            # vertical: avoid letterboxed shots
+                   + (2.5 if vertical and s.bar else 0.0)            # vertical: avoid letterboxed shots
+                   - (s.iconic - 5.0) * 0.15                          # prefer the most iconic shots
                    + (1.5 if (Path(s.src).name, round(s.start, 2)) in exclude else 0.0))
         used.add((best.src, best.start))
         speed = min(1.0, (best.length - 0.1) / dur)
@@ -412,7 +413,8 @@ def render_template(tpl: dict, fills: list[Fill], out: Path, vars: dict, *, audi
 
 
 def make_template_edit(tpl: dict, sources: list[str], out: Path, vars: dict, *, audio_from: str | None = None,
-                       shot_cache: Path | None = None, exclude: set | None = None) -> dict:
+                       shot_cache: Path | None = None, exclude: set | None = None, tags_dir: Path | None = None,
+                       gemini=None) -> dict:
     shots: list[Shot] = []
     for s in sources:
         cp = shot_cache / (Path(s).name + ".shots.json") if shot_cache else None
@@ -424,6 +426,9 @@ def make_template_edit(tpl: dict, sources: list[str], out: Path, vars: dict, *, 
             cp.parent.mkdir(parents=True, exist_ok=True)
             cp.write_text(json.dumps([d.__dict__ for d in found]))
         shots += found
+    if tags_dir is not None:
+        for src in sources:
+            tag_shots(src, [x for x in shots if x.src == src], tags_dir, gemini)
     info = _probe(sources[0])
     fills = assign(tpl, shots, exclude=exclude)
     res = render_template(tpl, fills, out, vars, audio_from=audio_from, src_size=(info["w"], info["h"]))
@@ -514,3 +519,59 @@ def template_score(tpl: dict, now: float | None = None) -> float:
     age_h = max(1.0, ((now or time.time()) - float(tpl.get("created") or 0)) / 3600) if tpl.get("created") else None
     v = views / age_h if age_h else views / 500
     return v * (1 + 0.3 * float(tpl.get("outlier") or 1))
+
+
+# ------------------------------------------------------------------ shot tags (AI, cached per footage file)
+TAG_SCHEMA = {"type": "object", "properties": {"shots": {"type": "array", "items": {"type": "object", "properties": {
+    "i": {"type": "integer"}, "iconic": {"type": "number"}, "ui_overlay": {"type": "boolean"},
+    "what": {"type": "string"}}, "required": ["i", "iconic", "ui_overlay"]}}}, "required": ["shots"]}
+
+TAG_PROMPT = """This image is a grid of numbered frames, one per shot of an official game trailer (the number is in the
+yellow box in each tile's corner). For EVERY number rate the shot for a viral hype edit:
+- iconic: 1-10 (10 = instantly recognisable, breathtaking or high-action: skyline/aerial, main characters' close-ups,
+  explosions, chases, beach/party crowds; 1 = generic interior, dull filler, logo/rating card).
+- ui_overlay: true if the frame shows phone / social-media / livestream / news-TV / chat / app interface, usernames,
+  "Follow" buttons, captions or any other UI or text on top of the picture.
+- what: 3-8 words describing that tile.
+Numbers: 0..{last}."""
+
+
+def _grid(src: str, shots: list[Shot], tile_w: int = 256, cols: int = 8) -> bytes:
+    th = tile_w * 9 // 16
+    rows = (len(shots) + cols - 1) // cols
+    grid = np.zeros((rows * th, cols * tile_w, 3), np.uint8)
+    for k, x in enumerate(shots):
+        raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{(x.start + x.end) / 2:.2f}", "-i", src, "-frames:v", "1",
+                              "-vf", f"scale={tile_w}:{th}", "-f", "rawvideo", "-pix_fmt", "bgr24", "-"],
+                             capture_output=True).stdout
+        if len(raw) == tile_w * th * 3:
+            tile = np.frombuffer(raw, np.uint8).reshape(th, tile_w, 3).copy()
+            cv2.rectangle(tile, (0, 0), (34, 22), (0, 220, 255), -1)
+            cv2.putText(tile, str(k), (3, 17), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
+            r, c = divmod(k, cols)
+            grid[r * th:(r + 1) * th, c * tile_w:(c + 1) * tile_w] = tile
+    return cv2.imencode(".jpg", grid, [cv2.IMWRITE_JPEG_QUALITY, 88])[1].tobytes()
+
+
+def tag_shots(src: str, shots: list[Shot], tags_dir: Path, gemini=None) -> None:
+    """Attach iconic score + UI flag to each shot. One free Gemini call per footage file (a numbered grid of the
+    shots' middle frames, so every answer maps to exactly one shot), stored in the repo (tags_dir/<file>.json)
+    and never repeated. Without Gemini the defaults stay (iconic 5, no UI)."""
+    tf = tags_dir / (Path(src).stem + ".json")
+    tags = json.loads(tf.read_text()) if tf.exists() else None
+    if tags is None and gemini is not None and gemini.available() and shots:
+        from google.genai import types
+        try:
+            res = gemini.generate_json([types.Part.from_bytes(data=_grid(src, shots), mime_type="image/jpeg"),
+                                        TAG_PROMPT.format(last=len(shots) - 1)], TAG_SCHEMA, temperature=0.1)
+            tags = {f"{shots[r['i']].start:.2f}": {"iconic": float(r["iconic"]), "ui": bool(r["ui_overlay"]),
+                                                   "what": r.get("what", "")}
+                    for r in (res or {}).get("shots", []) if 0 <= r.get("i", -1) < len(shots)}
+            tf.parent.mkdir(parents=True, exist_ok=True)
+            tf.write_text(json.dumps(tags, indent=0, ensure_ascii=False))
+        except Exception:
+            tags = None
+    for x in shots:
+        t = (tags or {}).get(f"{x.start:.2f}")
+        if t:
+            x.iconic, x.ui = t["iconic"], t["ui"]

@@ -632,7 +632,9 @@ def cmd_hype(app: App, a) -> int:
             print(f"rendering {t['id']} ({t.get('creator')}, sound '{t.get('sound')}')…")
             try:
                 res = T.make_template_edit(t, footage, out, {"days": days, "watermark": hcfg.get("watermark", "")}, audio_from=str(ref) if ref.exists() else None,
-                                           shot_cache=app.settings.path("data/shot_cache"), exclude=recent)
+                                           shot_cache=app.settings.path("data/shot_cache"), exclude=recent,
+                                           tags_dir=app.settings.path(f"config/footage_tags/{prof.id}"),
+                                           gemini=app.orch.gemini)
             except Exception as e:
                 print(f"  ! {t['id']}: {e}"); continue
             mu = float(app.settings.quality.get("technical", {}).get("max_upscale", 2.0))

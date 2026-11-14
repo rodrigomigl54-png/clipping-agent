@@ -173,7 +173,7 @@
    "type": "line",
    "t0": 0,
    "t1": 6.1,
-   "text": "new GTA 6 gameplay just dropped!"
+   "text": "{days} days until GTA 6."
   },
   {
    "type": "line",
@@ -207,5 +207,10 @@
  "sound": "GOOD LOOKING (HARDTEKK) (edited version)",
  "sound_author": "4cyzon & 4VNX & zhyar",
  "category": "hype_edit",
- "text_review": true
+ "text_review": false,
+ "original_text": [
+  "new GTA 6 gameplay just dropped!",
+  "absolutely insane."
+ ],
+ "text_rewritten": "own truthful lines (original was a then-vs-now comparison / other creator's caption)"
 }
