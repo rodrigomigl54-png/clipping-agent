@@ -165,6 +165,9 @@ def assign(tpl: dict, shots: list[Shot], min_speed: float = 0.6, exclude: set | 
             ok = [s for s in pool if s.length >= dur * min_speed + 0.1]
         if not ok:
             raise ValueError(f"no shot long enough for slot {sig['t0']:.2f}-{sig['t1']:.2f}")
+        fresh = [s for s in ok if (Path(s.src).name, round(s.start, 2)) not in exclude]
+        if fresh:                        # shots used in recent videos only when nothing else fits
+            ok = fresh
         vertical = tpl.get("orientation") == "vertical"
         best = min(ok, key=lambda s: _dist(sig, s) + (0.0 if s.length >= dur + 0.1 else 0.6)
                    + (2.5 if vertical and s.bar else 0.0)            # vertical: avoid letterboxed shots
