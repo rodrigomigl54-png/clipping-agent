@@ -1,0 +1,304 @@
+{
+ "id": "havoceeditz_375508",
+ "reference_file": "havoceeditz_375508.mp4",
+ "orientation": "vertical",
+ "duration": 13.367,
+ "cuts": [
+  0.333,
+  0.8,
+  1.3,
+  1.8,
+  2.233,
+  2.733,
+  3.233,
+  3.7,
+  4.167,
+  4.667,
+  5.133,
+  5.667,
+  6.1,
+  7.567,
+  8.033,
+  8.633,
+  9.133,
+  9.6,
+  10.067,
+  10.6,
+  11.067,
+  11.467,
+  11.967,
+  13.3
+ ],
+ "slots": [
+  {
+   "t0": 0.0,
+   "t1": 0.333,
+   "bright": 147.2,
+   "sat": 113.2,
+   "hue": 165.0,
+   "motion": 0.0316,
+   "faces": 0
+  },
+  {
+   "t0": 0.333,
+   "t1": 0.8,
+   "bright": 135.1,
+   "sat": 119.1,
+   "hue": 170.0,
+   "motion": 0.0774,
+   "faces": 0
+  },
+  {
+   "t0": 0.8,
+   "t1": 1.3,
+   "bright": 171.2,
+   "sat": 69.6,
+   "hue": 86.0,
+   "motion": 0.103,
+   "faces": 0
+  },
+  {
+   "t0": 1.3,
+   "t1": 1.8,
+   "bright": 168.1,
+   "sat": 61.0,
+   "hue": 21.0,
+   "motion": 0.0734,
+   "faces": 0
+  },
+  {
+   "t0": 1.8,
+   "t1": 2.233,
+   "bright": 152.2,
+   "sat": 99.8,
+   "hue": 106.0,
+   "motion": 0.0842,
+   "faces": 0
+  },
+  {
+   "t0": 2.233,
+   "t1": 2.733,
+   "bright": 126.4,
+   "sat": 34.6,
+   "hue": 26.0,
+   "motion": 0.1277,
+   "faces": 0
+  },
+  {
+   "t0": 2.733,
+   "t1": 3.233,
+   "bright": 144.0,
+   "sat": 119.4,
+   "hue": 104.0,
+   "motion": 0.0517,
+   "faces": 0
+  },
+  {
+   "t0": 3.233,
+   "t1": 3.7,
+   "bright": 145.6,
+   "sat": 77.3,
+   "hue": 14.0,
+   "motion": 0.0535,
+   "faces": 0
+  },
+  {
+   "t0": 3.7,
+   "t1": 4.167,
+   "bright": 99.9,
+   "sat": 142.6,
+   "hue": 10.0,
+   "motion": 0.0549,
+   "faces": 0
+  },
+  {
+   "t0": 4.167,
+   "t1": 4.667,
+   "bright": 34.3,
+   "sat": 117.8,
+   "hue": 115.0,
+   "motion": 0.0307,
+   "faces": 1
+  },
+  {
+   "t0": 4.667,
+   "t1": 5.133,
+   "bright": 122.7,
+   "sat": 82.2,
+   "hue": 17.0,
+   "motion": 0.0441,
+   "faces": 0
+  },
+  {
+   "t0": 5.133,
+   "t1": 5.667,
+   "bright": 72.5,
+   "sat": 52.9,
+   "hue": 38.0,
+   "motion": 0.0682,
+   "faces": 1
+  },
+  {
+   "t0": 5.667,
+   "t1": 6.1,
+   "bright": 62.3,
+   "sat": 95.5,
+   "hue": 54.0,
+   "motion": 0.0791,
+   "faces": 1
+  },
+  {
+   "t0": 6.1,
+   "t1": 7.567,
+   "bright": 139.8,
+   "sat": 64.6,
+   "hue": 18.0,
+   "motion": 0.0788,
+   "faces": 0
+  },
+  {
+   "t0": 7.567,
+   "t1": 8.033,
+   "bright": 118.6,
+   "sat": 80.0,
+   "hue": 100.0,
+   "motion": 0.1099,
+   "faces": 0
+  },
+  {
+   "t0": 8.033,
+   "t1": 8.633,
+   "bright": 85.0,
+   "sat": 95.8,
+   "hue": 38.0,
+   "motion": 0.0813,
+   "faces": 0
+  },
+  {
+   "t0": 8.633,
+   "t1": 9.133,
+   "bright": 126.4,
+   "sat": 117.3,
+   "hue": 42.0,
+   "motion": 0.2107,
+   "faces": 0
+  },
+  {
+   "t0": 9.133,
+   "t1": 9.6,
+   "bright": 99.5,
+   "sat": 171.9,
+   "hue": 14.0,
+   "motion": 0.1098,
+   "faces": 2
+  },
+  {
+   "t0": 9.6,
+   "t1": 10.067,
+   "bright": 141.6,
+   "sat": 81.9,
+   "hue": 57.0,
+   "motion": 0.0694,
+   "faces": 0
+  },
+  {
+   "t0": 10.067,
+   "t1": 10.6,
+   "bright": 194.1,
+   "sat": 17.6,
+   "hue": 22.0,
+   "motion": 0.0749,
+   "faces": 0
+  },
+  {
+   "t0": 10.6,
+   "t1": 11.067,
+   "bright": 145.1,
+   "sat": 57.2,
+   "hue": 47.0,
+   "motion": 0.0642,
+   "faces": 0
+  },
+  {
+   "t0": 11.067,
+   "t1": 11.467,
+   "bright": 58.5,
+   "sat": 94.3,
+   "hue": 118.0,
+   "motion": 0.0505,
+   "faces": 0
+  },
+  {
+   "t0": 11.467,
+   "t1": 11.967,
+   "bright": 158.8,
+   "sat": 72.4,
+   "hue": 21.0,
+   "motion": 0.1307,
+   "faces": 0
+  },
+  {
+   "t0": 11.967,
+   "t1": 13.3,
+   "bright": 117.1,
+   "sat": 61.2,
+   "hue": 12.0,
+   "motion": 0.1096,
+   "faces": 0
+  },
+  {
+   "t0": 13.3,
+   "t1": 13.367,
+   "bright": 247.6,
+   "sat": 1.6,
+   "hue": -1,
+   "motion": 0.0499,
+   "faces": 0
+  }
+ ],
+ "fade_out_from": null,
+ "transition": "whip",
+ "text": [
+  {
+   "type": "line",
+   "t0": 0,
+   "t1": 6.1,
+   "text": "we're officially in GTA 6 week!"
+  },
+  {
+   "type": "line",
+   "t0": 6.1,
+   "t1": 13.3,
+   "text": "it's almost here!"
+  }
+ ],
+ "text_style": {
+  "y": 0.5,
+  "line_size": 0.042,
+  "size": 0.058
+ },
+ "bpm": 123.0,
+ "beats": [
+  0.07,
+  0.511,
+  0.975,
+  1.463,
+  1.95,
+  2.438,
+  2.902
+ ],
+ "reference": "https://www.tiktok.com/@havoceeditz/video/7708220452929375508",
+ "video_id": "7708220452929375508",
+ "creator": "havoceeditz",
+ "views": 57700,
+ "created": 1794709935,
+ "outlier": 0.32,
+ "sound": "GOOD LOOKING (HARDTEKK) (edited version)",
+ "sound_author": "4cyzon & 4VNX & zhyar",
+ "category": "hype_edit",
+ "text_review": false,
+ "original_text": [
+  "we're officially in GTA 6 week!",
+  "it's finally here!"
+ ]
+}

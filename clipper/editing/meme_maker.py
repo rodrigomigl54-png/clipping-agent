@@ -62,7 +62,8 @@ def extract_clip(src: str, out: Path, *, start: float = 0.0, end: float | None =
     out.parent.mkdir(parents=True, exist_ok=True)
     cmd = ["ffmpeg", "-v", "error", "-y", "-ss", f"{start:.2f}", "-to", f"{end:.2f}", "-i", src,
            "-vf", f"crop={w}:{h}:{x}:{y}", "-c:v", "libx264", "-crf", "14", "-preset", "slow"]
-    cmd += (["-c:a", "aac", "-b:a", "192k"] if info["audio"] else ["-an"]) + [str(out)]
+    from .template_edit import audio_fix
+    cmd += ([*audio_fix(src), "-c:a", "aac", "-b:a", "192k"] if info["audio"] else ["-an"]) + [str(out)]
     subprocess.run(cmd, check=True)
     return {"file": str(out), "box": [x, y, w, h], "duration": round(end - start, 2), "w": w, "h": h,
             "upscale": round(W / w, 2)}

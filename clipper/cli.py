@@ -694,6 +694,13 @@ def cmd_hype(app: App, a) -> int:
     print(f"    MUSIC: '{m['sound']}' — {m['artist']} | {m['bpm']} BPM | drop at {m['drop_at_s']}s")
     return 0 if res["qc"]["decision"] == "PASS" else 1
 
+def _topic_name(x) -> str:
+    """Trend summary topics are [name, score] pairs (older files: dicts or plain strings)."""
+    if isinstance(x, (list, tuple)):
+        return str(x[0]) if x else ""
+    return x.get("topic", "") if isinstance(x, dict) else str(x)
+
+
 def _post_kit(app: App, t: dict, days: int) -> dict:
     """Post texts for one rendered template edit (TikTok / YouTube Shorts / X)."""
     import json as _json
@@ -709,7 +716,7 @@ def _post_kit(app: App, t: dict, days: int) -> dict:
     sp = app.settings.path("memory/research/summary_latest.json")
     if sp.exists():
         try:
-            topics = [x if isinstance(x, str) else x.get("topic", "") for x in _json.loads(sp.read_text()).get("topics", [])][:15]
+            topics = [_topic_name(x) for x in _json.loads(sp.read_text()).get("topics", [])][:15]
         except Exception:
             topics = []
     hcfg = app.settings.profile("gta6").hype or {}
@@ -760,7 +767,7 @@ def cmd_meme(app: App, a) -> int:
     sp = app.settings.path("memory/research/summary_latest.json")
     if sp.exists():
         summ = _json.loads(sp.read_text())
-        topics = [x if isinstance(x, str) else x.get("topic", "") for x in summ.get("topics", [])]
+        topics = [_topic_name(x) for x in summ.get("topics", [])]
     try:
         from .styles.style_library import StyleLibrary
         examples = StyleLibrary(app.db, app.settings).headline_examples(prof.id, "meme_skit") or []

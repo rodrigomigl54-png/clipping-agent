@@ -1,0 +1,255 @@
+{
+ "id": "havoceeditz_580692",
+ "reference_file": "havoceeditz_580692.mp4",
+ "orientation": "vertical",
+ "duration": 10.2,
+ "cuts": [
+  0.333,
+  1.4,
+  1.933,
+  2.433,
+  2.933,
+  3.467,
+  3.967,
+  5.033,
+  5.933,
+  6.167,
+  6.567,
+  7.1,
+  7.6,
+  8.1,
+  8.633,
+  9.167,
+  9.667,
+  9.933
+ ],
+ "slots": [
+  {
+   "t0": 0.0,
+   "t1": 0.333,
+   "bright": 90.8,
+   "sat": 158.7,
+   "hue": 98.0,
+   "motion": 0.0576,
+   "faces": 1
+  },
+  {
+   "t0": 0.333,
+   "t1": 1.4,
+   "bright": 109.2,
+   "sat": 90.5,
+   "hue": 18.0,
+   "motion": 0.0472,
+   "faces": 0
+  },
+  {
+   "t0": 1.4,
+   "t1": 1.933,
+   "bright": 115.7,
+   "sat": 50.0,
+   "hue": 106.0,
+   "motion": 0.0946,
+   "faces": 0
+  },
+  {
+   "t0": 1.933,
+   "t1": 2.433,
+   "bright": 57.3,
+   "sat": 97.4,
+   "hue": 114.0,
+   "motion": 0.0532,
+   "faces": 0
+  },
+  {
+   "t0": 2.433,
+   "t1": 2.933,
+   "bright": 153.0,
+   "sat": 78.5,
+   "hue": 96.0,
+   "motion": 0.0686,
+   "faces": 0
+  },
+  {
+   "t0": 2.933,
+   "t1": 3.467,
+   "bright": 143.2,
+   "sat": 116.2,
+   "hue": 167.0,
+   "motion": 0.0393,
+   "faces": 0
+  },
+  {
+   "t0": 3.467,
+   "t1": 3.967,
+   "bright": 179.6,
+   "sat": 55.4,
+   "hue": 104.0,
+   "motion": 0.1072,
+   "faces": 0
+  },
+  {
+   "t0": 3.967,
+   "t1": 5.033,
+   "bright": 87.7,
+   "sat": 84.2,
+   "hue": 43.0,
+   "motion": 0.0434,
+   "faces": 0
+  },
+  {
+   "t0": 5.033,
+   "t1": 5.933,
+   "bright": 105.8,
+   "sat": 166.3,
+   "hue": 15.0,
+   "motion": 0.1026,
+   "faces": 0
+  },
+  {
+   "t0": 5.933,
+   "t1": 6.167,
+   "bright": 210.4,
+   "sat": 6.7,
+   "hue": -1,
+   "motion": 0.0747,
+   "faces": 1
+  },
+  {
+   "t0": 6.167,
+   "t1": 6.567,
+   "bright": 177.6,
+   "sat": 20.2,
+   "hue": 172.0,
+   "motion": 0.0614,
+   "faces": 0
+  },
+  {
+   "t0": 6.567,
+   "t1": 7.1,
+   "bright": 70.0,
+   "sat": 52.5,
+   "hue": 30.0,
+   "motion": 0.053,
+   "faces": 1
+  },
+  {
+   "t0": 7.1,
+   "t1": 7.6,
+   "bright": 142.4,
+   "sat": 56.3,
+   "hue": 33.0,
+   "motion": 0.0718,
+   "faces": 0
+  },
+  {
+   "t0": 7.6,
+   "t1": 8.1,
+   "bright": 129.5,
+   "sat": 67.8,
+   "hue": 23.0,
+   "motion": 0.0861,
+   "faces": 0
+  },
+  {
+   "t0": 8.1,
+   "t1": 8.633,
+   "bright": 193.6,
+   "sat": 16.5,
+   "hue": 20.0,
+   "motion": 0.0471,
+   "faces": 0
+  },
+  {
+   "t0": 8.633,
+   "t1": 9.167,
+   "bright": 99.9,
+   "sat": 153.9,
+   "hue": 7.0,
+   "motion": 0.0552,
+   "faces": 0
+  },
+  {
+   "t0": 9.167,
+   "t1": 9.667,
+   "bright": 151.9,
+   "sat": 61.3,
+   "hue": 22.0,
+   "motion": 0.0719,
+   "faces": 1
+  },
+  {
+   "t0": 9.667,
+   "t1": 9.933,
+   "bright": 124.6,
+   "sat": 73.6,
+   "hue": 19.0,
+   "motion": 0.0778,
+   "faces": 0
+  },
+  {
+   "t0": 9.933,
+   "t1": 10.2,
+   "bright": 177.5,
+   "sat": 22.8,
+   "hue": 100.0,
+   "motion": 0.1205,
+   "faces": 0
+  }
+ ],
+ "fade_out_from": null,
+ "transition": "whip",
+ "text": [
+  {
+   "type": "line",
+   "t0": 0,
+   "t1": 5.933,
+   "text": "\"GTA 6 is gonna flop\""
+  },
+  {
+   "type": "line",
+   "t0": 5.933,
+   "t1": 10.2,
+   "text": "Rockstar:"
+  }
+ ],
+ "text_style": {
+  "y": 0.525
+ },
+ "bpm": 117.5,
+ "beats": [
+  0.116,
+  0.627,
+  1.161,
+  1.672,
+  2.206,
+  2.717,
+  3.251,
+  3.762,
+  4.272,
+  4.783,
+  5.317,
+  5.828,
+  6.362,
+  6.873,
+  7.384,
+  7.895,
+  8.429,
+  8.94,
+  9.451,
+  9.961
+ ],
+ "reference": "https://www.tiktok.com/@havoceeditz/video/7708162635115580692",
+ "video_id": "7708162635115580692",
+ "creator": "havoceeditz",
+ "views": 122600,
+ "created": 1794696478,
+ "outlier": 0.68,
+ "sound": "DASH - Slowed",
+ "sound_author": "HATENA & xenithar",
+ "category": "hype_edit",
+ "text_review": false,
+ "original_text": [
+  "what people think GTA 6 looks like at 30 FPS:",
+  "the reality:"
+ ]
+}

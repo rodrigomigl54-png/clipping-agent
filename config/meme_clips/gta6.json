@@ -13,7 +13,8 @@
   "duration": 19.44,
   "sound": "I'm Still Standing",
   "used_captions": [
-   "Me at work on November 19 knowing GTA 6 just came out"
+   "Me at work on November 19 knowing GTA 6 just came out",
+   "POV: Sitting at work watching the clock ticking down to November 19th"
   ]
  },
  {
@@ -29,7 +30,8 @@
   "duration": 24.97,
   "sound": "original sound",
   "used_captions": [
-   "Me driving home from work on November 19 to finally play GTA 6"
+   "Me driving home from work on November 19 to finally play GTA 6",
+   "Me driving home with snacks locked and loaded for GTA 6 launch night"
   ]
  },
  {
@@ -46,7 +48,8 @@
   "duration": 12.31,
   "sound": "original sound",
   "used_captions": [
-   "When an NPC bumps into me in GTA 6 after I waited 13 years for this game"
+   "When an NPC bumps into me in GTA 6 after I waited 13 years for this game",
+   "When a Vice City pedestrian talks trash to me 5 minutes into the game"
   ]
  },
  {
@@ -63,7 +66,8 @@
   "duration": 9.45,
   "sound": "original sound",
   "used_captions": [
-   "Me when the GTA 6 preload finally hits 100%"
+   "Me when the GTA 6 preload finally hits 100%",
+   "Me looking at GTA 6 sitting pre-loaded on my console ready for Nov 19"
   ]
  },
  {
@@ -80,7 +84,23 @@
   "duration": 24.37,
   "sound": "original sound",
   "used_captions": [
-   "Me speeding through Vice City with the radio on max on day one"
+   "Me speeding through Vice City with the radio on max on day one",
+   "How me and the homie gonna be cruising Leonida on release night"
+  ]
+ },
+ {
+  "id": "gta_6_2026_597270",
+  "file": "assets/meme_clips/gta_6_2026_597270.mp4",
+  "what": "man in a car steering wildly and flooring it, frantic rush",
+  "emotion": [
+   "rush",
+   "hype",
+   "impatient"
+  ],
+  "reference": "https://www.tiktok.com/@gta_6.2026/video/7707321202112597270",
+  "duration": 5.97,
+  "used_captions": [
+   "Me rushing home from work on November 19 at 5:01 PM"
   ]
  }
 ]

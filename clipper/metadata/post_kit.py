@@ -67,6 +67,8 @@ def build(*, lines: list[str], days: int, kind: str = "hype_edit", topics: list[
         tags.append("#gta6countdown")
     for t in topics or []:
         tag = TOPIC_TAGS.get(t.lower())
+        if tag == "#gta6memes" and kind != "meme_skit":
+            continue
         if tag and tag not in tags:
             tags.append(tag)
     if "#leonida" not in tags and "leonida" in hook.lower():
