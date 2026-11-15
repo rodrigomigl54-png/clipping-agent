@@ -134,6 +134,13 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 40 automated tests passi
   rendered with bigger text and centred on a blurred copy (`to_vertical_video`, `hype.all_vertical: true`).
 - YouTube channel guide `docs/YOUTUBE_SETUP.md` + banner `docs/brand/youtube_banner_2560x1440.jpg`.
 
+## Changed 2026-11-15 (owner's workflow)
+- Morning scheduled task = trend research + our TikTok results + detailed content plan as a phone-friendly HTML report;
+  no rendering until the owner gives instructions. Fresh viral references every day; proven performers may return
+  after a few days with new text. Edits: 2–3/day from unused trailer parts + new official sources proposed first.
+- Fixes: odd TikTok audio layouts (stream-copy mux, explicit pan), trend topic parsing, post sheet labels on their
+  own line, `#gta6memes` only on memes.
+
 ## In progress
 - Nothing partially implemented.
 
