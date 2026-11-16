@@ -638,7 +638,7 @@ def cmd_hype(app: App, a) -> int:
             try:
                 fdir = t.get("footage") or prof.id                    # e.g. Niko Bellic edits use GTA IV footage
                 tfoot = footage if fdir == prof.id else sorted(str(p) for p in app.settings.path(f"assets/footage/{fdir}").glob("*.mp4"))
-                res = T.make_template_edit(t, tfoot, out, {"days": days, "watermark": hcfg.get("watermark", "")}, audio_from=str(ref) if ref.exists() else None,
+                res = T.make_template_edit(t, tfoot, out, {"days": days, "days_roman": _roman(days), "watermark": hcfg.get("watermark", "")}, audio_from=str(ref) if ref.exists() else None,
                                            shot_cache=app.settings.path("data/shot_cache"), exclude=recent,
                                            tags_dir=app.settings.path(f"config/footage_tags/{fdir}"),
                                            gemini=app.orch.gemini, vertical_out=bool(hcfg.get("all_vertical", True)))
@@ -693,6 +693,19 @@ def cmd_hype(app: App, a) -> int:
     print(f"  ▶ {out}\n    {res['duration']}s | upscale {res['upscale']}x | QC {res['qc']['decision']}")
     print(f"    MUSIC: '{m['sound']}' — {m['artist']} | {m['bpm']} BPM | drop at {m['drop_at_s']}s")
     return 0 if res["qc"]["decision"] == "PASS" else 1
+
+def _roman(n: int) -> str:
+    """3 -> III (countdown glyph used by viral edits); falls back to the number for n < 1."""
+    if n < 1:
+        return str(n)
+    out = ""
+    for v, r in ((1000, "M"), (900, "CM"), (500, "D"), (400, "CD"), (100, "C"), (90, "XC"), (50, "L"), (40, "XL"),
+                 (10, "X"), (9, "IX"), (5, "V"), (4, "IV"), (1, "I")):
+        while n >= v:
+            out += r
+            n -= v
+    return out
+
 
 def _topic_name(x) -> str:
     """Trend summary topics are [name, score] pairs (older files: dicts or plain strings)."""

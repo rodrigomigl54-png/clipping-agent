@@ -290,15 +290,81 @@ class TextRenderer:
             if not ev["t0"] <= t < ev["t1"]:
                 continue
             kind = ev.get("type", "line")
-            if kind == "counter":
+            ey = H * float(ev["y"]) if "y" in ev else cy
+            if kind == "counter" and ev.get("ease"):
+                self._rolling_counter(frame, ev, t, W, H, ey)
+            elif kind == "counter":
                 v = _counter_value(ev, t, self.vars)
-                _over(frame, self.layer(f"{v}\n{_fmt(ev.get('suffix', 'DAYS'), self.vars)}", self.size), W / 2, cy)
+                _over(frame, self.layer(f"{v}\n{_fmt(ev.get('suffix', 'DAYS'), self.vars)}", self.size), W / 2, ey)
+            elif kind == "rich":
+                self._rich(frame, ev, t, W, H, ey)
             elif kind == "line":
                 txt = _fmt(ev["text"], self.vars)
                 pop = 1.0 + 0.10 * max(0.0, 1 - (t - ev["t0"]) * FPS / 4)
                 _over(frame, self.layer(txt, self.line_size), W / 2, cy, scale=pop)
             elif kind == "scatter":
                 self._scatter(frame, _fmt(ev["text"], self.vars), (t - ev["t0"]) / (ev["t1"] - ev["t0"]), W, cy)
+
+    def _rolling_counter(self, frame: np.ndarray, ev: dict, t: float, W: int, H: int, cy: float) -> None:
+        """Big number that rolls from `from` to `to` and slows down (ease-out) until `t_stop`, then holds.
+        While it moves fast the digits get a vertical motion blur, like the reference."""
+        start, end = _num(ev["from"], self.vars), _num(ev["to"], self.vars)
+        t_stop = float(ev.get("t_stop", ev["t1"]))
+        span = max(1e-3, t_stop - ev["t0"])
+        def val(x):
+            p = min(1.0, max(0.0, (x - ev["t0"]) / span))
+            return start + (end - start) * (1 - (1 - p) ** 3)
+        v = int(round(val(t)))
+        speed = abs(val(t + 1 / FPS) - val(t)) * FPS             # numbers per second
+        size = int(H * float(ev.get("size", 0.16)))
+        layer = self.layer(str(v), size)
+        if speed > 2:
+            k = int(min(size * 0.5, 4 + speed * 0.6))
+            kern = np.zeros((k, 1), np.float32); kern[:, 0] = 1.0 / k
+            layer = cv2.filter2D(layer, -1, kern)
+        _over(frame, layer, W / 2, cy)
+        suffix = _fmt(ev.get("suffix", "DAYS"), self.vars)
+        if suffix:
+            sl = self.layer(suffix, int(size * 0.18))
+            _over(frame, sl, W / 2, cy + layer.shape[0] * 0.36 + sl.shape[0] * 0.2)
+
+    def _rich(self, frame: np.ndarray, ev: dict, t: float, W: int, H: int, cy: float) -> None:
+        """One line made of parts with their own colour / size (e.g. a big red "III" + small white "days left")."""
+        from PIL import Image, ImageDraw
+        base = int(H * float(ev.get("size", 0.04)))
+        layers = []
+        for part in ev["parts"]:
+            txt = _fmt(part["text"], self.vars)
+            sz = int(base * float(part.get("scale", 1.0)))
+            key = ("rich", txt, sz, part.get("color", "#ffffff"), part.get("font"))
+            if key not in self.cache:
+                if part.get("font") == "serif":
+                    from PIL import ImageFont
+                    f = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf", sz)
+                else:
+                    f = _font(sz)
+                d = ImageDraw.Draw(Image.new("L", (1, 1)))
+                x0, y0, x1, y1 = d.textbbox((0, 0), txt, font=f)
+                img = Image.new("RGBA", (x1 - x0 + 8, y1 - y0 + 8), (0, 0, 0, 0))
+                col = part.get("color", "#ffffff").lstrip("#")
+                rgb = tuple(int(col[i:i + 2], 16) for i in (0, 2, 4))
+                ImageDraw.Draw(img).text((4 - x0, 4 - y0), txt, font=f, fill=(*rgb, 255))
+                arr = np.array(img)
+                if part.get("shadow", True):        # soft dark shadow so white text reads on bright shots
+                    sh = cv2.GaussianBlur(arr[..., 3].astype(np.float32), (0, 0), max(1, sz * 0.06)) * 0.6
+                    out = np.zeros_like(arr); out[..., 3] = np.maximum(arr[..., 3], sh).astype(np.uint8)
+                    a = arr[..., 3:4].astype(np.float32) / 255
+                    out[..., :3] = (arr[..., :3] * a).astype(np.uint8)
+                    arr = out
+                self.cache[key] = arr[..., [2, 1, 0, 3]].copy()   # _over expects BGR + alpha
+            layers.append(self.cache[key])
+        gap = int(base * 0.25)
+        total = sum(l.shape[1] for l in layers) + gap * (len(layers) - 1)
+        pop = 1.0 + 0.10 * max(0.0, 1 - (t - ev["t0"]) * FPS / 4)
+        x = W / 2 - total * pop / 2
+        for l in layers:
+            _over(frame, l, x + l.shape[1] * pop / 2, cy, scale=pop)
+            x += (l.shape[1] + gap) * pop
 
     def _scatter(self, frame: np.ndarray, text: str, p: float, W: int, cy: float) -> None:
         """Letters of the line fly apart (spin + fade), as at the end of the reference's question."""
@@ -348,7 +414,7 @@ def _read_segment(src: str, start: float, dur: float, speed: float, W: int, H: i
                   bar: float = 0.0, cx: float = 0.5):
     """Frames of one shot filling W x H: cinematic black bars are cropped away, then the largest centred
     crop with the output aspect ratio is scaled up (never letterboxed)."""
-    if bar and H / (src_h * (1 - 2 * bar)) > MAX_UPSCALE and W < H:
+    if bar and H / (src_h * (1 - 2 * bar)) > MAX_UPSCALE + 0.05 and W < H:
         bar = 0.0                       # vertical crop of a letterboxed shot would be too soft: keep its bars
     vis_h = int(src_h * (1 - 2 * bar)) // 2 * 2
     if W / H > src_w / vis_h:
@@ -391,7 +457,7 @@ def render_template(tpl: dict, fills: list[Fill], out: Path, vars: dict, *, audi
         if si not in cache:
             cache.clear()
             cache[si] = _read_segment(f.shot.src, f.src_start, f.t1 - f.t0, f.speed, W, H, sw, sh, f.shot.bar, f.shot.cx)
-            b = f.shot.bar if not (f.shot.bar and H / (sh * (1 - 2 * f.shot.bar)) > MAX_UPSCALE and W < H) else 0.0
+            b = f.shot.bar if not (f.shot.bar and H / (sh * (1 - 2 * f.shot.bar)) > MAX_UPSCALE + 0.05 and W < H) else 0.0
             upscale = max(upscale, H / (sh * (1 - 2 * b)))
             log.append({"t": round(f.t0, 2), "dur": round(f.t1 - f.t0, 2), "src": Path(f.shot.src).name,
                         "src_t": round(f.src_start, 2), "speed": round(f.speed, 2), "bar": f.shot.bar})
@@ -403,6 +469,12 @@ def render_template(tpl: dict, fills: list[Fill], out: Path, vars: dict, *, audi
             if dist < 2.5:
                 direction = -1 if cuts.index(c) % 2 else 1
                 img = _whip(img, 1 - dist / 2.5, direction if t < c else -direction)
+        if tpl.get("transition") == "flash" and cuts:          # white flash right after each cut
+            c = max([c for c in cuts if c <= t], default=None)
+            if c is not None:
+                a = 0.75 - (t - c) * FPS * 0.25
+                if a > 0:
+                    img = (img.astype(np.float32) * (1 - a) + 255 * a).astype(np.uint8)
         if fade is not None and t >= fade:
             img = (img * max(0.0, 1 - (t - fade) / max(0.1, total - fade))).astype(np.uint8)
         text.draw(img, t)
@@ -438,7 +510,7 @@ def to_vertical_video(path: Path) -> None:
     placed full-width in the middle of a 1080x1920 frame over a blurred, darkened copy of itself."""
     tmp = path.with_name(path.stem + ".v.mp4")
     fc = ("[0:v]split[a][b];[a]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
-          "gblur=sigma=28,eq=brightness=-0.18:saturation=1.1[bg];[b]scale=1080:-2:flags=lanczos[fg];"
+          "gblur=sigma=40,eq=brightness=-0.32:saturation=1.0[bg];[b]scale=1080:-2:flags=lanczos[fg];"
           "[bg][fg]overlay=0:(H-h)/2,format=yuv420p[v]")
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(path), "-filter_complex", fc, "-map", "[v]", "-map", "0:a?",
                     "-c:v", "libx264", "-preset", "slow", "-crf", "16", "-c:a", "copy", "-movflags", "+faststart", str(tmp)],
