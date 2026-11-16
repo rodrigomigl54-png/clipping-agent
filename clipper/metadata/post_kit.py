@@ -67,6 +67,8 @@ def build(*, lines: list[str], days: int, kind: str = "hype_edit", topics: list[
         tags.append("#gta6countdown")
     for t in topics or []:
         tag = TOPIC_TAGS.get(t.lower())
+        if tag == "#gta6memes" and kind != "meme_skit":
+            continue
         if tag and tag not in tags:
             tags.append(tag)
     if "#leonida" not in tags and "leonida" in hook.lower():
@@ -120,14 +122,16 @@ def build(*, lines: list[str], days: int, kind: str = "hype_edit", topics: list[
 
 
 def as_text(kit: dict, title: str = "") -> str:
+    """Copy-paste sheet. Labels are on their own line in [brackets]; copy ONLY the line(s) under a label."""
     m = kit["music"]
     out = [f"=== {title} ===" if title else "", "",
-           "TIKTOK", f"Caption: {kit['tiktok']['caption']}", f"Cover text: {kit['tiktok']['cover_text']}",
-           f"Sound: {m['tiktok']}", f"Settings: {kit['tiktok']['settings']}", ""]
-    if "youtube_shorts" in kit["platforms"]:
-        out += ["YOUTUBE SHORTS", f"Title: {kit['youtube']['title']}", "Description:", kit["youtube"]["description"],
-                f"Tags: {', '.join(kit['youtube']['tags'])}", f"Sound: {m['youtube']}", f"Settings: {kit['youtube']['settings']}", ""]
-    else:
-        out += ["YOUTUBE SHORTS: not for this one (landscape video — Shorts must be vertical)", ""]
-    out += ["X", kit["x"]["text"], f"Sound: {m['x']}", "", f"Best time: {kit['best_time']}"]
+           "TIKTOK", "[opis — kopiraj samo red ispod]", kit["tiktok"]["caption"],
+           "[tekst na cover slici — izaberi kadar sa ovim tekstom ili ga dodaj kao tekst na cover]", kit["tiktok"]["cover_text"],
+           f"[zvuk] {m['tiktok']}", f"[podešavanja] {kit['tiktok']['settings']}", "",
+           "YOUTUBE SHORTS", "[naslov — kopiraj samo red ispod]", kit["youtube"]["title"],
+           "[opis — kopiraj sve redove ispod do [tagovi]]", kit["youtube"]["description"],
+           "[tagovi]", ", ".join(kit["youtube"]["tags"]),
+           f"[zvuk] {m['youtube']}", f"[podešavanja] {kit['youtube']['settings']}", "",
+           "X", "[tekst — kopiraj redove ispod]", kit["x"]["text"], "",
+           f"[vreme objave] {kit['best_time']}"]
     return "\n".join(out).strip() + "\n"

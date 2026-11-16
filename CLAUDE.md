@@ -15,6 +15,14 @@ the full table). Rules for the operator:
   @mostwanted.vi, YouTube @mostwantedgtavi). So every output is vertical 1080x1920 (landscape/square edits are
   centred on a blurred copy), carries no channel tag, and ships with a post kit for both platforms. Target
   10–20 videos per day (memes + edits).
+* **Daily workflow (owner's rule, 2026-11-15):** the morning run only researches and sends a detailed trend
+  report + content plan (every video: type, viral reference, style, exact on-screen text, footage, song, hook,
+  caption/title, why). Nothing is rendered until the owner approves or edits the plan. Every day uses NEW viral
+  references; templates, meme clips and trailer shots used on earlier days are not reused unless the owner asks —
+  except proven performers (good numbers on our channel), which may come back after a few days with a completely
+  new joke/text. Footage: 2–3 edits/day from unused trailer parts + new official sources proposed in the plan
+  first; the rest are memes. The report is a phone-friendly HTML page (outputs/reports/IZVESTAJ_<date>.html)
+  sent with SendUserFile, plus a short chat summary.
 * Do not add publishing/upload integrations, cloud services, dashboards, or scraping/downloader
   tools (e.g. yt-dlp) — out of scope by design.
 

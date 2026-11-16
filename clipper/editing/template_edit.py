@@ -110,7 +110,8 @@ def _beats(ref: str) -> dict:
         import librosa
     except ImportError:
         return {}
-    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", ref, "-ac", "1", "-ar", "22050", "-f", "f32le", "-"],
+    # explicit pan: some TikTok uploads carry odd channel layouts (e.g. LFE+LFE2) that the resampler rejects
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", ref, "-af", "pan=mono|c0=c0", "-ar", "22050", "-f", "f32le", "-"],
                          capture_output=True, check=True).stdout
     y = np.frombuffer(raw, np.float32)
     tempo, beats = librosa.beat.beat_track(y=y, sr=22050, units="time")
@@ -415,10 +416,21 @@ def render_template(tpl: dict, fills: list[Fill], out: Path, vars: dict, *, audi
     res = {"file": str(silent), "duration": round(n_frames / FPS, 2), "shots": log, "upscale": round(upscale, 2),
            "size": f"{W}x{H}", "layout": "vertical (landscape/square picture centred on a blurred copy)" if to_vertical else None}
     if audio_from:
-        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(silent), "-i", audio_from, "-map", "0:v", "-map", "1:a",
-                        "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", str(out)], check=True)
+        base = ["ffmpeg", "-v", "error", "-y", "-i", str(silent), "-i", audio_from, "-map", "0:v", "-map", "1:a",
+                "-c:v", "copy", "-shortest"]
+        # stream copy first: some TikTok sounds change channel layout mid-file, which breaks any audio filter
+        if subprocess.run(base + ["-c:a", "copy", str(out)]).returncode != 0:
+            subprocess.run(base + [*audio_fix(audio_from), "-c:a", "aac", "-b:a", "192k", str(out)], check=True)
         res["preview_with_sound"] = str(out)
     return res
+
+
+def audio_fix(path: str) -> list[str]:
+    """ffmpeg args that normalise odd channel layouts (TikTok files tagged LFE+LFE2) to plain stereo/mono."""
+    out = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "a:0", "-show_entries", "stream=channels",
+                          "-of", "csv=p=0", str(path)], capture_output=True, text=True).stdout.strip()
+    ch = int(out) if out.isdigit() else 0
+    return ["-af", "pan=stereo|c0=c0|c1=c1"] if ch >= 2 else (["-af", "pan=mono|c0=c0"] if ch == 1 else [])
 
 
 def to_vertical_video(path: Path) -> None:
