@@ -101,8 +101,10 @@ def build(*, lines: list[str], days: int, kind: str = "hype_edit", topics: list[
         "tiktok": (f"Use this sound: '{sound}' — open {sound_ref}, tap the sound → Use this sound → scissors → drag to "
                    "the very start (0:00). Upload the *_silent.mp4 file, original volume 0.") if sound else
                   "Keep the video's own audio.",
-        "youtube": "Upload the preview file WITH music (Shorts has no TikTok sounds). A Content ID claim on the song is "
-                   "normal: the video stays up, the song owner gets the ad money.",
+        "youtube": ("Upload the *_silent.mp4 file (same as TikTok) and add the music INSIDE the YouTube app: "
+                    "Add sound -> search " + (f"'{sound}'" if sound else "a trending track") + " -> start it from the "
+                    "beginning. If it is not in YouTube's library, pick a similar track from that library. "
+                    "Never upload our file with the song baked in (Content ID claims)."),
         "x": "Upload the preview file WITH music (X has no sound library).",
     }
     return {

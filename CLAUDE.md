@@ -23,6 +23,9 @@ the full table). Rules for the operator:
   new joke/text. Footage: 2–3 edits/day from unused trailer parts + new official sources proposed in the plan
   first; the rest are memes. The report is a phone-friendly HTML page (outputs/reports/IZVESTAJ_<date>.html)
   sent with SendUserFile, plus a short chat summary.
+* **Music on YouTube Shorts (owner's rule, 2026-11-16):** never upload a file with the song baked in — the
+  owner uploads the silent version and adds the song from YouTube's own sound library in the app (licensed,
+  no Content ID claims). Post kits say which song to search for; memes get a silent version for YouTube too.
 * Do not add publishing/upload integrations, cloud services, dashboards, or scraping/downloader
   tools (e.g. yt-dlp) — out of scope by design.
 
