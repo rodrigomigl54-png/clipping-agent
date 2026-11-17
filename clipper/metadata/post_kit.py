@@ -80,8 +80,8 @@ def build(*, lines: list[str], days: int, kind: str = "hype_edit", topics: list[
 
     tiktok = f"{hook} {emoji} {' '.join(tags)}"
     yt_title = f"{hook} {emoji}"
-    if days > 0 and str(days) not in yt_title and kind != "niko_edit":
-        yt_title = f"{yt_title} | GTA 6 in {days} days"
+    if days > 0 and str(days) not in yt_title and kind != "niko_edit" and len(yt_title) + 20 <= 90:
+        yt_title = f"{yt_title} | GTA 6 in {days} days"     # only when it fits (never cut mid-word)
     yt_title = (yt_title[:90].rstrip() + " #Shorts") if len(yt_title) > 90 else yt_title + " #Shorts"
     if kind == "niko_edit":
         yt_desc_tail = "#GTA4 #NikoBellic #Shorts"

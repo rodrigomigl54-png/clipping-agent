@@ -102,5 +102,56 @@
   "used_captions": [
    "Me rushing home from work on November 19 at 5:01 PM"
   ]
+ },
+ {
+  "id": "deer_crash",
+  "file": "assets/meme_clips/deer_crash.mp4",
+  "what": "GTA V car speeding down a hill road, swerves around a deer and flips over (top-down chase cam)",
+  "emotion": [
+   "overconfident",
+   "fail"
+  ],
+  "duration": 5.85,
+  "source": "tanartfact TikTok 7708974581305986318",
+  "used_captions": [
+   "Me speeding to the store at midnight on November 19 like nothing can stop me"
+  ],
+  "used_on": [
+   "2026-11-17"
+  ]
+ },
+ {
+  "id": "lacy_wakeup",
+  "file": "assets/meme_clips/lacy_wakeup.mp4",
+  "what": "Lacy (streamer) waking up groaning, holding his head, sits up, checks phone 3:05 PM (burned-in text NOVEMBER 18 2026)",
+  "emotion": [
+   "tired",
+   "dread"
+  ],
+  "duration": 8.8,
+  "source": "lacy TikTok 7708965599845682445",
+  "used_captions": [
+   "Me waking up on November 18 realizing GTA 6 is still a whole day away"
+  ],
+  "used_on": [
+   "2026-11-17"
+  ]
+ },
+ {
+  "id": "here_we_go_again",
+  "file": "assets/meme_clips/here_we_go_again.mp4",
+  "what": "Man in white tank top says 'Oh shit, here we go again' as the house raid explodes (Kai Cenat marathon trailer)",
+  "emotion": [
+   "resigned",
+   "chaos"
+  ],
+  "duration": 3.6,
+  "source": "Kai Cenat GTA 6 marathon trailer _AY5krZErfg",
+  "used_captions": [
+   "Me on November 19 after saying I'd only play GTA 6 for one hour"
+  ],
+  "used_on": [
+   "2026-11-17"
+  ]
  }
 ]

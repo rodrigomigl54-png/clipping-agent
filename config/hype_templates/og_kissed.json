@@ -1,0 +1,355 @@
+{
+ "id": "og_kissed",
+ "reference_file": "og_kissed.mp4",
+ "orientation": "landscape",
+ "duration": 14.4,
+ "cuts": [
+  0.867,
+  1.6,
+  2.467,
+  3.133,
+  3.8,
+  4.467,
+  5.567,
+  6.7,
+  7.133,
+  7.6,
+  8.367,
+  8.933,
+  9.367,
+  9.833,
+  10.267,
+  10.7,
+  11.2,
+  11.567,
+  11.933,
+  12.167,
+  12.6,
+  13.033,
+  13.467,
+  13.9
+ ],
+ "slots": [
+  {
+   "t0": 0.0,
+   "t1": 0.867,
+   "bright": 85.7,
+   "sat": 147.4,
+   "hue": 12.0,
+   "motion": 0.0259,
+   "faces": 1
+  },
+  {
+   "t0": 0.867,
+   "t1": 1.6,
+   "bright": 80.5,
+   "sat": 158.8,
+   "hue": 82.0,
+   "motion": 0.0351,
+   "faces": 0
+  },
+  {
+   "t0": 1.6,
+   "t1": 2.467,
+   "bright": 15.8,
+   "sat": 204.9,
+   "hue": 8.0,
+   "motion": 0.0189,
+   "faces": 0
+  },
+  {
+   "t0": 2.467,
+   "t1": 3.133,
+   "bright": 22.6,
+   "sat": 204.7,
+   "hue": 6.0,
+   "motion": 0.0243,
+   "faces": 0
+  },
+  {
+   "t0": 3.133,
+   "t1": 3.8,
+   "bright": 44.3,
+   "sat": 192.4,
+   "hue": 7.0,
+   "motion": 0.0222,
+   "faces": 0
+  },
+  {
+   "t0": 3.8,
+   "t1": 4.467,
+   "bright": 28.9,
+   "sat": 171.8,
+   "hue": 13.0,
+   "motion": 0.0152,
+   "faces": 2
+  },
+  {
+   "t0": 4.467,
+   "t1": 5.567,
+   "bright": 51.9,
+   "sat": 180.1,
+   "hue": 38.0,
+   "motion": 0.0268,
+   "faces": 0
+  },
+  {
+   "t0": 5.567,
+   "t1": 6.7,
+   "bright": 16.8,
+   "sat": 231.9,
+   "hue": 0.0,
+   "motion": 0.0076,
+   "faces": 0
+  },
+  {
+   "t0": 6.7,
+   "t1": 7.133,
+   "bright": 130.9,
+   "sat": 121.2,
+   "hue": 19.0,
+   "motion": 0.1149,
+   "faces": 0
+  },
+  {
+   "t0": 7.133,
+   "t1": 7.6,
+   "bright": 73.7,
+   "sat": 138.4,
+   "hue": 17.0,
+   "motion": 0.0635,
+   "faces": 1
+  },
+  {
+   "t0": 7.6,
+   "t1": 8.367,
+   "bright": 84.9,
+   "sat": 130.0,
+   "hue": 19.0,
+   "motion": 0.1008,
+   "faces": 0
+  },
+  {
+   "t0": 8.367,
+   "t1": 8.933,
+   "bright": 31.1,
+   "sat": 163.7,
+   "hue": 45.0,
+   "motion": 0.0458,
+   "faces": 0
+  },
+  {
+   "t0": 8.933,
+   "t1": 9.367,
+   "bright": 52.7,
+   "sat": 81.8,
+   "hue": 24.0,
+   "motion": 0.0288,
+   "faces": 0
+  },
+  {
+   "t0": 9.367,
+   "t1": 9.833,
+   "bright": 35.2,
+   "sat": 211.4,
+   "hue": 20.0,
+   "motion": 0.072,
+   "faces": 0
+  },
+  {
+   "t0": 9.833,
+   "t1": 10.267,
+   "bright": 60.6,
+   "sat": 190.0,
+   "hue": 28.0,
+   "motion": 0.1463,
+   "faces": 0
+  },
+  {
+   "t0": 10.267,
+   "t1": 10.7,
+   "bright": 35.2,
+   "sat": 185.7,
+   "hue": 75.0,
+   "motion": 0.0703,
+   "faces": 0
+  },
+  {
+   "t0": 10.7,
+   "t1": 11.2,
+   "bright": 16.5,
+   "sat": 190.9,
+   "hue": 15.0,
+   "motion": 0.01,
+   "faces": 0
+  },
+  {
+   "t0": 11.2,
+   "t1": 11.567,
+   "bright": 85.7,
+   "sat": 195.0,
+   "hue": 10.0,
+   "motion": 0.0231,
+   "faces": 0
+  },
+  {
+   "t0": 11.567,
+   "t1": 11.933,
+   "bright": 40.8,
+   "sat": 115.1,
+   "hue": 73.0,
+   "motion": 0.0625,
+   "faces": 0
+  },
+  {
+   "t0": 11.933,
+   "t1": 12.167,
+   "bright": 34.8,
+   "sat": 188.9,
+   "hue": 22.0,
+   "motion": 0.0893,
+   "faces": 2
+  },
+  {
+   "t0": 12.167,
+   "t1": 12.6,
+   "bright": 81.4,
+   "sat": 183.0,
+   "hue": 81.0,
+   "motion": 0.0403,
+   "faces": 1
+  },
+  {
+   "t0": 12.6,
+   "t1": 13.033,
+   "bright": 97.6,
+   "sat": 128.7,
+   "hue": 19.0,
+   "motion": 0.1258,
+   "faces": 0
+  },
+  {
+   "t0": 13.033,
+   "t1": 13.467,
+   "bright": 30.8,
+   "sat": 198.0,
+   "hue": 78.0,
+   "motion": 0.0686,
+   "faces": 0
+  },
+  {
+   "t0": 13.467,
+   "t1": 13.9,
+   "bright": 90.3,
+   "sat": 155.1,
+   "hue": 17.0,
+   "motion": 0.1025,
+   "faces": 0
+  },
+  {
+   "t0": 13.9,
+   "t1": 14.4,
+   "bright": 24.4,
+   "sat": 58.0,
+   "hue": 82.0,
+   "motion": 0.096,
+   "faces": 0
+  }
+ ],
+ "fade_out_from": 14.13,
+ "transition": "whip",
+ "text": [
+  {
+   "type": "line",
+   "t0": 0.0,
+   "t1": 6.7,
+   "text": "\"Bro we can preload GTA 6 next week \ud83d\ude2a\""
+  },
+  {
+   "type": "line",
+   "t0": 5.567,
+   "t1": 6.7,
+   "text": "ATTENTION"
+  },
+  {
+   "type": "line",
+   "t0": 6.7,
+   "t1": 7.133,
+   "text": "I"
+  },
+  {
+   "type": "line",
+   "t0": 7.133,
+   "t1": 7.6,
+   "text": "I"
+  },
+  {
+   "type": "line",
+   "t0": 7.6,
+   "t1": 8.367,
+   "text": "GTA"
+  },
+  {
+   "type": "line",
+   "t0": 9.833,
+   "t1": 10.267,
+   "text": "LIKED"
+  },
+  {
+   "type": "line",
+   "t0": 10.7,
+   "t1": 11.2,
+   "text": "OF"
+  },
+  {
+   "type": "line",
+   "t0": 11.933,
+   "t1": 12.167,
+   "text": "CHERRY"
+  },
+  {
+   "type": "line",
+   "t0": 12.6,
+   "t1": 13.033,
+   "text": "STICK"
+  }
+ ],
+ "text_style": {
+  "y": 0.73,
+  "line_size": 0.042,
+  "size": 0.058
+ },
+ "bpm": 89.1,
+ "beats": [
+  0.232,
+  0.882,
+  1.579,
+  2.485,
+  3.135,
+  3.855,
+  4.505,
+  5.201,
+  5.875,
+  6.548,
+  7.198,
+  7.802,
+  8.382,
+  9.033,
+  9.706,
+  10.379,
+  11.006
+ ],
+ "reference": null,
+ "video_id": "7703342588081736992",
+ "creator": "gta6og",
+ "views": null,
+ "created": null,
+ "outlier": null,
+ "sound": null,
+ "sound_author": null,
+ "category": "hype_edit",
+ "text_review": true,
+ "disabled": true,
+ "manual_script": "scripts/manual_edits/2026-11-17_lyric_edits.py",
+ "note": "owner-chosen reference 2026-11-17; lyric effects in clipper/editing/lyric_fx.py"
+}

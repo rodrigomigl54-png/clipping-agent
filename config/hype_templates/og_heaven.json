@@ -1,0 +1,203 @@
+{
+ "id": "og_heaven",
+ "reference_file": "og_heaven.mp4",
+ "orientation": "landscape",
+ "duration": 16.067,
+ "cuts": [
+  6.167,
+  6.7,
+  7.967,
+  8.4,
+  9.033,
+  10.233,
+  11.267,
+  11.667,
+  12.167,
+  12.433,
+  13.0,
+  13.333,
+  13.567,
+  14.7
+ ],
+ "slots": [
+  {
+   "t0": 0.0,
+   "t1": 6.167,
+   "bright": 9.0,
+   "sat": 170.5,
+   "hue": 0.0,
+   "motion": 0.004,
+   "faces": 0
+  },
+  {
+   "t0": 6.167,
+   "t1": 6.7,
+   "bright": 173.6,
+   "sat": 78.0,
+   "hue": 19.0,
+   "motion": 0.0854,
+   "faces": 0
+  },
+  {
+   "t0": 6.7,
+   "t1": 7.967,
+   "bright": 90.1,
+   "sat": 142.4,
+   "hue": 10.0,
+   "motion": 0.0264,
+   "faces": 1
+  },
+  {
+   "t0": 7.967,
+   "t1": 8.4,
+   "bright": 32.8,
+   "sat": 142.4,
+   "hue": 30.0,
+   "motion": 0.0225,
+   "faces": 1
+  },
+  {
+   "t0": 8.4,
+   "t1": 9.033,
+   "bright": 110.0,
+   "sat": 123.5,
+   "hue": 86.0,
+   "motion": 0.0432,
+   "faces": 0
+  },
+  {
+   "t0": 9.033,
+   "t1": 10.233,
+   "bright": 79.8,
+   "sat": 178.7,
+   "hue": 40.0,
+   "motion": 0.0498,
+   "faces": 0
+  },
+  {
+   "t0": 10.233,
+   "t1": 11.267,
+   "bright": 79.6,
+   "sat": 56.3,
+   "hue": 17.0,
+   "motion": 0.0203,
+   "faces": 0
+  },
+  {
+   "t0": 11.267,
+   "t1": 11.667,
+   "bright": 41.9,
+   "sat": 199.3,
+   "hue": 10.0,
+   "motion": 0.0584,
+   "faces": 0
+  },
+  {
+   "t0": 11.667,
+   "t1": 12.167,
+   "bright": 87.8,
+   "sat": 115.6,
+   "hue": 15.0,
+   "motion": 0.0394,
+   "faces": 0
+  },
+  {
+   "t0": 12.167,
+   "t1": 12.433,
+   "bright": 37.5,
+   "sat": 200.4,
+   "hue": 21.0,
+   "motion": 0.0705,
+   "faces": 1
+  },
+  {
+   "t0": 12.433,
+   "t1": 13.0,
+   "bright": 37.2,
+   "sat": 114.1,
+   "hue": 20.0,
+   "motion": 0.0265,
+   "faces": 0
+  },
+  {
+   "t0": 13.0,
+   "t1": 13.333,
+   "bright": 28.5,
+   "sat": 138.1,
+   "hue": 9.0,
+   "motion": 0.0145,
+   "faces": 0
+  },
+  {
+   "t0": 13.333,
+   "t1": 13.567,
+   "bright": 44.9,
+   "sat": 97.4,
+   "hue": 10.0,
+   "motion": 0.0391,
+   "faces": 0
+  },
+  {
+   "t0": 13.567,
+   "t1": 14.7,
+   "bright": 96.6,
+   "sat": 89.7,
+   "hue": 20.0,
+   "motion": 0.0452,
+   "faces": 0
+  },
+  {
+   "t0": 14.7,
+   "t1": 16.067,
+   "bright": 39.3,
+   "sat": 161.0,
+   "hue": 105.0,
+   "motion": 0.032,
+   "faces": 0
+  }
+ ],
+ "fade_out_from": 15.33,
+ "transition": "whip",
+ "text": [],
+ "text_style": {},
+ "bpm": 107.7,
+ "beats": [
+  1.3,
+  1.881,
+  2.461,
+  2.972,
+  3.622,
+  4.272,
+  4.737,
+  5.201,
+  5.735,
+  6.177,
+  6.757,
+  7.314,
+  7.895,
+  8.499,
+  9.079,
+  9.66,
+  10.217,
+  10.774,
+  11.355,
+  11.935,
+  12.492,
+  13.073,
+  13.63,
+  14.187,
+  14.768
+ ],
+ "reference": null,
+ "video_id": "7704826100869827873",
+ "creator": "gta6og",
+ "views": null,
+ "created": null,
+ "outlier": null,
+ "sound": null,
+ "sound_author": null,
+ "category": "hype_edit",
+ "disabled": true,
+ "manual_script": "scripts/manual_edits/2026-11-17_lyric_edits.py",
+ "note": "owner-chosen reference 2026-11-17; lyric effects in clipper/editing/lyric_fx.py"
+}
