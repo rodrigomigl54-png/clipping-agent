@@ -198,3 +198,16 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 40 automated tests passi
 3. Optional: diarization integration (e.g. a local pyannote step writing sidecar speakers).
 4. Optional: Twitch Helix discovery adapter (metadata only), if wanted.
 5. After 8+ clips per profile have performance data: `learning analyze`.
+
+## 2026-11-17 — lyric edits, marathon clips, long-form prep
+* Morning report `outputs/reports/IZVESTAJ_2026-11-17.html` (plan only). Launch Trailer: 1 unused usable shot left.
+* Owner's 3 reference edits rebuilt (`scripts/manual_edits/2026-11-17_lyric_edits.py`):
+  gta6og "I Kissed a Girl" lyric edit (white words + huge red key words, top joke caption), gta6og "This must be
+  heaven" (words filled with footage on black, growing window reveal, white lyrics), kairoxx "2 DAYS LEFT"
+  (full-bleed vertical crops, warm glow grade, 60 fps motion interpolation, typed subtitle).
+  New module `clipper/editing/lyric_fx.py` (+ tests) draws these effects on the final 1080x1920 frames.
+  OFL fonts Anton / Bebas Neue / Oswald in `assets/fonts`.
+* Streamer marathon announcement clips (Kai Cenat Nov 18 8PM EST, IShowSpeed Nov 18 9PM EST) via meme layout,
+  3 memes with new clips (deer crash, Lacy wake-up, "here we go again"). Silent copies for YouTube.
+* NBA 2K27 "Meets Vice City" trailer imported, but it is NBA 2K27 footage, NOT GTA 6: never use it as GTA 6 footage.
+* Long-form: 9 owner reference videos being analysed (free: vidIQ 0-credit import + local Whisper + frame grids).
