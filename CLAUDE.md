@@ -26,6 +26,11 @@ the full table). Rules for the operator:
 * **Music on YouTube Shorts (owner's rule, 2026-11-16):** never upload a file with the song baked in — the
   owner uploads the silent version and adds the song from YouTube's own sound library in the app (licensed,
   no Content ID claims). Post kits say which song to search for; memes get a silent version for YouTube too.
+* **Long-form (owner's rule, 2026-11-17):** YouTube gets a 16:9 faceless long-form video every ~2 days (English,
+  AI narration voice `am_fenrir` via local Kokoro, speed 1.1). Flow: ideas report -> owner picks topic -> script
+  (fact-checked, sources listed; unconfirmed things are said to be unconfirmed) -> owner approves -> render with
+  `content/longform/<id>/make.py` (clipper/editing/longform.py). No music baked in: post kit proposes Audio Library
+  tracks and where. Text never covers faces. Each long-form is later cut into Shorts.
 * Do not add publishing/upload integrations, cloud services, dashboards, or scraping/downloader
   tools (e.g. yt-dlp) — out of scope by design.
 

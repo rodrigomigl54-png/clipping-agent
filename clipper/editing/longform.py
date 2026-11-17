@@ -568,10 +568,11 @@ def render(tl: Timeline, out: Path, section_labels: dict) -> dict:
                     _game_tag(f, kind[1], 40)
                 if sp.get("kw"):
                     k = pop(t, b.t0 + 0.15, 0.25)
-                    im = text_rgba(sp["kw"], "anton", 92, (255, 255, 255))
-                    box(f, W / 2 - im.shape[1] / 2 - 10, 300 - im.shape[0] / 2 + 10, W / 2 + im.shape[1] / 2 + 10,
-                        300 + im.shape[0] / 2 - 10, RED, 0.9 * k, radius=12)
-                    over(f, im, W / 2, 300 + (1 - k) * 20, k)
+                    im = text_rgba(sp["kw"], "anton", 80, (255, 255, 255))
+                    ky = H - 290                       # lower third, above the captions: never over faces
+                    box(f, W / 2 - im.shape[1] / 2 - 10, ky - im.shape[0] / 2 + 10, W / 2 + im.shape[1] / 2 + 10,
+                        ky + im.shape[0] / 2 - 10, RED, 0.9 * k, radius=12)
+                    over(f, im, W / 2, ky + (1 - k) * 20, k)
             # section chip (top right) once the number card is over
             if b.section not in ("hook", "outro") and not sp.get("card") and sec["card_t1"] and t > sec["card_t1"]:
                 txt = f"#{int(b.section)}  {section_labels.get(b.section, '')}"

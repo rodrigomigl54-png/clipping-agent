@@ -211,3 +211,9 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 40 automated tests passi
   3 memes with new clips (deer crash, Lacy wake-up, "here we go again"). Silent copies for YouTube.
 * NBA 2K27 "Meets Vice City" trailer imported, but it is NBA 2K27 footage, NOT GTA 6: never use it as GTA 6 footage.
 * Long-form: 9 owner reference videos being analysed (free: vidIQ 0-credit import + local Whisper + frame grids).
+* Long-form #1 "GTA 6 vs GTA 5: The 15 Biggest Differences" (8:25, 1920x1080, am_fenrir narration, no music):
+  `clipper/editing/longform.py` = script alignment (script spelling + Whisper timing), sentence beats from
+  `content/longform/<id>/plan.py`, split-screen GTA V | GTA VI, number cards, info graphics (items / counter / stars /
+  stamp / title), 3-word captions, source chips, chapters + .srt. Short trailer shots continue with the following
+  shots of the same trailer (`expand`), skipping UI/title cards. GTA V footage: trailer, official trailer, gameplay
+  video, PS4/XB1/PC trailer (assets/footage/gta5).
