@@ -1,0 +1,452 @@
+{
+ "date": "2026-11-18",
+ "phase": "pre_release",
+ "days_to_release": 1,
+ "videos": 15,
+ "allocation": {
+  "streamer_clip": 2,
+  "hype_edit": 7,
+  "meme_skit": 1,
+  "fun_fact": 1,
+  "news": 4
+ },
+ "slots": [
+  {
+   "slot": 1,
+   "type": "hype_edit",
+   "category": "hype_edit",
+   "series": "Countdown edit — '1 DAYS' (daily until release), then 'GTA 6 edit of the day'",
+   "topic": "Anyone else? 😂",
+   "source_to_find": "newest official trailer / features trailer footage (highest resolution available) + best shots from previous trailers",
+   "headline_style": [
+    "Literally next week btw...",
+    "13 years of waiting paid off.",
+    "I need this Game Right Fucking now"
+   ],
+   "target_length_s": 19,
+   "sound": {
+    "title": "Flower In A Hurricane (feat. Tame Impala, SZA, King Gizzard & the Lizard Wizard) [From GTAVI: Original Score]",
+    "author": "Justice & Tame Impala & SZA & King Gizzard & the Lizard Wizard",
+    "why": "trending now on 4 hype edit video(s)"
+   },
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@tanartfact/video/7709386269800844557",
+     "views": 34200,
+     "velocity_per_h": 34200
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 2,
+   "type": "hype_edit",
+   "category": "hype_edit",
+   "series": "Countdown edit — '1 DAYS' (daily until release), then 'GTA 6 edit of the day'",
+   "topic": "Cmon bro",
+   "source_to_find": "newest official trailer / features trailer footage (highest resolution available) + best shots from previous trailers",
+   "headline_style": [
+    "Literally next week btw...",
+    "13 years of waiting paid off.",
+    "I need this Game Right Fucking now"
+   ],
+   "target_length_s": 19,
+   "sound": {
+    "title": "Blood In Your Eyes (from GTAVI: The Album)",
+    "author": "Tove Lo & Grand Theft Auto VI",
+    "why": "trending now on 1 hype edit video(s)"
+   },
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@tanartfact/video/7709349458835983629",
+     "views": 56300,
+     "velocity_per_h": 17653
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 3,
+   "type": "hype_edit",
+   "category": "hype_edit",
+   "series": "Countdown edit — '1 DAYS' (daily until release), then 'GTA 6 edit of the day'",
+   "topic": "GTA 6 IS TODAY",
+   "source_to_find": "newest official trailer / features trailer footage (highest resolution available) + best shots from previous trailers",
+   "headline_style": [
+    "Literally next week btw...",
+    "13 years of waiting paid off.",
+    "I need this Game Right Fucking now"
+   ],
+   "target_length_s": 19,
+   "sound": {
+    "title": "ZANY - Slowed",
+    "author": "JAYLO & AVARU & MC SPIN",
+    "why": "trending now on 1 hype edit video(s)"
+   },
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@havoceeditz/video/7709323912827473173",
+     "views": 81500,
+     "velocity_per_h": 16816
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 4,
+   "type": "hype_edit",
+   "category": "hype_edit",
+   "series": "Countdown edit — '1 DAYS' (daily until release), then 'GTA 6 edit of the day'",
+   "topic": "THESE GTA 6 IMAGES ARE INSANE",
+   "source_to_find": "newest official trailer / features trailer footage (highest resolution available) + best shots from previous trailers",
+   "headline_style": [
+    "Literally next week btw...",
+    "13 years of waiting paid off.",
+    "I need this Game Right Fucking now"
+   ],
+   "target_length_s": 19,
+   "sound": {
+    "title": "How Deep Is Your Love (Hardtekk - Slowed)",
+    "author": "LXSTFFACE & DYNAMIS",
+    "why": "trending now on 1 hype edit video(s)"
+   },
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@havoceeditz/video/7709298937273896213",
+     "views": 97500,
+     "velocity_per_h": 15089
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 5,
+   "type": "hype_edit",
+   "category": "hype_edit",
+   "series": "Countdown edit — '1 DAYS' (daily until release), then 'GTA 6 edit of the day'",
+   "topic": "LAST DAY WITHOUT GTA 6",
+   "source_to_find": "newest official trailer / features trailer footage (highest resolution available) + best shots from previous trailers",
+   "headline_style": [
+    "Literally next week btw...",
+    "13 years of waiting paid off.",
+    "I need this Game Right Fucking now"
+   ],
+   "target_length_s": 19,
+   "sound": {
+    "title": "PROS GUETO - Slowed",
+    "author": "RXDXVIL & MATORO & zeetraxx",
+    "why": "trending now on 1 hype edit video(s)"
+   },
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@havoceeditz/video/7709162984639073542",
+     "views": 151600,
+     "velocity_per_h": 9937
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 6,
+   "type": "hype_edit",
+   "category": "hype_edit",
+   "series": "Countdown edit — '1 DAYS' (daily until release), then 'GTA 6 edit of the day'",
+   "topic": "3 DAYS UNTIL GTA 6",
+   "source_to_find": "newest official trailer / features trailer footage (highest resolution available) + best shots from previous trailers",
+   "headline_style": [
+    "Literally next week btw...",
+    "13 years of waiting paid off.",
+    "I need this Game Right Fucking now"
+   ],
+   "target_length_s": 19,
+   "sound": {
+    "title": "CYBERSONICO - SLOWED",
+    "author": "thekotl & KAZORO & SLXSHER",
+    "why": "trending now on 1 hype edit video(s)"
+   },
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@norage_ae/video/7708516509211004181",
+     "views": 495200,
+     "velocity_per_h": 8678
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 7,
+   "type": "hype_edit",
+   "category": "hype_edit",
+   "series": "Countdown edit — '1 DAYS' (daily until release), then 'GTA 6 edit of the day'",
+   "topic": "Farewell Grand Theft Auto V",
+   "source_to_find": "newest official trailer / features trailer footage (highest resolution available) + best shots from previous trailers",
+   "headline_style": [
+    "Literally next week btw...",
+    "13 years of waiting paid off.",
+    "I need this Game Right Fucking now"
+   ],
+   "target_length_s": 19,
+   "sound": {
+    "title": "MONTAGEM REPE (SLOWED)",
+    "author": "Codet & voyre",
+    "why": "trending now on 1 hype edit video(s)"
+   },
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@tanartfact/video/7709308982023703821",
+     "views": 46900,
+     "velocity_per_h": 8070
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 8,
+   "type": "news",
+   "category": "news_trailer",
+   "series": "GTA 6 news in 15 seconds",
+   "topic": "iSHOWSPEED x GTA 6",
+   "source_to_find": "the announcement itself (trailer, post, screenshot) — lead with the payoff in the first second",
+   "headline_style": [
+    "Starting to feel real",
+    "NOVEMBER 19, 2026",
+    "GTA 6 is bringing back the gym grind"
+   ],
+   "target_length_s": 30,
+   "sound": "pick a trending sound",
+   "inspiration": [],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 9,
+   "type": "news",
+   "category": "news_trailer",
+   "series": "GTA 6 news in 15 seconds",
+   "topic": "GTA 6 MARATHON",
+   "source_to_find": "the announcement itself (trailer, post, screenshot) — lead with the payoff in the first second",
+   "headline_style": [
+    "Starting to feel real",
+    "NOVEMBER 19, 2026",
+    "GTA 6 is bringing back the gym grind"
+   ],
+   "target_length_s": 30,
+   "sound": "pick a trending sound",
+   "inspiration": [],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 10,
+   "type": "news",
+   "category": "news_trailer",
+   "series": "GTA 6 news in 15 seconds",
+   "topic": "NBA 2K27 x GTA 6",
+   "source_to_find": "the announcement itself (trailer, post, screenshot) — lead with the payoff in the first second",
+   "headline_style": [
+    "Starting to feel real",
+    "NOVEMBER 19, 2026",
+    "GTA 6 is bringing back the gym grind"
+   ],
+   "target_length_s": 30,
+   "sound": "pick a trending sound",
+   "inspiration": [],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 11,
+   "type": "news",
+   "category": "news_trailer",
+   "series": "GTA 6 news in 15 seconds",
+   "topic": "NBA 2K27 - Meets Vice City Trailer",
+   "source_to_find": "the announcement itself (trailer, post, screenshot) — lead with the payoff in the first second",
+   "headline_style": [
+    "Starting to feel real",
+    "NOVEMBER 19, 2026",
+    "GTA 6 is bringing back the gym grind"
+   ],
+   "target_length_s": 30,
+   "sound": "pick a trending sound",
+   "inspiration": [],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 12,
+   "type": "streamer_clip",
+   "category": "streamer_reaction",
+   "series": "Streamer moment of the day",
+   "topic": "Gotta be there for Lucia🫩✌️🥀",
+   "source_to_find": "VODs/clips of the streamers trending right now on the topic",
+   "headline_style": [
+    "Agent does a stream with Lucia from GTA 6 🔥",
+    "Lacy announces his GTA 6 Marathon 😳🔥",
+    "Agent00 streams with the real Lucia from GTA 6"
+   ],
+   "target_length_s": 29,
+   "sound": {
+    "title": "Flower In A Hurricane (feat. Tame Impala, SZA, King Gizzard & the Lizard Wizard) [From GTAVI: Original Score]",
+    "author": "Justice & Tame Impala & SZA & King Gizzard & the Lizard Wizard",
+    "why": "trending now on 4 streamer clip video(s)"
+   },
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@lacy/video/7709325481882995981",
+     "views": 381400,
+     "velocity_per_h": 80414
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 13,
+   "type": "streamer_clip",
+   "category": "streamer_reaction",
+   "series": "Streamer moment of the day",
+   "topic": "NOVEMBER 18TH BE THERE!🤯",
+   "source_to_find": "VODs/clips of the streamers trending right now on the topic",
+   "headline_style": [
+    "Agent does a stream with Lucia from GTA 6 🔥",
+    "Lacy announces his GTA 6 Marathon 😳🔥",
+    "Agent00 streams with the real Lucia from GTA 6"
+   ],
+   "target_length_s": 29,
+   "sound": {
+    "title": "Flower In A Hurricane (feat. Tame Impala, SZA, King Gizzard & the Lizard Wizard) [From GTAVI: Original Score]",
+    "author": "Justice & Tame Impala & SZA & King Gizzard & the Lizard Wizard",
+    "why": "trending now on 4 streamer clip video(s)"
+   },
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@lacy/video/7708965599845682445",
+     "views": 1100000,
+     "velocity_per_h": 39263
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 14,
+   "type": "fun_fact",
+   "category": "fun_fact",
+   "series": "Detail of the day — one detail you missed (zoom + circle)",
+   "topic": "Grand Theft Auto VI: Pre-Load Now",
+   "source_to_find": "official trailer frames where a small detail is visible; or a comparison pair (GTA 6 vs real place)",
+   "headline_style": [
+    "Literally next week btw...",
+    "How ima be moving in GTA 6 wit that new cocoteo fm radio 🤝🏼",
+    "How it feels having Gta 6 downloaded rn"
+   ],
+   "target_length_s": 19,
+   "sound": "pick a trending sound",
+   "inspiration": [],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  },
+  {
+   "slot": 15,
+   "type": "meme_skit",
+   "category": "meme_skit",
+   "series": "POV: GTA 6 … (series of POV memes)",
+   "topic": "First look at GTA 6’s Empathy system",
+   "source_to_find": "gameplay/trailer footage that fits the joke; letterbox + top headline format",
+   "headline_style": [
+    "How ima be moving in GTA 6 wit that new cocoteo fm radio 🤝🏼",
+    "How it feels having Gta 6 downloaded rn",
+    "19.11 - 00:01"
+   ],
+   "target_length_s": 16,
+   "sound": {
+    "title": "Flower In A Hurricane (feat. Tame Impala, SZA, King Gizzard & the Lizard Wizard) [From GTAVI: Original Score]",
+    "author": "Justice & Tame Impala & SZA & King Gizzard & the Lizard Wizard",
+    "why": "trending now on 4 meme skit video(s)"
+   },
+   "inspiration": [
+    {
+     "url": "https://www.tiktok.com/@gta_memes_sol/video/7708332101074013473",
+     "views": 358300,
+     "velocity_per_h": 5193
+    }
+   ],
+   "variants": [
+    "A: headline style 1 / format from the best example",
+    "B: different hook (question or bold claim) / alternative format"
+   ],
+   "hook_rule": "first 2 s must show motion or a bold line + the headline; otherwise not exported"
+  }
+ ],
+ "adjacent_trends": [
+  [
+   "lacy",
+   110225
+  ],
+  [
+   "braeden",
+   66108
+  ],
+  [
+   "tells",
+   61913
+  ],
+  [
+   "tom",
+   60446
+  ],
+  [
+   "tompearl",
+   60399
+  ]
+ ]
+}
