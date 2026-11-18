@@ -153,5 +153,39 @@
   "used_on": [
    "2026-11-17"
   ]
+ },
+ {
+  "id": "lacy_lucia_lonely",
+  "file": "assets/meme_clips/lacy_lucia_lonely.mp4",
+  "what": "Lacy gets a PS5 notification 'Grand Theft Auto 6: Lucia is feeling lonely', jumps out of bed and runs to the PS5",
+  "emotion": [
+   "hype",
+   "urgency"
+  ],
+  "duration": 12.2,
+  "source": "lacy TikTok 7709325481882995981",
+  "used_captions": [
+   "Lacy after GTA 6 sends him ONE notification"
+  ],
+  "used_on": [
+   "2026-11-18"
+  ]
+ },
+ {
+  "id": "gta5_cmon_bro",
+  "file": "assets/meme_clips/gta5_cmon_bro.mp4",
+  "what": "GTA V street: Michael punches a pedestrian, chaos (fight on the sidewalk)",
+  "emotion": [
+   "chaos",
+   "fail"
+  ],
+  "duration": 10.1,
+  "source": "tanartfact TikTok 7709349458835983629",
+  "used_captions": [
+   "Me: “I'm gonna play GTA 6 peacefully” Me 5 minutes in:"
+  ],
+  "used_on": [
+   "2026-11-18"
+  ]
  }
 ]
