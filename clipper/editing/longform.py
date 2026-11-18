@@ -87,6 +87,9 @@ SRC = {"v:gp": "assets/footage/gta5/gameplay.mp4", "v:tr": "assets/footage/gta5/
        "6:la": "assets/footage/gta6_launch/launch.mp4"}
 
 
+LETTERBOX = {"v:of": 0.1, "v:ng": 0.1, "v:tr": 0.1}     # measured: 72/720 px bars top and bottom
+
+
 @lru_cache(maxsize=None)
 def _shots(src: str) -> list[dict]:
     p = ROOT / "data/shot_cache" / f"{Path(src).parent.name}__{Path(src).name}.shots.json"
@@ -107,7 +110,10 @@ def shot_info(ref: str) -> dict:
     src, t = SRC[key], float(t)
     sh = min(_shots(src), key=lambda s: abs(s["start"] - t), default=None)
     if sh and abs(sh["start"] - t) < 0.2:
-        return {"src": src, "start": sh["start"], "end": sh["end"], "bar": sh.get("bar", 0.0), "cx": sh.get("cx", 0.5),
+        bar = sh.get("bar", 0.0)
+        if key in LETTERBOX and bar < 0.05:          # cinematic bars the shot analysis missed
+            bar = LETTERBOX[key]
+        return {"src": src, "start": sh["start"], "end": sh["end"], "bar": bar, "cx": sh.get("cx", 0.5),
                 "game": "V" if key.startswith("v") else "VI"}
     return {"src": src, "start": t, "end": t + 4.0, "bar": 0.0, "cx": 0.5, "game": "V" if key.startswith("v") else "VI"}
 
@@ -120,7 +126,7 @@ def read_frames(info: dict, dur: float, w: int, h: int, offset: float = 0.0):
     speed = max(0.5, min(1.0, avail / dur))
     vis_h = int(sh_ * (1 - 2 * bar)) // 2 * 2
     scale = max(w / sw, h / vis_h)
-    if scale > 2.0 + 1e-6:                       # never blow a source up past 2x: keep the bars instead
+    if scale > 2.05:                             # never blow a source up past ~2x: keep the bars instead
         bar, vis_h = 0.0, sh_
         scale = max(w / sw, h / vis_h)
     cw, ch = int(round(w / scale)) // 2 * 2, int(round(h / scale)) // 2 * 2
