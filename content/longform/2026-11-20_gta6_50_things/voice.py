@@ -4,6 +4,7 @@ Usage: python content/longform/2026-11-20_gta6_50_things/voice.py [vo_dir] [sect
 Skips sections whose wav already exists, so it can be resumed.
 """
 import json
+import os
 import re
 import sys
 import time
@@ -65,7 +66,7 @@ def main():
         pieces = []
         for i, sent in enumerate(split_sentences(sec["text"])):
             ex, cfg, pause = style(sid, sent, i)
-            torch.manual_seed(1000 + i)
+            torch.manual_seed(int(os.environ.get("SEED", "1000")) + i)
             w = tts.generate(sent, audio_prompt_path=REF, exaggeration=ex, cfg_weight=cfg)
             pieces += [w, torch.zeros(1, int(tts.sr * pause))]
         audio = torch.cat(pieces[:-1], dim=1)
