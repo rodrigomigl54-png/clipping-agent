@@ -1,0 +1,101 @@
+# Content Rewards / Reach clipping campaigns the owner joined (2026-11-20). Read from the campaign pages,
+# reachclipping.com rule pages and the Kai Cenat rules document. Payouts and links are submitted by the owner.
+#
+# Which of our accounts posts which campaign (owner's decision, 2026-11-20: only CORE and AMP are clipped):
+accounts:
+  amp:   {tiktok: "@ampclippergtavi", youtube: "@mostwantedgtavi"}
+  core:  {tiktok: "@mostwanted.vi (to be renamed to a CORE handle)", youtube: "@corehighlightzdaily"}
+
+core_members: [Lacy, JasonTheWeen, StableRonaldo, Adapt]   # Silky streams "CORE GTA 6 playthrough"; membership unconfirmed
+
+common_rules:
+  - "English only (on-screen text, caption, hashtags)"
+  - "No logos of any kind, no channel watermark"
+  - "Streamer name in the on-screen text AND required hashtags in the caption"
+  - "No negative portrayal, no hate farming, no botting, reposts or collab posts"
+  - "Our own cut from stream/video footage, never a re-upload of someone else's clip or Short"
+  - "Submit every post link in Content Rewards within 30 minutes; never edit or delete it after submitting"
+  - "Only videos posted after joining count; platforms: TikTok, YouTube Shorts, Instagram Reels, X"
+
+campaigns:
+  kai:
+    title: "Kai Cenat - $10,000 GTA 6 Pool"
+    url: https://contentrewards.com/c/campaigns/1d2bcb00-c904-415f-aa82-f95b96baad86
+    channel: amp
+    pool: 10000
+    mvr: 750000
+    min_clip_views: 1000
+    primary: Kai Cenat
+    hashtags: ["#KaiCenat"]
+    source: "Kai's GTA 6 marathon (from 2026-11-18): youtube.com/@KaiCenatLive, @KaiCenatGaming, twitch.tv/kaicenat"
+    gta6_only: true
+    extra_rules: ["No reposting Shorts already on Kai's channels", "Kai must be in the whole edit, not only the intro"]
+    ends: "when the pool ends"
+  core:
+    title: "$20,000 CORE Pool"
+    url: https://contentrewards.com/c/campaigns/2886f500-f062-48dd-a9b4-9de5725f8186
+    channel: core
+    pool: 20000
+    mvr: 2000000
+    min_clip_views: 500
+    min_core_members: 2
+    hashtags: ["#CORE"]           # plus one hashtag per CORE member in the clip
+    source: "Any video/stream/clip with 2+ CORE members, EXCEPT the CORE YouTube channel (that goes to core_yt)"
+    ends: 2026-11-30
+  core_yt:
+    title: "$5,000 CORE Pool (YouTube)"
+    url: https://contentrewards.com/c/campaigns/ea0fc271-d32e-49fb-adff-d08ef7f3cc23
+    channel: core
+    pool: 5000
+    mvr: 750000
+    min_clip_views: 500
+    hashtags: ["#CORE"]
+    source: "Only videos from youtube.com/@createownruneverything"
+    ends: 2026-11-30
+  lacy:
+    title: "$25,000 Lacy 30 Day"
+    url: https://contentrewards.com/c/campaigns/4479e5e2-9a00-489e-8b0c-345834f37cc7
+    channel: core
+    pool: 25000
+    mvr: 1000000
+    min_clip_views: 500
+    primary: Lacy
+    hashtags: ["#Lacy"]
+    source: "Anything featuring Lacy (Twitch, YouTube, TikTok, IG, X, Snapchat)"
+    ends: "30 days"
+  lacy_gta:
+    title: "$12,500 LACY GTA VI Marathon Pool"
+    url: https://contentrewards.com/c/campaigns/a5c63fad-cd53-4b81-9305-4a2d1696872a
+    channel: core
+    pool: 12500
+    mvr: 750000
+    min_clip_views: 500
+    primary: Lacy
+    hashtags: ["#Lacy"]
+    source: "Lacy's GTA marathon from 2026-11-18 (youtube.com/@LacyHimself, twitch.tv/lacy)"
+    gta6_only: true
+    ends: "when the marathon ends"
+  jason:
+    title: "$9,000 Jason Pool"
+    url: https://contentrewards.com/c/campaigns/0b178e3c-fbd3-4294-8ded-394e3da9c62f
+    channel: core
+    pool: 9000
+    mvr: 700000
+    min_clip_views: 500
+    primary: JasonTheWeen
+    hashtags: ["#JasonTheWeen"]
+    source: "Anything featuring JasonTheWeen (youtube.com/@JasonTheWeenie, twitch.tv/jasontheween)"
+    ends: 2026-11-30
+  silky:
+    title: "$7,500 Silky Pool"
+    url: https://contentrewards.com/c/campaigns/37f68297-664c-4820-a020-9bbb4a703bf9
+    channel: core
+    pool: 7500
+    mvr: 250000
+    min_clip_views: 500
+    primary: Silky
+    hashtags: ["#Silky"]
+    source: "Silky's GTA marathon from 2026-11-19 (youtube.com/@SilkyLive, twitch.tv/silky)"
+    gta6_only: true
+    extra_rules: ["One strike: AI-generated content or botting = permanent ban from all Reach campaigns"]
+    ends: "when the pool ends"

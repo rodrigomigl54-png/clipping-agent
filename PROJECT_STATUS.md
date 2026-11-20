@@ -217,3 +217,16 @@ _Last updated: 2026-11-03 — all 7 phases implemented. 40 automated tests passi
   stamp / title), 3-word captions, source chips, chapters + .srt. Short trailer shots continue with the following
   shots of the same trailer (`expand`), skipping UI/title cards. GTA V footage: trailer, official trailer, gameplay
   video, PS4/XB1/PC trailer (assets/footage/gta5).
+
+## 2026-11-20 — clipping campaigns (Content Rewards / Reach)
+* The owner joined 7 pool campaigns: Kai Cenat GTA 6 ($10K, MVR 750K, 1K views/clip), CORE ($20K, MVR 2M, 2+ members),
+  CORE YouTube ($5K, MVR 750K), Lacy 30 Day ($25K, MVR 1M), Lacy GTA VI ($12.5K, MVR 750K), JasonTheWeen ($9K, MVR 700K)
+  and Silky ($7.5K, MVR 250K). Rules live in `config/campaigns.yaml`; full analysis in
+  `outputs/reports/KAMPANJE_ANALIZA_2026-11-20.html`.
+* Connected accounts: AMP = TikTok @ampclippergtavi + YouTube @mostwantedgtavi (Kai); CORE = TikTok @mostwanted.vi
+  (to be renamed) + YouTube @corehighlightzdaily (CORE, CORE YT, Lacy, Lacy GTA, Jason, Silky).
+* `clipper/metadata/campaigns.py`: `eligible(primary, present, source, gta6)` -> campaign keys, `caption(...)` with every
+  required hashtag, `problems(...)` rule check (name on screen, hashtags, English only). Tests: tests/test_campaigns.py.
+* Known risk: audience must be >=50% US/CA/UK/AU/NZ; AMP YouTube is ~17% (US 10.5, CA 4.0, UK 2.3), both TikToks ~90% Serbia.
+* Owner's order: first Groundwork/Leonida Files content (2 edits, 2 memes, 1 long-form) from links the owner sends, then
+  streamer clips. Nothing is rendered until the owner says so.
