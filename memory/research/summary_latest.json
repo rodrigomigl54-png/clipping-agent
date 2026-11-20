@@ -1,418 +1,402 @@
 {
- "taken_at": "2026-11-19T06:44:43+00:00",
- "tiktok_videos": 93,
- "youtube_videos": 80,
+ "taken_at": "2026-11-20T06:45:59+00:00",
+ "tiktok_videos": 96,
+ "youtube_videos": 120,
  "top_tiktok": [
   {
-   "url": "https://www.tiktok.com/@lacy/video/7709713589724073230",
+   "url": "https://www.tiktok.com/@lacy/video/7710120296258211085",
    "author": "lacy",
    "type": "meme_skit",
-   "views": 492200,
-   "velocity": 135498,
-   "age_h": 3.6,
-   "engagement": 0.1511,
-   "share_rate": 0.0188,
-   "outlier": 1.59,
-   "duration": 8,
-   "desc": "Not again😭💔 #fyp #viral #lacy #gta6 "
+   "views": 120800,
+   "velocity": 89550,
+   "age_h": 1.3,
+   "engagement": 0.088,
+   "share_rate": 0.0039,
+   "outlier": 0.54,
+   "duration": 9,
+   "desc": "I love GTA VI😭🥀 #fyp #viral #lacy #gta6 #lucia "
   },
   {
-   "url": "https://www.tiktok.com/@tanartfact/video/7709710594701643021",
-   "author": "tanartfact",
-   "type": "hype_edit",
-   "views": 308600,
-   "velocity": 80562,
-   "age_h": 3.8,
-   "engagement": 0.0759,
-   "share_rate": 0.0026,
-   "outlier": 1.52,
-   "duration": 13,
-   "desc": "Bruh it’s gonna take you a whole month just to explore one area #gta #gta6 #grandtheftauto6 #gtaviral #fyp "
-  },
-  {
-   "url": "https://www.tiktok.com/@gtbgringo.clips/video/7709743622089903390",
-   "author": "gtbgringo.clips",
+   "url": "https://www.tiktok.com/@lacy/video/7710113766486052109",
+   "author": "lacy",
    "type": "streamer_clip",
-   "views": 82100,
-   "velocity": 48499,
-   "age_h": 1.7,
-   "engagement": 0.0705,
-   "share_rate": 0.0029,
-   "outlier": 2.04,
-   "duration": 17,
-   "desc": "Braeden is no longer dating Lanah Cherry 🫩 #braeden #lanahcherry #lucia #gta6 #fyp "
+   "views": 144800,
+   "velocity": 81727,
+   "age_h": 1.8,
+   "engagement": 0.0741,
+   "share_rate": 0.002,
+   "outlier": 0.65,
+   "duration": 13,
+   "desc": "Anything for Lucia😁 #fyp #viral #lacy #gta6 #lucia "
   },
   {
-   "url": "https://www.tiktok.com/@overtime/video/7709747658008677645",
+   "url": "https://www.tiktok.com/@overtime/video/7710117294566870285",
    "author": "overtime",
    "type": "streamer_clip",
-   "views": 64400,
-   "velocity": 44938,
-   "age_h": 1.4,
-   "engagement": 0.1148,
-   "share_rate": 0.0029,
-   "outlier": 1.64,
-   "duration": 6,
-   "desc": "His character is Maleek Rivers of the Vice City Manatees 🔥 #tyreekhill #nfl #gta6 #gta #vicecity "
+   "views": 107800,
+   "velocity": 69984,
+   "age_h": 1.5,
+   "engagement": 0.0943,
+   "share_rate": 0.0035,
+   "outlier": 3.78,
+   "duration": 45,
+   "desc": "Is this a valid take? 👀 #nickeh30 #gta6 #gta #streamer "
   },
   {
-   "url": "https://www.tiktok.com/@havoceeditz/video/7709724755103976725",
+   "url": "https://www.tiktok.com/@lacy/video/7710078579719081229",
+   "author": "lacy",
+   "type": "streamer_clip",
+   "views": 262400,
+   "velocity": 64798,
+   "age_h": 4.0,
+   "engagement": 0.1266,
+   "share_rate": 0.017,
+   "outlier": 1.18,
+   "duration": 35,
+   "desc": "Just checking up on Mandy😁 #fyp #viral #lacy #mandy #gta6 "
+  },
+  {
+   "url": "https://www.tiktok.com/@tanartfact/video/7710114414648675614",
+   "author": "tanartfact",
+   "type": "hype_edit",
+   "views": 86500,
+   "velocity": 49846,
+   "age_h": 1.7,
+   "engagement": 0.1121,
+   "share_rate": 0.0078,
+   "outlier": 3.5,
+   "duration": 99,
+   "desc": "The GTA 6 Ending ‼️SPOILER WARNING ‼️ #gta #gta6 #grandtheftauto6 #gtaviral #fyp "
+  },
+  {
+   "url": "https://www.tiktok.com/@overtime/video/7710132472171777293",
+   "author": "overtime",
+   "type": "streamer_clip",
+   "views": 19500,
+   "velocity": 19500,
+   "age_h": 1.0,
+   "engagement": 0.0765,
+   "share_rate": 0.0017,
+   "outlier": 0.68,
+   "duration": 8,
+   "desc": "40 hours nonstop is insane 🤯 @IShowSpeed #gta6 #gta #stream #ishowspeed #speed "
+  },
+  {
+   "url": "https://www.tiktok.com/@lacy/video/7710043930028494093",
+   "author": "lacy",
+   "type": "streamer_clip",
+   "views": 116300,
+   "velocity": 18489,
+   "age_h": 6.3,
+   "engagement": 0.069,
+   "share_rate": 0.0035,
+   "outlier": 0.52,
+   "duration": 39,
+   "desc": "She brought out Evil Lacy🫩🥀 #fyp #viral #lacy #mandy #gta6 "
+  },
+  {
+   "url": "https://www.tiktok.com/@havoceeditz/video/7710043296873057557",
    "author": "havoceeditz",
    "type": "hype_edit",
-   "views": 95400,
-   "velocity": 32714,
-   "age_h": 2.9,
-   "engagement": 0.0763,
-   "share_rate": 0.0045,
-   "outlier": 4.68,
-   "duration": 10,
-   "desc": "THESE DOGS ARE PEAK!! 😍 | GTA 6 Edit | GTA 6 Trailer | GTA 6 Extended Look | Grand Theft Auto | Jason Duval | Lucia Caminos | GTA 6 New Trailer | #jasonduval #luciacaminos #gta6extendedlook #gta6trailer #grandtheftauto6 #gta6edit #gta6 #gta6gameplay #edit #fyp\n𝘜𝘱𝘭𝘰𝘢𝘥 𝘔𝘦𝘵𝘩𝘰𝘥 @.kuronai"
+   "views": 115000,
+   "velocity": 18150,
+   "age_h": 6.3,
+   "engagement": 0.1838,
+   "share_rate": 0.0152,
+   "outlier": 3.29,
+   "duration": 13,
+   "desc": "ARTHUR HAT LOOKS GOOD ON JASON! 🐐🔥| GTA 6 Edit | GTA 6 Trailer | GTA 6 Extended Look | Grand Theft Auto | Jason Duval | Lucia Caminos | GTA 6 New Trailer | #jasonduval #luciacaminos #gta6trailer #gta6edit #gta6 #gta6gameplay #grandtheftauto6 #gta6extendedlook #edit #fyp\n𝘜𝘱𝘭𝘰𝘢𝘥 𝘔𝘦𝘵𝘩𝘰𝘥 @.kuronai"
   },
   {
-   "url": "https://www.tiktok.com/@lacy/video/7709747022563183886",
-   "author": "lacy",
-   "type": "meme_skit",
-   "views": 44400,
-   "velocity": 30261,
-   "age_h": 1.5,
-   "engagement": 0.0882,
-   "share_rate": 0.0023,
-   "outlier": 0.14,
-   "duration": 14,
-   "desc": "Bro went flying😭✌️🥀 #fyp #viral #lacy #gta6 "
-  },
-  {
-   "url": "https://www.tiktok.com/@overtime/video/7709753696388664590",
-   "author": "overtime",
+   "url": "https://www.tiktok.com/@onlyclipinn/video/7710122290448698637",
+   "author": "onlyclipinn",
    "type": "streamer_clip",
-   "views": 29400,
-   "velocity": 28321,
-   "age_h": 1.0,
-   "engagement": 0.0802,
-   "share_rate": 0.0018,
-   "outlier": 0.75,
-   "duration": 12,
-   "desc": "This game actually gonna take a week to beat 😭 @Kai Cenat #gta6 #gta #kaicenat #streamer "
-  },
-  {
-   "url": "https://www.tiktok.com/@tanartfact/video/7709670364636302622",
-   "author": "tanartfact",
-   "type": "hype_edit",
-   "views": 155700,
-   "velocity": 24219,
-   "age_h": 6.4,
-   "engagement": 0.2681,
-   "share_rate": 0.0392,
-   "outlier": 0.77,
-   "duration": 9,
-   "desc": "#gta #gta6 #grandtheftauto6 #gtaviral #fyp "
-  },
-  {
-   "url": "https://www.tiktok.com/@overtime/video/7709745699050573070",
-   "author": "overtime",
-   "type": "streamer_clip",
-   "views": 26600,
-   "velocity": 17127,
-   "age_h": 1.6,
-   "engagement": 0.1038,
+   "views": 12900,
+   "velocity": 10590,
+   "age_h": 1.2,
+   "engagement": 0.0265,
    "share_rate": 0.001,
-   "outlier": 0.68,
-   "duration": 12,
-   "desc": "GTA IS FINALLY HERE 🚨🚨🚨 #gta #vicecity #gta6 #meme #overtime "
-  },
-  {
-   "url": "https://www.tiktok.com/@lacy/video/7709756934202641677",
-   "author": "lacy",
-   "type": "meme_skit",
-   "views": 16800,
-   "velocity": 16800,
-   "age_h": 1.0,
-   "engagement": 0.1064,
-   "share_rate": 0.0124,
-   "outlier": 0.05,
-   "duration": 22,
-   "desc": "Bro got caught😭💔🥀 #fyp #viral #lacy #gta6 "
-  },
-  {
-   "url": "https://www.tiktok.com/@gta_memes_sol/video/7709488197419404577",
-   "author": "gta_memes_sol",
-   "type": "meme_skit",
-   "views": 289600,
-   "velocity": 15897,
-   "age_h": 18.2,
-   "engagement": 0.0191,
-   "share_rate": 0.0017,
-   "outlier": 8.3,
-   "duration": 15,
-   "desc": "Empathy system in full effect 😭 #gta #gta6 #gtavi #GTAMemes #fyp clip from @Don "
+   "outlier": 3.7,
+   "duration": 17,
+   "desc": "Ishowspeed hits 40 hours of NON STOP GTA 6 Gameplay and FINISHED the game 🔥#gta6 #ishowspeed "
   },
   {
    "url": "https://www.tiktok.com/@norage_ae/video/7709591392120556820",
    "author": "norage_ae",
    "type": "hype_edit",
-   "views": 154400,
-   "velocity": 13378,
-   "age_h": 11.5,
-   "engagement": 0.0981,
+   "views": 359600,
+   "velocity": 10112,
+   "age_h": 35.6,
+   "engagement": 0.0935,
    "share_rate": 0.0094,
-   "outlier": 0.46,
+   "outlier": 1.0,
    "duration": 17,
    "desc": "GTA 6 IS FINALLY OUT 🔥                                                                                                                                                                                              #gta6 #gta6edit #game #grandtheftauto #aesthetic #fyp #viral"
   },
   {
-   "url": "https://www.tiktok.com/@tanartfact/video/7709709535035821325",
-   "author": "tanartfact",
+   "url": "https://www.tiktok.com/@moribontaru/video/7709912682228419872",
+   "author": "moribontaru",
    "type": "hype_edit",
-   "views": 42500,
-   "velocity": 10904,
-   "age_h": 3.9,
-   "engagement": 0.1438,
-   "share_rate": 0.0044,
-   "outlier": 0.21,
-   "duration": 16,
-   "desc": "GTA 6 has officially been released world wide… #gta #gta5 #grandtheftautov #gtaviral #fyp "
+   "views": 133500,
+   "velocity": 9030,
+   "age_h": 14.8,
+   "engagement": 0.3406,
+   "share_rate": 0.0224,
+   "outlier": 2.46,
+   "duration": 11,
+   "desc": "I don’t even wanna leave the keys, it’s so peaceful | #gta6 #grandtheftauto6 #ambience #gameplay #fyp "
   },
   {
-   "url": "https://www.tiktok.com/@lacy/video/7709720078144589070",
-   "author": "lacy",
-   "type": "meme_skit",
-   "views": 34200,
-   "velocity": 10638,
-   "age_h": 3.2,
-   "engagement": 0.0598,
-   "share_rate": 0.0016,
-   "outlier": 0.11,
-   "duration": 10,
-   "desc": "“Come on let’s party..”💀💔🥀 #fyp #viral #lacy #gta6 "
-  },
-  {
-   "url": "https://www.tiktok.com/@norage_ae/video/7708516509211004181",
+   "url": "https://www.tiktok.com/@norage_ae/video/7709888871974276373",
    "author": "norage_ae",
    "type": "hype_edit",
-   "views": 526500,
-   "velocity": 6495,
-   "age_h": 81.1,
-   "engagement": 0.1236,
-   "share_rate": 0.0164,
-   "outlier": 1.58,
+   "views": 134000,
+   "velocity": 8209,
+   "age_h": 16.3,
+   "engagement": 0.1431,
+   "share_rate": 0.0151,
+   "outlier": 0.37,
    "duration": 13,
-   "desc": "3 DAYS UNTIL GTA 6 🔥                                                                                                                                                                                                                           #gta6 #gta6edit #game #grandtheftauto #aesthetic #fyp #viral"
+   "desc": "rescue dog GTA 6 🔥                                                                                                                                                                                                              #gta6 #gta6edit #game #grandtheftauto #aesthetic #fyp #viral"
+  },
+  {
+   "url": "https://www.tiktok.com/@gta_memes_sol/video/7709488197419404577",
+   "author": "gta_memes_sol",
+   "type": "meme_skit",
+   "views": 308900,
+   "velocity": 7313,
+   "age_h": 42.2,
+   "engagement": 0.0188,
+   "share_rate": 0.0016,
+   "outlier": 8.04,
+   "duration": 15,
+   "desc": "Empathy system in full effect 😭 #gta #gta6 #gtavi #GTAMemes #fyp clip from @Don "
+  },
+  {
+   "url": "https://www.tiktok.com/@havoceeditz/video/7710126004467109140",
+   "author": "havoceeditz",
+   "type": "hype_edit",
+   "views": 6884,
+   "velocity": 6884,
+   "age_h": 1.0,
+   "engagement": 0.1165,
+   "share_rate": 0.0105,
+   "outlier": 0.2,
+   "duration": 11,
+   "desc": "NICO BELLIC IS BACKK!! 🐐🔥 | SONG: MONTAGEM COZES ABECE - Vocal Remix by Scythermane | GTA 6 Edit | GTA 6 Trailer | GTA 6 Extended Look | Grand Theft Auto | Jason Duval | Lucia Caminos | GTA 6 New Trailer | #jasonduval #luciacaminos #gta6edit #grandtheftauto6 #gta6extendedlook #gta6gameplay #gta6 #gta6trailer #edit #fyp\n𝘜𝘱𝘭𝘰𝘢𝘥 𝘔𝘦𝘵𝘩𝘰𝘥 @.kuronai"
+  },
+  {
+   "url": "https://www.tiktok.com/@overtime/video/7710109153519226125",
+   "author": "overtime",
+   "type": "streamer_clip",
+   "views": 13600,
+   "velocity": 6574,
+   "age_h": 2.1,
+   "engagement": 0.069,
+   "share_rate": 0.0011,
+   "outlier": 0.48,
+   "duration": 25,
+   "desc": "This is INSANE 🤯 @N3on #gta #stream #jet #privatejet #gta6 "
   }
  ],
  "types": {
-  "news": {
-   "n": 1,
-   "median_velocity": 1016,
-   "median_engagement": 0.0709,
-   "median_share_rate": 0.0096
-  },
   "streamer_clip": {
-   "n": 26,
-   "median_velocity": 705,
-   "median_engagement": 0.0358,
-   "median_share_rate": 0.0014
+   "n": 23,
+   "median_velocity": 2497,
+   "median_engagement": 0.0392,
+   "median_share_rate": 0.0019
   },
   "hype_edit": {
-   "n": 25,
-   "median_velocity": 617,
-   "median_engagement": 0.1062,
-   "median_share_rate": 0.0051
+   "n": 29,
+   "median_velocity": 1416,
+   "median_engagement": 0.1143,
+   "median_share_rate": 0.0078
   },
-  "other": {
+  "news": {
    "n": 1,
-   "median_velocity": 522,
-   "median_engagement": 0.0251,
-   "median_share_rate": 0.0
+   "median_velocity": 462,
+   "median_engagement": 0.0717,
+   "median_share_rate": 0.0096
   },
   "meme_skit": {
    "n": 25,
-   "median_velocity": 128,
-   "median_engagement": 0.0413,
-   "median_share_rate": 0.0028
+   "median_velocity": 42,
+   "median_engagement": 0.0479,
+   "median_share_rate": 0.0018
   }
  },
  "topics": [
   [
    "lacy",
-   193197
-  ],
-  [
-   "not",
-   137444
-  ],
-  [
-   "again",
-   135498
-  ],
-  [
-   "not again",
-   135498
-  ],
-  [
-   "gtaviral",
-   120496
-  ],
-  [
-   "gonna",
-   108952
-  ],
-  [
-   "take",
-   108883
-  ],
-  [
-   "gonna take",
-   108883
-  ],
-  [
-   "broke",
-   100122.59999999999
-  ],
-  [
-   "entire",
-   100122.59999999999
-  ],
-  [
-   "internet",
-   100122.59999999999
-  ],
-  [
-   "broke entire",
-   100122.59999999999
-  ],
-  [
-   "entire internet",
-   100122.59999999999
+   254564
   ],
   [
    "lucia",
-   98311
+   194822.0
   ],
   [
-   "one",
-   80867
+   "ishowspeed",
+   157831.1
   ],
   [
-   "bruh",
-   80562
+   "broke",
+   105131.4
   ],
   [
-   "whole",
-   80562
+   "entire",
+   105131.4
   ],
   [
-   "month",
-   80562
+   "internet",
+   105131.4
   ],
   [
-   "explore",
-   80562
+   "broke entire",
+   105131.4
   ],
   [
-   "area",
-   80562
+   "entire internet",
+   105131.4
   ],
   [
-   "bruh gonna",
-   80562
+   "love",
+   96489.5
   ],
   [
-   "take whole",
-   80562
+   "mandy",
+   83442
   ],
   [
-   "marathon",
-   69758.09999999999
+   "anything",
+   81727
   ],
   [
-   "vicecity",
-   63081
+   "anything lucia",
+   81727
   ],
   [
-   "vice",
-   58959.7
+   "finds",
+   74248.2
+  ],
+  [
+   "streamer",
+   70307
+  ],
+  [
+   "nickeh30",
+   69984
+  ],
+  [
+   "valid",
+   69984
+  ],
+  [
+   "take",
+   69984
+  ],
+  [
+   "valid take",
+   69984
+  ],
+  [
+   "hulk",
+   69106.2
+  ],
+  [
+   "monster",
+   69106.2
+  ],
+  [
+   "ishowspeed finds",
+   69106.2
+  ],
+  [
+   "finds hulk",
+   69106.2
+  ],
+  [
+   "hulk monster",
+   69106.2
+  ],
+  [
+   "checking",
+   64798
+  ],
+  [
+   "checking mandy",
+   64798
   ]
  ],
  "sounds": [
   {
-   "title": "do i clench my fists?",
-   "author": "ridgeclub",
-   "videos": 1,
-   "velocity": 44938,
-   "types": {
-    "streamer_clip": 1
-   }
-  },
-  {
    "title": "GOOD LOOKING (HARDTEKK) (edited version)",
    "author": "4cyzon & 4VNX & zhyar",
-   "videos": 1,
-   "velocity": 32714,
+   "videos": 2,
+   "velocity": 21405,
    "types": {
-    "hype_edit": 1
+    "hype_edit": 2
    }
   },
   {
    "title": "ZIRALESMO (Slowed)",
    "author": "Avenxir & MXPAL & mørvy",
    "videos": 1,
-   "velocity": 13378,
+   "velocity": 10112,
    "types": {
     "hype_edit": 1
    }
   },
   {
-   "title": "PROS GUETO - Slowed",
-   "author": "RXDXVIL & MATORO & zeetraxx",
-   "videos": 2,
-   "velocity": 9869,
+   "title": "MONTAGEM EXÉRCITO (Slowed)",
+   "author": "D4R.IO & TO4ST",
+   "videos": 1,
+   "velocity": 8209,
    "types": {
-    "hype_edit": 2
+    "hype_edit": 1
    }
   },
   {
-   "title": "Got That Feelin (feat. Boosie Badazz)",
-   "author": "BBE AJ",
+   "title": "MONTAGEM COZES ABECE - Vocal Remix",
+   "author": "Scythermane & Lili Xiong & DJ KVNXD & DJ DYLANFK",
    "videos": 1,
-   "velocity": 6493,
+   "velocity": 6884,
    "types": {
-    "streamer_clip": 1
+    "hype_edit": 1
+   }
+  },
+  {
+   "title": "Toilet Paper Head",
+   "author": "FullyChop",
+   "videos": 1,
+   "velocity": 6385,
+   "types": {
+    "hype_edit": 1
+   }
+  },
+  {
+   "title": "Blood In Your Eyes (from GTAVI: The Album)",
+   "author": "Tove Lo & Grand Theft Auto VI",
+   "videos": 2,
+   "velocity": 5788,
+   "types": {
+    "hype_edit": 1,
+    "meme_skit": 1
    }
   },
   {
    "title": "MONTAGEM REPE (SLOWED)",
    "author": "Codet & voyre",
    "videos": 1,
-   "velocity": 6189,
+   "velocity": 4215,
    "types": {
     "hype_edit": 1
    }
   },
   {
-   "title": "Flower In A Hurricane (feat. Tame Impala, SZA, King Gizzard & the Lizard Wizard) [From GTAVI: Original Score]",
-   "author": "Justice & Tame Impala & SZA & King Gizzard & the Lizard Wizard",
+   "title": "AFTER PARTY - Slowed",
+   "author": "chipbagov & SCARIONIX & IMMORTAL PLAYA",
    "videos": 3,
-   "velocity": 1248,
-   "types": {
-    "hype_edit": 1,
-    "meme_skit": 1,
-    "streamer_clip": 1
-   }
-  },
-  {
-   "title": "In Essence (Slowed)",
-   "author": "Ka$tro",
-   "videos": 1,
-   "velocity": 536,
-   "types": {
-    "streamer_clip": 1
-   }
-  },
-  {
-   "title": "WHO DO U KNOW - Slowed",
-   "author": "bbbogdan & ABCMUSIC",
-   "videos": 3,
-   "velocity": 374,
+   "velocity": 185,
    "types": {
     "hype_edit": 3
    }
@@ -421,7 +405,16 @@
    "title": "Shotta's",
    "author": "Season 25",
    "videos": 1,
-   "velocity": 218,
+   "velocity": 171,
+   "types": {
+    "hype_edit": 1
+   }
+  },
+  {
+   "title": "WHO DO U KNOW - Slowed",
+   "author": "bbbogdan & ABCMUSIC",
+   "videos": 1,
+   "velocity": 48,
    "types": {
     "hype_edit": 1
    }
@@ -432,298 +425,301 @@
    "url": "https://www.youtube.com/watch?v=YQsxP_YEFTQ",
    "title": "GTA 6 just broke the entire internet..",
    "channel": "Asmongold Clips and Asmongold TV  ",
-   "views": 3003675,
-   "age_h": 9,
-   "velocity": 333742
+   "views": 4205249,
+   "age_h": 24,
+   "velocity": 175219
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=YQsxP_YEFTQ",
+   "title": "GTA 6 just broke the entire internet..",
+   "channel": "Asmongold Clips and Asmongold TV  ",
+   "views": 4205249,
+   "age_h": 24,
+   "velocity": 175219
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=JEaW9KnTijQ",
+   "title": "iShowSpeed Finds A HULK-LIKE MONSTER In GTA 6 😱",
+   "channel": "Speedy Boykins",
+   "views": 2188372,
+   "age_h": 19,
+   "velocity": 115177
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=JEaW9KnTijQ",
+   "title": "iShowSpeed Finds A HULK-LIKE MONSTER In GTA 6 😱",
+   "channel": "Speedy Boykins",
+   "views": 2188372,
+   "age_h": 19,
+   "velocity": 115177
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=1a1xzIdZdA8",
+   "title": "Trevor Phillips on GTA 6 Radio!!",
+   "channel": "Swissziti ",
+   "views": 1346751,
+   "age_h": 22,
+   "velocity": 61216
   },
   {
    "url": "https://www.youtube.com/watch?v=2BRL4ALMCyA",
    "title": "iSHOWSPEED x GTA 6 | OFFICIAL TRAILER",
    "channel": "IShowSpeed",
-   "views": 3477118,
-   "age_h": 48,
-   "velocity": 72440
+   "views": 3759464,
+   "age_h": 72,
+   "velocity": 52215
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=2BRL4ALMCyA",
+   "title": "iSHOWSPEED x GTA 6 | OFFICIAL TRAILER",
+   "channel": "IShowSpeed",
+   "views": 3759464,
+   "age_h": 72,
+   "velocity": 52215
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=2BRL4ALMCyA",
+   "title": "iSHOWSPEED x GTA 6 | OFFICIAL TRAILER",
+   "channel": "IShowSpeed",
+   "views": 3759464,
+   "age_h": 72,
+   "velocity": 52215
   },
   {
    "url": "https://www.youtube.com/watch?v=_AY5krZErfg",
    "title": "GTA 6 MARATHON | Official Trailer",
    "channel": "Kai Cenat Live",
-   "views": 2652706,
-   "age_h": 48,
-   "velocity": 55265
+   "views": 2760084,
+   "age_h": 72,
+   "velocity": 38334
   },
   {
    "url": "https://www.youtube.com/watch?v=_AY5krZErfg",
    "title": "GTA 6 MARATHON | Official Trailer",
    "channel": "Kai Cenat Live",
-   "views": 2652706,
-   "age_h": 48,
-   "velocity": 55265
+   "views": 2760084,
+   "age_h": 72,
+   "velocity": 38334
   },
   {
    "url": "https://www.youtube.com/watch?v=_AY5krZErfg",
    "title": "GTA 6 MARATHON | Official Trailer",
    "channel": "Kai Cenat Live",
-   "views": 2652706,
-   "age_h": 48,
-   "velocity": 55265
+   "views": 2760084,
+   "age_h": 72,
+   "velocity": 38334
   },
   {
-   "url": "https://www.youtube.com/watch?v=_AY5krZErfg",
-   "title": "GTA 6 MARATHON | Official Trailer",
-   "channel": "Kai Cenat Live",
-   "views": 2652706,
-   "age_h": 48,
-   "velocity": 55265
+   "url": "https://www.youtube.com/watch?v=3FbHbWWNH-c",
+   "title": "GTA 6 (Grand Theft Auto 6) - Official Global Launch Trailer",
+   "channel": "IGN",
+   "views": 492180,
+   "age_h": 16,
+   "velocity": 30761
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=3FbHbWWNH-c",
+   "title": "GTA 6 (Grand Theft Auto 6) - Official Global Launch Trailer",
+   "channel": "IGN",
+   "views": 492180,
+   "age_h": 16,
+   "velocity": 30761
   },
   {
    "url": "https://www.youtube.com/watch?v=0e746-1G_sE",
    "title": "NBA 2K27 x GTA 6 (Grand Theft Auto 6) - Official Vice City Crossover Trailer",
    "channel": "IGN",
-   "views": 1886142,
-   "age_h": 48,
-   "velocity": 39295
+   "views": 1979492,
+   "age_h": 72,
+   "velocity": 27493
   },
   {
-   "url": "https://www.youtube.com/watch?v=gyaed6claKA",
-   "title": "xQc CRIES LAUGHING over GTA 6 Radio host MALDING OVER CTE IN FOOTBALL | xQc GTA VI",
-   "channel": "xQc Clips",
-   "views": 38836,
-   "age_h": 3,
-   "velocity": 12945
-  },
-  {
-   "url": "https://www.youtube.com/watch?v=a7VFku1Bnms",
-   "title": "GTA 6 Marathon | Ducky Bhai 24/7 Live Stream (Official Trailer)",
-   "channel": "Ducky Reloaded",
-   "views": 993648,
-   "age_h": 96,
-   "velocity": 10350
-  },
-  {
-   "url": "https://www.youtube.com/watch?v=Qk4R02ZS1BQ",
-   "title": "Grand Theft Auto VI: Pre-Load Now",
-   "channel": "XBOX",
-   "views": 1244295,
-   "age_h": 144,
-   "velocity": 8641
-  },
-  {
-   "url": "https://www.youtube.com/watch?v=Ek1xjfuS-U8",
-   "title": "1 minute compilation of BUGS found in GTA 6 just 3 hours after release😬",
-   "channel": "MajesticDrama",
-   "views": 97981,
-   "age_h": 14,
-   "velocity": 6999
-  },
-  {
-   "url": "https://www.youtube.com/watch?v=UyYlFQQmAJ8",
-   "title": "Grand Theft Auto VI | Features Trailer | PS5",
-   "channel": "PlayStation Italia",
-   "views": 839027,
-   "age_h": 120,
-   "velocity": 6992
-  },
-  {
-   "url": "https://www.youtube.com/watch?v=3TZHrjbR0NI",
-   "title": "GTA 6 Launch Hype: Miami becomes Vice City, NYC gamers take the day off",
-   "channel": "FOX 5 New York",
-   "views": 109148,
-   "age_h": 17,
-   "velocity": 6420
-  },
-  {
-   "url": "https://www.youtube.com/watch?v=01wCg3EIxxg",
-   "title": "GTA6: Thousands of sick notes expected for the release! Fans are going crazy!",
-   "channel": "WELT Nachrichtensender",
-   "views": 51304,
-   "age_h": 11,
-   "velocity": 4664
-  },
-  {
-   "url": "https://www.youtube.com/watch?v=tZi8r6CfWq8",
-   "title": "Pasta's HILARIOUS first time playing GTA 6",
-   "channel": "Nogla Clips",
-   "views": 45996,
-   "age_h": 11,
-   "velocity": 4181
+   "url": "https://www.youtube.com/watch?v=0e746-1G_sE",
+   "title": "NBA 2K27 x GTA 6 (Grand Theft Auto 6) - Official Vice City Crossover Trailer",
+   "channel": "IGN",
+   "views": 1979492,
+   "age_h": 72,
+   "velocity": 27493
   }
  ],
  "events": [
   {
    "title": "iSHOWSPEED x GTA 6",
    "channel": "IShowSpeed",
-   "views": 3477118,
-   "age_h": 48,
-   "velocity": 72440,
+   "views": 3759464,
+   "age_h": 72,
+   "velocity": 52215,
    "url": "https://www.youtube.com/watch?v=2BRL4ALMCyA"
   },
   {
    "title": "GTA 6 MARATHON",
    "channel": "Kai Cenat Live",
-   "views": 2652706,
-   "age_h": 48,
-   "velocity": 55265,
+   "views": 2760084,
+   "age_h": 72,
+   "velocity": 38334,
    "url": "https://www.youtube.com/watch?v=_AY5krZErfg"
+  },
+  {
+   "title": "GTA 6",
+   "channel": "IGN",
+   "views": 492180,
+   "age_h": 16,
+   "velocity": 30761,
+   "url": "https://www.youtube.com/watch?v=3FbHbWWNH-c"
   },
   {
    "title": "NBA 2K27 x GTA 6",
    "channel": "IGN",
-   "views": 1886142,
-   "age_h": 48,
-   "velocity": 39295,
+   "views": 1979492,
+   "age_h": 72,
+   "velocity": 27493,
    "url": "https://www.youtube.com/watch?v=0e746-1G_sE"
   },
   {
-   "title": "Grand Theft Auto VI: Pre-Load Now",
-   "channel": "XBOX",
-   "views": 1244295,
-   "age_h": 144,
-   "velocity": 8641,
-   "url": "https://www.youtube.com/watch?v=Qk4R02ZS1BQ"
+   "title": "NBA 2K27 - Meets Vice City Trailer",
+   "channel": "PlayStation",
+   "views": 1418322,
+   "age_h": 72,
+   "velocity": 19699,
+   "url": "https://www.youtube.com/watch?v=71ep0-aJJMQ"
   },
   {
-   "title": "Grand Theft Auto VI",
-   "channel": "PlayStation Italia",
-   "views": 839027,
-   "age_h": 120,
-   "velocity": 6992,
-   "url": "https://www.youtube.com/watch?v=UyYlFQQmAJ8"
+   "title": "GTA 6 Ultimate Edition vs Standard - How Do Stores Work?",
+   "channel": "IGN",
+   "views": 163113,
+   "age_h": 14,
+   "velocity": 11651,
+   "url": "https://www.youtube.com/watch?v=gN5qaT7u-uM"
   },
   {
-   "title": "GTA 6 X YAHYA Official Trailer",
-   "channel": "Yahya Khaddir",
-   "views": 47501,
-   "age_h": 12,
-   "velocity": 3958,
-   "url": "https://www.youtube.com/watch?v=WOiqqRzAk6I"
-  },
-  {
-   "title": "Kanel Joseph x GTA 6 Marathon - Official Trailer",
-   "channel": "Kanel Joseph",
-   "views": 24683,
+   "title": "GTA 6 - Six Things You Should Do Everyday",
+   "channel": "GameSpot",
+   "views": 135564,
    "age_h": 24,
-   "velocity": 1028,
-   "url": "https://www.youtube.com/watch?v=AhzV7lGtZyk"
+   "velocity": 5648,
+   "url": "https://www.youtube.com/watch?v=3y--CD5KEvM"
   },
   {
-   "title": "Grand Theft Auto VI - Trailer de Recursos",
-   "channel": "PlayStation Brasil",
-   "views": 120743,
-   "age_h": 120,
-   "velocity": 1006,
-   "url": "https://www.youtube.com/watch?v=ut9-aVWw2LM"
+   "title": "GTA 6: How to Change Clothes, Customize Outfits, and Store Clothes in Your Car",
+   "channel": "IGN",
+   "views": 22860,
+   "age_h": 5,
+   "velocity": 4572,
+   "url": "https://www.youtube.com/watch?v=qbhJRtgCx30"
   }
  ],
  "adjacent_trends": {
   "topics": [
    [
-    "bayonetta",
-    2900
+    "huss",
+    53190
    ],
    [
-    "bayonetta2",
-    2900
+    "miami",
+    53190
    ],
    [
-    "bayonetta3",
-    2900
+    "heat",
+    53190
    ],
    [
-    "bayonetta2edit",
-    2900
+    "huss huss",
+    53190
    ],
    [
-    "bayonettaedit",
-    2900
+    "huss miami",
+    53190
    ],
    [
-    "bayonetta2edits",
-    2900
+    "miami heat",
+    53190
    ],
    [
-    "bayonettaedits",
-    2900
+    "kimmuyeol",
+    4806
    ],
    [
-    "dlss",
-    2519
+    "nahwajin",
+    4806
    ],
    [
-    "andrewdavila",
-    1990
+    "teachyoualesson",
+    4806
    ],
    [
-    "lexirivera",
-    1990
+    "goat",
+    4474
    ]
   ],
   "top": [
    {
+    "url": "https://www.tiktok.com/@overtime/video/7710114825891859726",
+    "author": "overtime",
+    "type": "streamer_clip",
+    "views": 90900,
+    "velocity": 53190,
+    "desc": "HUSS HUSS HUSS 🗣️ @Miami HEAT "
+   },
+   {
+    "url": "https://www.tiktok.com/@mfx.3dits/video/7709932528911551777",
+    "author": "mfx.3dits",
+    "type": "hype_edit",
+    "views": 60400,
+    "velocity": 4474,
+    "desc": "the goat🔥 #kimmuyeol #nahwajin #teachyoualesson #edit #fyp "
+   },
+   {
     "url": "https://www.tiktok.com/@ryanpostvids/video/7708093339077299486",
     "author": "ryanpostvids",
     "type": "meme_skit",
-    "views": 215800,
-    "velocity": 1990,
+    "views": 220200,
+    "velocity": 1663,
     "desc": "I miss amp world 😔 #andrewdavila #lexirivera #ampworld #fyp #edit"
-   },
-   {
-    "url": "https://www.tiktok.com/@.kuronai/video/7709503856228453638",
-    "author": ".kuronai",
-    "type": "hype_edit",
-    "views": 22100,
-    "velocity": 1287,
-    "desc": "Dlss 5 on mummy bayonetta #bayonetta #bayonetta2 #bayonetta3 #bayonetta2edit #bayonettaedit #bayonetta2edits #bayonettaedits"
    },
    {
     "url": "https://www.tiktok.com/@.kuronai/video/7709153504580914433",
     "author": ".kuronai",
     "type": "hype_edit",
-    "views": 49100,
-    "velocity": 1232,
+    "views": 61500,
+    "velocity": 963,
     "desc": "Dlss 5 mummy bayonetta #bayonetta #bayonetta2 #bayonetta3 #bayonetta2edit #bayonettaedit #bayonetta2edits #bayonettaedits"
+   },
+   {
+    "url": "https://www.tiktok.com/@.kuronai/video/7709503856228453638",
+    "author": ".kuronai",
+    "type": "hype_edit",
+    "views": 35800,
+    "velocity": 869,
+    "desc": "Dlss 5 on mummy bayonetta #bayonetta #bayonetta2 #bayonetta3 #bayonetta2edit #bayonettaedit #bayonetta2edits #bayonettaedits"
    },
    {
     "url": "https://www.tiktok.com/@norage_ae/video/7709516356625960213",
     "author": "norage_ae",
     "type": "hype_edit",
-    "views": 11000,
-    "velocity": 671,
+    "views": 19500,
+    "velocity": 482,
     "desc": "Don't be afraid 💀 #daenerystargaryen #gameofthrones #daenerystargaryenedit #jonsnow #aesthetic #fyp #viral"
+   },
+   {
+    "url": "https://www.tiktok.com/@.kuronai/video/7709883659158850817",
+    "author": ".kuronai",
+    "type": "hype_edit",
+    "views": 7813,
+    "velocity": 469,
+    "desc": "Dlss 5 mummys protect cereza #bayonetta #bayonetta2 #bayonetta3 #bayonetta2edit #bayonettaedit #bayonetta2edits #bayonettaedits"
    },
    {
     "url": "https://www.tiktok.com/@mfx.3dits/video/7708474967226191136",
     "author": "mfx.3dits",
     "type": "hype_edit",
-    "views": 34600,
-    "velocity": 413,
+    "views": 35800,
+    "velocity": 332,
     "desc": "na hwa-jin 😭 #kimmuyeol #nahwajin #teachyoualesson #edit #fyp "
-   },
-   {
-    "url": "https://www.tiktok.com/@mfx.3dits/video/7709571510352252192",
-    "author": "mfx.3dits",
-    "type": "hype_edit",
-    "views": 4703,
-    "velocity": 367,
-    "desc": "him🔥 #geonwoo #woodohwan #bloodhounds #edit #fyp "
-   },
-   {
-    "url": "https://www.tiktok.com/@.kuronai/video/7708138681332206855",
-    "author": ".kuronai",
-    "type": "hype_edit",
-    "views": 24600,
-    "velocity": 233,
-    "desc": "What are you doing mummy #bayonetta #bayonetta2 #bayonetta3 #bayonetta2edit #bayonettaedit #bayonetta2edits #bayonettaedits"
-   },
-   {
-    "url": "https://www.tiktok.com/@.kuronai/video/7707279025281961217",
-    "author": ".kuronai",
-    "type": "hype_edit",
-    "views": 23900,
-    "velocity": 148,
-    "desc": "Mummys rich #bayonetta #bayonetta2 #bayonetta3 #bayonetta2edit #bayonettaedit #bayonetta2edits #bayonettaedits"
    }
   ]
  },
- "errors": []
+ "errors": [
+  "tiktok embed @Fanum: HTTP Error 400: Bad Request",
+  "tiktok embed @IShowSpeed: HTTP Error 400: Bad Request"
+ ]
 }
