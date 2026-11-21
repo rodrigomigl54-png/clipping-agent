@@ -31,6 +31,13 @@ the full table). Rules for the operator:
   (fact-checked, sources listed; unconfirmed things are said to be unconfirmed) -> owner approves -> render with
   `content/longform/<id>/make.py` (clipper/editing/longform.py). No music baked in: post kit proposes Audio Library
   tracks and where. Text never covers faces. Each long-form is later cut into Shorts.
+* **Recreating the owner's references (owner's rule, 2026-11-21 — this overrides the "official footage /
+  unused trailer parts" plan rule above):** when the owner sends a reference and asks for it, recreate THAT
+  video: same subject/character (a Niko Bellic edit = Niko Bellic), same format, same joke. Only change what
+  the owner asked to change (e.g. "another background that makes sense"). Never swap the character, scene or
+  joke for something from the official footage. If the needed footage is not on disk, get it (in-game
+  cutscene/gameplay uploads via the vidIQ import, render to `outputs/_PRIVATE_TEST/`, say where it came from);
+  if it truly can't be found, ask before substituting anything.
 * Do not add publishing/upload integrations, cloud services, dashboards, or scraping/downloader
   tools (e.g. yt-dlp) — out of scope by design.
 
