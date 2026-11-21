@@ -72,6 +72,12 @@ clip("kai_mandy", "kai_mandy_a_src", [(7.5, 36.9), (108.9, 121.4)],
 clip("kai_romeo", "kai_play2", [(1052.5, 1100.5)],
      ["{KAI CENAT} WENT FULL ROMEO", "FOR LUCIA IN GTA 6"],
      zooms=[(1078.0, 0.72, 0.30, 1.5, 6.0)])
+clip("kai_escaped", "kai_6stars", [(567.0, 575.5), (588.0, 614.0)],
+     ["{KAI CENAT} TOLD CHAT HE ESCAPED", "THE GTA 6 COPS 18 SECONDS LATER:"], fix={"chav": "CHAT", "chib": "CHAT"})
+clip("kai_store", "kai_6stars", [(2207.0, 2232.0), (2249.0, 2262.0)],
+     ["{KAI CENAT} SHOT UP A WHOLE STORE", "BEGGING GTA 6 FOR 6 STARS"], fix={"honor's": "ARMOR'S"})
+clip("kai_sixstars", "kai_6stars", [(2366.0, 2378.5), (2404.5, 2416.5), (2722.0, 2747.0)],
+     ["{KAI CENAT} FINALLY GOT 6 STARS", "IT ENDED 6 MINUTES LATER"], fix={"more": "STARS", "than": "IN"})
 clip("kai_dating", "kai_play2", [(2797.5, 2813.8), (2817.8, 2849.6)],
      ["{KAI CENAT} HELPED A GTA 6 NPC", "PICK A DATE... SHE WAS 82"],
      zooms=[(2834.0, 0.47, 0.42, 1.6, 5.0)])
@@ -220,10 +226,10 @@ def render(cid):
                 if t0 <= ts <= t1:
                     X0, Y0, X1, Y1 = int(x0 * sw), int(y0 * sh), int(x1 * sw), int(y1 * sh)
                     roi = f[Y0:Y1, X0:X1]
-                    small = cv2.resize(roi, (max(1, (X1 - X0) // 56), max(1, (Y1 - Y0) // 56)))
+                    small = cv2.resize(roi, (max(1, (X1 - X0) // 110), max(1, (Y1 - Y0) // 110)))
                     f = f.copy()
                     f[Y0:Y1, X0:X1] = cv2.GaussianBlur(cv2.resize(small, (X1 - X0, Y1 - Y0),
-                                                                  interpolation=cv2.INTER_NEAREST), (0, 0), 18)
+                                                                  interpolation=cv2.INTER_NEAREST), (0, 0), 40)
             pic = f
             for zt, zx, zy, zz, zd in c["zooms"]:
                 if zt <= ts <= zt + zd:
