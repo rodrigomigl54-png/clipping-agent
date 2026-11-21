@@ -66,6 +66,7 @@ def frames(path, w, h):
 
 
 # posts whose caption changes / disappears: detect separately in each time window
+EXTRA = {"showers": [(400, 870, 690, 995)]}       # emoji line the detector misses (x0, y0, x1, y1)
 CAPWIN = {"evil": [(0.0, 10.6), (10.9, 99.0)], "showers": [(0.0, 3.1), (4.6, 99.0)]}
 
 
@@ -122,7 +123,15 @@ def render(cid):
     path = SRC / f"{cid}.mp4"
     w, h, dur = probe(path)
     wins = [(a, min(b, dur)) for a, b in CAPWIN.get(cid, [(0.0, dur)])]
-    masks = [(a, b) + caption_mask(path, w, h, a, b) for a, b in wins]
+    masks = []
+    for a, b in wins:
+        m, box = caption_mask(path, w, h, a, b)
+        for ex in EXTRA.get(cid, []):
+            if m is None:
+                m, box = np.zeros((h, w), np.uint8), ex
+            m[ex[1]:ex[3], ex[0]:ex[2]] = 255
+            box = (min(box[0], ex[0]), min(box[1], ex[1]), max(box[2], ex[2]), max(box[3], ex[3]))
+        masks.append((a, b, m, box))
     OUT.mkdir(parents=True, exist_ok=True)
     head = [amp.fit(line, 1010, 84) for line in headline]
     subs = words(cid, fix)
