@@ -39,8 +39,10 @@ BAD = {"fuck": "f*ck", "fucking": "f*cking", "motherfucker": "m*therf*cker", "sh
 CLIPS = {}
 
 
-def clip(cid, src, parts, headline, zooms=(), blur=(), fix=None):
-    CLIPS[cid] = dict(src=src, parts=parts, headline=headline, zooms=list(zooms), blur=list(blur), fix=fix or {})
+def clip(cid, src, parts, headline, zooms=(), blur=(), fix=None, cam=None):
+    # cam=(x0, y0, x1, y1, scale): streamer cam cut from the UNblurred frame and shown big over the picture
+    CLIPS[cid] = dict(src=src, parts=parts, headline=headline, zooms=list(zooms), blur=list(blur), fix=fix or {},
+                      cam=cam)
 
 
 # ------------------------------------------------------------------ AGENT00
@@ -57,9 +59,16 @@ clip("agent_magician", "agent_military", [(606.0, 629.4)],
 clip("agent_cargo", "agent_military", [(855.5, 873.6), (883.5, 905.0)],
      ["{AGENT 00} TRIED TO STEAL A CARGO PLANE", "THE STAIRS HAD OTHER PLANS"],
      zooms=[(889.0, 0.84, 0.78, 1.6, 2.0)])
-clip("agent_mandy", "agent_mandy_src", [(2.4, 28.2)],
+clip("agent_mandy", "agent_mandy_src", [(2.4, 14.7), (19.4, 28.2)],
      ["{AGENT 00} MET MANDY IN GTA 6", "AND DID IT ALL \"FOR THE PLOT\""],
-     blur=[(18.8, 28.3, 0.17, 0.12, 0.56, 1.0)])
+     # Mandy is in a bikini from 19 s: hide the whole game picture, keep only Agent's cam (bottom-right) clear
+     blur=[(19.0, 28.3, 0.0, 0.0, 1.0, 0.66), (19.0, 28.3, 0.0, 0.66, 0.84, 1.0)])
+
+# ------------------------------------------------------------------ KAI CENAT
+# Mandy is in a bikini for almost the whole scene -> whole game blurred, Kai's cam (left) shown 2x on top
+clip("kai_mandy", "kai_mandy_a_src", [(7.5, 36.9), (108.9, 121.4)],
+     ["{KAI CENAT} WAS NOT READY", "FOR MANDY IN GTA 6"],
+     blur=[(0.0, 131.0, 0.0, 0.0, 1.0, 1.0)], cam=(0.004, 0.40, 0.208, 0.604, 2.0))
 
 
 def wrap(lines):
@@ -200,14 +209,15 @@ def render(cid):
             ts = a + j / FPS                      # source time
             to = t_out + j / FPS                  # output time
             sh, sw = f.shape[:2]
+            orig = f
             for t0, t1, x0, y0, x1, y1 in c["blur"]:
                 if t0 <= ts <= t1:
                     X0, Y0, X1, Y1 = int(x0 * sw), int(y0 * sh), int(x1 * sw), int(y1 * sh)
                     roi = f[Y0:Y1, X0:X1]
-                    small = cv2.resize(roi, (max(1, (X1 - X0) // 28), max(1, (Y1 - Y0) // 28)))
+                    small = cv2.resize(roi, (max(1, (X1 - X0) // 56), max(1, (Y1 - Y0) // 56)))
                     f = f.copy()
                     f[Y0:Y1, X0:X1] = cv2.GaussianBlur(cv2.resize(small, (X1 - X0, Y1 - Y0),
-                                                                  interpolation=cv2.INTER_NEAREST), (0, 0), 6)
+                                                                  interpolation=cv2.INTER_NEAREST), (0, 0), 18)
             pic = f
             for zt, zx, zy, zz, zd in c["zooms"]:
                 if zt <= ts <= zt + zd:
@@ -215,6 +225,14 @@ def render(cid):
                     ease = min(1.0, k / 0.12) if k < 0.85 else max(0.0, (1 - k) / 0.15)
                     pic = zoom_frame(f, 1 + (zz - 1) * ease, zx, zy)
             main = cv2.resize(pic, (PW, PH), interpolation=cv2.INTER_LANCZOS4)
+            if c.get("cam"):
+                x0, y0, x1, y1, sc = c["cam"]
+                cc = orig[int(y0 * sh):int(y1 * sh), int(x0 * sw):int(x1 * sw)]
+                cc = cv2.resize(cc, (int(cc.shape[1] * sc), int(cc.shape[0] * sc)), interpolation=cv2.INTER_LANCZOS4)
+                ch_, cw_ = cc.shape[:2]
+                cy0, cx0 = (PH - ch_) // 2, (PW - cw_) // 2
+                cv2.rectangle(main, (cx0 - 6, cy0 - 6), (cx0 + cw_ + 5, cy0 + ch_ + 5), (0, 215, 255), -1)
+                main[cy0:cy0 + ch_, cx0:cx0 + cw_] = cc
             bg = cv2.resize(f, (192, 108))
             bg = cv2.GaussianBlur(bg, (0, 0), 6)
             bh = H
