@@ -75,8 +75,8 @@ clip("kai_romeo", "kai_play2", [(1052.5, 1100.5)],
 clip("kai_escaped", "kai_6stars", [(567.0, 575.5), (588.0, 614.0)],
      ["{KAI CENAT} TOLD CHAT HE ESCAPED", "THE GTA 6 COPS 18 SECONDS LATER:"], fix={"chav": "CHAT", "chib": "CHAT"})
 clip("kai_store", "kai_6stars", [(2207.0, 2232.0), (2249.0, 2262.0)],
-     ["{KAI CENAT} SHOT UP A WHOLE STORE", "BEGGING GTA 6 FOR 6 STARS"], fix={"honor's": "ARMOR'S"})
-clip("kai_sixstars", "kai_6stars", [(2366.0, 2378.5), (2404.5, 2416.5), (2722.0, 2747.0)],
+     ["{KAI CENAT} SHOT UP A WHOLE STORE", "BEGGING GTA 6 FOR 6 STARS"], fix={"honor's": "ARMOR'S", "dollars": "STARS"})
+clip("kai_sixstars", "kai_6stars", [(2366.0, 2378.5), (2405.6, 2416.5), (2722.0, 2747.0)],
      ["{KAI CENAT} FINALLY GOT 6 STARS", "IT ENDED 6 MINUTES LATER"], fix={"more": "STARS", "than": "IN"})
 clip("kai_dating", "kai_play2", [(2797.5, 2813.8), (2817.8, 2849.6)],
      ["{KAI CENAT} HELPED A GTA 6 NPC", "PICK A DATE... SHE WAS 82"],
