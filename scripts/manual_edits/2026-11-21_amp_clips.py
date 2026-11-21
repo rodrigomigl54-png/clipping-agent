@@ -69,6 +69,12 @@ clip("agent_mandy", "agent_mandy_src", [(2.4, 14.7), (19.4, 28.2)],
 clip("kai_mandy", "kai_mandy_a_src", [(7.5, 36.9), (108.9, 121.4)],
      ["{KAI CENAT} WAS NOT READY", "FOR MANDY IN GTA 6"],
      blur=[(0.0, 131.0, 0.0, 0.0, 1.0, 1.0)], cam=(0.004, 0.40, 0.208, 0.604, 2.0))
+clip("kai_romeo", "kai_play2", [(1052.5, 1100.5)],
+     ["{KAI CENAT} WENT FULL ROMEO", "FOR LUCIA IN GTA 6"],
+     zooms=[(1078.0, 0.72, 0.30, 1.5, 6.0)])
+clip("kai_dating", "kai_play2", [(2797.5, 2813.8), (2817.8, 2849.6)],
+     ["{KAI CENAT} HELPED A GTA 6 NPC", "PICK A DATE... SHE WAS 82"],
+     zooms=[(2834.0, 0.47, 0.42, 1.6, 5.0)])
 
 
 def wrap(lines):
