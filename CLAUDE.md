@@ -38,6 +38,13 @@ the full table). Rules for the operator:
   joke for something from the official footage. If the needed footage is not on disk, get it (in-game
   cutscene/gameplay uploads via the vidIQ import, render to `outputs/_PRIVATE_TEST/`, say where it came from);
   if it truly can't be found, ask before substituting anything.
+* **Streamer clips only from the VOD (owner's rule, 2026-11-22 — overrides the "uploads via vidIQ" part above
+  for anything posted to YouTube):** every moment is cut by us from the streamer's own VOD/upload. Never use
+  footage from other people's Shorts, TikToks, clip-channel uploads or re-cuts of them (that is what YouTube's
+  1 Oct 2026 Shorts update stops recommending). Viral moments are fine. The cut, structure, headline and title
+  are our own. Preferred YouTube format: transformed clips (Top 3/5/10 rankings, comparisons, story with context)
+  with our scripted AI narrator (Kokoro `am_fenrir`) around the streamer's original audio. The narrator says our
+  own context/ranking/verdict and never just reads what happens on screen.
 * Do not add publishing/upload integrations, cloud services, dashboards, or scraping/downloader
   tools (e.g. yt-dlp) — out of scope by design.
 
