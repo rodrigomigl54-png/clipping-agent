@@ -210,7 +210,12 @@ def render(cid):
 # find_moments top pick (score 60/53/51): the deal at 275–336 and the chase at 465–522 — one story, one clip
 clip("kai_irl_setup", "kai_irl", [(313.9, 336.4), (337.0, 343.0), (502.7, 518.0), (569.2, 587.7)],
      ["{KAI CENAT} DID A GTA 6 MISSION", "IN REAL LIFE... IT WENT WRONG"],
-     cold=(324.5, 2.2), crop=0.5, fix={"field": "FAILED", "sent": "SET", "chase": "CHAT,"})
+     cold=(321.3, 2.0), crop=0.5, fix={"field": "FAILED", "sent": "SET", "chase": "CHAT,"})
+# Agent00 reacting to a loyalty test ("Catching Cheaters"); find_moments #1 (74) and #4/#8 (47/42)
+clip("agent_cuddle", "agent_cheat", [(2411.0, 2426.0), (2427.2, 2451.0)],
+     ["SHE ASKED HIM TO CUDDLE...", "{AGENT 00} COULDN'T TAKE IT"], cold=(2429.6, 2.0))
+clip("agent_caught", "agent_cheat", [(2609.4, 2611.2), (2614.7, 2626.0), (2630.3, 2647.5), (2659.9, 2672.6)],
+     ["HE THOUGHT HIS GIRL LEFT TOWN...", "{AGENT 00} WATCHED HER CATCH HIM"], cold=(2662.6, 2.2))
 
 if __name__ == "__main__":
     for cid in sys.argv[1:] or list(CLIPS):
