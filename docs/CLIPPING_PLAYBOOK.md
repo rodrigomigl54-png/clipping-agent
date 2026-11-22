@@ -20,9 +20,8 @@ Extra free signals:
 * **YouTube "Most replayed" heatmap**: the best signal there is, because people rewound to those spots. It only
   shows on videos with roughly 50K views or more. From this cloud machine YouTube blocks watch pages, so check
   the graph on the phone (drag the progress bar) and send the timestamps.
-* **"Market heatmap"**: what other clippers already cut from the same stream, and how it did (morning research).
-  If a moment already went viral, do the same moment with a better hook and title. If nothing has been clipped
-  yet, being first is the advantage.
+* We do NOT use other clippers' clips, not even to find moments (owner's rule 2026-11-22). The moments
+  come from our own search of the VOD.
 
 ## 2. How the clip is built
 1. **Start on the reaction, not the setup.** If the setup is needed, put the payoff first as a **cold open**:

@@ -45,6 +45,12 @@ the full table). Rules for the operator:
   are our own. Preferred YouTube format: transformed clips (Top 3/5/10 rankings, comparisons, story with context)
   with our scripted AI narrator (Kokoro `am_fenrir`) around the streamer's original audio. The narrator says our
   own context/ranking/verdict and never just reads what happens on screen.
+  Finding the moments is our own work too: we do NOT look at other clippers' clips to pick moments. We search the
+  VOD ourselves (scripts/tools/find_moments.py + watching), cut, edit and render, then send the post kit.
+* **Channels (owner's decision, 2026-11-22):** the long-form channel goes back to its old name **Groundwork** and
+  its old niche ("Your Life as Every Level/Rank of …" faceless explainers). The owner teaches the format and we make
+  a test video first, which is published only if it is good. The GTA long-form there goes private. GTA long-form /
+  "Leonida Files" plans are paused. Most Wanted = AMP clips, CORE clipper = CORE/Lacy clips.
 * Do not add publishing/upload integrations, cloud services, dashboards, or scraping/downloader
   tools (e.g. yt-dlp) — out of scope by design.
 
