@@ -27,6 +27,18 @@ SPECS = {
         ],
         fix={"field": "FAILED", "sent": "SET", "chase": "CHAT,"},
     ),
+    "agent": dict(
+        id="amp_ranking_agent_cheaters", src_dir=str(ROOT / "assets/streams/2026-11-23"), src="agent_unfaithful",
+        out_dir=OUT, title=["Ranking {Agent 00}'s", "Reactions To Cheaters"], sub=("(last one ", "😳"),
+        moments=[
+            dict(slot=4, label="\"You think you're Beyonce?\"", emoji="💅", parts=[(1418.5, 1430.1)]),
+            dict(slot=5, label="y = mx + b", emoji="🤓", parts=[(1162.0, 1172.0)]),
+            dict(slot=3, label="\"Same script, bro\"", emoji="📜", parts=[(2246.0, 2257.0)]),
+            dict(slot=2, label="\"How is this networking?\"", emoji="🤨", parts=[(2076.0, 2087.2)]),
+            dict(slot=1, label="Caught after 5 years", emoji="💔", parts=[(2950.0, 2962.1)]),
+        ],
+        fix={},
+    ),
 }
 
 if __name__ == "__main__":
