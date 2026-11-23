@@ -185,7 +185,7 @@ def render(spec):
             events.append((st, "boom", 0.75))
         for ts, name, g in m.get("sfx", []):
             events.append((src_to_out(ts), name, g))
-    if spec.get("sfx_on", True):
+    if spec.get("sfx_on", False):          # owner 2026-11-23: no SFX
         au = au * 0.9
         for t_ev, name, g in events:
             e = sfx.get(name) * g
