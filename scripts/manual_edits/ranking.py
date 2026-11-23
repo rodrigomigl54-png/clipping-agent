@@ -22,6 +22,9 @@ ROOT = Path(__file__).resolve().parents[2]
 _s = importlib.util.spec_from_file_location("amp", ROOT / "scripts/manual_edits/2026-11-21_amp_clips.py")
 amp = importlib.util.module_from_spec(_s)
 _s.loader.exec_module(amp)
+_s = importlib.util.spec_from_file_location("sfx", ROOT / "scripts/tools/sfx.py")
+sfx = importlib.util.module_from_spec(_s)
+_s.loader.exec_module(sfx)
 _s = importlib.util.spec_from_file_location("ex", ROOT / "scripts/manual_edits/2026-11-22_amp_examples.py")
 ex = importlib.util.module_from_spec(_s)
 _s.loader.exec_module(ex)
@@ -164,6 +167,33 @@ def render(spec):
     enc.stdin.close()
     enc.wait()
     au = np.concatenate([a_[:int(round(len(a_) / SR * FPS)) * SR // FPS] for a_ in audio])
+    # ---------------- sound effects (ours, synthesized): automatic + per-moment events at source times
+    def src_to_out(ts):
+        for x, y, mi, t0 in plan:
+            if ts < y:
+                return t0 + max(0.0, ts - x)
+        return total
+
+    events = []
+    for mi, m in enumerate(spec["moments"]):
+        st = start_of[mi]
+        events.append((st, "pop", 0.45))
+        if mi > 0:
+            events.append((max(0, st - 0.2), "whoosh", 0.35))
+        if m["slot"] == 1:
+            events.append((max(0, st - 1.6), "riser", 0.4))
+            events.append((st, "boom", 0.75))
+        for ts, name, g in m.get("sfx", []):
+            events.append((src_to_out(ts), name, g))
+    if spec.get("sfx_on", True):
+        au = au * 0.9
+        for t_ev, name, g in events:
+            e = sfx.get(name) * g
+            i0 = int(t_ev * SR)
+            i1 = min(len(au), i0 + len(e))
+            if i1 > i0:
+                au[i0:i1] += e[:i1 - i0]
+        au = au / max(1.0, float(np.max(np.abs(au))))
     wav = out_dir / f"_{spec['id']}.wav"
     wf = wave.open(str(wav), "wb")
     wf.setnchannels(2)
@@ -173,7 +203,7 @@ def render(spec):
     wf.close()
     out = out_dir / f"PRIVATE-TEST_{spec['id']}.mp4"
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(tmp), "-i", str(wav), "-map", "0:v", "-map", "1:a",
-                    "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-af", "loudnorm=I=-14:TP=-1.5", "-shortest",
+                    "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-af", "loudnorm=I=-14:TP=-1.5,aresample=48000,alimiter=limit=0.85:level=false", "-shortest",
                     str(out)], check=True)
     tmp.unlink()
     wav.unlink()

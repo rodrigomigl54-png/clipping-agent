@@ -11,17 +11,22 @@ ranking = importlib.util.module_from_spec(_s)
 _s.loader.exec_module(ranking)
 
 SPEC = dict(
-    id="amp_kai_ranking_banks",
+    id="amp_kai_ranking_banks_sfx",
     src_dir=str(ROOT / "assets/streams/2026-11-23"), src="kai_banks",
     out_dir=str(ROOT / "outputs/_PRIVATE_TEST/AMP/2026-11-23"),
     title=["Ranking {Kai Cenat}", "GTA 6 Bank Spree"],
     sub=("(last one ", "💀"),
     moments=[
-        dict(slot=4, label="\"Real criminal\" tutorial", emoji="📞", parts=[(1537.6, 1548.0)]),
-        dict(slot=5, label="Picked the wrong day", emoji="👊", parts=[(746.0, 757.0)]),
-        dict(slot=3, label="Kai vs one hill", emoji="🚙", parts=[(790.5, 802.0)]),
-        dict(slot=2, label="100K in one night", emoji="💰", parts=[(3424.6, 3434.0)]),
-        dict(slot=1, label="One jump too far", emoji="💀", parts=[(3778.6, 3787.2), (3810.2, 3816.8)]),
+        dict(slot=4, label="\"Real criminal\" tutorial", emoji="📞", parts=[(1537.6, 1548.0)],
+             sfx=[(1544.4, "scratch", 0.8)]),
+        dict(slot=5, label="Picked the wrong day", emoji="👊", parts=[(746.0, 757.0)],
+             sfx=[(752.4, "punch", 0.9), (753.6, "punch", 0.8)]),
+        dict(slot=3, label="Kai vs one hill", emoji="🚙", parts=[(790.5, 802.0)],
+             sfx=[(797.9, "boom", 0.8), (798.7, "fail", 0.7)]),
+        dict(slot=2, label="100K in one night", emoji="💰", parts=[(3424.6, 3434.0)],
+             sfx=[(3425.3, "kaching", 0.8)]),
+        dict(slot=1, label="One jump too far", emoji="💀", parts=[(3778.6, 3787.2), (3810.2, 3816.8)],
+             sfx=[(3812.4, "boom", 0.9), (3815.1, "fail", 0.75)]),
     ],
     fix={},
 )
