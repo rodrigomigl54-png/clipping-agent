@@ -29,6 +29,30 @@ SPECS = {
         ],
         fix={"marlin": "MARLON"},
     ),
+    "dad": dict(
+        id="core_ranking_marlon_dad", src_dir=SRC, src="stable_marlon_dad", out_dir=OUT,
+        title=["Ranking {Stable Ronaldo}'s", "24H With \"Dad\" Marlon"], sub=("(last one ", "😂"),
+        moments=[
+            dict(slot=4, label="\"Why I play e-sports\"", emoji="🎮", parts=[(1753.0, 1763.6)]),
+            dict(slot=5, label="Can't do a seatbelt", emoji="😭", parts=[(1249.0, 1259.0)]),
+            dict(slot=3, label="\"Didn't have a dad either\"", emoji="💀", parts=[(64.0, 73.8)]),
+            dict(slot=2, label="Red light?! SON", emoji="🚦", parts=[(985.0, 1001.5)]),
+            dict(slot=1, label="Kai met his \"dad\"", emoji="😂", parts=[(725.5, 736.2)]),
+        ],
+        fix={"marlin": "MARLON", "marlin!": "MARLON!", "joes": "YO,"},
+    ),
+    "japan": dict(
+        id="core_ranking_japan", src_dir=SRC, src="lacy_core_japan", out_dir=OUT,
+        title=["Ranking {CORE} In Japan", "With Lacy & Jason"], sub=("(last one ", "🔥"),
+        moments=[
+            dict(slot=4, label="7-Eleven rice ball review", emoji="🍙", parts=[(225.0, 236.6)]),
+            dict(slot=5, label="Egg sandwich = 10/10", emoji="🥪", parts=[(408.0, 423.4)]),
+            dict(slot=3, label="\"Where you shopping at?\"", emoji="🛍", parts=[(771.0, 782.9)]),
+            dict(slot=2, label="\"I want to move here\"", emoji="🇯🇵", parts=[(430.0, 436.2)]),
+            dict(slot=1, label="Jason's song in a JP store", emoji="🎶", parts=[(740.0, 753.6)]),
+        ],
+        fix={},
+    ),
 }
 
 if __name__ == "__main__":
