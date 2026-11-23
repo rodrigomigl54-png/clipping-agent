@@ -89,14 +89,19 @@ def render(spec):
     segs = []
     t, d = spec["hook"]
     segs.append(("hook", (t, t + d, 1)))
+    if spec.get("intro"):
+        segs.append(("card", (t + d, tts(spec["intro"]["vo"], spec.get("speed", 1.15)), spec["intro"]["vo"],
+                              "intro")))
     for it in spec["items"]:
         a0 = it["parts"][0][0]
-        segs.append(("card", (a0 + 0.2, tts(it["vo"]), it["vo"], it["rank"])))
+        segs.append(("card", (a0 + 0.2, tts(it["vo"], spec.get("speed", 1.15)), it["vo"], it["rank"])))
+        it.setdefault("title", "")
         for a, b in it["parts"]:
             for x, y in ex.keep_intervals(ws, rms, a, b):
                 segs.append(("clip", (x, y, it["rank"])))
     last = spec["items"][-1]["parts"][-1][1]
-    segs.append(("card", (last - 0.3, tts(spec["outro"]), spec["outro"], None)))
+    segs.append(("card", (last - 0.3, tts(spec["outro"], spec.get("speed", 1.15)), spec["outro"], "outro")))
+    titles = {it["rank"]: it.get("title", "") for it in spec["items"]}
 
     # durations + captions on the output timeline
     caps, audio, t_out, plan = [], [], 0.0, []
@@ -131,7 +136,7 @@ def render(spec):
         for im in head:
             amp.paste(fr, im, W / 2, y + im.shape[0] / 2)
             y += im.shape[0] - 10
-        if rank is not None and not card:
+        if isinstance(rank, int) and not card:
             key = f"#{rank}"
             bcache.setdefault(key, badge(key, 110))
             amp.paste(fr, bcache[key], 110, PY + 90)
@@ -147,6 +152,7 @@ def render(spec):
     enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{W}x{H}",
                             "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-preset", "medium", "-crf", "17",
                             "-pix_fmt", "yuv420p", str(tmp)], stdin=subprocess.PIPE)
+    first_t = {}
     for kind, p, t0, dur in plan:
         n = int(round(dur * FPS))
         if kind in ("hook", "clip"):
@@ -159,6 +165,10 @@ def render(spec):
                 fr[PY:PY + PH] = main
                 to = t0 + j / FPS
                 fr = overlay(fr, to, None if kind == "hook" else rank)
+                if kind == "clip" and titles.get(rank) and to - first_t.setdefault(rank, t0) < 2.2:
+                    key = f"stitle#{rank}"
+                    bcache.setdefault(key, amp.fit(titles[rank], 1000, 70))
+                    amp.paste(fr, bcache[key], W / 2, PY - 60)
                 if kind == "hook":
                     key = "hook"
                     bcache.setdefault(key, amp.fit("WAIT FOR {#1}...", 900, 110))
@@ -175,10 +185,26 @@ def render(spec):
                 fr, main = base(g)
                 main = (main.astype(np.float32) * 0.45).astype(np.uint8)
                 fr[PY:PY + PH] = main
-                if rank is not None:
+                if isinstance(rank, int):
                     key = f"big#{rank}"
                     bcache.setdefault(key, badge(f"#{rank}", 300))
-                    amp.paste(fr, bcache[key], W / 2, PY + PH / 2 - 40)
+                    amp.paste(fr, bcache[key], W / 2, PY + PH / 2 - 70)
+                    if titles.get(rank):
+                        key = f"title#{rank}"
+                        bcache.setdefault(key, amp.fit(titles[rank], 1000, 76))
+                        amp.paste(fr, bcache[key], W / 2, PY + PH / 2 + 130)
+                elif rank == "intro":
+                    for k, (txt, size, dy) in enumerate([("{TOP 5}", 260, -150)] +
+                                                       [(ln, 80, 60 + 85 * i) for i, ln in
+                                                        enumerate(spec["intro"]["lines"])]):
+                        key = f"intro{k}"
+                        bcache.setdefault(key, amp.fit(txt, 1000, size))
+                        amp.paste(fr, bcache[key], W / 2, PY + PH / 2 + dy)
+                elif rank == "outro":
+                    for k, (txt, size, dy) in enumerate(spec["outro_lines"]):
+                        key = f"outro{k}"
+                        bcache.setdefault(key, amp.fit(txt, 1000, size))
+                        amp.paste(fr, bcache[key], W / 2, PY + PH / 2 + dy)
                 fr = overlay(fr, t0 + j / FPS, rank, card=True)
                 enc.stdin.write(fr.tobytes())
     enc.stdin.close()
