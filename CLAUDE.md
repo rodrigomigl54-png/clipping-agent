@@ -51,7 +51,8 @@ the full table). Rules for the operator:
   its old niche ("Your Life as Every Level/Rank of …" faceless explainers). The owner teaches the format and we make
   a test video first, which is published only if it is good. The GTA long-form there goes private. GTA long-form /
   "Leonida Files" plans are paused. Most Wanted = AMP clips, CORE clipper = CORE/Lacy clips.
-  **Groundwork runs in its own conversation (owner, 2026-11-24)**: everything about it is in docs/GROUNDWORK.md.
+  **Groundwork runs in its own conversation, repo `rodrigomigl54-png/Groundworks` and environment "Explainer videi"
+  (owner, 2026-11-24)**: nothing about it lives in this repo.
   A clipping session does not do Groundwork work, and a Groundwork session does not do clipping.
 * Do not add publishing/upload integrations, cloud services, dashboards, or scraping/downloader
   tools (e.g. yt-dlp) — out of scope by design.
