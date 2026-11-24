@@ -76,6 +76,30 @@ Options given to the owner:
 * YouTube (Oct 2026 / Jul 2025): avoid mass-produced, templated content. Every video needs a genuinely
   researched topic and its own script.
 
+## Owner's decisions (2026-11-24, after the "Video Creation Master" prompt review)
+* FULL AUTOMATION: Claude writes ideas, script, image prompts, generates the images, edits, renders and sends the
+  post kit. The owner only (1) picks the topic and (2) approves the script. Everything must work from his PHONE
+  (no desktop app, no computer).
+* Script: fact-checked with sources, but still storytelling, gripping, never boring.
+* Images must match exactly what the narration says at that moment (no random images) and must never be
+  stretched/distorted. One character reference (character sheet) is sent with every image for consistency.
+* NO text inside generated images at all.
+* Title + thumbnail concept are decided together with the idea (stage 2), before the script.
+* Small fixes accepted: chapters in the description, little time on tags, no music baked in.
+* The owner has more video ideas for later; first build this system.
+* Niche question still OPEN: switch to hand-drawn stick-figure explainers, or adapt the prompt to the
+  "Every Level" format.
+
+## Image generation status (2026-11-24)
+* Google Flow (owner's previous tool): web app, no public API; automating it needs a logged-in desktop browser,
+  which the phone-only setup can't provide.
+* Pollinations free (no key): works now but 1 image / 45 s, 1024x576, watermark, weak model (sana). The two
+  test images (`outputs/_PRIVATE_TEST/GROUNDWORK/img_test/`) got the character wrong: NOT usable.
+* Gemini API: per sources from Oct 2026 there is no free tier for image models (paid only).
+* Best free candidate: Cloudflare Workers AI free plan (10,000 Neurons/day, FLUX models). Needs a free
+  Cloudflare account + API token from the owner (through the secure credential form, never chat). Quality to be
+  tested first.
+
 ## Next (waiting on the owner)
 The owner will send extra information, his own prompts, ideas and more example videos/styles to analyse, and
 feedback on the test level. Give him an honest opinion, then continue.
