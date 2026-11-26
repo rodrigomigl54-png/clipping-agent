@@ -117,9 +117,10 @@ def render(spec):
             labels[(mi, state)] = text_img(parts, 58, max_w=880)
     slot_of = {mi: m["slot"] for mi, m in enumerate(spec["moments"])}
     ROW0, STEP, X0 = 372, 76, 50
-    cw = min(w, int(h * 1.5))                       # 3:2 crop, <= 2x upscale on a 360p source
+    clip_h = int(h * (1 - spec.get("crop_bottom", 0)))   # optional: cut burned-in captions at the bottom of the source
+    cw = min(w, int(clip_h * 1.5))                      # 3:2 crop, <= 2x upscale on a 360p source
     cx0 = (w - cw) // 2
-    PH = int(1080 * h / cw)
+    PH = int(1080 * clip_h / cw)
     PY = 760
     cache = {}
 
@@ -138,7 +139,7 @@ def render(spec):
             xo = (bg.shape[1] - W) // 2
             fr = (bg[:, xo:xo + W].astype(np.float32) * 0.42).astype(np.uint8)
             fr[:720] = (fr[:720].astype(np.float32) * 0.55).astype(np.uint8)       # darker board area
-            fr[PY:PY + PH] = cv2.resize(f[:, cx0:cx0 + cw], (1080, PH), interpolation=cv2.INTER_LANCZOS4)
+            fr[PY:PY + PH] = cv2.resize(f[:clip_h, cx0:cx0 + cw], (1080, PH), interpolation=cv2.INTER_LANCZOS4)
             y0 = 70
             for im in title:
                 amp.paste(fr, im, W / 2, y0 + im.shape[0] / 2)
