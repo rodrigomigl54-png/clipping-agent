@@ -31,6 +31,18 @@ SPECS = {
         ],
         fix={},
     ),
+    "silky": dict(
+        id="core_ranking_silky_lucia", src_dir=SRC, src="silky_gta7", out_dir=CORE,
+        title=["Ranking {Silky}'s", "Lucia Robbery Spree"], sub=("(last one ", "🧠"),
+        moments=[
+            dict(slot=4, label="\"This car's hard\"", emoji="🏎", parts=[(438.2, 452.2)]),
+            dict(slot=5, label="\"Am I dumb?\"", emoji="🤦", parts=[(814.3, 824.6)]),
+            dict(slot=3, label="Robbed a store for $7", emoji="💵", parts=[(1312.9, 1317.0), (1331.8, 1335.7)]),
+            dict(slot=2, label="\"Now what?!\"", emoji="😳", parts=[(1074.4, 1087.0)]),
+            dict(slot=1, label="The $200 jail glitch", emoji="🧠", parts=[(1845.7, 1857.0), (1872.6, 1875.7)]),
+        ],
+        fix={},
+    ),
 }
 
 if __name__ == "__main__":
