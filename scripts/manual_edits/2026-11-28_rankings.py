@@ -42,6 +42,18 @@ SPECS = {
         ],
         fix={"l-rons.": "L'S.", "rons.": "L'S."},
     ),
+    "lacy": dict(
+        id="core_ranking_lacy_thanksgiving", src_dir=SRC, src="lacy_tg", out_dir=CORE,
+        title=["Ranking {Lacy}'s", "First Thanksgiving Dinner"], sub=("(last one ", "🧂"),
+        moments=[
+            dict(slot=4, label="No paper towels", emoji="🦃", parts=[(22.5, 31.5)]),
+            dict(slot=5, label="A whole brick of butter", emoji="🧈", parts=[(686.0, 697.5)]),
+            dict(slot=3, label="\"What is burning?!\"", emoji="🔥", parts=[(514.5, 524.5)]),
+            dict(slot=2, label="\"Full of ideas today\"", emoji="🙄", parts=[(783.7, 793.5)]),
+            dict(slot=1, label="The salt pie", emoji="🧂", parts=[(2357.5, 2371.4), (2385.3, 2390.0)]),
+        ],
+        fix={"chad,": "CHAT,", "chad": "CHAT"},
+    ),
 }
 
 if __name__ == "__main__":
