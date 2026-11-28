@@ -30,6 +30,18 @@ SPECS = {
         ],
         fix={},
     ),
+    "stable": dict(
+        id="core_ranking_stable_blackfriday", src_dir=SRC, src="stable_bf", out_dir=CORE,
+        title=["Ranking {Stable Ronaldo}'s", "Black Friday Shopping"], sub=("(last one ", "🔊"),
+        moments=[
+            dict(slot=4, label="\"It's $2 off\"", emoji="🤨", parts=[(28.9, 38.0)]),
+            dict(slot=5, label="$20 wired earbuds", emoji="🎧", parts=[(373.9, 380.0), (383.0, 387.7)]),
+            dict(slot=3, label="\"On me today\"", emoji="🎁", parts=[(433.1, 438.5), (441.0, 447.1)]),
+            dict(slot=2, label="Spent $1,200, still taking L's", emoji="💸", parts=[(1352.9, 1361.4)]),
+            dict(slot=1, label="Jason's $3.99 speaker", emoji="🔊", parts=[(1533.8, 1546.7), (1547.0, 1552.6)]),
+        ],
+        fix={"l-rons.": "L'S.", "rons.": "L'S."},
+    ),
 }
 
 if __name__ == "__main__":
